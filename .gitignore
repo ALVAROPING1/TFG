@@ -28,6 +28,7 @@
 creationdate.timestamp
 
 svg-inkscape/
+build/
 _markdown_report
 
 *.pdf
