@@ -10,14 +10,161 @@
 % - \glsdisp{term}{custom text}: link with custom text
 % https://www.overleaf.com/learn/latex/Glossaries
 
+% ╔════════════════════════════════════════════════════════════════════════════╗
+% ║                                  Glossary                                  ║
+% ╚════════════════════════════════════════════════════════════════════════════╝
 
-\newglossaryentry{caca} {
-  name = {caca},
-  description = {mucha caca}
+\newglossaryentry{expression} {
+  name = {expresión},
+  plural = {expresiones},
+  description = {Elemento sintáctico de un lenguaje de programación que se puede evaluar para obtener un valor},
+  see = {programming language}
 }
 
-\newglossaryentrywithacronym{CAC}
-{cacaaaaaaa}
-{}
+\newglossaryentry{sentence} {
+  name = {sentencia},
+  description = {Elemento sintáctico de un lenguaje de programación que indica una acción a realizar},
+  see = {programming language}
+}
 
-\newacronym{gcd}{GCD}{Greatest Common Divisor}
+\newglossaryentry{program} {
+  name = {programa},
+  description = {Secuencia de instrucciones escrita en un lenguaje de programación para que un computador la ejecute},
+  see = {programming language,computer}
+}
+
+\newglossaryentry{programming language} {
+  name = {lenguaje de programación},
+  plural = {lenguajes de programación},
+  description = {Sistema de notación para escribir un programa},
+  see = {program}
+}
+
+\newglossaryentry{high-level language} {
+  name = {lenguaje de alto nivel},
+  plural = {lenguajes de alto nivel},
+  description = {Lenguaje de programación con fuertes abstracciones de los detalles del computador},
+  see = {programming language,computer}
+}
+
+\newglossaryentry{low-level language} {
+  name = {lenguaje de bajo nivel},
+  plural = {lenguajes de bajo nivel},
+  description = {Lenguaje de programación con pocas o ninguna abstracción de los detalles del computador y su ISA},
+  see = {programming language,computer,ISA}
+}
+
+\newglossaryentry{assembly} {
+  name = {lenguaje ensamblador},
+  description = {Lenguaje de programación de bajo nivel con una fuerte correspondencia entre las instrucciones en el lenguaje y las instrucciones soportadas por el computador},
+  see = {programming language}
+}
+
+\newglossaryentry{assembler} {
+  name = {ensamblador},
+  plural = {ensambladores},
+  description = {Compilador que traduce un programa escrito en lenguaje ensamblador a código máquina},
+  see = {compiler,machine code}
+}
+
+\newglossaryentry{machine code} {
+  name = {código máquina},
+  description = {Código de un computador formado por instrucciones utilizadas para controlar su comportamiento, típicamente mezcladas con datos},
+  see = {computer}
+}
+
+\newglossaryentry{compilation} {
+  name = {compilación},
+  plural = {compilaciones},
+  description = {Proceso de traducción de un programa escrito en un lenguaje de programación a otro},
+  see = {programming language}
+}
+
+\newglossaryentry{compiler} {
+  name = {compilador},
+  plural = {compiladores},
+  description = {Programa cuyo propósito es compilar otro programa},
+  see = {compilation,program}
+}
+
+\newglossaryentry{computer} {
+  name = {computador},
+  plural = {computadores},
+  description = {Máquina que puede ser programada para llevar a cabo una secuencia de operaciones},
+}
+
+\newglossaryentry{directive} {
+  name = {directiva de ensamblador},
+  plural = {directivas de ensamblador},
+  description = {Instrucción del ensamblador para realizar una tarea o cambiar un ajuste},
+  see = {assembler}
+}
+
+\newglossaryentry{data directive} {
+  name = {directiva de datos},
+  plural = {directivas de datos},
+  description = {Directiva de ensamblador que especifica datos a añadir en la memoria de datos, con su tipo, tamaño, y alineamiento},
+  see = {directive,data memory}
+}
+
+\newglossaryentry{memory} {
+  name = {memoria},
+  description = {Dispositivo de almacenamiento utilizado para almacenar información},
+}
+
+\newglossaryentry{data memory} {
+  name = {memoria de datos},
+  description = {Segmento de la memoria de un computador utilizado para almacenar datos de un programa},
+  see = {memory,computer}
+}
+
+\newglossaryentry{text memory} {
+  name = {memoria de texto},
+  description = {Segmento de la memoria de un computador utilizado para almacenar las instrucciones de un programa},
+  see = {memory,computer,instruction}
+}
+
+\newglossaryentry{instruction} {
+  name = {instrucción},
+  plural = {instrucciones},
+  description = {Orden dada al procesador de un computador para que realize alguna acción},
+  see = {processor,computer}
+}
+
+\newglossaryentry{pseudo-instruction} {
+  name = {pseudo-instrucción},
+  plural = {pseudo-instrucciones},
+  description = {Instrucción permitida en un ensamblador que se reemplaza por una secuencia de instrucciones durante la compilación},
+  see = {instruction,assembler}
+}
+
+\newglossaryentry{processor} {
+  name = {procesador},
+  plural = {procesadores},
+  description = {Componente de un computador encargado de ejecutar instrucciones y realizar operaciones},
+  see = {instruction,computer}
+}
+
+% ╔════════════════════════════════════════════════════════════════════════════╗
+% ║                                  Acronyms                                  ║
+% ╚════════════════════════════════════════════════════════════════════════════╝
+
+\newglossaryentrywithacronym{ISA}
+{Instruction Set Architecture}
+{Modelo abstracto de la arquitectura de un procesador, incluyendo el conjunto de instrucciones que puede ejecutar}
+
+\newglossaryentrywithacronym{AST}
+{Abstract Syntax Tree}
+{Estructura de datos utilizada para representar la estructura de un programa}
+
+\newglossaryentrywithacronym{API}
+{Application Programming Interface}
+{Interfaz de un programa diseñada para ser utilizada por otro programa}
+
+\newglossaryentrywithacronym{FOSS}
+{Free and Open Source Software}
+{Software disponible bajo una licencia que concede el derecho de utilizar, modificar, y distribuir el software a cualquier persona libre de cargos}
+
+\newacronym{json}{JSON}{JavaScript Object Notation}
+
+\newacronym{js}{JS}{JavaScript}

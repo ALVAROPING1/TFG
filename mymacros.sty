@@ -50,6 +50,8 @@
         name={#1},
         description={#2},
         first={#2 (#1)\glsadd{#1_gls}},
-        see=[Glossary:]{#1_gls}
+        see=[Glosario:]{#1_gls}
     }
 }
+
+\newcommand\padtwo[1]{\ifnum\value{#1}<10 0\fi\arabic{#1}}
