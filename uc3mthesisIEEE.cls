@@ -627,6 +627,14 @@
 %----------
 
 \RequirePackage[backend=biber, style=ieee, isbn=false, sortcites, maxbibnames=6, minbibnames=1]{biblatex} % IEEE citation style
+% improve spanish style
+\DefineBibliographyStrings{spanish}{%
+	andothers = {et\addabbrvspace al\adddot},
+	url = {\adddot\space[En línea]\adddot\space Disponible en:},
+	urlseen = {Acceso:},
+	pages = {pp\adddot},
+	page = {p.\adddot}
+}
 \preto{\printbibliography}{\pagestyle{noheader}}
 
 % force break of lines when necessary
