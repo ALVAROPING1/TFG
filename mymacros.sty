@@ -5,19 +5,19 @@
 
 % \chapterref{mychap}
 % remember to create a label for the section (\label{chap:mychap})
-\newcommand{\chapterref}[1] {%
+\newcommand{\chapterref}[1]{%
   Capítulo \ref{chap:#1}, \textit{\nameref{chap:#1}}%
 }
 
 % \sectionref{mysec}
 % remember to create a label for the section (\label{sec:mysec})
-\newcommand{\sectionref}[1] {%
+\newcommand{\sectionref}[1]{%
   Sección \ref{sec:#1}, \textit{\nameref{sec:#1}}%
 }
 
 % \subsectionref{mysubsec}
 % remember to create a label for the subsection (\label{subsec:mysubsec})
-\newcommand{\subsectionref}[1] {%
+\newcommand{\subsectionref}[1]{%
   Subsección \ref{subsec:#1}, \textit{\nameref{subsec:#1}}%
 }
 
@@ -29,12 +29,24 @@
 % remember to create a label for the subsection (\label{fig:myfigure})
 \newcommand{\figureref}[1]{Figura \ref{fig:#1}}
 
+% \reqref[prefix]{ID}
+\newcommand{\reqref}[2][Requisito]{\hyperref[req:#2]{#1 #2}}
+
 % \drawiosvgfigure[width]{filename}{caption}
 % remember to disable Word Wrap and Formatted Text for all text (https://www.drawio.com/doc/faq/svg-export-text-problems#disable-formatted-text-and-word-wrap)
 \newcommand{\drawiosvgfigure}[3][0.8] {
   \begin{figure}[h]
     \centering
-    \includesvg[inkscapelatex=true,width=#1\textwidth]{#2.drawio.svg}
+    \includesvg[inkscapelatex=true, width=#1\textwidth]{#2.drawio.svg}
+    \caption{#3}
+    \label{fig:#2}
+  \end{figure}
+}
+
+\newcommand{\graphicfigure}[3][0.8] {
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=#1\textwidth]{#2}
     \caption{#3}
     \label{fig:#2}
   \end{figure}
@@ -61,6 +73,8 @@
     }
 }
 
+\newcommand{\glsdisponly}[2]{\glsdisp{#1}{#2}\glsadd{#1}}
+
 \newcommand{\traceabilityTable}[5][htb]{%
     \begin{table}[#1]
         \ttabbox[\FBwidth]
@@ -69,4 +83,4 @@
     \end{table}
 }
 
-\newcommand\padtwo[1]{\ifnum\value{#1}<10 0\fi\arabic{#1}}
+\newcommand{\padtwo}[1]{\ifnum\value{#1}<10 0\fi\arabic{#1}}

@@ -86,7 +86,8 @@ y RE para restricción; mientras que YY representará un código numérico incre
 dentro de cada tipo que empezará en 1.
 
 La \tableref{ur-template} contiene la plantilla que se utilizará para la
-especificación de los requisitos de usuario.
+especificación de los requisitos de usuario. Tras esta, se incluyen las tablas
+correspondientes a cada uno de los requisitos de usuario.
 
 \printureqtemplate{UR-XX-YY}
 
@@ -194,7 +195,7 @@ especificación de los requisitos de usuario.
 \stepcounter{i}
 
 \begin{userReq}{RU-RE-\padtwo{i}}{pc=h,pd=h,s=c,v=m}
-    El sistema tiene que utilizar la sintáxis del \gls{assembler} GNU as para
+    El sistema tiene que utilizar la sintaxis del \gls{assembler} GNU as para
     los \glspl{program} \glsdisp{compilation}{compilados}.
 \end{userReq}
 \stepcounter{i}
@@ -231,7 +232,8 @@ y NF para no funcional; mientras que YY representará un código numérico incre
 dentro de cada tipo que empezará en 1.
 
 La \tableref{sr-template} contiene la plantilla que se utilizará para la
-especificación de los requisitos de software.
+especificación de los requisitos de software. Tras esta, se incluyen las tablas
+correspondientes a cada uno de los requisitos de software.
 
 \printsreqtemplate{RS-XX-YY}
 
@@ -279,6 +281,8 @@ especificación de los requisitos de software.
     caracteres terminadas y no terminadas en un \gls{null byte}.
 \end{softwareReq}
 \stepcounter{i}
+
+% TODO: add escape sequences to strings
 
 \begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
     {RU-CA-01}
@@ -337,7 +341,8 @@ especificación de los requisitos de software.
 \begin{softwareReq}{RS-F-\padtwo{i}}{pc=m,pd=m,s=nc,v=h}
     {RU-CA-06, RU-CA-07}
     El sistema debe permitir evaluar \glspl{expression} con los siguientes tipos
-    de valores constantes: números enteros, números decimales, y etiquetas.
+    de valores constantes: números enteros, números decimales, caracteres
+    literales (utilizando su representación Unicode) y etiquetas.
 \end{softwareReq}
 \stepcounter{i}
 
@@ -359,7 +364,7 @@ especificación de los requisitos de software.
 \begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
     {RU-CA-08}
     El sistema debe permitir definir múltiples \glspl{instruction} con el mismo
-    nombre, y utilizar su sintáxis y el tamaño de los argumentos (en bits) para
+    nombre, y utilizar su sintaxis y el tamaño de los argumentos (en bits) para
     seleccionar la correcta durante la \gls{compilation} de un \gls{program}
     \glsdisp{assembly}{ensamblador}.
 \end{softwareReq}
@@ -404,7 +409,7 @@ especificación de los requisitos de software.
 
 \begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
     {RU-RE-01}
-    La definición de la sintáxis de las instrucciones debe estar contenida en la
+    La definición de la sintaxis de las instrucciones debe estar contenida en la
     \gls{ISA}.
 \end{softwareReq}
 \stepcounter{i}
@@ -460,7 +465,7 @@ especificación de los requisitos de software.
 
 \begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=h,s=c,v=m}
     {RU-RE-07}
-    El sistema tiene que utilizar la sintáxis del \gls{assembler} GNU as para
+    El sistema tiene que utilizar la sintaxis del \gls{assembler} GNU as para
     los \glspl{program} \glsdisp{compilation}{compilados}.
 \end{softwareReq}
 \stepcounter{i}
@@ -481,33 +486,32 @@ especificación de los requisitos de software.
 
 La matriz de trazabilidad permite verificar que todos los requisitos de usuario
 están cubiertos por al menos un requisito de software. Como se puede ver, todos
-los requisitos de capacidad están cuviertos por los requisitos funcionales
+los requisitos de capacidad están cubiertos por los requisitos funcionales
 (\tableref{trazability-ca-f}), y todos los requisitos de restricción están
-cuviertos por los requisitos no funcionales (\tableref{trazability-re-nf})
+cubiertos por los requisitos no funcionales (\tableref{trazability-re-nf})
 
-\traceabilityTable{trazability-ca-f}
-    {^RS\37-F}{^RU\37-CA}
+\traceabilityTable{trazability-ca-f}{^RS\37-F}{^RU\37-CA}
     {Trazabilidad entre los requisitos de capacidad y los requisitos funcionales}
 
-\traceabilityTable{trazability-re-nf}
-    {^RS\37-NF}{^RU\37-RE}
+\traceabilityTable{trazability-re-nf}{^RS\37-NF}{^RU\37-RE}
     {Trazabilidad entre los requisitos de capacidad y los requisitos funcionales}
 
 \FloatBarrier
 
 \section{Casos de uso}\label{sec:usecases}
 
-El modelo de casos de uso UML \parencite{UMLSpec}, mostrado en la \figureref{use_cases} representa las
-acciones que el usuario puede realizar con el sistema. Cabe destacar que, como
-el propósito del sistema es muy específico, la cantidad de casos de uso es
-bastante limitada.
+El modelo de casos de uso UML \parencite{UMLSpec}, mostrado en la
+\figureref{use_cases}, representa las acciones que el usuario puede realizar con
+el sistema. Cabe destacar que, como el propósito del sistema es muy específico,
+la cantidad de casos de uso es bastante limitada.
 
 \drawiosvgfigure[0.55]{use_cases}{Modelo de casos de uso}
 
 Cada requisito se identificará con un ID con el formato CU-X, donde X
 representará un código numérico incremental que empezará en 1. La
 \tableref{uc-template} contiene la plantilla que se utilizará para la
-especificación de cada uno de los casos de uso.
+especificación de cada uno de los casos de uso. Tras esta, se incluyen las tablas
+correspondientes a cada uno de los casos de uso.
 
 \printuctemplate{CU-XX}
 
