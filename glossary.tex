@@ -87,10 +87,17 @@
   see = {compilation,program}
 }
 
+\newglossaryentry{compile-time}{
+  name = {tiempo de compilación},
+  plural = {compiladores},
+  description = {Tiempo durante el cual un programa se compila},
+  see = {compilation}
+}
+
 \newglossaryentry{computer}{
   name = {computador},
   plural = {computadores},
-  description = {Máquina que puede ser programada para llevar a cabo una secuencia de operaciones},
+  description = {Máquina que puede ser programada para llevar a cabo una secuencia de operaciones}
 }
 
 \newglossaryentry{directive}{
@@ -109,7 +116,7 @@
 
 \newglossaryentry{memory}{
   name = {memoria},
-  description = {Dispositivo de almacenamiento utilizado para almacenar información},
+  description = {Dispositivo de almacenamiento utilizado para almacenar información}
 }
 
 \newglossaryentry{data memory}{
@@ -174,6 +181,88 @@
 %  description = {Métrica de cadenas de caracteres que mide la diferencia entre dos secuencias, definida como la cantidad mínima de modificaciones de un carácter (inserción, sustitución, o borrado) requeridas para transformar una cadena en la otra},
 %}
 
+\newglossaryentry{type system}{
+  name = {sistema de tipos},
+  description = {Sistema lógico con un conjunto de reglas que asignan un tipo a cada elemento del lenguaje, típicamente variables, expresiones, y funciones}
+}
+
+\newglossaryentry{dynamic typing}{
+  name = {sistema de tipos dinámico},
+  description = {Sistema de tipos en el cual una variable puede tomar valores de diferentes tipos y la comprobación de tipos debe hacerse durante la ejecución del programa},
+  see = {type system}
+}
+
+\newglossaryentry{static typing}{
+  name = {sistema de tipos estático},
+  description = {Sistema de tipos en el cual el tipo de una variable se decide durante la compilación, y esta solo puede tomar valores del tipo correspondiente},
+  see = {type system,compilation}
+}
+
+\newglossaryentry{weak typing}{
+  name = {sistema de tipos débil},
+  description = {Sistema de tipos con reglas poco estrictas y muchas conversiones de tipos implícitas},
+  see = {type system}
+}
+
+\newglossaryentry{strong typing}{
+  name = {sistema de tipos fuerte},
+  description = {Sistema de tipos con reglas estrictas y pocas conversiones de tipos implícitas, típicamente solo entre diferentes tipos de números},
+  see = {type system}
+}
+
+\newglossaryentry{memory safety}{
+  name = {seguridad de memoria},
+  description = {Protección contra errores y vulnerabilidades de seguridad causadas por errores en el uso y gestión de la memoria},
+  see = {memory}
+}
+
+\newglossaryentry{library}{
+  name = {biblioteca},
+  description = {Conjunto de recursos que implementan una funcionalidad y cuya finalidad es ser utilizado por otro programa},
+  see = {program}
+}
+
+\newglossaryentry{binding}{
+  name = {binding},
+  description = {API que provee código diseñado para permitir que un lenguaje de programación utilice una biblioteca escrita en otro lenguaje},
+  see = {API,programming language}
+}
+
+\newglossaryentry{parser}{
+  name = {parser},
+  description = {Componente de un compilador encargado de realizar el análisis sintáctico del código},
+  see = {compiler}
+}
+
+\newglossaryentry{lexer}{
+  name = {lexer},
+  description = {Componente de un compilador encargado de transformar el código a una secuencia de tokens},
+  see = {compiler,token}
+}
+
+\newglossaryentry{symbol table}{
+  name = {tabla de símbolos},
+  description = {Estructura de datos utilizada por un compilador para almacenar la información asociada con cada identificador},
+  see = {compiler}
+}
+
+\newglossaryentry{grammar}{
+  name = {gramática},
+  description = {Descripción formal de la sintaxis de un lenguaje},
+  see = {compiler}
+}
+
+\newglossaryentry{forward-reference}{
+  name = {referencia hacia delante},
+  plural = {referencias hacia delante},
+  description = {Uso de un elemento, típicamente una función o variable, antes de su definición en el código de un programa},
+}
+
+\newglossaryentry{token}{
+  name = {token},
+  description = {Secuencia de caracteres un significado conjunto tratada como una unidad},
+}
+
 % ╔════════════════════════════════════════════════════════════════════════════╗
 % ║                                  Acronyms                                  ║
 % ╚════════════════════════════════════════════════════════════════════════════╝
@@ -193,3 +282,4 @@
 \newacronym{json}{JSON}{JavaScript Object Notation}
 
 \newacronym{JS}{JS}{JavaScript}
+\newacronym{wasm}{Wasm}{WebAssembly}
