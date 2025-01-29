@@ -13,4 +13,8 @@ set -e
 latexmk --output-directory=build -cd -shell-escape -pdflua report.tex
 makeglossaries -d build report
 latexmk --output-directory=build -cd -shell-escape -pdflua report.tex
-xdg-open build/report.pdf
+
+PDF_READER="okular"
+if ! pidof -qx "$PDF_READER"; then
+    xdg-open build/report.pdf
+fi
