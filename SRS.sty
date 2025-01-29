@@ -511,7 +511,7 @@
         \item \textbf{in:} \@@component@data@in
         \item \textbf{out:} \@@component@data@out
       \end{itemize}\\
-      \textbf{\@component@origin}    & \@@component@origin \\
+      \textbf{\@component@origin}    & \foreach [count=\i] \x in \@@component@origin {\ifnum\i>1, \fi\hyperref[req:\x]{\x}} \\
     \end{baseComponent}
   }
 
