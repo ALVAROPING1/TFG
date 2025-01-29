@@ -15,9 +15,10 @@ y restricciones del sistema y, por lo tanto, el diseño dependerá de ellos.
 
 \subsection{Lenguaje de programación}\label{subsec:language}
 
-Según los requisitos \reqref[]{RS-NF-04} a \reqref[]{RS-NF-08}, el sistema debe
-poder ejecutarse en navegador y Node.js, y tener una \gls{API} para \gls{JS}.
-Esto deja dos alternativas principales: utilizar \gls{JS} o \gls{wasm}.
+Según los requisitos \reqref[]{RS-NF-chrome} a \reqref[]{RS-NF-JS}, el sistema
+debe poder ejecutarse en navegador y Node.js, y tener una \gls{API} para
+\gls{JS}. Esto deja dos alternativas principales: utilizar \gls{JS} o
+\gls{wasm}.
 
 \gls{JS} es el lenguaje estándar utilizado por los navegadores y Node.js, por lo
 que es la primera opción para el desarrollo del sistema. El principal problema
@@ -25,9 +26,9 @@ de esta opción es el rendimiento: \gls{JS} es un lenguaje interpretado, lo cual
 lo hace significativamente más lento que otros lenguajes compilados. Esto es
 debido a que estos lenguajes pueden generar código con mejor rendimiento al
 poder ejecutarse directamente en el \gls{processor} (ejecución nativa), sin el
-sobrecoste de una máquina virtual o intérprete. El \reqref{RS-NF-12} indica que
-el sistema debe ser rápido, por lo que sería preferible utilizar un lenguaje que
-soporte la ejecución nativa.
+sobrecoste de una máquina virtual o intérprete. El \reqref{RS-NF-velocidad}
+indica que el sistema debe ser rápido, por lo que sería preferible utilizar un
+lenguaje que soporte la ejecución nativa.
 
 Otro problema de \gls{JS} es su \gls{type system}. \gls{JS} utiliza un sistema de
 tipos \glsdisponly{dynamic typing}{dinámico} y \glsdisponly{weak typing}{débil},
@@ -59,7 +60,7 @@ es Rust \parencite{C-memory-safety}. % TODO: añadir cita sobre rust siendo memo
 Otra característica importante es la capacidad de generación de \glspl{binding}.
 Estos son necesarios para permitir que el código \gls{JS} pueda utilizar un
 módulo \gls{wasm} como una \gls{library}, ofreciendo una \gls{API} para \gls{JS}
-como pide el \reqref{RS-NF-08}. Existen herramientas como Emscripten (C/C++)
+como pide el \reqref{RS-NF-JS}. Existen herramientas como Emscripten (C/C++)
 \parencite{Emscripten} o Wasm-pack (Rust) \parencite{Wasm-pack} que realizan
 esto para todos los lenguajes mencionados anteriormente. Cabe destacar que
 Emscripten es algo más manual, ya que, por ejemplo, requiere redefinir los tipos
@@ -115,9 +116,9 @@ como Lex y yacc \parencite{yacc}, sus versiones modernas de GNU Flex y bison
 herramientas realizan un procesado de la gramática que verifica ciertas
 restricciones y les permite generar un analizador sintáctico eficiente.
 Generalmente, esto es útil, ya que ayuda a detectar errores en la \gls{grammar}.
-Sin embargo, el \reqref{RS-NF-02} indica que la definición de la sintaxis de las
-instrucciones debe estar contenida en la \gls{ISA}, y, por lo tanto, la
-\gls{grammar} es parcialmente desconocida en \gls{compile-time}. Esto
+Sin embargo, el \reqref{RS-NF-def-instrucciones} indica que la definición de la
+sintaxis de las instrucciones debe estar contenida en la \gls{ISA}, y, por lo
+tanto, la \gls{grammar} es parcialmente desconocida en \gls{compile-time}. Esto
 imposibilita el uso de estas herramientas.
 
 El siguiente método es crear el analizador sintáctico manualmente, típicamente
@@ -125,11 +126,12 @@ utilizando la técnica de descenso recursivo \parencite{dragon-book}. Este es el
 método más flexible, ya que da control total sobre el funcionamiento del
 analizador sintáctico. Esto permite utilizar información obtenida durante la
 ejecución del \gls{compiler} para decidir cómo procesar la entrada. Además, esto
-ayuda a generar buenos mensajes de error, como pide el \reqref{RS-F-19}, y a
-aplicar estrategias de recuperación de errores \parencite{errors-clang}. Muchos
-de los \glspl{programming language} utilizados en la actualidad, como C y C++,
-utilizan este método \parencite{parser-types-survey}. El principal problema de
-este método es su complejidad, requiriendo mucho tiempo para su desarrollo.
+ayuda a generar buenos mensajes de error, como pide el
+\reqref{RS-F-errores-base}, y a aplicar estrategias de recuperación de errores
+\parencite{errors-clang}. Muchos de los \glspl{programming language} utilizados
+en la actualidad, como C y C++, utilizan este método
+\parencite{parser-types-survey}. El principal problema de este método es su
+complejidad, requiriendo mucho tiempo para su desarrollo.
 
 El último método es utilizar un combinador de \glspl{parser}. Este método
 permite definir un \gls{parser} como combinación de otros \glspl{parser} más
@@ -168,18 +170,18 @@ Debido a esto, se ha optado por construir un \gls{AST} explícitamente para tene
 una mayor flexibilidad. \parencite{compiler-design}
 
 Otra decisión importante para el desarrollo del analizador sintáctico es el
-tratamiento de las \glspl{forward-reference}, pedidas por el \reqref{RS-F-14}.
-Si el compilador escanease el código secuencialmente, al llegar a una etiqueta
-usada antes de su definición no podría realizar la traducción al desconocer el
-valor de esta etiqueta. Este problema se puede solucionar permitiendo la
-modificación de código ya traducido o realizando múltiples pasadas sobre el
-código. En el primer caso, cuando se encuentra una etiqueta sin definir, se
-registra en una tabla, y cuando se encuentra su definición se utiliza esta tabla
-para corregir sus usos. En el segundo caso, se realizan al menos dos
-pasadas por el código: en la primera se determina el espacio que ocupará cada
-elemento para asignar sus direcciones de \gls{memory} y se obtienen las
-definiciones de las etiquetas, mientras en la segunda pasada se realiza la
-traducción del código. \parencite{assembler-design}
+tratamiento de las \glspl{forward-reference}, pedidas por el
+\reqref{RS-F-referencias}. Si el compilador escanease el código secuencialmente,
+al llegar a una etiqueta usada antes de su definición no podría realizar la
+traducción al desconocer el valor de esta etiqueta. Este problema se puede
+solucionar permitiendo la modificación de código ya traducido o realizando
+múltiples pasadas sobre el código. En el primer caso, cuando se encuentra una
+etiqueta sin definir, se registra en una tabla, y cuando se encuentra su
+definición se utiliza esta tabla para corregir sus usos. En el segundo caso, se
+realizan al menos dos pasadas por el código: en la primera se determina el
+espacio que ocupará cada elemento para asignar sus direcciones de \gls{memory} y
+se obtienen las definiciones de las etiquetas, mientras en la segunda pasada se
+realiza la traducción del código. \parencite{assembler-design}
 
 Realizar una única pasada es más eficiente, pero también es menos flexible y
 añade más complejidad al código. Actualmente, muchos \glspl{assembler} optan por
@@ -219,7 +221,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {Especificación de la \gls{ISA}} % Datos de entrada
     {\gls{ISA} validada} % Datos de salida
-    {RS-F-11} % Origen
+    {RS-F-ISA} % Origen
     El gestor de la arquitectura se encarga de validar y cargar la
     especificación de la \gls{ISA} proporcionada, generando diferentes errores
     en caso de fallo en la validación para evitar el uso de una \gls{ISA} mal
@@ -231,7 +233,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {\Gls{program} a analizar} % Datos de entrada
     {Secuencia de \glspl{token}} % Datos de salida
-    {RS-F-01,RS-F-02,RS-F-03,RS-F-05,RS-F-08,RS-F-12,RS-F-15,RS-F-19} % Origen
+    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas, RS-F-directivas-datos, RS-F-floats, RS-F-comentarios, RS-F-constantes, RS-F-errores-base} % Origen
     El lexer recibe el código del \gls{program} a
     \glsdisp{compilation}{compilar} y realiza un análisis léxico, transformado
     la secuencia de caracteres que representa el \gls{program} en una secuencia
@@ -244,7 +246,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente a una \gls{expression}} % Datos de salida
-    {RS-F-08,RS-F-15,RS-F-16,RS-F-17,RS-F-19} % Origen
+    {RS-F-floats, RS-F-constantes, RS-F-expr-instruccion, RS-F-expr-directiva, RS-F-errores-base} % Origen
     El \gls{parser} de expresiones realiza el análisis sintáctico de una
     \gls{expression}, transformando la secuencia de \glspl{token} que la
     representa en un \gls{AST} para su posterior evaluación. Este componente
@@ -257,7 +259,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente al \gls{program}} % Datos de salida
-    {RS-F-01,RS-F-02,RS-F-03,RS-F-05,RS-F-13,RS-F-19} % Origen
+    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas, RS-F-directivas-datos, RS-F-num-etiquetas, RS-F-errores-base} % Origen
     El \gls{parser} realiza el análisis sintáctico de un \gls{program},
     transformando la secuencia de \glspl{token} que lo representa en un
     \gls{AST} para su posterior análisis semántico.
@@ -268,7 +270,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {Secuencia de \glspl{token} y definición de la sintaxis de la \gls{instruction}} % Datos de entrada
     {\gls{AST} correspondiente a la \gls{instruction}} % Datos de salida
-    {RS-F-01,RS-F-02,RS-F-18,RS-F-19} % Origen
+    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-mult-defs-instruccion, RS-F-errores-base} % Origen
     El \gls{parser} de \gls{instruction} realiza el análisis sintáctico de los
     argumentos de una \gls{instruction} según una cadena que define su sintaxis.
 \end{component}
@@ -278,7 +280,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {\gls{AST} de la \gls{pseudo-instruction}, \gls{ISA}, \gls{symbol table}, y dirección de la siguiente \gls{instruction}} % Datos de entrada
     {Secuencia de \glspl{AST} correspondientes a las \glspl{instruction} por las que se tiene que remplazar la \gls{pseudo-instruction}} % Datos de salida
-    {RS-F-02,RS-F-19} % Origen
+    {RS-F-compilar-pseudo, RS-F-errores-base} % Origen
     El evaluador de \glspl{pseudo-instruction} se encarga de transformar las
     \glspl{pseudo-instruction} en una secuencia de \glspl{instruction} con el
     mismo comportamiento.
@@ -289,7 +291,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {\gls{ISA} y código del \gls{program} a \glsdisp{compilation}{compilar}} % Datos de entrada
     {\Gls{program} \glsdisp{compilation}{compilado}} % Datos de salida
-    {RS-F-01,RS-F-02,RS-F-03,RS-F-04,RS-F-05,RS-F-06,RS-F-07,RS-F-08,RS-F-09,RS-F-10,RS-F-13,RS-F-14,RS-F-15,RS-F-18,RS-F-19,RS-F-20} % Origen
+    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas, RS-F-secciones, RS-F-directivas-datos, RS-F-strings, RS-F-tamaño-ints, RS-F-floats, RS-F-alineamiento, RS-F-bibliotecas, RS-F-num-etiquetas, RS-F-referencias, RS-F-constantes, RS-F-mult-defs-instruccion, RS-F-errores-base, RS-F-bigints} % Origen
     El \gls{compiler} se encarga de realizar el análisis semántico y traducción
     de \glspl{program} \glsdisp{assembly}{ensamblador} según una \gls{ISA} dada.
     Durante este proceso, verifica que no haya ningún error en el código, y lo
@@ -315,30 +317,31 @@ están cubiertos por al menos un componente.
 
 El analizador sintáctico se compondrá principalmente de un \gls{lexer} y un
 \gls{parser}. El \gls{lexer} se encargará de realizar un procesado inicial del
-código para transformarlo en una secuencia de \glspl{token}, mientras que el
-\gls{parser} tomará esta secuencia de \glspl{token} y la transformará en un
-\gls{AST} según la \gls{grammar} del lenguaje. Además, también utilizará un
-\gls{parser} de \glspl{expression} para realizar el análisis de las
-\glspl{expression} numéricas, el cual tendrá en cuenta el nivel de prioridad de
-los diferentes operadores.
+código para transformarlo en una secuencia de \glspl{token} (eliminando espacios
+y comentarios), mientras que el \gls{parser} tomará esta secuencia de
+\glspl{token} y la transformará en un \gls{AST} según la \gls{grammar} del
+lenguaje. Además, también utilizará un \gls{parser} de \glspl{expression} para
+realizar el análisis de las \glspl{expression} numéricas, el cual tendrá en
+cuenta el nivel de prioridad de los diferentes operadores.
 
 % TODO: errores sintácticos->semánticos porque son mejores para un usuario?
 
-El \reqref{RS-F-18} indica que una instrucción puede tener múltiples sintaxis
-distintas. Para permitir esto, se ha decidido que en el análisis sintáctico
-inicial del código se interpretará la secuencia de \glspl{token} entre el nombre
-de la instrucción y el siguiente salto de línea como los argumentos de la
-instrucción en todos los casos, ya que es el funcionamiento de GNU as. % TODO: cita
-El último componente del analizador sintáctico, el \gls{parser} de instrucciones,
-intentará realizar el análisis sintáctico de esta secuencia de \glspl{token}
-según una especificación de la sintaxis de la instrucción, devolviendo un error
-en caso de fallo.
+El \reqref{RS-F-mult-defs-instruccion} indica que una instrucción puede tener
+múltiples sintaxis distintas. Para permitir esto, se ha decidido que en el
+análisis sintáctico inicial del código se interpretará la secuencia de
+\glspl{token} entre el nombre de la instrucción y el siguiente salto de línea
+como los argumentos de la instrucción en todos los casos, ya que es el
+funcionamiento de GNU as. % TODO: cita
+El último componente del analizador sintáctico, el \gls{parser} de
+instrucciones, intentará realizar el análisis sintáctico de esta secuencia de
+\glspl{token} según una especificación de la sintaxis de la instrucción,
+devolviendo un error en caso de fallo.
 
 A continuación se incluye la gramática en forma normal de Backus-Naur % TODO: cita
-que utilizará el \gls{parser}. En general,
-se ha preferido simplificar la gramática y tratar los posibles errores en el
-analizador semántico, ya que esto permite generar errores con mayor información
-que pueden ser más útiles para un usuario, como pide el \reqref{RS-F-19}. % TODO: mencionar simplificación saltos de línea?
+que utilizará el \gls{parser}. En general, se ha preferido simplificar la
+gramática y tratar los posibles errores en el analizador semántico, ya que esto
+permite generar errores con mayor información que pueden ser más útiles para un
+usuario, como pide el \reqref{RS-F-errores-base}. % TODO: mencionar simplificación saltos de línea?
 
 \newcommand{\EOL}{\textbackslash{}n}
 \newcommand{\verbEOL}{`\texttt{\textbackslash{}n}'}

@@ -91,119 +91,95 @@ correspondientes a cada uno de los requisitos de usuario.
 
 \printureqtemplate{UR-XX-YY}
 
-\newcounter{i}
-
 % ───────────────────────────────── Capacidades ───────────────────────────────
 
-\setcounter{i}{1}
-
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=h,pd=h,s=nc,v=m}
+\begin{userReq}{RU-CA}{funcionalidades}{pc=h,pd=h,s=nc,v=m}
     El sistema debe soportar todas las funcionalidades soportadas en el
     \gls{compiler} actual.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
+\begin{userReq}{RU-CA}{ISA}{pc=h,pd=h,s=nc,v=h}
     El sistema debe permitir especificar la \gls{ISA} a utilizar.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=m,pd=l,s=nc,v=h}
+\begin{userReq}{RU-CA}{comentarios}{pc=m,pd=l,s=nc,v=h}
     El sistema debe permitir especificar la cadena utilizada como prefijo de los
     comentarios de línea.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=m,pd=l,s=nc,v=h}
+\begin{userReq}{RU-CA}{num-etiquetas}{pc=m,pd=l,s=nc,v=h}
     El sistema debe permitir utilizar cualquier cantidad de etiquetas en una
     \gls{sentence}.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=h,pd=h,s=c,v=m}
+\begin{userReq}{RU-CA}{referencias}{pc=h,pd=h,s=c,v=m}
     El sistema debe permitir referenciar etiquetas definidas más adelante en el
     código \glsdisp{assembly}{ensamblador}.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=m,pd=m,s=nc,v=h}
+\begin{userReq}{RU-CA}{etiquetas-valor}{pc=m,pd=m,s=nc,v=h}
     El sistema debe permitir utilizar etiquetas como valores de las \glspl{data directive}.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=m,pd=m,s=c,v=h}
+\begin{userReq}{RU-CA}{expresiones}{pc=m,pd=m,s=c,v=h}
     El sistema debe permitir evaluar y utilizar \glspl{expression} con valores
     constantes.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{RU-CA}{mult-defs-instruccion}{pc=h,pd=m,s=nc,v=h}
     El sistema debe permitir definir múltiples \glspl{instruction} con el mismo
     nombre, y utilizar su sintaxis y el tamaño de los argumentos (en bits) para
     seleccionar la correcta durante la \gls{compilation} de un \gls{program}
     \glsdisp{assembly}{ensamblador}.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=h,pd=h,s=c,v=l}
+\begin{userReq}{RU-CA}{errores}{pc=h,pd=h,s=c,v=l}
     El sistema debe tener buenos mensajes de error.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-CA-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{RU-CA}{bigints}{pc=h,pd=m,s=nc,v=h}
     El sistema debe permitir utilizar números enteros de cualquier tamaño para
     las direcciones de \gls{memory} y valores de las \glspl{expression}.
 \end{userReq}
-\stepcounter{i}
 
 % ──────────────────────────────── Restricciones ──────────────────────────────
 
-\setcounter{i}{1}
-
-\begin{userReq}{RU-RE-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
+\begin{userReq}{RU-RE}{ISA}{pc=h,pd=h,s=nc,v=h}
     El formato de definición de la \gls{ISA} debe ser el utilizado
     actualmente en CREATOR.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-RE-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
+\begin{userReq}{RU-RE}{API}{pc=h,pd=h,s=nc,v=h}
     La \gls{API} de entrada y salida del sistema debe ser la utilizada
     actualmente en CREATOR.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-RE-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{RU-RE}{navegadores}{pc=h,pd=m,s=nc,v=h}
     El sistema se tiene que poder ejecutar en los navegadores soportados
     actualmente por CREATOR: Google Chrome 70+, Mozilla Firefox 60+, y Safari
     12+
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-RE-\padtwo{i}}{pc=m,pd=m,s=nc,v=h}
+\begin{userReq}{RU-RE}{nodejs}{pc=m,pd=m,s=nc,v=h}
     El sistema se tiene que poder ejecutar en Node.js
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-RE-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{RU-RE}{JS}{pc=h,pd=m,s=nc,v=h}
     El sistema debe tener una \gls{API} para \gls{JS}.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-RE-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{RU-RE}{FOSS}{pc=h,pd=m,s=nc,v=h}
     El sistema tiene que ser \gls{FOSS}.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-RE-\padtwo{i}}{pc=h,pd=h,s=c,v=m}
+\begin{userReq}{RU-RE}{sintaxis}{pc=h,pd=h,s=c,v=m}
     El sistema tiene que utilizar la sintaxis del \gls{assembler} GNU as para
     los \glspl{program} \glsdisp{compilation}{compilados}.
 \end{userReq}
-\stepcounter{i}
 
-\begin{userReq}{RU-RE-\padtwo{i}}{pc=m,pd=m,s=vi,v=l}
+\begin{userReq}{RU-RE}{velocidad}{pc=m,pd=m,s=vi,v=l}
     El sistema tiene que ser rápido. % TODO: más explicación
 \end{userReq}
-\stepcounter{i}
 
 \FloatBarrier
 
@@ -239,242 +215,203 @@ correspondientes a cada uno de los requisitos de software.
 
 % ───────────────────────────────── Funcionales ───────────────────────────────
 
-\setcounter{i}{1}
-
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{compilar-instrucciones}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe permitir \glsdisp{compilation}{compilar} \glspl{instruction}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{compilar-pseudo}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe permitir \glsdisp{compilation}{compilar} \glspl{pseudo-instruction}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{directivas}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe soportar las siguientes \glspl{directive}: cambiar el tipo
     de la sección actual, declarar símbolos globales, y \glspl{data directive}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{secciones}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe soportar los siguientes tipos de secciones: datos e
     instrucciones.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{directivas-datos}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe soportar las siguientes \glspl{data directive}: reservar
     espacio, cadenas de caracteres, números enteros, números decimales, y
     alineamiento de la \gls{data memory}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{strings}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de cadenas de
     caracteres terminadas y no terminadas en un \gls{null byte}.
 \end{softwareReq}
-\stepcounter{i}
 
 % TODO: add escape sequences to strings
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{tamaño-ints}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de números enteros con los
     siguientes tamaños: byte, media \gls{word}, \gls{word}, y doble \gls{word}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{floats}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de números decimales con el
     formato IEEE 745 de precisión simple (binary32) y doble (binary64).
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{alineamiento}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de alineamiento a bytes y a
     potencias de 2.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-01}
+\begin{softwareReq}{RS-F}{bibliotecas}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-funcionalidades}
     El sistema debe soportar bibliotecas. % TODO: explicar cuando entienda cómo funcionan
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-CA-02}
+\begin{softwareReq}{RS-F}{ISA}{pc=h,pd=h,s=nc,v=h}
+    {RU-CA-ISA}
     El sistema debe permitir especificar la \gls{ISA} a utilizar.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=m,pd=l,s=nc,v=h}
-    {RU-CA-03}
+\begin{softwareReq}{RS-F}{comentarios}{pc=m,pd=l,s=nc,v=h}
+    {RU-CA-comentarios}
     El sistema debe permitir especificar la cadena utilizada como prefijo de los
     comentarios de línea.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=m,pd=l,s=nc,v=h}
-    {RU-CA-04}
+\begin{softwareReq}{RS-F}{num-etiquetas}{pc=m,pd=l,s=nc,v=h}
+    {RU-CA-num-etiquetas}
     El sistema debe permitir utilizar cualquier cantidad de etiquetas en una
     \gls{sentence}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=c,v=m}
-    {RU-CA-05}
+\begin{softwareReq}{RS-F}{referencias}{pc=h,pd=h,s=c,v=m}
+    {RU-CA-referencias}
     El sistema debe permitir referenciar etiquetas definidas más adelante en el
     código \glsdisp{assembly}{ensamblador}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=m,pd=m,s=nc,v=h}
-    {RU-CA-06, RU-CA-07}
+\begin{softwareReq}{RS-F}{constantes}{pc=m,pd=m,s=nc,v=h}
+    {RU-CA-etiquetas-valor, RU-CA-expresiones}
     El sistema debe permitir evaluar \glspl{expression} con los siguientes tipos
     de valores constantes: números enteros, números decimales, caracteres
     literales (utilizando su representación Unicode) y etiquetas.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=m,pd=m,s=c,v=h}
-    {RU-CA-07}
+\begin{softwareReq}{RS-F}{expr-instruccion}{pc=m,pd=m,s=c,v=h}
+    {RU-CA-expresiones}
     El sistema debe permitir utilizar \glspl{expression} como \glspl{immediate}
     de las \glspl{instruction} y \glspl{pseudo-instruction}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=m,pd=m,s=nc,v=h}
-    {RU-CA-07}
+\begin{softwareReq}{RS-F}{expr-directiva}{pc=m,pd=m,s=nc,v=h}
+    {RU-CA-expresiones}
     El sistema debe permitir utilizar \glspl{expression} como valores de las
     \glspl{data directive} de reservar espacio, números enteros y decimales, y
     alineamiento.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
-    {RU-CA-08}
+\begin{softwareReq}{RS-F}{mult-defs-instruccion}{pc=h,pd=m,s=nc,v=h}
+    {RU-CA-mult-defs-instruccion}
     El sistema debe permitir definir múltiples \glspl{instruction} con el mismo
     nombre, y utilizar su sintaxis y el tamaño de los argumentos (en bits) para
     seleccionar la correcta durante la \gls{compilation} de un \gls{program}
     \glsdisp{assembly}{ensamblador}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=h,s=c,v=m}
-    {RU-CA-09}
+\begin{softwareReq}{RS-F}{errores-base}{pc=h,pd=h,s=c,v=m}
+    {RU-CA-errores}
     Los mensajes de error del sistema deben contener, al menos: posición exacta
     del error (línea y columna), mensaje de error, segmento de código con el
     error resaltado, e información adicional relevante como motivo del error u
     posible solución.
 \end{softwareReq}
-\stepcounter{i}
 
-%\begin{softwareReq}{RS-F-\padtwo{i}}{pc=l,pd=l,s=c,v=h}
-%    {RU-CA-09}
+%\begin{softwareReq}{RS-F}{errores-extra}{pc=l,pd=l,s=c,v=h}
+%    {RU-CA-errores}
 %    Los mensajes de error del sistema que se refieran a identificadores no
 %    definidos deben contener el identificador definido más similar según la
 %    \gls{edit-distance}
-%    del error (línea y columna), mensaje de error, segmento de código con el
-%    error resaltado, e información adicional relevante.
 %\end{softwareReq}
-%\stepcounter{i}
 
-\begin{softwareReq}{RS-F-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
-    {RU-CA-10}
+\begin{softwareReq}{RS-F}{bigints}{pc=h,pd=m,s=nc,v=h}
+    {RU-CA-bigints}
     El sistema debe permitir utilizar números enteros de cualquier tamaño para
     las direcciones de \gls{memory} y valores de las \glspl{expression}.
 \end{softwareReq}
-\stepcounter{i}
 
 % ──────────────────────────────── No funcionales ────────────────────────────────
 
-\setcounter{i}{1}
-
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-RE-01}
+\begin{softwareReq}{RS-NF}{ISA}{pc=h,pd=h,s=nc,v=h}
+    {RU-RE-ISA}
     El formato de definición de la \gls{ISA} debe ser el utilizado
     actualmente en CREATOR.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-RE-01}
+\begin{softwareReq}{RS-NF}{def-instrucciones}{pc=h,pd=h,s=nc,v=h}
+    {RU-RE-ISA}
     La definición de la sintaxis de las instrucciones debe estar contenida en la
     \gls{ISA}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=h,s=nc,v=h}
-    {RU-RE-02}
+\begin{softwareReq}{RS-NF}{API}{pc=h,pd=h,s=nc,v=h}
+    {RU-RE-API}
     La \gls{API} de entrada y salida del sistema debe ser la utilizada
     actualmente en CREATOR.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
-    {RU-RE-03}
+\begin{softwareReq}{RS-NF}{chrome}{pc=h,pd=m,s=nc,v=h}
+    {RU-RE-navegadores}
     El sistema se tiene que poder ejecutar en Google Chrome 70+
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
-    {RU-RE-03}
+\begin{softwareReq}{RS-NF}{firefox}{pc=h,pd=m,s=nc,v=h}
+    {RU-RE-navegadores}
     El sistema se tiene que poder ejecutar en Mozilla Firefox 60+
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
-    {RU-RE-03}
+\begin{softwareReq}{RS-NF}{safari}{pc=h,pd=m,s=nc,v=h}
+    {RU-RE-navegadores}
     El sistema se tiene que poder ejecutar en Safari 10+
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=m,pd=m,s=nc,v=h}
-    {RU-RE-04}
+\begin{softwareReq}{RS-NF}{nodejs}{pc=m,pd=m,s=nc,v=h}
+    {RU-RE-nodejs}
     El sistema se tiene que poder ejecutar en Node.js
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
-    {RU-RE-05}
+\begin{softwareReq}{RS-NF}{JS}{pc=h,pd=m,s=nc,v=h}
+    {RU-RE-JS}
     El sistema debe tener una \gls{API} para \gls{JS}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
-    {RU-RE-06}
+\begin{softwareReq}{RS-NF}{licencia}{pc=h,pd=m,s=nc,v=h}
+    {RU-RE-FOSS}
     El sistema tiene que utilizar una licencia \gls{FOSS}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=m,s=nc,v=h}
-    {RU-RE-06}
+\begin{softwareReq}{RS-NF}{codigo-publico}{pc=h,pd=m,s=nc,v=h}
+    {RU-RE-FOSS}
     El código fuente del sistema tiene ser público.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=h,pd=h,s=c,v=m}
-    {RU-RE-07}
+\begin{softwareReq}{RS-NF}{sintaxis}{pc=h,pd=h,s=c,v=m}
+    {RU-RE-sintaxis}
     El sistema tiene que utilizar la sintaxis del \gls{assembler} GNU as para
     los \glspl{program} \glsdisp{compilation}{compilados}.
 \end{softwareReq}
-\stepcounter{i}
 
-\begin{softwareReq}{RS-NF-\padtwo{i}}{pc=m,pd=m,s=vi,v=l}
-    {RU-RE-08}
+\begin{softwareReq}{RS-NF}{velocidad}{pc=m,pd=m,s=vi,v=l}
+    {RU-RE-velocidad}
     El sistema tiene que ser rápido. % TODO: más explicación
 \end{softwareReq}
-\stepcounter{i}
 
 \FloatBarrier
 
@@ -513,8 +450,9 @@ representará un código numérico incremental que empezará en 1. La
 especificación de cada uno de los casos de uso. Tras esta, se incluyen las tablas
 correspondientes a cada uno de los casos de uso.
 
-\printuctemplate{CU-XX}
+\printuctemplate{CU-X}
 
+\newcounter{i}
 \setcounter{i}{1}
 
 % TODO: deberían estar formulados como algo que hace un usuario en la interfaz o

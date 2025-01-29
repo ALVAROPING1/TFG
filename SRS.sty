@@ -368,13 +368,33 @@
     \end{table}
   }
 
-\newenvironment{baseReq}[2]  % extender is responsible for adding \endSRStabular
+\newcommand*\newcounterOrIncrement[1]{%
+  \ifcsname c@#1\endcsname
+    \stepcounter{#1}
+  \else
+    \newcounter{#1}
+    \setcounter{#1}{1}
+  \fi
+}
+
+\newcommand{\padtwo}[1]{\ifnum\value{#1}<10 0\fi\arabic{#1}}
+
+\newcommand\setID[2]{\newcounterOrIncrement{#1}\csxdef{#1-#2}{#1-\padtwo{#1}}}
+\newcommand\useID[1]{\csuse{#1}}
+\newcommand\translateIDs[1]{%
+  \xdef\@@translate@buf{}
+  \foreach [count=\i] \x in {#1} {\xdef\@@translate@buf{\@@translate@buf\ifnum\i>1,\fi\useID{\x}}}
+}
+
+\newenvironment{baseReq}[3]  % extender is responsible for adding \endSRStabular
   {%
-    \traceability@registerOrigin{#1} \@req@parseArgs #2;
+    \setID{#1}{#2}
+    \def\@@baseReq@ID{\useID{#1-#2}}
+    \traceability@registerOrigin{\@@baseReq@ID} \@req@parseArgs #3;
     \if@captions@pp
-      \SRStabular[\@req~#1]{#1}
+      \SRStabular[\@req~\@@baseReq@ID]{\@@baseReq@ID}
     \else
-      \SRStabular{#1}
+      \SRStabular{\@@baseReq@ID}
     \fi
     \textbf{\@req@description} &%
   }%
@@ -387,15 +407,17 @@
   }%
 
 
-% Usage: \begin[<caption>]{userReq}{<ID>}{pc=X,pd=Y,s=Z,v=A}
+% Usage: \begin[<caption>]{userReq}{<ID-prefix>}{<ID>}{pc=X,pd=Y,s=Z,v=A}
 %        ...
 %        \end{userReq}
 %
 % <X>, <Y> and <A> may be one of 'h', 'm', 'l'; high, medium, low
 %               (respectively); <Z> may be 'nc', 'c', 'vi'
 % <caption> is optional
-\newenvironment{userReq}[2]
-  {\baseReq{#1}{#2}}
+% <ID-prefix><ID> is the ID used internally, but it is displayed as <ID-prefix><N>
+%               where <N> is a sequential number for each different prefix
+\newenvironment{userReq}[3]
+  {\baseReq{#1}{#2}{#3}}
   {\endbaseReq\endSRStabular}
 
 
@@ -410,16 +432,21 @@
   \end{SRStabular}
 }
 
-% Usage: \begin{softwareReq}{<ID>}{pc=X,pd=Y,s=Z,v=A}{<ORIGIN LIST>}
+% Usage: \begin{softwareReq}{<ID-prefix>}{<ID>}{pc=X,pd=Y,s=Z,v=A}{<ORIGIN LIST>}
 %        ...
 %        \end{softwareReq}
 %
 % <X>, <Y> and <A> may be one of 'h', 'm', 'l'; high, medium, low
 %               (respectively); <Z> may be 'nc', 'c', 'vi'
-\newenvironment{softwareReq}[3]
+% <ID-prefix><ID> is the ID used internally, but it is displayed as <ID-prefix><N>
+%               where <N> is a sequential number for each different prefix
+% <ORIGIN LIST> should be a comma-separated list of tuples <ID-prefix>/<ID>
+\newenvironment{softwareReq}[4]
   {%
-    \traceability@addOrigins{#1}{#3}\def\@@req@origin{#3}
-    \baseReq{#1}{#2}
+    \translateIDs{#4}
+    \xdef\@@req@origin{\@@translate@buf}
+    \baseReq{#1}{#2}{#3}
+    \traceability@addOrigins{\useID{#1-#2}}{\@@req@origin}
   }
   {%
     \endbaseReq
@@ -497,10 +524,11 @@
 %        \end{component}
 \newenvironment{component}[6]
   {
-    \traceability@addOrigins{#1}{#6}
+    \translateIDs{#6}
+    \xdef\@@component@origin{\@@translate@buf}
+    \traceability@addOrigins{#1}{\@@component@origin}
     \def\@@component@data@in{#4}
     \def\@@component@data@out{#5}
-    \def\@@component@origin{#6}
     \begin{baseComponent}{#1}{#2}{#3}
       \textbf{\@component@description} &%
   }
@@ -565,12 +593,13 @@
 %        \end{testCase}
 \newenvironment{testCase}[6]
   {
+    \translateIDs{#6}
+    \xdef\@@test@origin{\@@translate@buf}
     \def\@@test@precond{#2}
     \def\@@test@postcond{#3}
     \def\@@test@desc{#4}
     \def\@@test@eval{#5}
-    \def\@@test@origin{#6}
-    \traceability@addOrigins{#1}{#6}
+    \traceability@addOrigins{#1}{\@@test@origin}
     % \SRStabular{#1}
     \if@captions@pp
       \SRStabular[\@test~#1][][htb][.9]{#1}
@@ -584,7 +613,7 @@
   {
     \\
     \textbf{\@test@postcond} & \@@test@postcond \\
-    \textbf{\@test@origin} & \@@test@origin \\  % TODO: process & ref multiple origins
+    \textbf{\@test@origin} & \foreach [count=\i] \x in \@@test@origin {\ifnum\i>1, \fi\hyperref[req:\x]{\x}} \\
     \textbf{\@test@eval} & \@@test@eval \\  % TODO: standarize eval values
     \endSRStabular
   }

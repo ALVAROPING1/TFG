@@ -30,7 +30,7 @@
 \newcommand{\figureref}[1]{Figura \ref{fig:#1}}
 
 % \reqref[prefix]{ID}
-\newcommand{\reqref}[2][Requisito]{\hyperref[req:#2]{#1 #2}}
+\newcommand{\reqref}[2][Requisito]{\hyperref[req:\useID{#2}]{#1 \useID{#2}}}
 
 % \drawiosvgfigure[width]{filename}{caption}
 % remember to disable Word Wrap and Formatted Text for all text (https://www.drawio.com/doc/faq/svg-export-text-problems#disable-formatted-text-and-word-wrap)
@@ -82,5 +82,3 @@
         {\traceabilityPrintMatrix{#3}{#4}{}}
     \end{table}
 }
-
-\newcommand{\padtwo}[1]{\ifnum\value{#1}<10 0\fi\arabic{#1}}
