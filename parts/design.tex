@@ -233,7 +233,8 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {\Gls{program} a analizar} % Datos de entrada
     {Secuencia de \glspl{token}} % Datos de salida
-    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas, RS-F-directivas-datos, RS-F-floats, RS-F-comentarios, RS-F-constantes, RS-F-errores-base} % Origen
+    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas,
+    RS-F-directivas-datos, RS-F-escape, RS-F-floats, RS-F-comentarios, RS-F-constantes, RS-F-expr-operadores, RS-F-errores-base} % Origen
     El lexer recibe el código del \gls{program} a
     \glsdisp{compilation}{compilar} y realiza un análisis léxico, transformado
     la secuencia de caracteres que representa el \gls{program} en una secuencia
@@ -246,7 +247,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente a una \gls{expression}} % Datos de salida
-    {RS-F-floats, RS-F-constantes, RS-F-expr-instruccion, RS-F-expr-directiva, RS-F-errores-base} % Origen
+    {RS-F-floats, RS-F-constantes, RS-F-expr-operadores, RS-F-expr-instruccion, RS-F-expr-directiva, RS-F-errores-base} % Origen
     El \gls{parser} de expresiones realiza el análisis sintáctico de una
     \gls{expression}, transformando la secuencia de \glspl{token} que la
     representa en un \gls{AST} para su posterior evaluación. Este componente
@@ -291,7 +292,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {\gls{ISA} y código del \gls{program} a \glsdisp{compilation}{compilar}} % Datos de entrada
     {\Gls{program} \glsdisp{compilation}{compilado}} % Datos de salida
-    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas, RS-F-secciones, RS-F-directivas-datos, RS-F-strings, RS-F-tamaño-ints, RS-F-floats, RS-F-alineamiento, RS-F-bibliotecas, RS-F-num-etiquetas, RS-F-referencias, RS-F-constantes, RS-F-mult-defs-instruccion, RS-F-errores-base, RS-F-bigints} % Origen
+    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas, RS-F-secciones, RS-F-directivas-datos, RS-F-strings, RS-F-tamaño-ints, RS-F-floats, RS-F-alineamiento, RS-F-bibliotecas, RS-F-num-etiquetas, RS-F-referencias, RS-F-constantes, RS-F-expr-operadores, RS-F-mult-defs-instruccion, RS-F-errores-base, RS-F-bigints} % Origen
     El \gls{compiler} se encarga de realizar el análisis semántico y traducción
     de \glspl{program} \glsdisp{assembly}{ensamblador} según una \gls{ISA} dada.
     Durante este proceso, verifica que no haya ningún error en el código, y lo
@@ -307,7 +308,7 @@ La matriz de trazabilidad permite verificar que todos los requisitos funcionales
 están cubiertos por al menos un componente.
 
 \begin{landscape}
-    \traceabilityTable{trazability-comp-f}{^[^R]}{^RS\37-F}
+    \traceabilityTable[p]{trazability-comp-f}{^[^R]}{^RS\37-F}
         {Trazabilidad entre los requisitos funcionales y los componentes}
 \end{landscape}
 

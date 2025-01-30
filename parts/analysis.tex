@@ -98,6 +98,11 @@ correspondientes a cada uno de los requisitos de usuario.
     \gls{compiler} actual.
 \end{userReq}
 
+\begin{userReq}{RU-CA}{escape}{pc=m,pd=m,s=c,v=m}
+    El sistema debe soportar secuencias de escape en las cadenas de caracteres y
+    caracteres literales.
+\end{userReq}
+
 \begin{userReq}{RU-CA}{ISA}{pc=h,pd=h,s=nc,v=h}
     El sistema debe permitir especificar la \gls{ISA} a utilizar.
 \end{userReq}
@@ -250,8 +255,6 @@ correspondientes a cada uno de los requisitos de software.
     caracteres terminadas y no terminadas en un \gls{null byte}.
 \end{softwareReq}
 
-% TODO: add escape sequences to strings
-
 \begin{softwareReq}{RS-F}{tamaño-ints}{pc=h,pd=h,s=nc,v=h}
     {RU-CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de números enteros con los
@@ -273,6 +276,14 @@ correspondientes a cada uno de los requisitos de software.
 \begin{softwareReq}{RS-F}{bibliotecas}{pc=h,pd=h,s=nc,v=h}
     {RU-CA-funcionalidades}
     El sistema debe soportar bibliotecas. % TODO: explicar cuando entienda cómo funcionan
+\end{softwareReq}
+
+\begin{softwareReq}{RS-F}{escape}{pc=m,pd=m,s=c,v=m}
+    {RU-CA-escape}
+    El sistema debe soportar las siguientes secuencias de escape en las cadenas
+    de caracteres y caracteres literales: \verb!\\!, \verb!\"!, \verb!\'!,
+    \verb!\a! (alerta), \verb!\b! (backspace), \verb!\e! (escape), \verb!\f!
+    (salto de página), \verb!\n!, \verb!\r!, \verb!\t!, y \verb!\0!.
 \end{softwareReq}
 
 \begin{softwareReq}{RS-F}{ISA}{pc=h,pd=h,s=nc,v=h}
@@ -303,6 +314,17 @@ correspondientes a cada uno de los requisitos de software.
     El sistema debe permitir evaluar \glspl{expression} con los siguientes tipos
     de valores constantes: números enteros, números decimales, caracteres
     literales (utilizando su representación Unicode) y etiquetas.
+\end{softwareReq}
+
+\begin{softwareReq}{RS-F}{expr-operadores}{pc=m,pd=m,s=c,v=h}
+    {RU-CA-expresiones}
+    El sistema debe permitir utilizar paréntesis y los siguientes operadores en
+    las \glspl{expression}:
+    \begin{itemize}
+        \item Unarios: \verb!+!, \verb!-!, y \verb!~! (complemento).
+        \item Binarios aritméticos: \verb!+!, \verb!-!, \verb!*!, \verb!/!, y \verb!%!.
+        \item Binarios bit a bit: \verb!|! (OR), \verb!&! (AND), y \verb!^! (XOR).
+    \end{itemize}
 \end{softwareReq}
 
 \begin{softwareReq}{RS-F}{expr-instruccion}{pc=m,pd=m,s=c,v=h}
