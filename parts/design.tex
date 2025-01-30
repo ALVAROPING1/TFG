@@ -15,7 +15,7 @@ y restricciones del sistema y, por lo tanto, el diseño dependerá de ellos.
 
 \subsection{Lenguaje de programación}\label{subsec:language}
 
-Según los requisitos \reqref[]{RS-NF-chrome} a \reqref[]{RS-NF-JS}, el sistema
+Según los requisitos \sreqref[]{NF-chrome} a \sreqref[]{NF-JS}, el sistema
 debe poder ejecutarse en navegador y Node.js, y tener una \gls{API} para
 \gls{JS}. Esto deja dos alternativas principales: utilizar \gls{JS} o
 \gls{wasm}.
@@ -26,7 +26,7 @@ de esta opción es el rendimiento: \gls{JS} es un lenguaje interpretado, lo cual
 lo hace significativamente más lento que otros lenguajes compilados. Esto es
 debido a que estos lenguajes pueden generar código con mejor rendimiento al
 poder ejecutarse directamente en el \gls{processor} (ejecución nativa), sin el
-sobrecoste de una máquina virtual o intérprete. El \reqref{RS-NF-velocidad}
+sobrecoste de una máquina virtual o intérprete. El \sreqref{NF-velocidad}
 indica que el sistema debe ser rápido, por lo que sería preferible utilizar un
 lenguaje que soporte la ejecución nativa.
 
@@ -60,7 +60,7 @@ es Rust \parencite{C-memory-safety}. % TODO: añadir cita sobre rust siendo memo
 Otra característica importante es la capacidad de generación de \glspl{binding}.
 Estos son necesarios para permitir que el código \gls{JS} pueda utilizar un
 módulo \gls{wasm} como una \gls{library}, ofreciendo una \gls{API} para \gls{JS}
-como pide el \reqref{RS-NF-JS}. Existen herramientas como Emscripten (C/C++)
+como pide el \sreqref{NF-JS}. Existen herramientas como Emscripten (C/C++)
 \parencite{Emscripten} o Wasm-pack (Rust) \parencite{Wasm-pack} que realizan
 esto para todos los lenguajes mencionados anteriormente. Cabe destacar que
 Emscripten es algo más manual, ya que, por ejemplo, requiere redefinir los tipos
@@ -116,7 +116,7 @@ como Lex y yacc \parencite{yacc}, sus versiones modernas de GNU Flex y bison
 herramientas realizan un procesado de la gramática que verifica ciertas
 restricciones y les permite generar un analizador sintáctico eficiente.
 Generalmente, esto es útil, ya que ayuda a detectar errores en la \gls{grammar}.
-Sin embargo, el \reqref{RS-NF-def-instrucciones} indica que la definición de la
+Sin embargo, el \sreqref{NF-def-instrucciones} indica que la definición de la
 sintaxis de las instrucciones debe estar contenida en la \gls{ISA}, y, por lo
 tanto, la \gls{grammar} es parcialmente desconocida en \gls{compile-time}. Esto
 imposibilita el uso de estas herramientas.
@@ -127,7 +127,7 @@ método más flexible, ya que da control total sobre el funcionamiento del
 analizador sintáctico. Esto permite utilizar información obtenida durante la
 ejecución del \gls{compiler} para decidir cómo procesar la entrada. Además, esto
 ayuda a generar buenos mensajes de error, como pide el
-\reqref{RS-F-errores-base}, y a aplicar estrategias de recuperación de errores
+\sreqref{FN-errores-base}, y a aplicar estrategias de recuperación de errores
 \parencite{errors-clang}. Muchos de los \glspl{programming language} utilizados
 en la actualidad, como C y C++, utilizan este método
 \parencite{parser-types-survey}. El principal problema de este método es su
@@ -171,7 +171,7 @@ una mayor flexibilidad. \parencite{compiler-design}
 
 Otra decisión importante para el desarrollo del analizador sintáctico es el
 tratamiento de las \glspl{forward-reference}, pedidas por el
-\reqref{RS-F-referencias}. Si el compilador escanease el código secuencialmente,
+\sreqref{FN-referencias}. Si el compilador escanease el código secuencialmente,
 al llegar a una etiqueta usada antes de su definición no podría realizar la
 traducción al desconocer el valor de esta etiqueta. Este problema se puede
 solucionar permitiendo la modificación de código ya traducido o realizando
@@ -208,20 +208,18 @@ El compilador a desarrollar está formado por tres componentes principales:
 
 La \figureref{components} muestra el modelo de componentes UML
 \parencite{UMLSpec} del compilador, incluyendo las relaciones entre los
-componentes. La \tableref{comp-template} contiene la plantilla que se utilizará para la
-especificación de cada uno de los componentes. Tras esta, se incluyen las tablas
-correspondientes a cada uno de los componentes.
+componentes.
 
 \graphicfigure[0.95]{components}{Modelo de componentes del compilador}
 
-\printcomptemplate{Nombre}
+\printcomptemplate
 
 \begin{component}{Gestor de la arquitectura}
     {Valida y carga la \gls{ISA}, permitiendo su uso en los otros componentes} % Rol
     {} % Dependencias
     {Especificación de la \gls{ISA}} % Datos de entrada
     {\gls{ISA} validada} % Datos de salida
-    {RS-F-ISA} % Origen
+    {FN-ISA} % Origen
     El gestor de la arquitectura se encarga de validar y cargar la
     especificación de la \gls{ISA} proporcionada, generando diferentes errores
     en caso de fallo en la validación para evitar el uso de una \gls{ISA} mal
@@ -233,8 +231,9 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {\Gls{program} a analizar} % Datos de entrada
     {Secuencia de \glspl{token}} % Datos de salida
-    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas,
-    RS-F-directivas-datos, RS-F-escape, RS-F-floats, RS-F-comentarios, RS-F-constantes, RS-F-expr-operadores, RS-F-errores-base} % Origen
+    {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
+    FN-directivas-datos, FN-escape, FN-floats, FN-comentarios,
+    FN-constantes, FN-expr-operadores, FN-errores-base} % Origen
     El lexer recibe el código del \gls{program} a
     \glsdisp{compilation}{compilar} y realiza un análisis léxico, transformado
     la secuencia de caracteres que representa el \gls{program} en una secuencia
@@ -247,7 +246,8 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente a una \gls{expression}} % Datos de salida
-    {RS-F-floats, RS-F-constantes, RS-F-expr-operadores, RS-F-expr-instruccion, RS-F-expr-directiva, RS-F-errores-base} % Origen
+    {FN-floats, FN-constantes, FN-expr-operadores,
+    FN-expr-instruccion, FN-expr-directiva, FN-errores-base} % Origen
     El \gls{parser} de expresiones realiza el análisis sintáctico de una
     \gls{expression}, transformando la secuencia de \glspl{token} que la
     representa en un \gls{AST} para su posterior evaluación. Este componente
@@ -260,7 +260,8 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente al \gls{program}} % Datos de salida
-    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas, RS-F-directivas-datos, RS-F-num-etiquetas, RS-F-errores-base} % Origen
+    {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
+    FN-directivas-datos, FN-num-etiquetas, FN-errores-base} % Origen
     El \gls{parser} realiza el análisis sintáctico de un \gls{program},
     transformando la secuencia de \glspl{token} que lo representa en un
     \gls{AST} para su posterior análisis semántico.
@@ -271,7 +272,8 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {Secuencia de \glspl{token} y definición de la sintaxis de la \gls{instruction}} % Datos de entrada
     {\gls{AST} correspondiente a la \gls{instruction}} % Datos de salida
-    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-mult-defs-instruccion, RS-F-errores-base} % Origen
+    {FN-compilar-instrucciones, FN-compilar-pseudo,
+    FN-mult-defs-instruccion, FN-errores-base} % Origen
     El \gls{parser} de \gls{instruction} realiza el análisis sintáctico de los
     argumentos de una \gls{instruction} según una cadena que define su sintaxis.
 \end{component}
@@ -281,7 +283,7 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {\gls{AST} de la \gls{pseudo-instruction}, \gls{ISA}, \gls{symbol table}, y dirección de la siguiente \gls{instruction}} % Datos de entrada
     {Secuencia de \glspl{AST} correspondientes a las \glspl{instruction} por las que se tiene que remplazar la \gls{pseudo-instruction}} % Datos de salida
-    {RS-F-compilar-pseudo, RS-F-errores-base} % Origen
+    {FN-compilar-pseudo, FN-errores-base} % Origen
     El evaluador de \glspl{pseudo-instruction} se encarga de transformar las
     \glspl{pseudo-instruction} en una secuencia de \glspl{instruction} con el
     mismo comportamiento.
@@ -292,7 +294,11 @@ correspondientes a cada uno de los componentes.
     {} % Dependencias
     {\gls{ISA} y código del \gls{program} a \glsdisp{compilation}{compilar}} % Datos de entrada
     {\Gls{program} \glsdisp{compilation}{compilado}} % Datos de salida
-    {RS-F-compilar-instrucciones, RS-F-compilar-pseudo, RS-F-directivas, RS-F-secciones, RS-F-directivas-datos, RS-F-strings, RS-F-tamaño-ints, RS-F-floats, RS-F-alineamiento, RS-F-bibliotecas, RS-F-num-etiquetas, RS-F-referencias, RS-F-constantes, RS-F-expr-operadores, RS-F-mult-defs-instruccion, RS-F-errores-base, RS-F-bigints} % Origen
+    {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
+    FN-secciones, FN-directivas-datos, FN-strings, FN-tamaño-ints,
+    FN-floats, FN-alineamiento, FN-bibliotecas, FN-num-etiquetas,
+    FN-referencias, FN-constantes, FN-expr-operadores,
+    FN-mult-defs-instruccion, FN-errores-base, FN-bigints} % Origen
     El \gls{compiler} se encarga de realizar el análisis semántico y traducción
     de \glspl{program} \glsdisp{assembly}{ensamblador} según una \gls{ISA} dada.
     Durante este proceso, verifica que no haya ningún error en el código, y lo
@@ -308,7 +314,7 @@ La matriz de trazabilidad permite verificar que todos los requisitos funcionales
 están cubiertos por al menos un componente.
 
 \begin{landscape}
-    \traceabilityTable[p]{trazability-comp-f}{^[^R]}{^RS\37-F}
+    \traceabilityTable[p]{trazability-comp-f}{^[^R]}{^RS\37-FN}
         {Trazabilidad entre los requisitos funcionales y los componentes}
 \end{landscape}
 
@@ -327,7 +333,7 @@ cuenta el nivel de prioridad de los diferentes operadores.
 
 % TODO: errores sintácticos->semánticos porque son mejores para un usuario?
 
-El \reqref{RS-F-mult-defs-instruccion} indica que una instrucción puede tener
+El \sreqref{FN-mult-defs-instruccion} indica que una instrucción puede tener
 múltiples sintaxis distintas. Para permitir esto, se ha decidido que en el
 análisis sintáctico inicial del código se interpretará la secuencia de
 \glspl{token} entre el nombre de la instrucción y el siguiente salto de línea
@@ -342,7 +348,7 @@ A continuación se incluye la gramática en forma normal de Backus-Naur % TODO: 
 que utilizará el \gls{parser}. En general, se ha preferido simplificar la
 gramática y tratar los posibles errores en el analizador semántico, ya que esto
 permite generar errores con mayor información que pueden ser más útiles para un
-usuario, como pide el \reqref{RS-F-errores-base}. % TODO: mencionar simplificación saltos de línea?
+usuario, como pide el \sreqref{FN-errores-base}. % TODO: mencionar simplificación saltos de línea?
 
 \newcommand{\EOL}{\textbackslash{}n}
 \newcommand{\verbEOL}{`\texttt{\textbackslash{}n}'}
