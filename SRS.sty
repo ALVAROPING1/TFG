@@ -39,6 +39,10 @@
 \newif\if@captions@pp\@captions@ppfalse
 \DeclareOption{enableCaptions}{\@captions@pptrue}
 
+% debug
+\newif\if@debug@pp\@debug@ppfalse
+\DeclareOption{debug}{\@debug@pptrue}
+
 \ExecuteOptions{en}  % defaults
 \ProcessOptions\relax
 
@@ -380,7 +384,8 @@
 \newcommand{\padtwo}[1]{\ifnum\value{#1}<10 0\fi\arabic{#1}}
 
 \newcommand\setID[2]{\newcounterOrIncrement{#1}\csxdef{#1-#2}{#1-\padtwo{#1}}}
-\newcommand\useID[1]{\csuse{#1}}
+\newcommand\useID[1]{\if@debug@pp#1\else\csuse{#1}\fi}
+
 \newcommand\translateIDs[1]{%
   \xdef\@@translate@buf{}
   \foreach [count=\i] \x in {#1} {\xdef\@@translate@buf{\@@translate@buf\ifnum\i>1,\fi\useID{\x}}}
