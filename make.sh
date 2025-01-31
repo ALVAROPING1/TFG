@@ -4,9 +4,7 @@ if [ "$1" != "" ]; then
     rm -rf build/
 fi
 
-
-mkdir build
-mkdir build/parts
+mkdir -p build/parts
 
 set -e
 
