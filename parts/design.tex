@@ -216,7 +216,7 @@ componentes.
 
 \begin{component}{Gestor de la arquitectura}
     {Valida y carga la \gls{ISA}, permitiendo su uso en los otros componentes} % Rol
-    {} % Dependencias
+    {Traductor} % Dependencias
     {Especificación de la \gls{ISA}} % Datos de entrada
     {\gls{ISA} validada} % Datos de salida
     {FN-ISA} % Origen
@@ -228,7 +228,7 @@ componentes.
 
 \begin{component}{Lexer}
     {Transforma el código del \gls{program} en una secuencia de \glspl{token}} % Rol
-    {} % Dependencias
+    {Parser, Parser de instrucciones, y Parser de expresiones} % Dependencias
     {\Gls{program} a analizar} % Datos de entrada
     {Secuencia de \glspl{token}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
@@ -243,7 +243,7 @@ componentes.
 
 \begin{component}{Parser de expresiones}
     {Realiza el análisis sintáctico de una \gls{expression}} % Rol
-    {} % Dependencias
+    {Parser y Parser de instrucciones} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente a una \gls{expression}} % Datos de salida
     {FN-floats, FN-constantes, FN-expr-operadores,
@@ -257,7 +257,7 @@ componentes.
 
 \begin{component}{Parser}
     {Realiza el análisis sintáctico de un \gls{program}} % Rol
-    {} % Dependencias
+    {Traductor} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente al \gls{program}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
@@ -269,7 +269,7 @@ componentes.
 
 \begin{component}{Parser de instrucciones}
     {Realiza el análisis sintáctico de una \gls{instruction}} % Rol
-    {} % Dependencias
+    {Traductor} % Dependencias
     {Secuencia de \glspl{token} y definición de la sintaxis de la \gls{instruction}} % Datos de entrada
     {\gls{AST} correspondiente a la \gls{instruction}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo,
@@ -280,7 +280,7 @@ componentes.
 
 \begin{component}{Evaluador de pseudo-instrucciones}
     {Transforma una \gls{pseudo-instruction} en una secuencia de \glspl{instruction}} % Rol
-    {} % Dependencias
+    {Traductor} % Dependencias
     {\gls{AST} de la \gls{pseudo-instruction}, \gls{ISA}, \gls{symbol table}, y dirección de la siguiente \gls{instruction}} % Datos de entrada
     {Secuencia de \glspl{AST} correspondientes a las \glspl{instruction} por las que se tiene que remplazar la \gls{pseudo-instruction}} % Datos de salida
     {FN-compilar-pseudo, FN-errores-base} % Origen
@@ -289,9 +289,9 @@ componentes.
     mismo comportamiento.
 \end{component}
 
-\begin{component}{Compilador}
+\begin{component}{Traductor}
     {Realiza el análisis semántico y traducción de un \gls{program} \glsdisp{assembly}{ensamblador}} % Rol
-    {} % Dependencias
+    {\NA} % Dependencias
     {\gls{ISA} y código del \gls{program} a \glsdisp{compilation}{compilar}} % Datos de entrada
     {\Gls{program} \glsdisp{compilation}{compilado}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
