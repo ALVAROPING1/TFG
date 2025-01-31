@@ -84,96 +84,96 @@ Estos requisitos se pueden dividir en dos tipos:
 
 % ───────────────────────────────── Capacidades ───────────────────────────────
 
-\begin{userReq}{CA}{funcionalidades}{pc=h,pd=h,s=nc,v=m}
+\begin{userReq}{CA}{funcionalidades}{pc=h,pd=h,s=c,v=m}
     El sistema debe soportar todas las funcionalidades soportadas en el
     \gls{compiler} actual.
 \end{userReq}
 
-\begin{userReq}{CA}{escape}{pc=m,pd=m,s=c,v=m}
+\begin{userReq}{CA}{escape}{pc=m,pd=m,s=i,v=m}
     El sistema debe soportar secuencias de escape en las cadenas de caracteres y
     caracteres literales.
 \end{userReq}
 
-\begin{userReq}{CA}{ISA}{pc=h,pd=h,s=nc,v=h}
+\begin{userReq}{CA}{ISA}{pc=h,pd=h,s=c,v=h}
     El sistema debe permitir especificar la \gls{ISA} a utilizar.
 \end{userReq}
 
-\begin{userReq}{CA}{comentarios}{pc=m,pd=l,s=nc,v=h}
+\begin{userReq}{CA}{comentarios}{pc=m,pd=l,s=c,v=h}
     El sistema debe permitir especificar la cadena utilizada como prefijo de los
     comentarios de línea.
 \end{userReq}
 
-\begin{userReq}{CA}{num-etiquetas}{pc=m,pd=l,s=nc,v=h}
+\begin{userReq}{CA}{num-etiquetas}{pc=m,pd=l,s=c,v=h}
     El sistema debe permitir utilizar cualquier cantidad de etiquetas en una
     \gls{sentence}.
 \end{userReq}
 
-\begin{userReq}{CA}{referencias}{pc=h,pd=h,s=c,v=m}
+\begin{userReq}{CA}{referencias}{pc=h,pd=h,s=i,v=m}
     El sistema debe permitir referenciar etiquetas definidas más adelante en el
     código \glsdisp{assembly}{ensamblador}.
 \end{userReq}
 
-\begin{userReq}{CA}{etiquetas-valor}{pc=m,pd=m,s=nc,v=h}
+\begin{userReq}{CA}{etiquetas-valor}{pc=m,pd=m,s=c,v=h}
     El sistema debe permitir utilizar etiquetas como valores de las \glspl{data directive}.
 \end{userReq}
 
-\begin{userReq}{CA}{expresiones}{pc=m,pd=m,s=c,v=h}
+\begin{userReq}{CA}{expresiones}{pc=m,pd=m,s=i,v=h}
     El sistema debe permitir evaluar y utilizar \glspl{expression} con valores
     constantes.
 \end{userReq}
 
-\begin{userReq}{CA}{mult-defs-instruccion}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{CA}{mult-defs-instruccion}{pc=h,pd=m,s=c,v=h}
     El sistema debe permitir definir múltiples \glspl{instruction} con el mismo
     nombre, y utilizar su sintaxis y el tamaño de los argumentos (en bits) para
     seleccionar la correcta durante la \gls{compilation} de un \gls{program}
     \glsdisp{assembly}{ensamblador}.
 \end{userReq}
 
-\begin{userReq}{CA}{errores}{pc=h,pd=h,s=c,v=l}
+\begin{userReq}{CA}{errores}{pc=h,pd=h,s=i,v=l}
     El sistema debe tener buenos mensajes de error.
 \end{userReq}
 
-\begin{userReq}{CA}{bigints}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{CA}{bigints}{pc=h,pd=m,s=c,v=h}
     El sistema debe permitir utilizar números enteros de cualquier tamaño para
     las direcciones de \gls{memory} y valores de las \glspl{expression}.
 \end{userReq}
 
 % ──────────────────────────────── Restricciones ──────────────────────────────
 
-\begin{userReq}{RE}{ISA}{pc=h,pd=h,s=nc,v=h}
+\begin{userReq}{RE}{ISA}{pc=h,pd=h,s=c,v=h}
     El formato de definición de la \gls{ISA} debe ser el utilizado
     actualmente en CREATOR.
 \end{userReq}
 
-\begin{userReq}{RE}{API}{pc=h,pd=h,s=nc,v=h}
+\begin{userReq}{RE}{API}{pc=h,pd=h,s=c,v=h}
     La \gls{API} de entrada y salida del sistema debe ser la utilizada
     actualmente en CREATOR.
 \end{userReq}
 
-\begin{userReq}{RE}{navegadores}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{RE}{navegadores}{pc=h,pd=m,s=c,v=h}
     El sistema se tiene que poder ejecutar en los navegadores soportados
     actualmente por CREATOR: Google Chrome 70+, Mozilla Firefox 60+, y Safari
     12+
 \end{userReq}
 
-\begin{userReq}{RE}{nodejs}{pc=m,pd=m,s=nc,v=h}
+\begin{userReq}{RE}{nodejs}{pc=m,pd=m,s=c,v=h}
     El sistema se tiene que poder ejecutar en Node.js
 \end{userReq}
 
-\begin{userReq}{RE}{JS}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{RE}{JS}{pc=h,pd=m,s=c,v=h}
     El sistema debe tener una \gls{API} para \gls{JS}.
 \end{userReq}
 
-\begin{userReq}{RE}{FOSS}{pc=h,pd=m,s=nc,v=h}
+\begin{userReq}{RE}{FOSS}{pc=h,pd=m,s=c,v=h}
     El sistema tiene que ser \gls{FOSS}.
 \end{userReq}
 
-\begin{userReq}{RE}{sintaxis}{pc=h,pd=h,s=c,v=m}
+\begin{userReq}{RE}{sintaxis}{pc=h,pd=h,s=i,v=m}
     El sistema tiene que utilizar la sintaxis del \gls{assembler} GNU as para
     los \glspl{program} \glsdisp{compilation}{compilados}.
 \end{userReq}
 
-\begin{userReq}{RE}{velocidad}{pc=m,pd=m,s=vi,v=l}
+\begin{userReq}{RE}{velocidad}{pc=m,pd=m,s=vu,v=l}
     El sistema tiene que ser rápido. % TODO: más explicación
 \end{userReq}
 
@@ -202,65 +202,65 @@ Estos requisitos se pueden dividir en dos tipos:
 
 % ───────────────────────────────── Funcionales ───────────────────────────────
 
-\begin{softwareReq}{FN}{compilar-instrucciones}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{compilar-instrucciones}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe permitir \glsdisp{compilation}{compilar} \glspl{instruction}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{compilar-pseudo}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{compilar-pseudo}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe permitir \glsdisp{compilation}{compilar} \glspl{pseudo-instruction}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{directivas}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{directivas}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar las siguientes \glspl{directive}: cambiar el tipo
     de la sección actual, declarar símbolos globales, y \glspl{data directive}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{secciones}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{secciones}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar los siguientes tipos de secciones: datos e
     instrucciones.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{directivas-datos}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{directivas-datos}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar las siguientes \glspl{data directive}: reservar
     espacio, cadenas de caracteres, números enteros, números decimales, y
     alineamiento de la \gls{data memory}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{strings}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{strings}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de cadenas de
     caracteres terminadas y no terminadas en un \gls{null byte}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{tamaño-ints}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{tamaño-ints}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de números enteros con los
     siguientes tamaños: byte, media \gls{word}, \gls{word}, y doble \gls{word}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{floats}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{floats}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de números decimales con el
     formato IEEE 745 de precisión simple (binary32) y doble (binary64).
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{alineamiento}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{alineamiento}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de alineamiento a bytes y a
     potencias de 2.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{bibliotecas}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{bibliotecas}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar bibliotecas. % TODO: explicar cuando entienda cómo funcionan
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{escape}{pc=m,pd=m,s=c,v=m}
+\begin{softwareReq}{FN}{escape}{pc=m,pd=m,s=i,v=m}
     {CA-escape}
     El sistema debe soportar las siguientes secuencias de escape en las cadenas
     de caracteres y caracteres literales: \verb!\\!, \verb!\"!, \verb!\'!,
@@ -268,37 +268,37 @@ Estos requisitos se pueden dividir en dos tipos:
     (salto de página), \verb!\n!, \verb!\r!, \verb!\t!, y \verb!\0!.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{ISA}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{FN}{ISA}{pc=h,pd=h,s=c,v=h}
     {CA-ISA}
     El sistema debe permitir especificar la \gls{ISA} a utilizar.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{comentarios}{pc=m,pd=l,s=nc,v=h}
+\begin{softwareReq}{FN}{comentarios}{pc=m,pd=l,s=c,v=h}
     {CA-comentarios}
     El sistema debe permitir especificar la cadena utilizada como prefijo de los
     comentarios de línea.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{num-etiquetas}{pc=m,pd=l,s=nc,v=h}
+\begin{softwareReq}{FN}{num-etiquetas}{pc=m,pd=l,s=c,v=h}
     {CA-num-etiquetas}
     El sistema debe permitir utilizar cualquier cantidad de etiquetas en una
     \gls{sentence}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{referencias}{pc=h,pd=h,s=c,v=m}
+\begin{softwareReq}{FN}{referencias}{pc=h,pd=h,s=i,v=m}
     {CA-referencias}
     El sistema debe permitir referenciar etiquetas definidas más adelante en el
     código \glsdisp{assembly}{ensamblador}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{constantes}{pc=m,pd=m,s=nc,v=h}
+\begin{softwareReq}{FN}{constantes}{pc=m,pd=m,s=c,v=h}
     {CA-etiquetas-valor, CA-expresiones}
     El sistema debe permitir evaluar \glspl{expression} con los siguientes tipos
     de valores constantes: números enteros, números decimales, caracteres
     literales (utilizando su representación Unicode) y etiquetas.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{expr-operadores}{pc=m,pd=m,s=c,v=h}
+\begin{softwareReq}{FN}{expr-operadores}{pc=m,pd=m,s=i,v=h}
     {CA-expresiones}
     El sistema debe permitir utilizar paréntesis y los siguientes operadores en
     las \glspl{expression}:
@@ -309,20 +309,20 @@ Estos requisitos se pueden dividir en dos tipos:
     \end{itemize}
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{expr-instruccion}{pc=m,pd=m,s=c,v=h}
+\begin{softwareReq}{FN}{expr-instruccion}{pc=m,pd=m,s=i,v=h}
     {CA-expresiones}
     El sistema debe permitir utilizar \glspl{expression} como \glspl{immediate}
     de las \glspl{instruction} y \glspl{pseudo-instruction}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{expr-directiva}{pc=m,pd=m,s=nc,v=h}
+\begin{softwareReq}{FN}{expr-directiva}{pc=m,pd=m,s=c,v=h}
     {CA-expresiones}
     El sistema debe permitir utilizar \glspl{expression} como valores de las
     \glspl{data directive} de reservar espacio, números enteros y decimales, y
     alineamiento.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{mult-defs-instruccion}{pc=h,pd=m,s=nc,v=h}
+\begin{softwareReq}{FN}{mult-defs-instruccion}{pc=h,pd=m,s=c,v=h}
     {CA-mult-defs-instruccion}
     El sistema debe permitir definir múltiples \glspl{instruction} con el mismo
     nombre, y utilizar su sintaxis y el tamaño de los argumentos (en bits) para
@@ -330,7 +330,7 @@ Estos requisitos se pueden dividir en dos tipos:
     \glsdisp{assembly}{ensamblador}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{errores-base}{pc=h,pd=h,s=c,v=m}
+\begin{softwareReq}{FN}{errores-base}{pc=h,pd=h,s=i,v=m}
     {CA-errores}
     Los mensajes de error del sistema deben contener, al menos: posición exacta
     del error (línea y columna), mensaje de error, segmento de código con el
@@ -338,14 +338,14 @@ Estos requisitos se pueden dividir en dos tipos:
     posible solución.
 \end{softwareReq}
 
-%\begin{softwareReq}{FN}{errores-extra}{pc=l,pd=l,s=c,v=h}
+%\begin{softwareReq}{FN}{errores-extra}{pc=l,pd=l,s=i,v=h}
 %    {CA-errores}
 %    Los mensajes de error del sistema que se refieran a identificadores no
 %    definidos deben contener el identificador definido más similar según la
 %    \gls{edit-distance}
 %\end{softwareReq}
 
-\begin{softwareReq}{FN}{bigints}{pc=h,pd=m,s=nc,v=h}
+\begin{softwareReq}{FN}{bigints}{pc=h,pd=m,s=c,v=h}
     {CA-bigints}
     El sistema debe permitir utilizar números enteros de cualquier tamaño para
     las direcciones de \gls{memory} y valores de las \glspl{expression}.
@@ -353,66 +353,66 @@ Estos requisitos se pueden dividir en dos tipos:
 
 % ──────────────────────────────── No funcionales ────────────────────────────────
 
-\begin{softwareReq}{NF}{ISA}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{NF}{ISA}{pc=h,pd=h,s=c,v=h}
     {RE-ISA}
     El formato de definición de la \gls{ISA} debe ser el utilizado
     actualmente en CREATOR.
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{def-instrucciones}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{NF}{def-instrucciones}{pc=h,pd=h,s=c,v=h}
     {RE-ISA}
     La definición de la sintaxis de las instrucciones debe estar contenida en la
     \gls{ISA}.
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{API}{pc=h,pd=h,s=nc,v=h}
+\begin{softwareReq}{NF}{API}{pc=h,pd=h,s=c,v=h}
     {RE-API}
     La \gls{API} de entrada y salida del sistema debe ser la utilizada
     actualmente en CREATOR.
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{chrome}{pc=h,pd=m,s=nc,v=h}
+\begin{softwareReq}{NF}{chrome}{pc=h,pd=m,s=c,v=h}
     {RE-navegadores}
     El sistema se tiene que poder ejecutar en Google Chrome 70+
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{firefox}{pc=h,pd=m,s=nc,v=h}
+\begin{softwareReq}{NF}{firefox}{pc=h,pd=m,s=c,v=h}
     {RE-navegadores}
     El sistema se tiene que poder ejecutar en Mozilla Firefox 60+
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{safari}{pc=h,pd=m,s=nc,v=h}
+\begin{softwareReq}{NF}{safari}{pc=h,pd=m,s=c,v=h}
     {RE-navegadores}
     El sistema se tiene que poder ejecutar en Safari 10+
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{nodejs}{pc=m,pd=m,s=nc,v=h}
+\begin{softwareReq}{NF}{nodejs}{pc=m,pd=m,s=c,v=h}
     {RE-nodejs}
     El sistema se tiene que poder ejecutar en Node.js
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{JS}{pc=h,pd=m,s=nc,v=h}
+\begin{softwareReq}{NF}{JS}{pc=h,pd=m,s=c,v=h}
     {RE-JS}
     El sistema debe tener una \gls{API} para \gls{JS}.
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{licencia}{pc=h,pd=m,s=nc,v=h}
+\begin{softwareReq}{NF}{licencia}{pc=h,pd=m,s=c,v=h}
     {RE-FOSS}
     El sistema tiene que utilizar una licencia \gls{FOSS}.
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{codigo-publico}{pc=h,pd=m,s=nc,v=h}
+\begin{softwareReq}{NF}{codigo-publico}{pc=h,pd=m,s=c,v=h}
     {RE-FOSS}
     El código fuente del sistema tiene ser público.
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{sintaxis}{pc=h,pd=h,s=c,v=m}
+\begin{softwareReq}{NF}{sintaxis}{pc=h,pd=h,s=i,v=m}
     {RE-sintaxis}
     El sistema tiene que utilizar la sintaxis del \gls{assembler} GNU as para
     los \glspl{program} \glsdisp{compilation}{compilados}.
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{velocidad}{pc=m,pd=m,s=vi,v=l}
+\begin{softwareReq}{NF}{velocidad}{pc=m,pd=m,s=vu,v=l}
     {RE-velocidad}
     El sistema tiene que ser rápido. % TODO: más explicación
 \end{softwareReq}

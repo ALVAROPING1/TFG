@@ -44,7 +44,7 @@ esto, sería preferible utilizar un lenguaje con un \gls{type system}
 Node.js que permite la ejecución de \glspl{program} compilados de forma casi
 nativa, obteniendo un rendimiento significativamente mejor que \gls{JS}. Muchos
 lenguajes como C \parencite{C}, C++ \parencite{cpp}, o Rust \parencite{Rust}
-soportan la compilación a \gls{wasm}, posibilitando su uso para desarrollar el
+soportan la \gls{compilation} a \gls{wasm}, posibilitando su uso para desarrollar el
 sistema. Todos estos lenguajes tienen un rendimiento prácticamente idéntico, por
 lo que se necesitan analizar otras características para elegir la mejor opción.
 
@@ -96,7 +96,7 @@ utilizar para el desarrollo del sistema.
 
 \subsection{Análisis sintáctico}\label{subsec:parser}
 
-Un compilador se compone principalmente de dos partes: análisis sintáctico y
+Un \gls{compiler} se compone principalmente de dos partes: análisis sintáctico y
 análisis semántico. El análisis sintáctico se encarga de transformar el código a
 un \gls{AST}, mientras que el análisis semántico (\textit{parsing}) se encarga
 de, utilizando el \gls{AST}, verificar que el \gls{program} cumple la semántica
@@ -171,7 +171,7 @@ una mayor flexibilidad. \parencite{compiler-design}
 
 Otra decisión importante para el desarrollo del analizador sintáctico es el
 tratamiento de las \glspl{forward-reference}, pedidas por el
-\sreqref{FN-referencias}. Si el compilador escanease el código secuencialmente,
+\sreqref{FN-referencias}. Si el \gls{compiler} escanease el código secuencialmente,
 al llegar a una etiqueta usada antes de su definición no podría realizar la
 traducción al desconocer el valor de esta etiqueta. Este problema se puede
 solucionar permitiendo la modificación de código ya traducido o realizando
@@ -188,13 +188,13 @@ añade más complejidad al código. Actualmente, muchos \glspl{assembler} optan 
 realizar múltiples pasadas, ya que da más flexibilidad para implementar
 funcionalidades avanzadas que no pueden ser implementadas en un \gls{assembler}
 de una única pasada \parencite{assembler-design}. Teniendo en cuenta esto, se ha
-elegido crear un compilador de múltiples pasadas para permitir una mayor
+elegido crear un \gls{compiler} de múltiples pasadas para permitir una mayor
 flexibilidad para añadir nuevas funcionalidades en el futuro.
 
 \section{Arquitectura del compilador}\label{sec:architecture}
 
 \noindent
-El compilador a desarrollar está formado por tres componentes principales:
+El \gls{compiler} a desarrollar está formado por tres componentes principales:
 
 \begin{enumerate}
     \item Gestor de la arquitectura: encargado de validar y cargar la \gls{ISA}
@@ -207,16 +207,18 @@ El compilador a desarrollar está formado por tres componentes principales:
 \end{enumerate}
 
 La \figureref{components} muestra el modelo de componentes UML
-\parencite{UMLSpec} del compilador, incluyendo las relaciones entre los
+\parencite{UMLSpec} del \gls{compiler}, incluyendo las relaciones entre los
 componentes.
 
 \graphicfigure[0.95]{components}{Modelo de componentes del compilador}
 
 \printcomptemplate
 
+\newcommand{\componentref}[1]{\hyperref[req:#1]{`#1'}}
+
 \begin{component}{Gestor de la arquitectura}
     {Valida y carga la \gls{ISA}, permitiendo su uso en los otros componentes} % Rol
-    {Traductor} % Dependencias
+    {\componentref{Traductor}} % Dependencias
     {Especificación de la \gls{ISA}} % Datos de entrada
     {\gls{ISA} validada} % Datos de salida
     {FN-ISA} % Origen
@@ -228,7 +230,7 @@ componentes.
 
 \begin{component}{Lexer}
     {Transforma el código del \gls{program} en una secuencia de \glspl{token}} % Rol
-    {Parser, Parser de instrucciones, y Parser de expresiones} % Dependencias
+    {\componentref{Parser}, \componentref{Parser de instrucciones}, y \componentref{Parser de expresiones}} % Dependencias
     {\Gls{program} a analizar} % Datos de entrada
     {Secuencia de \glspl{token}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
@@ -243,7 +245,7 @@ componentes.
 
 \begin{component}{Parser de expresiones}
     {Realiza el análisis sintáctico de una \gls{expression}} % Rol
-    {Parser y Parser de instrucciones} % Dependencias
+    {\componentref{Parser} y \componentref{Parser de instrucciones}} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente a una \gls{expression}} % Datos de salida
     {FN-floats, FN-constantes, FN-expr-operadores,
@@ -257,7 +259,7 @@ componentes.
 
 \begin{component}{Parser}
     {Realiza el análisis sintáctico de un \gls{program}} % Rol
-    {Traductor} % Dependencias
+    {\componentref{Traductor}} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente al \gls{program}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
@@ -269,7 +271,7 @@ componentes.
 
 \begin{component}{Parser de instrucciones}
     {Realiza el análisis sintáctico de una \gls{instruction}} % Rol
-    {Traductor} % Dependencias
+    {\componentref{Traductor}} % Dependencias
     {Secuencia de \glspl{token} y definición de la sintaxis de la \gls{instruction}} % Datos de entrada
     {\gls{AST} correspondiente a la \gls{instruction}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo,
@@ -280,7 +282,7 @@ componentes.
 
 \begin{component}{Evaluador de pseudo-instrucciones}
     {Transforma una \gls{pseudo-instruction} en una secuencia de \glspl{instruction}} % Rol
-    {Traductor} % Dependencias
+    {\componentref{Traductor}} % Dependencias
     {\gls{AST} de la \gls{pseudo-instruction}, \gls{ISA}, \gls{symbol table}, y dirección de la siguiente \gls{instruction}} % Datos de entrada
     {Secuencia de \glspl{AST} correspondientes a las \glspl{instruction} por las que se tiene que remplazar la \gls{pseudo-instruction}} % Datos de salida
     {FN-compilar-pseudo, FN-errores-base} % Origen
