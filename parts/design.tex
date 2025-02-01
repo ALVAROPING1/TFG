@@ -94,6 +94,23 @@ utilizar para el desarrollo del sistema.
 
 \FloatBarrier
 
+\subsection{Renderizado de errores}\label{subsec:error-rendering}
+
+El \sreqref{FN-errores-base} pide que el segmento de código que causó el error
+aparezca resaltado en el mensaje de error, lo cual significa que hay que
+realizar un renderizado de los mensajes de error. El \sreqref{NF-nodejs} pide
+que el sistema soporte Node.js, el cual se ejecuta en terminal. Debido a esto,
+los mensajes de error solo pueden estar formados de texto, pudiendo usar
+secuencias de escape ANSI \parencite{ANSIEscapeSequences} para añadir formato
+básico. Además, los requisitos \sreqref[]{NF-chrome} a \sreqref[]{NF-safari}
+indican que el sistema tiene que poder ejecutarse en navegador, donde se utiliza
+\gls{HTML} y \gls{CSS} para añadir formato al texto con mayor flexibilidad que
+las secuencias de escape ANSI.
+
+Teniendo esto en cuenta, se ha decidido que los errores estén formados por texto
+con formato básico, permitiendo utilizar tanto secuencias de escape ANSI como
+\gls{HTML} y \gls{CSS} para esta tarea.
+
 \subsection{Análisis sintáctico}\label{subsec:parser}
 
 Un \gls{compiler} se compone principalmente de dos partes: análisis sintáctico y
@@ -169,12 +186,12 @@ la práctica, esto solo es posible para lenguajes y \glspl{compiler} muy simples
 Debido a esto, se ha optado por construir un \gls{AST} explícitamente para tener
 una mayor flexibilidad. \parencite{compiler-design}
 
-Otra decisión importante para el desarrollo del analizador sintáctico es el
+Otra decisión importante para el desarrollo del analizador semántico es el
 tratamiento de las \glspl{forward-reference}, pedidas por el
-\sreqref{FN-referencias}. Si el \gls{compiler} escanease el código secuencialmente,
-al llegar a una etiqueta usada antes de su definición no podría realizar la
-traducción al desconocer el valor de esta etiqueta. Este problema se puede
-solucionar permitiendo la modificación de código ya traducido o realizando
+\sreqref{FN-referencias}. Si el \gls{compiler} escanease el código
+secuencialmente, al llegar a una etiqueta usada antes de su definición no podría
+realizar la traducción al desconocer el valor de esta etiqueta. Este problema se
+puede solucionar permitiendo la modificación de código ya traducido o realizando
 múltiples pasadas sobre el código. En el primer caso, cuando se encuentra una
 etiqueta sin definir, se registra en una tabla, y cuando se encuentra su
 definición se utiliza esta tabla para corregir sus usos. En el segundo caso, se
@@ -194,11 +211,13 @@ flexibilidad para añadir nuevas funcionalidades en el futuro.
 \section{Arquitectura del compilador}\label{sec:architecture}
 
 \noindent
-El \gls{compiler} a desarrollar está formado por tres componentes principales:
+El \gls{compiler} a desarrollar está formado por cuatro componentes principales:
 
 \begin{enumerate}
     \item Gestor de la arquitectura: encargado de validar y cargar la \gls{ISA}
     a utilizar durante la compilación.
+    \item \Gls{renderer} de errores: encargado de transformar la información
+    relacionada con un error a un formato que puede ser mostrado a un usuario.
     \item Analizador sintáctico: encargado de realizar el análisis sintáctico del
     código ensamblador para permitir su análisis y traducción.
     \item Analizador semántico: encargado de realizar el análisis semántico del
@@ -228,14 +247,23 @@ componentes.
     definida.
 \end{component}
 
+\begin{component}{Renderizador de errores}
+    {Transforma la información de un error a un formato que puede ser mostrado a un usuario} % Rol
+    {\componentref{Traductor}} % Dependencias
+    {Error en formato lógico y código \glsdisp{assembly}{ensamblador}} % Datos de entrada
+    {Representación del error que puede ser mostrada a un usuario} % Datos de salida
+    {FN-errores-base} % Origen
+    El \gls{renderer} de errores se encarga de transformar la información
+    relacionada con un error a un formato que puede ser mostrado a un usuario en
+    la pantalla.
+\end{component}
+
 \begin{component}{Lexer}
     {Transforma el código del \gls{program} en una secuencia de \glspl{token}} % Rol
     {\componentref{Parser}, \componentref{Parser de instrucciones}, y \componentref{Parser de expresiones}} % Dependencias
     {\Gls{program} a analizar} % Datos de entrada
     {Secuencia de \glspl{token}} % Datos de salida
-    {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
-    FN-directivas-datos, FN-escape, FN-floats, FN-comentarios,
-    FN-constantes, FN-expr-operadores, FN-errores-base} % Origen
+    {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas, FN-directivas-datos, FN-utf8, FN-escape, FN-floats, FN-comentarios, FN-constantes, FN-expr-operadores, FN-errores-base} % Origen
     El lexer recibe el código del \gls{program} a
     \glsdisp{compilation}{compilar} y realiza un análisis léxico, transformado
     la secuencia de caracteres que representa el \gls{program} en una secuencia
@@ -316,7 +344,7 @@ La matriz de trazabilidad permite verificar que todos los requisitos funcionales
 están cubiertos por al menos un componente.
 
 \begin{landscape}
-    \traceabilityTable[p]{trazability-comp-f}{^[^R]}{^RS\37-FN}
+    \traceabilityTable[p]{trazability-comp-f}{^\37D+$}{^RS\37-FN}
         {Trazabilidad entre los requisitos funcionales y los componentes}
 \end{landscape}
 
@@ -331,26 +359,27 @@ y comentarios), mientras que el \gls{parser} tomará esta secuencia de
 \glspl{token} y la transformará en un \gls{AST} según la \gls{grammar} del
 lenguaje. Además, también utilizará un \gls{parser} de \glspl{expression} para
 realizar el análisis de las \glspl{expression} numéricas, el cual tendrá en
-cuenta el nivel de prioridad de los diferentes operadores.
-
-% TODO: errores sintácticos->semánticos porque son mejores para un usuario?
+cuenta el nivel de prioridad de los diferentes operadores. Como el
+\sreqref{FN-errores-base} pide que los errores contengan la posición exacta del
+error, se añadirá también a los nodos del \gls{AST} la posición en el código
+original de cada elemento, para que el analizador semántico pueda acceder a esta
+información.
 
 El \sreqref{FN-mult-defs-instruccion} indica que una instrucción puede tener
 múltiples sintaxis distintas. Para permitir esto, se ha decidido que en el
 análisis sintáctico inicial del código se interpretará la secuencia de
 \glspl{token} entre el nombre de la instrucción y el siguiente salto de línea
 como los argumentos de la instrucción en todos los casos, ya que es el
-funcionamiento de GNU as. % TODO: cita
-El último componente del analizador sintáctico, el \gls{parser} de
-instrucciones, intentará realizar el análisis sintáctico de esta secuencia de
-\glspl{token} según una especificación de la sintaxis de la instrucción,
-devolviendo un error en caso de fallo.
+funcionamiento de GNU as \parencite{as-manual}. El último componente del
+analizador sintáctico, el \gls{parser} de instrucciones, intentará realizar el
+análisis sintáctico de esta secuencia de \glspl{token} según una especificación
+de la sintaxis de la instrucción, devolviendo un error en caso de fallo.
 
-A continuación se incluye la gramática en forma normal de Backus-Naur % TODO: cita
-que utilizará el \gls{parser}. En general, se ha preferido simplificar la
-gramática y tratar los posibles errores en el analizador semántico, ya que esto
-permite generar errores con mayor información que pueden ser más útiles para un
-usuario, como pide el \sreqref{FN-errores-base}. % TODO: mencionar simplificación saltos de línea?
+A continuación se incluye la gramática en forma normal de Backus-Naur
+\parencite{BNF} que utilizará el \gls{parser}. En general, se ha preferido
+simplificar la gramática y tratar los posibles errores en el analizador
+semántico, ya que esto permite generar errores con mayor información que pueden
+ser más útiles para un usuario, como pide el \sreqref{FN-errores-base}. % TODO: mencionar simplificación saltos de línea?
 
 \newcommand{\EOL}{\textbackslash{}n}
 \newcommand{\verbEOL}{`\texttt{\textbackslash{}n}'}
@@ -367,7 +396,7 @@ usuario, como pide el \sreqref{FN-errores-base}. % TODO: mencionar simplificaci�
                   \alt <labels> <instruction> `\EOL'
 
        <directive> ::= <directive\_name> <args>
-       
+
        <args> ::= $\lambda$ | <arg> <args\_list>
 
        <args\_list> ::= $\lambda$ | `,' <arg> <args\_list>
@@ -383,3 +412,38 @@ usuario, como pide el \sreqref{FN-errores-base}. % TODO: mencionar simplificaci�
 \end{tcolorbox}
 
 \subsection{Analizador semántico}
+
+El analizador semántico se compondrá principalmente por un traductor y un
+evaluador de \glspl{pseudo-instruction}. El traductor realizará el análisis y
+traducción del \gls{AST} obtenido del analizador semántico, y utilizará el
+evaluador de \glspl{pseudo-instruction} para transformar las
+\glspl{pseudo-instruction} en secuencias de \glspl{instruction}.
+
+Como se especificó en \subsectionref{compiler}, el traductor realizará varias
+pasadas por el \gls{AST} durante la traducción:
+
+\begin{enumerate}
+    \item Pre-procesado del código
+    \begin{itemize}
+        \item Para cada \gls{instruction}, se selecciona la definición de la
+        \gls{instruction} a utilizar durante la traducción. En caso de
+        corresponderse con una \gls{pseudo-instruction}, se expande en una
+        secuencia de \glspl{instruction} que son pre-procesadas recursivamente.
+        \item Se asigna el espacio y posición de memoria que ocupará cada
+        \gls{data directive} e \gls{instruction}.
+        \item Se obtiene el valor de todas las etiquetas definidas,
+        y se almacena en una \gls{symbol table}.
+    \end{itemize}
+    \item Traducción del código: se traducen todos los elementos del código
+    utilizando los valores de las etiquetas obtenidos en la primera pasada.
+    \begin{itemize}
+        \item Se traducen las \glspl{instruction} utilizando la definición
+        seleccionada en la primera pasada.
+        \item Se determinan los valores de las \gls{data directive}.
+    \end{itemize}
+\end{enumerate}
+
+Durante este proceso, el analizador semántico verificará que el código no
+contiene errores semánticos. En caso de encontrarse un error, se abortará la
+\gls{compilation} del \gls{program} con el error apropiado, incluyendo toda la
+información relevante sobre el error encontrado.
