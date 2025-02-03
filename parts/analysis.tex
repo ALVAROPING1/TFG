@@ -90,7 +90,8 @@ Estos requisitos se pueden dividir en dos tipos:
 \end{userReq}
 
 \begin{userReq}{CA}{utf8}{pc=m,pd=m,s=c,v=h}
-    El sistema debe soportar cadenas de caracteres codificadas en UTF-8.
+    El sistema debe soportar cadenas de caracteres codificadas en UTF-8
+    \parencite{UTF-8}.
 \end{userReq}
 
 \begin{userReq}{CA}{escape}{pc=m,pd=m,s=i,v=m}
@@ -250,7 +251,8 @@ Estos requisitos se pueden dividir en dos tipos:
 \begin{softwareReq}{FN}{floats}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar \glspl{data directive} de números decimales con el
-    formato IEEE 745 de precisión simple (binary32) y doble (binary64).
+    formato IEEE 745 \parencite{FloatsIEEE} de precisión simple (binary32) y
+    doble (binary64).
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{alineamiento}{pc=h,pd=h,s=c,v=h}
@@ -368,7 +370,8 @@ Estos requisitos se pueden dividir en dos tipos:
 \begin{softwareReq}{NF}{ISA}{pc=h,pd=h,s=c,v=h}
     {RE-ISA}
     El formato de definición de la \gls{ISA} debe ser el utilizado
-    actualmente en CREATOR, serializado en formato \gls{json}.
+    actualmente en CREATOR, serializado en formato \gls{json}
+    \parencite{JSONStandard}.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{def-instrucciones}{pc=h,pd=h,s=c,v=h}
