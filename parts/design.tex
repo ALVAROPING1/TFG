@@ -390,10 +390,11 @@ ser más útiles para un usuario, como pide el \sreqref{FN-errores-base}. % TODO
 
        <directive\_name> ::= `.' <identifier>
 
+       <labelled\_statement> ::= <labels> <statement> `\EOL'
+
        <labels> ::= $\lambda$ | <label> <labels>
 
-       <statement> ::= <labels> <directive> `\EOL'
-                  \alt <labels> <instruction> `\EOL'
+       <statement> ::= <directive> | <instruction>
 
        <directive> ::= <directive\_name> <args>
 
@@ -432,7 +433,7 @@ pasadas por el \gls{AST} durante la traducción:
         \item Se asigna el espacio y posición de memoria que ocupará cada
         \gls{data directive} e \gls{instruction}.
         \item Se obtiene el valor de todas las etiquetas definidas,
-        y se almacena en una \gls{symbol table}.
+        y se almacenan en una \gls{symbol table}.
     \end{itemize}
     \item Traducción del código: se traducen todos los elementos del código
     utilizando los valores de las etiquetas obtenidos en la primera pasada.
