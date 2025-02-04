@@ -191,12 +191,12 @@
   \def\@table{La tabla}
   \def\@req@u@template@id@description{Cada requisito de usuario se identifica con un ID que sigue el formato \textit{\printureqidtemplate}, donde \textit{YY} identifica el tipo del requisito, ya sea capacidad (\textit{CA}) o restricción (\textit{RE}); y \textit{XX} identifica el número secuencial del requisito dentro de su tipo, empezando en \textit{01}.}
   \def\@req@s@template@id@description{Cada requisito de software se identifica con un ID que sigue el formato \textit{\printsreqidtemplate}, donde \textit{YY} identifica el tipo del requisito, ya sea funcional (\textit{FN}) o no funcional (\textit{NF}); y \textit{XX} identifica el número secuencial del requisito dentro de su tipo, empezando en \textit{01}.}
-  \def\@req@template@description{contiene la plantilla utilizada para la especificación de los requisitos, incluyendo la descripción de cada atributo.}
+  \def\@req@template@description{contiene la plantilla utilizada para la especificación de los requisitos, incluyendo la descripción de cada atributo. Tras esta, se incluyen las tablas con la especificación de cada uno de los requisitos de}
   \def\@uc@template@id@description{Cada caso de uso se identifica con un ID que sigue el formato \textit{\printucidtemplate}, donde \textit{XX} identifica el número secuencial del caso de uso, empezando en \textit{01}.}
-  \def\@uc@template@description{contiene la plantilla utilizada para la especificación de los casos de uso, incluyendo la descripción de cada atributo.}
-  \def\@component@template@description{contiene la plantilla utilizada para la especificación de los componentes, incluyendo la descripción de cada atributo.}
-  \def\@test@template@id@description{Cada caso de prueba se identifica con un ID que sigue el formato \textit{\printtestidtemplate}, donde \textit{XX} identifica el número de secuencia del caso de prueba, empezando en \textit{01}, y \textit{YYY} representa el tipo, ya sea \textit{VET} (verificación) o \textit{VAT} (validación).}
-  \def\@test@template@description{contiene la plantilla utilizada para la especificación de los casos de prueba, incluyendo la descripción de cada atributo.}
+  \def\@uc@template@description{contiene la plantilla utilizada para la especificación de los casos de uso, incluyendo la descripción de cada atributo. Tras esta, se incluyen las tablas con la especificación de cada uno de los casos de uso.}
+  \def\@component@template@description{contiene la plantilla utilizada para la especificación de los componentes, incluyendo la descripción de cada atributo. Tras esta, se incluyen las tablas con la especificación de cada uno de los componentes.}
+  \def\@test@template@id@description{Cada caso de prueba se identifica con un ID que sigue el formato \textit{\printtestidtemplate}, donde \textit{YYY} identifica el tipo del caso de prueba, ya sea \textit{VET} (verificación) o \textit{VAT} (validación); y \texit{XX} identifica el número secuencial del caso de prueba, empezando en \textit{01}.}
+  \def\@test@template@description{contiene la plantilla utilizada para la especificación de los casos de prueba, incluyendo la descripción de cada atributo. Tras esta, se incluyen las tablas con la especificación de cada uno de los casos de prueba.}
 
   % attribute names
   \def\@req@description{Descripción}
@@ -495,7 +495,7 @@
 \newcommand{\printureqtemplate}[1][\@req@template@u]{%
   \@req@u@template@id@description
 
-  \@table~\ref{tab:ur-template} \@req@template@description
+  \@table~\ref{tab:ur-template} \@req@template@description~usuario.
 
   \begin{SRStabular}[#1][tab:ur-template]{\printureqidtemplate}
     \textbf{\@req@description} & \@req@description@desc\\
@@ -537,7 +537,7 @@
 \newcommand{\printsreqtemplate}[1][\@req@template@s]{%
   \@req@s@template@id@description
 
-  \@table~\ref{tab:sr-template} \@req@template@description
+  \@table~\ref{tab:sr-template} \@req@template@description~software.
 
   \begin{SRStabular}[#1][tab:sr-template]{\printsreqidtemplate}
     \textbf{\@req@description} & \@req@description@desc\\
@@ -597,7 +597,7 @@
   \end{SRStabular}
 }
 
-\newcommand{\printucidtemplate}{\@uc@prefix-YY-XX}
+\newcommand{\printucidtemplate}{\@uc@prefix-XX}
 
 
 
