@@ -1,25 +1,25 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0" version="26.0.3">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0" version="26.0.10">
   <diagram name="Page-1" id="tZt_VaF3xgf_8bT9H7Sv">
     <mxGraphModel dx="914" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ys8rTesJug1A8LACC2Mp-6" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=none;endFill=0;fontColor=default;labelBackgroundColor=default;" edge="1" parent="1" source="ys8rTesJug1A8LACC2Mp-2" target="ys8rTesJug1A8LACC2Mp-4">
+        <mxCell id="ys8rTesJug1A8LACC2Mp-6" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=none;endFill=0;fontColor=default;labelBackgroundColor=default;" parent="1" source="ys8rTesJug1A8LACC2Mp-2" target="ys8rTesJug1A8LACC2Mp-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="ys8rTesJug1A8LACC2Mp-7" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=none;endFill=0;fontColor=default;labelBackgroundColor=default;" edge="1" parent="1" source="ys8rTesJug1A8LACC2Mp-2" target="ys8rTesJug1A8LACC2Mp-5">
+        <mxCell id="ys8rTesJug1A8LACC2Mp-7" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=none;endFill=0;fontColor=default;labelBackgroundColor=default;" parent="1" source="ys8rTesJug1A8LACC2Mp-2" target="ys8rTesJug1A8LACC2Mp-5" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="ys8rTesJug1A8LACC2Mp-2" value="Usuario" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;fontColor=default;labelBackgroundColor=default;" vertex="1" parent="1">
+        <mxCell id="ys8rTesJug1A8LACC2Mp-2" value="CREATOR" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;fontColor=default;labelBackgroundColor=default;" parent="1" vertex="1">
           <mxGeometry x="240" y="210" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ys8rTesJug1A8LACC2Mp-3" value="Sistema" style="shape=umlFrame;pointerEvents=0;fontColor=default;labelBackgroundColor=default;" vertex="1" parent="1">
+        <mxCell id="ys8rTesJug1A8LACC2Mp-3" value="Sistema" style="shape=umlFrame;pointerEvents=0;fontColor=default;labelBackgroundColor=default;" parent="1" vertex="1">
           <mxGeometry x="320" y="130" width="220" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="ys8rTesJug1A8LACC2Mp-4" value="Cargar ISA" style="ellipse;fontColor=default;labelBackgroundColor=default;" vertex="1" parent="1">
+        <mxCell id="ys8rTesJug1A8LACC2Mp-4" value="Cargar ISA" style="ellipse;fontColor=default;labelBackgroundColor=default;" parent="1" vertex="1">
           <mxGeometry x="360" y="160" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="ys8rTesJug1A8LACC2Mp-5" value="Compilar programa" style="ellipse;fontColor=default;labelBackgroundColor=default;" vertex="1" parent="1">
+        <mxCell id="ys8rTesJug1A8LACC2Mp-5" value="Compilar programa" style="ellipse;fontColor=default;labelBackgroundColor=default;" parent="1" vertex="1">
           <mxGeometry x="360" y="250" width="140" height="70" as="geometry" />
         </mxCell>
       </root>

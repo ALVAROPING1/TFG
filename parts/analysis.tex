@@ -458,36 +458,34 @@ cubiertos por los requisitos no funcionales (\tableref{trazability-re-nf})
 
 El modelo de casos de uso UML \parencite{UMLSpec}, mostrado en la
 \figureref{use_cases}, representa las acciones que el usuario puede realizar con
-el sistema. Cabe destacar que, como el propósito del sistema es muy específico,
-la cantidad de casos de uso es bastante limitada.
+el sistema. Cabe destacar que el usuario del sistema será el simulador CREATOR,
+ya que el sistema a desarrollar será un componente utilizado internamente por
+CREATOR para llevar a cabo su funcionalidad.
 
 \drawiosvgfigure[0.55]{use_cases}{Modelo de casos de uso}
 
 \printuctemplate
 
-% TODO: deberían estar formulados como algo que hace un usuario en la interfaz o
-% algo que envía CREATOR como programa?
-
 \begin{useCase}{cargar}
     {Cargar \gls{ISA}} % Nombre
-    {Usuario} % Usuario
+    {CREATOR} % Usuario
     {Cargar la \gls{ISA} a utilizar durante la \gls{compilation} de un \glsdisp{assembly}{ensamblador}} % Description
-    {El usuario debe tener la \gls{ISA} correctamente definida en una cadena de caracteres} % Pre-condición
+    {CREATOR debe tener la \gls{ISA} correctamente definida en una cadena de caracteres} % Pre-condición
     {La \gls{ISA} está cargada y disponible para realizar la compilación} % Post-condición
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep]
-        \item El usuario entrega una cadena de caracteres con la
+        \item CREATOR entrega una cadena de caracteres con la
         \gls{ISA} a la \gls{API} de cargar \gls{ISA}.
     \end{enumerate}
 \end{useCase}
 
 \begin{useCase}{compilar}
     {\glsdisp{compilation}{Compilar} \gls{program}} % Nombre
-    {Usuario} % Usuario
+    {CREATOR} % Usuario
     {\glsdisp{compilation}{Compilar} un \gls{program} para su posterior ejecución en CREATOR} % Description
     {La \gls{ISA} debe estar cargada en el \gls{compiler}} % Pre-condición
-    {El \gls{program} está compilado y disponible su ejecución en CREATOR} % Post-condición
+    {El \gls{program} está compilado y disponible para su ejecución en CREATOR} % Post-condición
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep]
-        \item El usuario entrega una cadena de caracteres con el \gls{program}
+        \item CREATOR entrega una cadena de caracteres con el \gls{program}
         a la \gls{API} de \glsdisp{compilation}{compilar} \gls{program}.
     \end{enumerate}
 \end{useCase}
