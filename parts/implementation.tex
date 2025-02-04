@@ -1,1 +1,150 @@
-\chapter{Implementation and Deployment}\label{chap:implementation}
+\chapter{Implementación y Despliegue}\label{chap:implementation}
+
+Este capítulo describirá la implementación y despliegue del sistema y está
+dividido en dos secciones. La primera (\sectionref{implementation}), hará un
+resumen de las decisiones tomadas durante la implementación del sistema, junto
+con una descripción de la estructura de ficheros creada para organizar el código
+fuente. La segunda (\sectionref{deployment}), describirá los requisitos y pasos
+necesarios para desplegar el sistema.
+
+\section{Implementación}\label{sec:implementation}
+
+Como se indicó en la \subsectionref{language}, el sistema se ha desarrollado en
+Rust, utilizando la edición de 2021.
+
+El sistema se ha implementado como se indicó en la \sectionref{architecture}.
+Cada subsistema se ha implementado en un módulo, con sus componentes almacenados
+en submódulos. Cabe destacar que el componente principal de cada subsistema se
+ha implementado en el módulo principal del subsistema. Además, se han añadido
+submódulos adicionales al analizador semántico para la gestión de diversas
+funcionalidades necesarias: campos de bits, etiquetas y \gls{symbol table},
+enteros de tamaño fijo, y gestión de segmentos de memoria. También se ha añadido
+un módulo para la implementación de la \gls{API} de \gls{JS}. Dentro de cada
+módulo y submódulo también se incluyen pruebas unitarias que verifican su
+correcta funcionalidad.
+
+\noindent
+Para la implementación del sistema se han utilizado múltiples bibliotecas
+externas:
+
+\newcommand{\libref}[1]{\textit{#1} \parencite{#1}}
+
+\begin{itemize}
+    \item Para la deserialización de \gls{json} se han utilizado \libref{serde}
+    y \libref{serde\string_json}.
+    \item Para el renderizado de los errores se ha utilizado \libref{ariadne}.
+    \item Como se indicó en la \subsectionref{parser}, para la realización del
+    analizador sintáctico se ha utilizado \libref{chumsky}.
+    \item Para el uso de \glspl{regex} se ha utilizado \libref{regex} y
+    \libref{once\string_cell}.
+    \item Para el uso de números enteros de tamaño arbitrario se ha utilizado
+    \libref{num-bigint} y \libref{num-traits}.
+    \item Para la generación de \glspl{binding} para \gls{JS} se ha utilizado
+    \libref{wasm-bindgen}, y \libref{self\string_cell}.
+    \item Para el soporte de renderización de errores con formato HTML se ha
+    utilizado \libref{ansi-to-html}.
+\end{itemize}
+
+La \figureref{file-structure} muestra la estructura de ficheros del proyecto,
+relacionando los ficheros con los componentes descritos. Cabe destacar que los
+módulos y submódulos se han organizado siguiendo el estándar moderno de Rust,
+según el cual un módulo se implementa en un fichero, y sus submódulos en ficheros
+dentro de un directorio con el nombre del módulo padre \parencite{Rust}.
+
+\newcommand{\componentref}[1]{\hyperref[req:#1]{#1}}
+
+\begin{figure}[htb]
+  \ffigbox[\FBwidth]
+    {%
+      \caption{Estructura de ficheros del proyecto}
+      \label{fig:file-structure}
+    }
+    {
+      \begin{tcolorbox}
+        \dirtree{%
+          .1 /.
+            .2 js\_example/\DTcomment{Ejemplos de uso}.
+              .3 compiler.mjs\DTcomment{Uso compilador}.
+              .3 index.html\DTcomment{Página navegador}.
+              .3 node.js\DTcomment{Carga en Node.js}.
+              .3 web.js\DTcomment{Carga en navegador}.
+            .2 src/.
+              .3 architecture/\DTcomment{Deserialización de la \gls{ISA}}.
+                .4 json.rs\DTcomment{Deserialización \gls{json}}.
+                .4 utils.rs\DTcomment{Utilidades de deserialización \gls{json}}.
+              .3 compiler/\DTcomment{Subsistema analizador semántico}.
+                .4 bit\_field.rs\DTcomment{Campo de bits}.
+                .4 error.rs\DTcomment{Gestión errores}.
+                .4 integer.rs\DTcomment{Enteros}.
+                .4 label.rs\DTcomment{Etiquetas y \gls{symbol table}}.
+                .4 pseudoinstruction.rs\DTcomment{\componentref{Evaluador de pseudo-instrucciones}}.
+                .4 section.rs\DTcomment{Gestor de segmentos de \gls{memory}}.
+              .3 parser/\DTcomment{Subsistema analizador sintáctico}.
+                .4 error.rs\DTcomment{Gestión errores}.
+                .4 expression.rs\DTcomment{\componentref{Parser de expressiones}}.
+                .4 instruction.rs\DTcomment{\componentref{Parser de instrucciones}}.
+                .4 lexer.rs\DTcomment{\componentref{Lexer}}.
+              .3 architecture.rs\DTcomment{\componentref{Gestor de la arquitectura}}.
+              .3 compiler.rs\DTcomment{\componentref{Traductor}}.
+              .3 js.rs\DTcomment{\gls{API} \gls{JS}}.
+              .3 lib.rs\DTcomment{Biblioteca del \gls{compiler}}.
+              .3 parser.rs\DTcomment{\componentref{Parser}}.
+              .3 span.rs\DTcomment{Región de código}.
+            .2 tests/.
+              .3 architecture.json\DTcomment{Arquitectura de prueba}.
+            .2 Cargo.lock\DTcomment{Versiones de dependencias}.
+            .2 Cargo.toml\DTcomment{Metadatos biblioteca}.
+            .2 LICENSE.
+            .2 README.md.
+            .2 build.sh\DTcomment{Compilación biblioteca}.
+        }
+      \end{tcolorbox}
+    }
+\end{figure}
+
+\let\componentref\undefined
+
+\noindent
+El código fuente está disponible en \myrepo.
+
+\FloatBarrier
+
+\section{Despliegue}\label{sec:deployment}
+
+\noindent
+Las especificaciones técnicas recomendadas para que un usuario tenga una buena
+experiencia utilizando la herramienta son las siguientes:
+
+\begin{itemize}
+    \item \textbf{Sistema Operativo (SO):} Ubuntu 22.04 LTS (Distribución de Linux)/Windows 11.
+    \item \textbf{Procesador:} Intel\textsuperscript{\textregistered} Core\textsuperscript{TM} i3 CPU 7100 @3.9GHz o superior.
+    \item \textbf{\Gls{memory} RAM:} 2GB o superior.
+    \item \textbf{Almacenamiento:} 1GB o superior.
+    \item \textbf{Red:} se necesita una conexión de red para descargar las
+    dependencias durante la compilación del sistema
+    \item \textbf{Software:}
+    \begin{itemize}
+        \item Los navegadores recomendados para utilizar el sistema son Google
+        Chrome 70+, Mozilla Firefox 60+, y Safari 12+.
+        \item Para compilar el sistema, es necesario tener instaladas las siguientes
+        herramientas: compilador de Rust y \verb!cargo! \parencite{rust-toolchain},
+        y Wasm-pack \parencite{Wasm-pack}.
+    \end{itemize}
+\end{itemize}
+
+\noindent
+Para compilar el sistema, es necesario seguir los siguientes pasos:
+
+\begin{enumerate}
+    \item Descargar y descomprimir el código fuente desde el repositorio
+    \item Compilar el código fuente con Wasm-pack \parencite{Wasm-pack}. Se
+    incluye un script con el código fuente para simplificar esta tarea,
+    que se puede ejecutar con el comando \verb!./build.sh!.
+    \item Incluir el sistema en una aplicación web o Node.js. Junto con el
+    código fuente, dentro del directorio \verb!js_example!, se incluye un
+    ejemplo de cómo se puede realizar esta tarea.
+\end{enumerate}
+
+Además, el sistema se ha integrado en CREATOR, que está disponible en la
+dirección \url{https://creatorsim.github.io/}. Esto permite el uso del sistema
+sin necesidad de realizar el proceso anterior.

@@ -336,6 +336,8 @@ componentes.
     CREATOR.
 \end{component}
 
+\let\componentref\undefined
+
 \FloatBarrier
 
 \subsubsection{Trazabilidad}
@@ -420,7 +422,7 @@ traducción del \gls{AST} obtenido del analizador semántico, y utilizará el
 evaluador de \glspl{pseudo-instruction} para transformar las
 \glspl{pseudo-instruction} en secuencias de \glspl{instruction}.
 
-Como se especificó en \subsectionref{compiler}, el traductor realizará varias
+Como se especificó en la \subsectionref{compiler}, el traductor realizará varias
 pasadas por el \gls{AST} durante la traducción:
 
 \begin{enumerate}
