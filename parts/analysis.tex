@@ -3,29 +3,31 @@
 Este capítulo describirá la solución propuesta y está dividido en tres
 secciones. La primera (\sectionref{description}), hará una breve descripción del
 proyecto. La segunda (\sectionref{requirements}), describirá los requisitos del
-sistema desarrollado. Por último, la tercera (\sectionref{usecases}),
+sistema a desarrollar. Por último, la tercera (\sectionref{usecases}),
 especificará los diferentes casos de uso del sistema.
 
 \section{Descripción del proyecto}\label{sec:description}
 
 El objetivo de este proyecto es rehacer el \gls{compiler} utilizado por CREATOR,
-para intentar solucionar la mayoría de los problemas que presenta el compilador
-utilizado actualmente. Este compilador será utilizado principalmente por
-estudiantes para programar en \gls{assembly}. Debido a esto, es fundamental que
-el compilador genere buenos mensajes de error que orienten a los estudiantes en
-su aprendizaje de este lenguaje.
+para solucionar los problemas que presenta el compilador utilizado actualmente.
+Este compilador será utilizado principalmente por estudiantes para programar en
+\gls{assembly}. Debido a esto, es fundamental que el compilador genere buenos
+mensajes de error que orienten a los estudiantes en su aprendizaje de este
+lenguaje.
 
-El compilador actual se creó en muy poco tiempo, y, a causa de esto, su
-funcionamiento está poco documentado y es difícil de modificar para corregir
-problemas y añadir nuevas funcionalidades. Además, tiene problemas de
-rendimiento al aumentar el tamaño de los programas.
+El compilador actual se creó en muy poco tiempo, y, a causa de esto, tiene
+múltiples problemas y carencias, y está poco documentado. Esto lo vuelve difícil
+de modificar para corregir los problemas y añadir nuevas funcionalidades.
+Además, tiene problemas de rendimiento al aumentar el tamaño de los programas.
 % TODO: mencionar mejores errores que de los de GNU as?
 
-Debido a esto, se propone crear un nuevo compilador que solucione estos
-problemas. Este nuevo compilador también mejorará los mensajes de error para
-ayudar a los estudiantes en su aprendizaje del lenguaje. Además, añadirá nuevas
-funcionalidades no soportadas en el compilador actual, que facilitarán el uso de
-CREATOR como entorno de pruebas para nuevas arquitecturas.
+Debido a esto, se propone crear un nuevo compilador con una arquitectura robusta
+que le permita ser flexible para añadir nuevas funcionalidades y corregir
+errores, solucionando los problemas del compilador actual. Este nuevo compilador
+también mejorará los mensajes de error para ayudar a los estudiantes en su
+aprendizaje del lenguaje. Además, añadirá nuevas funcionalidades no soportadas
+en el compilador actual, que facilitarán el uso de CREATOR como entorno de
+pruebas para nuevas arquitecturas.
 
 \section{Requisitos}\label{sec:requirements}
 
@@ -114,8 +116,8 @@ Estos requisitos se pueden dividir en dos tipos:
 \end{userReq}
 
 \begin{userReq}{CA}{referencias}{pc=h,pd=h,s=i,v=m}
-    El sistema debe permitir referenciar etiquetas definidas más adelante en el
-    código \glsdisp{assembly}{ensamblador}.
+    El sistema debe permitir referenciar etiquetas definidas en el
+    código \glsdisp{assembly}{ensamblador} después de su uso.
 \end{userReq}
 
 \begin{userReq}{CA}{etiquetas-valor}{pc=m,pd=m,s=c,v=h}
@@ -160,8 +162,8 @@ Estos requisitos se pueden dividir en dos tipos:
     actualmente por CREATOR.
 \end{userReq}
 
-\begin{userReq}{RE}{nodejs}{pc=m,pd=m,s=c,v=h}
-    El sistema se tiene que poder ejecutar en Node.js
+\begin{userReq}{RE}{nodejs}{pc=h,pd=m,s=c,v=h}
+    El sistema se tiene que poder ejecutar en Node.js.
 \end{userReq}
 
 \begin{userReq}{RE}{JS}{pc=h,pd=m,s=c,v=h}
@@ -219,7 +221,8 @@ Estos requisitos se pueden dividir en dos tipos:
 \begin{softwareReq}{FN}{directivas}{pc=h,pd=h,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar las siguientes \glspl{directive}: cambiar el tipo
-    de la sección actual, declarar símbolos globales, y \glspl{data directive}.
+    de la sección actual, declarar etiquetas globales, \glspl{data directive}, e
+    ignorar directiva.
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{secciones}{pc=h,pd=h,s=c,v=h}
@@ -260,7 +263,7 @@ Estos requisitos se pueden dividir en dos tipos:
     potencias de 2.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{bibliotecas}{pc=l,pd=l,s=c,v=h}
+\begin{softwareReq}{FN}{bibliotecas}{pc=h,pd=l,s=c,v=h}
     {CA-funcionalidades}
     El sistema debe soportar bibliotecas: debe permitir reservar espacio para
     instrucciones de un \gls{program} \glsdisp{compilation}{compilado}
@@ -270,10 +273,10 @@ Estos requisitos se pueden dividir en dos tipos:
 
 \begin{softwareReq}{FN}{utf8}{pc=m,pd=m,s=c,v=h}
     {CA-utf8}
-    El sistema debe soportar cadenas de caracteres codificadas en UTF-8.
+    El sistema debe soportar cadenas de caracteres codificadas en UTF-8 \parencite{UTF-8}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{escape}{pc=m,pd=m,s=i,v=m}
+\begin{softwareReq}{FN}{escape}{pc=m,pd=m,s=i,v=h}
     {CA-escape}
     El sistema debe soportar las siguientes secuencias de escape en las cadenas
     de caracteres y caracteres literales: \verb!\\!, \verb!\"!, \verb!\'!,
@@ -300,15 +303,15 @@ Estos requisitos se pueden dividir en dos tipos:
 
 \begin{softwareReq}{FN}{referencias}{pc=h,pd=h,s=i,v=m}
     {CA-referencias}
-    El sistema debe permitir referenciar etiquetas definidas más adelante en el
-    código \glsdisp{assembly}{ensamblador}.
+    El sistema debe permitir referenciar etiquetas definidas en el
+    código \glsdisp{assembly}{ensamblador} después de su uso.
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{constantes}{pc=m,pd=m,s=c,v=h}
     {CA-etiquetas-valor, CA-expresiones}
     El sistema debe permitir evaluar \glspl{expression} con los siguientes tipos
     de valores constantes: números enteros, números decimales, caracteres
-    literales (utilizando su representación Unicode) y etiquetas.
+    literales (utilizando su representación Unicode \parencite{UTF-8}) y etiquetas.
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{expr-operadores}{pc=m,pd=m,s=i,v=h}
@@ -322,7 +325,7 @@ Estos requisitos se pueden dividir en dos tipos:
     \end{itemize}
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{expr-instruccion}{pc=m,pd=m,s=i,v=h}
+\begin{softwareReq}{FN}{expr-instruccion}{pc=m,pd=m,s=c,v=h}
     {CA-expresiones}
     El sistema debe permitir utilizar \glspl{expression} como \glspl{immediate}
     de las \glspl{instruction} y \glspl{pseudo-instruction}.
@@ -343,7 +346,7 @@ Estos requisitos se pueden dividir en dos tipos:
     \glsdisp{assembly}{ensamblador}.
 \end{softwareReq}
 
-\begin{softwareReq}{FN}{errores-base}{pc=h,pd=h,s=i,v=m}
+\begin{softwareReq}{FN}{errores-base}{pc=h,pd=h,s=i,v=h}
     {CA-errores}
     Los mensajes de error del sistema deben contener, al menos: posición exacta
     del error (línea y columna), mensaje de error, segmento de código con el
@@ -370,7 +373,7 @@ Estos requisitos se pueden dividir en dos tipos:
     {RE-ISA}
     El formato de definición de la \gls{ISA} debe ser el utilizado
     actualmente en CREATOR, serializado en formato \gls{json}
-    \parencite{JSONStandard}.
+    \parencite{JSONStandard}. % TODO: add appendix with format description
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{def-instrucciones}{pc=h,pd=h,s=c,v=h}
@@ -387,22 +390,22 @@ Estos requisitos se pueden dividir en dos tipos:
 
 \begin{softwareReq}{NF}{chrome}{pc=h,pd=m,s=c,v=h}
     {RE-navegadores}
-    El sistema se tiene que poder ejecutar en Google Chrome 70+
+    El sistema se tiene que poder ejecutar en Google Chrome 70+.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{firefox}{pc=h,pd=m,s=c,v=h}
     {RE-navegadores}
-    El sistema se tiene que poder ejecutar en Mozilla Firefox 60+
+    El sistema se tiene que poder ejecutar en Mozilla Firefox 60+.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{safari}{pc=h,pd=m,s=c,v=h}
     {RE-navegadores}
-    El sistema se tiene que poder ejecutar en Safari 10+
+    El sistema se tiene que poder ejecutar en Safari 10+.
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{nodejs}{pc=m,pd=m,s=c,v=h}
+\begin{softwareReq}{NF}{nodejs}{pc=h,pd=m,s=c,v=h}
     {RE-nodejs}
-    El sistema se tiene que poder ejecutar en Node.js
+    El sistema se tiene que poder ejecutar en Node.js.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{JS}{pc=h,pd=m,s=c,v=h}
@@ -468,9 +471,9 @@ CREATOR para llevar a cabo su funcionalidad.
 \begin{useCase}{cargar}
     {Cargar \gls{ISA}} % Nombre
     {CREATOR} % Usuario
-    {Cargar la \gls{ISA} a utilizar durante la \gls{compilation} de un \glsdisp{assembly}{ensamblador}} % Description
-    {CREATOR debe tener la \gls{ISA} correctamente definida en una cadena de caracteres} % Pre-condición
-    {La \gls{ISA} está cargada y disponible para realizar la compilación} % Post-condición
+    {Cargar la \gls{ISA} a utilizar durante la \gls{compilation} de un código \glsdisp{assembly}{ensamblador}.} % Description
+    {CREATOR debe tener la \gls{ISA} correctamente definida en una cadena de caracteres.} % Pre-condición
+    {La \gls{ISA} está cargada y disponible para realizar la compilación.} % Post-condición
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep]
         \item CREATOR entrega una cadena de caracteres con la
         \gls{ISA} a la \gls{API} de cargar \gls{ISA}.
@@ -480,9 +483,9 @@ CREATOR para llevar a cabo su funcionalidad.
 \begin{useCase}{compilar}
     {\glsdisp{compilation}{Compilar} \gls{program}} % Nombre
     {CREATOR} % Usuario
-    {\glsdisp{compilation}{Compilar} un \gls{program} para su posterior ejecución en CREATOR} % Description
-    {La \gls{ISA} debe estar cargada en el \gls{compiler}} % Pre-condición
-    {El \gls{program} está compilado y disponible para su ejecución en CREATOR} % Post-condición
+    {\glsdisp{compilation}{Compilar} un \gls{program} para su posterior ejecución en CREATOR.} % Description
+    {La \gls{ISA} debe estar cargada en el \gls{compiler}.} % Pre-condición
+    {El \gls{program} está compilado y disponible para su ejecución en CREATOR.} % Post-condición
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep]
         \item CREATOR entrega una cadena de caracteres con el \gls{program}
         a la \gls{API} de \glsdisp{compilation}{compilar} \gls{program}.

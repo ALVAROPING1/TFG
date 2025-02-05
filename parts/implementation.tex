@@ -10,7 +10,8 @@ necesarios para desplegar el sistema.
 \section{Implementación}\label{sec:implementation}
 
 Como se indicó en la \subsectionref{language}, el sistema se ha desarrollado en
-Rust, utilizando la edición de 2021.
+Rust \parencite{Rust}, utilizando la edición de 2021. Se ha utilizado Wasm-pack
+\parencite{Wasm-pack} para la generación de \glspl{binding} de \gls{JS}.
 
 El sistema se ha implementado como se indicó en la \sectionref{architecture}.
 Cada subsistema se ha implementado en un módulo, con sus componentes almacenados
@@ -18,7 +19,7 @@ en submódulos. Cabe destacar que el componente principal de cada subsistema se
 ha implementado en el módulo principal del subsistema. Además, se han añadido
 submódulos adicionales al analizador semántico para la gestión de diversas
 funcionalidades necesarias: campos de bits, etiquetas y \gls{symbol table},
-enteros de tamaño fijo, y gestión de segmentos de memoria. También se ha añadido
+enteros de tamaño fijo, y gestión de secciones de memoria. También se ha añadido
 un módulo para la implementación de la \gls{API} de \gls{JS}. Dentro de cada
 módulo y submódulo también se incluyen pruebas unitarias que verifican su
 correcta funcionalidad.
@@ -136,7 +137,7 @@ experiencia utilizando la herramienta son las siguientes:
 Para compilar el sistema, es necesario seguir los siguientes pasos:
 
 \begin{enumerate}
-    \item Descargar y descomprimir el código fuente desde el repositorio
+    \item Descargar y descomprimir el código fuente desde el repositorio.
     \item Compilar el código fuente con Wasm-pack \parencite{Wasm-pack}. Se
     incluye un script con el código fuente para simplificar esta tarea,
     que se puede ejecutar con el comando \verb!./build.sh!.

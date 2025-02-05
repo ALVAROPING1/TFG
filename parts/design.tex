@@ -24,11 +24,11 @@ debe poder ejecutarse en navegador y Node.js, y tener una \gls{API} para
 que es la primera opción para el desarrollo del sistema. El principal problema
 de esta opción es el rendimiento: \gls{JS} es un lenguaje interpretado, lo cual
 lo hace significativamente más lento que otros lenguajes compilados. Esto es
-debido a que estos lenguajes pueden generar código con mejor rendimiento al
-poder ejecutarse directamente en el \gls{processor} (ejecución nativa), sin el
-sobrecoste de una máquina virtual o intérprete. El \sreqref{NF-velocidad}
-indica que el sistema debe ser rápido, por lo que sería preferible utilizar un
-lenguaje que soporte la ejecución nativa.
+debido a que estos lenguajes pueden generar código que se ejecuta directamente
+en el \gls{processor} (ejecución nativa), sin el sobrecoste de una máquina
+virtual o intérprete. El \sreqref{NF-velocidad} indica que el sistema debe ser
+rápido, por lo que sería preferible utilizar un lenguaje que soporte la
+ejecución nativa.
 
 Otro problema de \gls{JS} es su \gls{type system}. \gls{JS} utiliza un sistema de
 tipos \glsdisponly{dynamic typing}{dinámico} y \glsdisponly{weak typing}{débil},
@@ -82,6 +82,7 @@ utilizar para el desarrollo del sistema.
             Lenguaje            & \gls{JS}   & C          & C++        & Rust \\
             \midrule
             Ejecución nativa    &            & \checkmark & \checkmark & \checkmark \\
+            Alto rendimiento    &            & \checkmark & \checkmark & \checkmark \\
             \Gls{memory safety} & \checkmark &            &            & \checkmark \\
             Buena interoperabilidad con \gls{JS}
                                 & \checkmark &            &            & \checkmark \\
@@ -104,12 +105,13 @@ los mensajes de error solo pueden estar formados de texto, pudiendo usar
 secuencias de escape ANSI \parencite{ANSIEscapeSequences} para añadir formato
 básico. Además, los requisitos \sreqref[]{NF-chrome} a \sreqref[]{NF-safari}
 indican que el sistema tiene que poder ejecutarse en navegador, donde se utiliza
-\gls{HTML} y \gls{CSS} para añadir formato al texto con mayor flexibilidad que
-las secuencias de escape ANSI.
+\gls{HTML} y \gls{CSS} para añadir formato al texto. Además, \gls{HTML} y
+\gls{CSS} tienen una mayor flexibilidad para dar formato al texto que las
+secuencias de escape ANSI.
 
 Teniendo esto en cuenta, se ha decidido que los errores estén formados por texto
 con formato básico, permitiendo utilizar tanto secuencias de escape ANSI como
-\gls{HTML} y \gls{CSS} para esta tarea.
+\gls{HTML} y \gls{CSS} para esta tarea, a elección del usuario del sistema.
 
 \subsection{Análisis sintáctico}\label{subsec:parser}
 
@@ -133,11 +135,11 @@ como Lex y yacc \parencite{yacc}, sus versiones modernas de GNU Flex y bison
 \parencite{tree-sitter}. Durante la generación del analizador sintáctico, estas
 herramientas realizan un procesado de la gramática que verifica ciertas
 restricciones y les permite generar un analizador sintáctico eficiente.
-Generalmente, esto es útil, ya que ayuda a detectar errores en la \gls{grammar}.
-Sin embargo, el \sreqref{NF-def-instrucciones} indica que la definición de la
-sintaxis de las instrucciones debe estar contenida en la \gls{ISA}, y, por lo
-tanto, la \gls{grammar} es parcialmente desconocida en \gls{compile-time}. Esto
-imposibilita el uso de estas herramientas.
+Generalmente, esto es útil, ya que ayuda a detectar errores o ambigüedades en la
+\gls{grammar}. Sin embargo, el \sreqref{NF-def-instrucciones} indica que la
+definición de la sintaxis de las instrucciones debe estar contenida en la
+\gls{ISA}, y, por lo tanto, la \gls{grammar} es parcialmente desconocida en
+\gls{compile-time}. Esto imposibilita el uso de estas herramientas.
 
 El siguiente método es crear el analizador sintáctico manualmente, típicamente
 utilizando la técnica de descenso recursivo \parencite{dragon-book}. Este es el
@@ -161,7 +163,7 @@ de las herramientas de este tipo son Parsec \parencite{parsec}, Chumsky
 \parencite{chumsky}, y pom \parencite{pom}.
 
 Teniendo en cuenta esto, se ha elegido Chumsky como biblioteca para la creación
-del analizador sintáctico debido a varios motivos.
+del analizador sintáctico debido a varios motivos:
 
 \begin{itemize}
     \item Es una biblioteca de combinadores de \glspl{parser}.
@@ -210,8 +212,8 @@ etiqueta sin definir, se registra en una tabla, y cuando se encuentra su
 definición se utiliza esta tabla para corregir sus usos. En el segundo caso, se
 realizan al menos dos pasadas por el código: en la primera se determina el
 espacio que ocupará cada elemento para asignar sus direcciones de \gls{memory} y
-se obtienen las definiciones de las etiquetas, mientras en la segunda pasada se
-realiza la traducción del código. \parencite{assembler-design}
+se obtienen las definiciones de las etiquetas, mientras que en la segunda pasada
+se realiza la traducción del código. \parencite{assembler-design}
 
 Realizar una única pasada es más eficiente, pero también es menos flexible y
 añade más complejidad al código. Actualmente, muchos \glspl{assembler} optan por
@@ -249,7 +251,7 @@ componentes.
 \newcommand{\componentref}[1]{\hyperref[req:#1]{`#1'}}
 
 \begin{component}{Gestor de la arquitectura}
-    {Valida y carga la \gls{ISA}, permitiendo su uso en los otros componentes} % Rol
+    {Valida y carga la \gls{ISA}, permitiendo su uso en los otros componentes.} % Rol
     {\componentref{Traductor}} % Dependencias
     {Especificación de la \gls{ISA}} % Datos de entrada
     {\gls{ISA} validada} % Datos de salida
@@ -261,7 +263,7 @@ componentes.
 \end{component}
 
 \begin{component}{Renderizador de errores}
-    {Transforma la información de un error a un formato que puede ser mostrado a un usuario} % Rol
+    {Transforma la información de un error a un formato que puede ser mostrado a un usuario.} % Rol
     {\componentref{Traductor}} % Dependencias
     {Error en formato lógico y código \glsdisp{assembly}{ensamblador}} % Datos de entrada
     {Representación del error que puede ser mostrada a un usuario} % Datos de salida
@@ -272,7 +274,7 @@ componentes.
 \end{component}
 
 \begin{component}{Lexer}
-    {Transforma el código del \gls{program} en una secuencia de \glspl{token}} % Rol
+    {Transforma el código del \gls{program} en una secuencia de \glspl{token}.} % Rol
     {\componentref{Parser}, \componentref{Parser de instrucciones}, y \componentref{Parser de expresiones}} % Dependencias
     {\Gls{program} a analizar} % Datos de entrada
     {Secuencia de \glspl{token}} % Datos de salida
@@ -285,7 +287,7 @@ componentes.
 \end{component}
 
 \begin{component}{Parser de expresiones}
-    {Realiza el análisis sintáctico de una \gls{expression}} % Rol
+    {Realiza el análisis sintáctico de una \gls{expression}.} % Rol
     {\componentref{Parser} y \componentref{Parser de instrucciones}} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente a una \gls{expression}} % Datos de salida
@@ -299,7 +301,7 @@ componentes.
 \end{component}
 
 \begin{component}{Parser}
-    {Realiza el análisis sintáctico de un \gls{program}} % Rol
+    {Realiza el análisis sintáctico de un \gls{program}.} % Rol
     {\componentref{Traductor}} % Dependencias
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente al \gls{program}} % Datos de salida
@@ -311,7 +313,7 @@ componentes.
 \end{component}
 
 \begin{component}{Parser de instrucciones}
-    {Realiza el análisis sintáctico de una \gls{instruction}} % Rol
+    {Realiza el análisis sintáctico de una \gls{instruction}.} % Rol
     {\componentref{Traductor}} % Dependencias
     {Secuencia de \glspl{token} y definición de la sintaxis de la \gls{instruction}} % Datos de entrada
     {\gls{AST} correspondiente a la \gls{instruction}} % Datos de salida
@@ -322,7 +324,7 @@ componentes.
 \end{component}
 
 \begin{component}{Evaluador de pseudo-instrucciones}
-    {Transforma una \gls{pseudo-instruction} en una secuencia de \glspl{instruction}} % Rol
+    {Transforma una \gls{pseudo-instruction} en una secuencia de \glspl{instruction}.} % Rol
     {\componentref{Traductor}} % Dependencias
     {\gls{AST} de la \gls{pseudo-instruction}, \gls{ISA}, \gls{symbol table}, y dirección de la siguiente \gls{instruction}} % Datos de entrada
     {Secuencia de \glspl{AST} correspondientes a las \glspl{instruction} por las que se tiene que remplazar la \gls{pseudo-instruction}} % Datos de salida
@@ -333,7 +335,7 @@ componentes.
 \end{component}
 
 \begin{component}{Traductor}
-    {Realiza el análisis semántico y traducción de un \gls{program} \glsdisp{assembly}{ensamblador}} % Rol
+    {Realiza el análisis semántico y traducción de un \gls{program} \glsdisp{assembly}{ensamblador}.} % Rol
     {\NA} % Dependencias
     {\gls{ISA} y código del \gls{program} a \glsdisp{compilation}{compilar}} % Datos de entrada
     {\Gls{program} \glsdisp{compilation}{compilado}} % Datos de salida
@@ -342,7 +344,7 @@ componentes.
     FN-floats, FN-alineamiento, FN-bibliotecas, FN-num-etiquetas,
     FN-referencias, FN-constantes, FN-expr-operadores,
     FN-mult-defs-instruccion, FN-errores-base, FN-bigints} % Origen
-    El \gls{compiler} se encarga de realizar el análisis semántico y traducción
+    El traductor se encarga de realizar el análisis semántico y traducción
     de \glspl{program} \glsdisp{assembly}{ensamblador} según una \gls{ISA} dada.
     Durante este proceso, verifica que no haya ningún error en el código, y lo
     traduce a una representación simplificada que puede ser ejecutada en
@@ -374,11 +376,11 @@ y comentarios), mientras que el \gls{parser} tomará esta secuencia de
 \glspl{token} y la transformará en un \gls{AST} según la \gls{grammar} del
 lenguaje. Además, también utilizará un \gls{parser} de \glspl{expression} para
 realizar el análisis de las \glspl{expression} numéricas, el cual tendrá en
-cuenta el nivel de prioridad de los diferentes operadores. Como el
+cuenta el nivel de precedencia de los diferentes operadores. Como el
 \sreqref{FN-errores-base} pide que los errores contengan la posición exacta del
-error, se añadirá también a los nodos del \gls{AST} la posición en el código
-original de cada elemento, para que el analizador semántico pueda acceder a esta
-información.
+error, se añadirá también a los nodos del \gls{AST} la posición y tamaño en el
+código original de cada elemento, para que el analizador semántico pueda acceder
+a esta información.
 
 El \sreqref{FN-mult-defs-instruccion} indica que una instrucción puede tener
 múltiples sintaxis distintas. Para permitir esto, se ha decidido que en el
@@ -442,9 +444,10 @@ pasadas por el \gls{AST} durante la traducción:
     \item Pre-procesado del código
     \begin{itemize}
         \item Para cada \gls{instruction}, se selecciona la definición de la
-        \gls{instruction} a utilizar durante la traducción. En caso de
-        corresponderse con una \gls{pseudo-instruction}, se expande en una
-        secuencia de \glspl{instruction} que son pre-procesadas recursivamente.
+        \gls{instruction} a utilizar durante la traducción, determinando así su
+        tamaño. En caso de corresponderse con una \gls{pseudo-instruction}, se
+        expande en una secuencia de \glspl{instruction} que son pre-procesadas
+        recursivamente.
         \item Se asigna el espacio y posición de memoria que ocupará cada
         \gls{data directive} e \gls{instruction}.
         \item Se obtiene el valor de todas las etiquetas definidas,
@@ -455,7 +458,7 @@ pasadas por el \gls{AST} durante la traducción:
     \begin{itemize}
         \item Se traducen las \glspl{instruction} utilizando la definición
         seleccionada en la primera pasada.
-        \item Se determinan los valores de las \gls{data directive}.
+        \item Se determinan los valores de las \glspl{data directive}.
     \end{itemize}
 \end{enumerate}
 
