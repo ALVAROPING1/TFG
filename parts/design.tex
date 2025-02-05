@@ -114,10 +114,11 @@ con formato básico, permitiendo utilizar tanto secuencias de escape ANSI como
 \subsection{Análisis sintáctico}\label{subsec:parser}
 
 Un \gls{compiler} se compone principalmente de dos partes: análisis sintáctico y
-análisis semántico. El análisis sintáctico se encarga de transformar el código a
-un \gls{AST}, mientras que el análisis semántico (\textit{parsing}) se encarga
-de, utilizando el \gls{AST}, verificar que el \gls{program} cumple la semántica
-del lenguaje y generar el código compilado. \parencite{dragon-book}
+análisis semántico. El análisis sintáctico (\textit{parsing}) se encarga de
+transformar el código a una representación intermedia, mientras que el análisis
+semántico se encarga de, utilizando la representación intermedia, verificar que
+el \gls{program} cumple la semántica del lenguaje y generar el código compilado.
+\parencite{dragon-book}
 
 Para realizar el análisis sintáctico, actualmente existen múltiples métodos:
 utilizar un generador de \glspl{parser}, utilizar un combinador de
@@ -172,19 +173,31 @@ del analizador sintáctico debido a varios motivos.
 
 \subsection{Análisis semántico}\label{subsec:compiler}
 
-% TODO: AST->representación intermedia
-Como se ha explicado en la sección anterior, el análisis semántico
-(\textit{parsing}) se encarga de, utilizando el \gls{AST}, verificar que el
-\gls{program} cumple la semántica del lenguaje y generar el código compilado.
+Como se ha explicado en la sección anterior, el análisis semántico se encarga
+de, utilizando una representación intermedia, verificar que el \gls{program}
+cumple la semántica del lenguaje y generar el código compilado.
 
 Aunque lógicamente el analizador semántico toma como entrada el resultado del
 analizador sintáctico, ambos componentes se pueden mezclar para evitar
-representar el \gls{AST} explícitamente, realizando ambas tareas simultáneamente
-y aumentando la eficiencia del \gls{compiler}. Sin embargo, esto dificulta la
-tarea del analizador semántico al no poder explorar libremente el \gls{AST}. En
-la práctica, esto solo es posible para lenguajes y \glspl{compiler} muy simples.
-Debido a esto, se ha optado por construir un \gls{AST} explícitamente para tener
-una mayor flexibilidad. \parencite{compiler-design}
+representar el código intermedio explícitamente, realizando ambas tareas
+simultáneamente y aumentando la eficiencia del \gls{compiler}. Sin embargo, esto
+dificulta la tarea del analizador semántico al no poder explorar libremente el
+código intermedio. En la práctica, esto solo es posible para lenguajes y
+\glspl{compiler} muy simples. Debido a esto, se ha optado por construir el
+código intermedio explícitamente para tener una mayor flexibilidad.
+\parencite{compiler-design}
+
+Para la representación del código intermedio, existen principalmente dos
+métodos: utilizar un \gls{AST} y utilizar códigos de tres direcciones. Un
+\gls{AST} es un árbol que representa la estructura sintáctica del código fuente,
+utilizando los \glspl{internal node} para representar estructuras sintácticas
+del lenguaje y los \glspl{leaf node} para representar los \glspl{token} del
+código fuente. Los códigos de tres direcciones son \gls{instruction} que toman
+como mucho dos variables, aplican una operación (típicamente un cálculo,
+comparación, o salto), y almacenan el resultado en otra variable. De entre estas
+opciones, se ha elegido utilizar un \gls{AST} porque permite una representación
+más flexible que facilita la tarea del analizador semántico.
+\parencite{dragon-book}
 
 Otra decisión importante para el desarrollo del analizador semántico es el
 tratamiento de las \glspl{forward-reference}, pedidas por el
