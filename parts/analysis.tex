@@ -162,6 +162,10 @@ Estos requisitos se pueden dividir en dos tipos:
     actualmente en CREATOR.
 \end{userReq}
 
+\begin{userReq}{RE}{JS}{pc=h,pd=m,s=c,v=h}
+    El sistema debe tener una \gls{API} para \gls{JS}.
+\end{userReq}
+
 \begin{userReq}{RE}{navegadores}{pc=h,pd=m,s=c,v=h}
     El sistema se tiene que poder ejecutar en los navegadores soportados
     actualmente por CREATOR.
@@ -169,10 +173,6 @@ Estos requisitos se pueden dividir en dos tipos:
 
 \begin{userReq}{RE}{nodejs}{pc=h,pd=m,s=c,v=h}
     El sistema se tiene que poder ejecutar en Node.js.
-\end{userReq}
-
-\begin{userReq}{RE}{JS}{pc=h,pd=m,s=c,v=h}
-    El sistema debe tener una \gls{API} para \gls{JS}.
 \end{userReq}
 
 \begin{userReq}{RE}{FOSS}{pc=h,pd=m,s=c,v=h}
@@ -270,7 +270,7 @@ Estos requisitos se pueden dividir en dos tipos:
 
 \begin{softwareReq}{FN}{bibliotecas}{pc=h,pd=l,s=c,v=h}
     {CA-funcionalidades}
-    El sistema debe soportar bibliotecas: debe permitir reservar espacio para
+    El sistema debe soportar \glspl{library}: debe permitir reservar espacio para
     instrucciones de un \gls{program} \glsdisp{compilation}{compilado}
     previamente, y utilizar las etiquetas declaradas como globales definidas en
     este.
@@ -409,6 +409,11 @@ Estos requisitos se pueden dividir en dos tipos:
     actualmente en CREATOR.
 \end{softwareReq}
 
+\begin{softwareReq}{NF}{JS}{pc=h,pd=m,s=c,v=h}
+    {RE-JS}
+    El sistema debe tener una \gls{API} para \gls{JS}.
+\end{softwareReq}
+
 \begin{softwareReq}{NF}{chrome}{pc=h,pd=m,s=c,v=h}
     {RE-navegadores}
     El sistema se tiene que poder ejecutar en Google Chrome 70+.
@@ -427,11 +432,6 @@ Estos requisitos se pueden dividir en dos tipos:
 \begin{softwareReq}{NF}{nodejs}{pc=h,pd=m,s=c,v=h}
     {RE-nodejs}
     El sistema se tiene que poder ejecutar en Node.js.
-\end{softwareReq}
-
-\begin{softwareReq}{NF}{JS}{pc=h,pd=m,s=c,v=h}
-    {RE-JS}
-    El sistema debe tener una \gls{API} para \gls{JS}.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{licencia}{pc=h,pd=m,s=c,v=h}
