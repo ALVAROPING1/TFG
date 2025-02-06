@@ -1,8 +1,45 @@
-\chapter{Validación y verificación}\label{chap:validation}
+\chapter{Validación, verificación, y evaluación}\label{chap:tests}
+
+Este capítulo verificará que la solución propuesta cumple con todos los
+requisitos especificados en el \chapterref{analysis}, y está dividido en dos
+secciones. La primera (\sectionref{tests}), contendrá la verificación y
+validación de software, mientras que la segunda (\sectionref{evaluation})
+contendrá una evaluación del sistema, comparándolo con otras herramientas
+existentes.
+
+\section{Verificación y Validación}\label{sec:tests}
+
+En ingeniería de software, la verificación y validación de software es el
+proceso de comprobación de que el sistema cumple con los requisitos establecidos
+y la función para la que se diseñó \parencite{verification-validation}. La
+\figureref{tests} muestra un resumen de este proceso.
+
+\drawiosvgfigure[0.75]{tests}{Resumen de la verificación y validación de software}
+
+Como se explicó en el \chapterref{analysis}, el cliente establece sus
+necesidades y lo que espera del producto, definiendo los requisitos de software.
+A partir de estos requisitos, el analista se encarga de definir los requisitos
+de software.
+
+La verificación de software (\subsectionref{verification}) se encarga de,
+durante el desarrollo del sistema, comprobar que los productos de una fase de
+desarrollo cumplen con los requisitos establecidos al inicio de la fase; es
+decir, comprobar que se está desarrollando el sistema correctamente. Por otro
+lado, la validación de software (\subsectionref{validation}) se encarga de, al
+final del desarrollo del sistema, comprobar que cumple con los requisitos
+establecidos por el cliente; es decir, comprobar que se ha desarrollado el
+sistema correcto. \parencite{verification-validation}
 
 \printtesttemplate
 
-\section{Verificación}
+\subsection{Verificación}\label{subsec:verification}
+
+Esta sección contiene las pruebas de verificación realizadas. Estas pruebas,
+además de verificar que se cumplen los requisitos de software, también verifican
+que el resultado del sistema desarrollado es el correcto en todos los casos
+probados. Después de realizar estas pruebas, se ha realizado una matriz de
+trazabilidad (\tableref{traceability-rs-vet}) para verificar que todos los
+requisitos de software están cubiertos por al menos una prueba de verificación.
 
 \begin{testCase}{VET}{ISA}
     {El sistema está instalado.} % Precondición
@@ -239,11 +276,23 @@
 \end{testCase}
 
 \begin{landscape}
-    \traceabilityTable[p]{traceability-rs-vet}{^VET}{^RS\37-FN}
+    \traceabilityTableBig[p]{traceability-rs-vet}{^VET}{^RS}
         {Trazabilidad entre los requisitos de software funcionales y las pruebas de verificación}
-    \traceabilityTable[p]{traceability-rs-vet}{^VET}{^RS\37-NF}
-        {Trazabilidad entre los requisitos de software no funcionales y las pruebas de verificación}
 \end{landscape}
 
-\section{Validación}
 
+\FloatBarrier
+
+\subsection{Validación}\label{subsec:validation}
+
+Esta sección contiene las pruebas de validación realizadas. Después de realizar
+estas pruebas, se ha realizado una matriz de trazabilidad
+(\tableref{traceability-ru-vat}) para verificar que todos los requisitos de
+usuario están cubiertos por al menos una prueba de verificación.
+
+\begin{landscape}
+    \traceabilityTable[p]{traceability-ru-vat}{^VAT}{^RU\37-}
+        {Trazabilidad entre los requisitos de usuario y las pruebas de validación}
+\end{landscape}
+
+\section{Evaluación}\label{sec:evaluation}

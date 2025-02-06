@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0" version="26.0.11">
+  <diagram name="Page-1" id="AxPtHdRor6Aiwiir0-93">
+    <mxGraphModel dx="914" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-5" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" parent="1" source="vacKTOtJQ9fs-9gSOZtW-1" target="vacKTOtJQ9fs-9gSOZtW-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-1" value="Requisitos de usuario" style="rounded=1;spacingLeft=5;spacingRight=5;fillColor=#E6E6E6;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-6" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" parent="1" source="vacKTOtJQ9fs-9gSOZtW-2" target="vacKTOtJQ9fs-9gSOZtW-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-2" value="Requisitos de software" style="rounded=1;spacingLeft=5;spacingRight=5;fillColor=#E6E6E6;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-7" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" parent="1" source="vacKTOtJQ9fs-9gSOZtW-3" target="vacKTOtJQ9fs-9gSOZtW-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-3" value="Desarrollo del sistema" style="rounded=1;spacingLeft=5;spacingRight=5;fillColor=#E6E6E6;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="160" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-9" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" parent="1" source="vacKTOtJQ9fs-9gSOZtW-4" target="vacKTOtJQ9fs-9gSOZtW-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-4" value="Sistema" style="rounded=1;spacingLeft=5;spacingRight=5;fillColor=#E6E6E6;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="240" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" parent="1" source="vacKTOtJQ9fs-9gSOZtW-8" target="vacKTOtJQ9fs-9gSOZtW-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-15" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" parent="1" source="vacKTOtJQ9fs-9gSOZtW-8" target="vacKTOtJQ9fs-9gSOZtW-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-8" value="Pruebas de código" style="rounded=1;spacingLeft=5;spacingRight=5;fillColor=#E6E6E6;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-16" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;" edge="1" parent="1" source="vacKTOtJQ9fs-9gSOZtW-13" target="vacKTOtJQ9fs-9gSOZtW-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-17" value="Verificación" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;fontSize=12;" edge="1" parent="1" source="vacKTOtJQ9fs-9gSOZtW-13" target="vacKTOtJQ9fs-9gSOZtW-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-13" value="Pruebas de verificación" style="rounded=1;spacingLeft=5;spacingRight=5;fillColor=#E6E6E6;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="380" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-18" value="Validación" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;fontSize=12;" edge="1" parent="1" source="vacKTOtJQ9fs-9gSOZtW-14" target="vacKTOtJQ9fs-9gSOZtW-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vacKTOtJQ9fs-9gSOZtW-14" value="Pruebas de validación" style="rounded=1;spacingLeft=5;spacingRight=5;fillColor=#E6E6E6;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="440" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
