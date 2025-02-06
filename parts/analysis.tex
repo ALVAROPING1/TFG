@@ -105,6 +105,11 @@ Estos requisitos se pueden dividir en dos tipos:
     El sistema debe permitir especificar la \gls{ISA} a utilizar.
 \end{userReq}
 
+\begin{userReq}{CA}{comentarios-tipos}{pc=m,pd=l,s=c,v=h}
+    El sistema debe permitir utilizar comentarios de línea y comentarios
+    multilínea.
+\end{userReq}
+
 \begin{userReq}{CA}{comentarios}{pc=m,pd=l,s=c,v=h}
     El sistema debe permitir especificar la cadena utilizada como prefijo de los
     comentarios de línea.
@@ -289,6 +294,12 @@ Estos requisitos se pueden dividir en dos tipos:
     El sistema debe permitir especificar la \gls{ISA} a utilizar.
 \end{softwareReq}
 
+\begin{softwareReq}{FN}{comentarios-tipos}{pc=m,pd=l,s=c,v=h}
+    {CA-comentarios-tipos}
+    El sistema debe permitir utilizar comentarios de línea y comentarios
+    multilínea.
+\end{softwareReq}
+
 \begin{softwareReq}{FN}{comentarios}{pc=m,pd=l,s=c,v=h}
     {CA-comentarios}
     El sistema debe permitir especificar la cadena utilizada como prefijo de los
@@ -344,6 +355,16 @@ Estos requisitos se pueden dividir en dos tipos:
     nombre, y utilizar su sintaxis y el tamaño de los argumentos (en bits) para
     seleccionar la correcta durante la \gls{compilation} de un \gls{program}
     \glsdisp{assembly}{ensamblador}.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{errores-sintaxis}{pc=h,pd=h,s=c,v=m}
+    {CA-errores}
+    El sistema debe detectar errores de sintaxis en el código \glsdisp{assembly}{ensamblador}.
+\end{softwareReq}
+
+\begin{softwareReq}{FN}{errores-semantica}{pc=h,pd=h,s=i,v=m}
+    {CA-errores}
+    El sistema debe detectar errores semánticos en el código \glsdisp{assembly}{ensamblador}.
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{errores-base}{pc=h,pd=h,s=i,v=h}

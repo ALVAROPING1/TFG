@@ -58,3 +58,13 @@
         {\traceabilityPrintMatrix{#3}{#4}{}}
     \end{table}
 }
+
+\newcommand{\traceabilityTableBig}[5][htb]{%
+    \begin{table}[#1]
+        \ttabbox[\FBwidth]
+        {\caption{#5}\label{tab:#2}}
+        {\begin{adjustbox}{max width=\textwidth}
+            \traceabilityPrintMatrix{#3}{#4}{}
+        \end{adjustbox}}
+    \end{table}
+}

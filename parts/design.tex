@@ -278,7 +278,10 @@ componentes.
     {\componentref{Parser}, \componentref{Parser de instrucciones}, y \componentref{Parser de expresiones}} % Dependencias
     {\Gls{program} a analizar} % Datos de entrada
     {Secuencia de \glspl{token}} % Datos de salida
-    {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas, FN-directivas-datos, FN-utf8, FN-escape, FN-floats, FN-comentarios, FN-constantes, FN-expr-operadores, FN-errores-base} % Origen
+    {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
+    FN-directivas-datos, FN-utf8, FN-escape, FN-floats, FN-comentarios-tipos,
+    FN-comentarios, FN-constantes, FN-expr-operadores, FN-errores-sintaxis,
+    FN-errores-base} % Origen
     El lexer recibe el código del \gls{program} a
     \glsdisp{compilation}{compilar} y realiza un análisis léxico, transformado
     la secuencia de caracteres que representa el \gls{program} en una secuencia
@@ -292,7 +295,7 @@ componentes.
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente a una \gls{expression}} % Datos de salida
     {FN-floats, FN-constantes, FN-expr-operadores,
-    FN-expr-instruccion, FN-expr-directiva, FN-errores-base} % Origen
+    FN-expr-instruccion, FN-expr-directiva, FN-errores-sintaxis, FN-errores-base} % Origen
     El \gls{parser} de expresiones realiza el análisis sintáctico de una
     \gls{expression}, transformando la secuencia de \glspl{token} que la
     representa en un \gls{AST} para su posterior evaluación. Este componente
@@ -306,7 +309,7 @@ componentes.
     {Secuencia de \glspl{token}} % Datos de entrada
     {\gls{AST} correspondiente al \gls{program}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
-    FN-directivas-datos, FN-num-etiquetas, FN-errores-base} % Origen
+    FN-directivas-datos, FN-num-etiquetas, FN-errores-sintaxis, FN-errores-base} % Origen
     El \gls{parser} realiza el análisis sintáctico de un \gls{program},
     transformando la secuencia de \glspl{token} que lo representa en un
     \gls{AST} para su posterior análisis semántico.
@@ -318,7 +321,7 @@ componentes.
     {Secuencia de \glspl{token} y definición de la sintaxis de la \gls{instruction}} % Datos de entrada
     {\gls{AST} correspondiente a la \gls{instruction}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo,
-    FN-mult-defs-instruccion, FN-errores-base} % Origen
+    FN-mult-defs-instruccion, FN-errores-sintaxis, FN-errores-base} % Origen
     El \gls{parser} de \gls{instruction} realiza el análisis sintáctico de los
     argumentos de una \gls{instruction} según una cadena que define su sintaxis.
 \end{component}
@@ -343,7 +346,7 @@ componentes.
     FN-secciones, FN-directivas-datos, FN-strings, FN-tamaño-ints,
     FN-floats, FN-alineamiento, FN-bibliotecas, FN-num-etiquetas,
     FN-referencias, FN-constantes, FN-expr-operadores,
-    FN-mult-defs-instruccion, FN-errores-base, FN-bigints} % Origen
+    FN-mult-defs-instruccion, FN-errores-semantica, FN-errores-base, FN-bigints} % Origen
     El traductor se encarga de realizar el análisis semántico y traducción
     de \glspl{program} \glsdisp{assembly}{ensamblador} según una \gls{ISA} dada.
     Durante este proceso, verifica que no haya ningún error en el código, y lo
@@ -361,7 +364,7 @@ La matriz de trazabilidad permite verificar que todos los requisitos funcionales
 están cubiertos por al menos un componente.
 
 \begin{landscape}
-    \traceabilityTable[p]{trazability-comp-f}{^\37D+$}{^RS\37-FN}
+    \traceabilityTableBig[p]{trazability-comp-f}{^\37D+$}{^RS\37-FN}
         {Trazabilidad entre los requisitos funcionales y los componentes}
 \end{landscape}
 
