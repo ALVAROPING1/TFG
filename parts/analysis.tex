@@ -152,27 +152,13 @@ Estos requisitos se pueden dividir en dos tipos:
 
 % ──────────────────────────────── Restricciones ──────────────────────────────
 
-\begin{userReq}{RE}{ISA}{pc=h,pd=h,s=c,v=h}
-    El formato de definición de la \gls{ISA} debe ser el utilizado
-    actualmente en CREATOR.
+\begin{userReq}{RE}{CREATOR}{pc=h,pd=h,s=c,v=h}
+    El sistema se tiene que integrar con el simulador CREATOR.
 \end{userReq}
 
-\begin{userReq}{RE}{API}{pc=h,pd=h,s=c,v=h}
-    La \gls{API} de entrada y salida del sistema debe ser la utilizada
-    actualmente en CREATOR.
-\end{userReq}
-
-\begin{userReq}{RE}{JS}{pc=h,pd=m,s=c,v=h}
-    El sistema debe tener una \gls{API} para \gls{JS}.
-\end{userReq}
-
-\begin{userReq}{RE}{navegadores}{pc=h,pd=m,s=c,v=h}
-    El sistema se tiene que poder ejecutar en los navegadores soportados
-    actualmente por CREATOR.
-\end{userReq}
-
-\begin{userReq}{RE}{nodejs}{pc=h,pd=m,s=c,v=h}
-    El sistema se tiene que poder ejecutar en Node.js.
+\begin{userReq}{RE}{entornos}{pc=h,pd=m,s=c,v=h}
+    El sistema se tiene que poder ejecutar en los entornos soportados
+    actualmente por CREATOR (navegadores y Node.js).
 \end{userReq}
 
 \begin{userReq}{RE}{FOSS}{pc=h,pd=m,s=c,v=h}
@@ -391,46 +377,46 @@ Estos requisitos se pueden dividir en dos tipos:
 % ──────────────────────────────── No funcionales ────────────────────────────────
 
 \begin{softwareReq}{NF}{ISA}{pc=h,pd=h,s=c,v=h}
-    {RE-ISA}
+    {RE-CREATOR}
     El formato de definición de la \gls{ISA} debe ser el utilizado
     actualmente en CREATOR, serializado en formato \gls{json}
     \parencite{JSONStandard}. % TODO: add appendix with format description
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{def-instrucciones}{pc=h,pd=h,s=c,v=h}
-    {RE-ISA}
+    {RE-CREATOR}
     La definición de la sintaxis de las instrucciones debe estar contenida en la
     \gls{ISA}.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{API}{pc=h,pd=h,s=c,v=h}
-    {RE-API}
+    {RE-CREATOR}
     La \gls{API} de entrada y salida del sistema debe ser la utilizada
     actualmente en CREATOR.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{JS}{pc=h,pd=m,s=c,v=h}
-    {RE-JS}
+    {RE-CREATOR}
     El sistema debe tener una \gls{API} para \gls{JS}.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{chrome}{pc=h,pd=m,s=c,v=h}
-    {RE-navegadores}
+    {RE-entornos}
     El sistema se tiene que poder ejecutar en Google Chrome 70+.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{firefox}{pc=h,pd=m,s=c,v=h}
-    {RE-navegadores}
+    {RE-entornos}
     El sistema se tiene que poder ejecutar en Mozilla Firefox 60+.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{safari}{pc=h,pd=m,s=c,v=h}
-    {RE-navegadores}
+    {RE-entornos}
     El sistema se tiene que poder ejecutar en Safari 10+.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{nodejs}{pc=h,pd=m,s=c,v=h}
-    {RE-nodejs}
+    {RE-entornos}
     El sistema se tiene que poder ejecutar en Node.js.
 \end{softwareReq}
 
