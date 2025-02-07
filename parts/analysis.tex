@@ -141,6 +141,10 @@ Estos requisitos se pueden dividir en dos tipos:
     \glsdisp{assembly}{ensamblador}.
 \end{userReq}
 
+\begin{userReq}{CA}{errores-tipos}{pc=h,pd=h,s=i,v=m}
+    El sistema debe detectar errores en el código \glsdisp{assembly}{ensamblador}.
+\end{userReq}
+
 \begin{userReq}{CA}{errores}{pc=h,pd=h,s=i,v=l}
     El sistema debe tener buenos mensajes de error.
 \end{userReq}
@@ -344,12 +348,12 @@ Estos requisitos se pueden dividir en dos tipos:
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{errores-sintaxis}{pc=h,pd=h,s=c,v=m}
-    {CA-errores}
+    {CA-errores-tipos}
     El sistema debe detectar errores de sintaxis en el código \glsdisp{assembly}{ensamblador}.
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{errores-semantica}{pc=h,pd=h,s=i,v=m}
-    {CA-errores}
+    {CA-errores-tipos}
     El sistema debe detectar errores semánticos en el código \glsdisp{assembly}{ensamblador}.
 \end{softwareReq}
 
