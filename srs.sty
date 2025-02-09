@@ -444,7 +444,7 @@
 % that expands to <PREFIX>-<N>
 \newcommand\setID[2]{\newcounterOrIncrement{#1}\csxdef{#1-#2}{#1-\padtwo{#1}}}
 % Use the macro created by the command above
-\newcommand\useID[1]{\if@debug@pp#1\else\csuse{#1}\fi}
+\newcommand\useID[1]{\ifcsdef{#1}{\if@debug@pp#1\else\csuse{#1}\fi}{\ErrorUnknownID}}
 
 % Translate a comma separated list of reference IDs to displayed IDs, using a
 % given prefix
