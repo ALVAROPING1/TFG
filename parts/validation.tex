@@ -38,7 +38,7 @@ Esta sección contiene las pruebas de verificación realizadas. Estas pruebas,
 además de verificar que se cumplen los requisitos de software, también verifican
 que el resultado del sistema desarrollado es el correcto en todos los casos
 probados. Después de realizar estas pruebas, se ha realizado una matriz de
-trazabilidad (\tableref{traceability-rs-vet}) para verificar que todos los
+trazabilidad (\tableref{traceability-rs-vet}) para comprobar que todos los
 requisitos de software están cubiertos por al menos una prueba de verificación.
 
 \begin{testCase}{VET}{ISA}
@@ -118,15 +118,19 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 
 \begin{testCase}{VET}{strings}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
-    {Se obtiene el código compilado en la codificación UTF-8 \parencite{UTF-8}
-    correspondiente a la cadena de caracteres introducida.} % Postcondición
-    {Verificar que el sistema permite el uso de cadenas de caracteres con
-    secuencias de escape codificadas en UTF-8 \parencite{UTF-8}.} % Descripción
+    {Se obtiene el código compilado con la codificación UTF-8 \parencite{UTF-8}
+    correspondiente a la cadena de caracteres introducida, y los valores
+    correspondientes a las secuencias de escape introducidas en los caracteres
+    literales.} % Postcondición
+    {Verificar que el sistema permite el uso secuencias de escape en cadenas de
+    caracteres y caracteres literales, y que las cadenas están codificadas en
+    UTF-8 \parencite{UTF-8}.} % Descripción
     {OK} % Evaluación
     {FN-utf8, FN-escape} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Escribir un \gls{program} con una cadena que contenga todas las
-        secuencias de escape soportadas y caracteres no ASCII.
+        secuencias de escape soportadas y caracteres no ASCII, y caracteres
+        literales con cada una de las secuencias de escape.
         \item Compilar el \gls{program}.
     \end{enumerate}
 \end{testCase}
@@ -166,6 +170,21 @@ requisitos de software están cubiertos por al menos una prueba de verificación
     \end{enumerate}
 \end{testCase}
 
+\begin{testCase}{VET}{expresiones-float}
+    {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
+    {Se obtiene el código compilado con los valores de las \glspl{expression} introducidas.} % Postcondición
+    {Verificar que el sistema permite el uso \glspl{expression} de números decimales.} % Descripción
+    {OK} % Evaluación
+    {FN-constantes, FN-expr-operadores, FN-expr-directiva} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Escribir un \gls{program} que utilice \gls{expression} de números
+        enteros y decimales, caracteres literales, y etiquetas, y todos los
+        operadores soportados excepto los operadores bit a bit, como valores de
+        \gls{data directive} que acepten números decimales como argumentos.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
+
 \begin{testCase}{VET}{mult-defs-instruccion}
     {El sistema está instalado.} % Precondición
     {Se obtiene el código compilado correspondiente a las \glspl{instruction} introducidas.} % Postcondición
@@ -177,7 +196,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Implementar una \gls{ISA} con múltiples \glspl{instruction} con el
         mismo nombre pero diferente sintaxis y/o tamaño de sus argumentos.
-        \item Escribir un \gls{program} que todas las definiciones de la
+        \item Escribir un \gls{program} que utilice todas las definiciones de la
         \gls{instruction} creada.
         \item Cargar la \gls{ISA} en el compilador.
         \item Compilar el \gls{program}.
@@ -211,7 +230,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 \begin{testCase}{VET}{bigints}
     {El sistema está instalado.} % Precondición
     {Se obtiene el código compilado con el valor introducido.} % Postcondición
-    {Verificar que el sistema detecta errores semánticos y genera buenos mensajes de error.} % Descripción
+    {Verificar que el sistema permite el uso de números enteros de cualquier tamaño.} % Descripción
     {OK} % Evaluación
     {FN-bigints} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
@@ -288,12 +307,186 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 
 Esta sección contiene las pruebas de validación realizadas. Después de realizar
 estas pruebas, se ha realizado una matriz de trazabilidad
-(\tableref{traceability-ru-vat}) para verificar que todos los requisitos de
-usuario están cubiertos por al menos una prueba de verificación.
+(\tableref{traceability-ru-vat}) para comprobar que todos los requisitos de
+usuario están cubiertos por al menos una prueba de validación.
+
+\begin{testCase}{VAT}{ISA}
+    {El sistema está instalado.} % Precondición
+    {Todos los programas evaluados obtienen el mismo que con el \gls{compiler} actual.} % Postcondición
+    {Validar que el sistema ofrece todas las funcionalidades del \gls{compiler} actual.} % Descripción
+    {OK} % Evaluación
+    {CA-funcionalidades, CA-ISA, RE-sintaxis} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Obtener los programas de ejemplo ofrecidos por CREATOR junto con
+        la definición de su \gls{ISA}.
+        \item Cargar la \gls{ISA} en el compilador.
+        \item Intentar compilar todos los \glspl{program} anteriores.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{strings}
+    {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
+    {Se obtiene el código compilado con la codificación UTF-8 \parencite{UTF-8}
+    correspondiente a la cadena de caracteres introducida, y los valores
+    correspondientes a las secuencias de escape introducidas en los caracteres
+    literales.} % Postcondición
+    {Validar que el sistema permite el uso secuencias de escape en cadenas de
+    caracteres y caracteres literales, y que las cadenas están codificadas en
+    UTF-8 \parencite{UTF-8}.} % Descripción
+    {OK} % Evaluación
+    {CA-utf8, CA-escape} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Escribir un \gls{program} con una cadena que contenga
+        secuencias de escape y caracteres no ASCII, y caracteres
+        literales con secuencias de escape.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{comentarios}
+    {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
+    {Se obtiene el código compilado correspondiente al programa, ignorando los
+    comentarios introducidos.} % Postcondición
+    {Validar que el sistema permite el uso comentarios y la selección del
+    prefijo de los comentarios de línea.} % Descripción
+    {OK} % Evaluación
+    {CA-comentarios-tipos, CA-comentarios} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Escribir un \gls{program} con comentarios de línea y multilínea.
+        \item Compilar el \gls{program} y verificar que los comentarios son
+        ignorados.
+        \item Modificar el prefijo de los comentarios de línea en la definición
+        de la \gls{ISA}, y cargar la nueva versión.
+        \item Modificar el prefijo de los comentarios de línea en el
+        \gls{program}.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{etiquetas}
+    {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
+    {Se obtiene el código compilado correspondiente al programa introducido.} % Postcondición
+    {Validar que el sistema puede permite el uso de múltiples etiquetas en una
+    \gls{sentence}, y utilizar etiquetas definidas después de su uso.} % Descripción
+    {OK} % Evaluación
+    {CA-num-etiquetas, CA-referencias} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Escribir un \gls{program} que utilice múltiples etiquetas en una
+        misma \gls{instruction} y \gls{data directive} y etiquetas definidas
+        después de su uso.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{expresiones-int}
+    {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
+    {Se obtiene el código compilado con los valores de las \glspl{expression} introducidas.} % Postcondición
+    {Validar que el sistema permite el uso \glspl{expression} numéricas con etiquetas.} % Descripción
+    {OK} % Evaluación
+    {CA-etiquetas-valor, CA-expresiones} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Escribir un \gls{program} que utilice \gls{expression} de números
+        enteros, caracteres literales, y etiquetas como \glspl{immediate} de
+        \glspl{instruction} y valores de \gls{data directive}.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{mult-defs-instruccion}
+    {El sistema está instalado.} % Precondición
+    {Se obtiene el código compilado correspondiente a las \glspl{instruction} introducidas.} % Postcondición
+    {Validar que el sistema permite definir múltiples \glspl{instruction} con
+    el mismo nombre, y utilizar su sintaxis y el tamaño de sus campos para
+    seleccionar la correcta durante la compilación.} % Descripción
+    {OK} % Evaluación
+    {CA-mult-defs-instruccion} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Implementar una \gls{ISA} con múltiples \glspl{instruction} con el
+        mismo nombre pero diferente sintaxis y/o tamaño de sus argumentos.
+        \item Escribir un \gls{program} que utilice todas las definiciones de la
+        \gls{instruction} creada.
+        \item Cargar la \gls{ISA} en el compilador.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{errores}
+    {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
+    {Se obtienen los mensajes de error apropiados con toda la información
+    relevante para solucionar el problema.} % Postcondición
+    {Validar que el sistema detecta errores en el código \glsdisp{assembly}{ensamblador}
+    y genera buenos mensajes de error.} % Descripción
+    {OK} % Evaluación
+    {CA-errores-tipos, CA-errores} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Escribir varios \glspl{program} con un diferentes errores, tanto
+        sintácticos como semánticos.
+        \item Compilar los \glspl{program}.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{bigints}
+    {El sistema está instalado.} % Precondición
+    {Se obtiene el código compilado con el valor introducido.} % Postcondición
+    {Validar que el sistema permite el uso de números enteros de cualquier tamaño.} % Descripción
+    {OK} % Evaluación
+    {CA-bigints} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Implementar una \gls{ISA} con una \gls{data directive} de
+        enteros con un tamaño máximo arbitrariamente grande.
+        \item Escribir un \gls{program} que utilice la \gls{data directive} de
+        enteros con un número entero cercano al valor máximo definido.
+        \item Cargar la \gls{ISA} en el compilador.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{bigints}
+    {\NA.} % Precondición
+    {El \gls{program} compila sin errores.} % Postcondición 
+    {Validar que el sistema está integrado en CREATOR.} % Descripción
+    {OK} % Evaluación
+    {RE-CREATOR, RE-entornos} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Acceder a la página de CREATOR desde los navegadores soportados
+        por el \gls{compiler} actual.
+        \item Escribir un \gls{program} que utilice funcionalidades del nuevo
+        \gls{compiler} no soportadas por el actual.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{FOSS}
+    {\NA} % Precondición
+    {El sistema cumple con los requisitos para ser \gls{FOSS} según las
+    definiciones de la \gls{FSF} \parencite{FreeSoftware} y \gls{OSI}
+    \parencite{OpenSource}} % Postcondición
+    {Validar que el sistema es \gls{FOSS}.} % Descripción
+    {OK} % Evaluación
+    {RE-FOSS} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Acceder al repositorio con el código fuente del sistema.
+        \item Verificar que el código fuente es público y se distribuye con una licencia \gls{FOSS}.
+    \end{enumerate}
+\end{testCase}
+
+\begin{testCase}{VAT}{velocidad}
+    {El sistema está instalado y se tiene una \gls{ISA} cargada} % Precondición
+    {El sistema cumple con los requisitos de velocidad} % Postcondición
+    {Validar que el sistema es rápido.} % Descripción
+    {OK} % Evaluación
+    {RE-velocidad} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Escribir un \gls{program} complejo.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
 
 \begin{landscape}
     \traceabilityTable[p]{traceability-ru-vat}{^VAT}{^RU\37-}
         {Trazabilidad entre los requisitos de usuario y las pruebas de validación}
 \end{landscape}
+
+\FloatBarrier
 
 \section{Evaluación}\label{sec:evaluation}
