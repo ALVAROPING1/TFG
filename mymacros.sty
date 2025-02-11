@@ -29,11 +29,11 @@
 % remember to create a label for the subsection (\label{fig:myfigure})
 \newcommand{\figureref}[1]{Figura \ref{fig:#1}}
 
-\newcommand{\includefigure}[3]{
-    \begin{figure}[htb]
+\newcommand{\includefigure}[4][htb]{
+    \begin{figure}[#1]
         \ffigbox[\FBwidth]
-        {\caption{#3}\label{fig:#2}}
-        {#1}
+        {\caption{#4}\label{fig:#3}}
+        {#2}
     \end{figure}
 }
 
@@ -45,6 +45,10 @@
 
 \newcommand{\graphicfigure}[3][0.8] {
     \includefigure{\includegraphics[width=#1\textwidth]{#2}}{#2}{#3}
+}
+
+\newcommand{\graphicfigurehere}[3][0.8] {
+    \includefigure[H]{\includegraphics[width=#1\textwidth]{#2}}{#2}{#3}
 }
 
 \newcommand{\glsdisponly}[2]{\glsdisp{#1}{#2}\glsadd{#1}}

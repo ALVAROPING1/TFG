@@ -495,9 +495,9 @@ usuario están cubiertos por al menos una prueba de validación.
 \setcounter{eval}{1}
 
 \newcommand{\evalres}{
-    \graphicfigure[0.55]{eval/\arabic{eval}-new}{Evaluación \arabic{eval} - Compilador nuevo}
-    \graphicfigure[0.55]{eval/\arabic{eval}-old}{Evaluación \arabic{eval} - Compilador actual}
-    \graphicfigure[0.55]{eval/\arabic{eval}-as}{Evaluación \arabic{eval} - GNU as}
+    \graphicfigurehere[0.55]{eval/\arabic{eval}-new}{Evaluación \arabic{eval} - Compilador nuevo}
+    \graphicfigurehere[0.55]{eval/\arabic{eval}-old}{Evaluación \arabic{eval} - Compilador actual}
+    \graphicfigurehere[0.55]{eval/\arabic{eval}-as}{Evaluación \arabic{eval} - GNU as}
     \stepcounter{eval}
 }
 
@@ -529,6 +529,33 @@ correctamente el error, e indica cómo solucionarlo. El \gls{compiler} actual
 produce un error incorrecto al interpretar erróneamente el código. Cabe destacar
 que GNU as no produce ningún error en este caso, pero un análisis del código
 generado indica que asume un valor de 0 para el argumento faltante en vez de
-generar un error. \evalres
+generar un error.
+
+\evalres
+
+El siguiente caso de prueba consiste en intentar utilizar un entero demasiado
+grande en una \gls{data directive}. \evalresref Como se puede ver, el nuevo
+\gls{compiler} es el único que muestra cuál es el rango de enteros válidos para
+la \gls{directive}.
+
+\evalres
+
+El siguiente caso de prueba consiste en añadir instrucciones a la sección de
+datos. \evalresref Como se puede ver, el nuevo \gls{compiler} es el único que
+detecta correctamente el error, e indica cómo solucionarlo. El \gls{compiler}
+actual produce un error incorrecto al interpretar erróneamente el código. Cabe
+destacar que GNU as no produce ningún error en este caso, pero un análisis del
+código generado indica que añade la codificación binaria de las instrucciones
+como si fueran datos.
+
+\evalres
 
 % TODO: add errors for incorrect instruction syntax and unknown directive/instruction
+
+Para evaluar el rendimiento del sistema se va a utilizar ForthV
+\parencite{ForthV}. ForthV es un intérprete del \gls{programming language} Forth
+escrito en \glsdisp{assembly}{ensamblador} RISC-V \parencite{RISC-V} con unas
+2800 líneas de código, por lo que representa un \gls{program} complejo real.
+Cabe destacar que este programa utiliza funcionalidades no soportadas por el
+\gls{compiler} actual, por lo que para evaluar su rendimiento se ha tenido que
+modificar ligeramente para evitar el uso de estas funcionalidades.
