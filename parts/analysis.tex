@@ -477,7 +477,7 @@ el sistema. Cabe destacar que el usuario del sistema será el simulador CREATOR,
 ya que el sistema a desarrollar será un componente utilizado internamente por
 CREATOR para llevar a cabo su funcionalidad.
 
-\drawiosvgfigure[0.55]{use_cases}{Modelo de casos de uso}
+\drawiosvgfigure[0.8]{use_cases}{Modelo de casos de uso}
 
 \printuctemplate
 
@@ -490,17 +490,38 @@ CREATOR para llevar a cabo su funcionalidad.
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep]
         \item CREATOR entrega una cadena de caracteres con la
         \gls{ISA} a la \gls{API} de cargar \gls{ISA}.
+        \item Se obtiene el objeto que representa la \gls{ISA} cargada.
     \end{enumerate}
 \end{useCase}
 
-\begin{useCase}{compilar}
+\begin{useCase}{compilar-ejecutable}
     {\glsdisp{compilation}{Compilar} \gls{program}} % Nombre
     {CREATOR} % Usuario
     {\glsdisp{compilation}{Compilar} un \gls{program} para su posterior ejecución en CREATOR.} % Description
-    {La \gls{ISA} debe estar cargada en el \gls{compiler}.} % Pre-condición
+    {CREATOR debe tener la \gls{ISA} correctamente definida en una cadena de caracteres, y el código a \glsdisp{compilation}{compilar}.} % Pre-condición
     {El \gls{program} está compilado y disponible para su ejecución en CREATOR.} % Post-condición
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep]
+        \item CREATOR carga la \gls{ISA} si no está ya cargada.
         \item CREATOR entrega una cadena de caracteres con el \gls{program}
-        a la \gls{API} de \glsdisp{compilation}{compilar} \gls{program}.
+        a la \gls{API} de \glsdisp{compilation}{compilar} \gls{program}, junto
+        con el objeto que representa la \gls{ISA}.
+        \item Se obtienen los datos correspondientes al \gls{program}
+        \glsdisp{compilation}{compilado}
+    \end{enumerate}
+\end{useCase}
+
+\begin{useCase}{compilar-biblioteca}
+    {\glsdisp{compilation}{Compilar} \gls{library}} % Nombre
+    {CREATOR} % Usuario
+    {\glsdisp{compilation}{Compilar} una \gls{library} para su posterior uso en un \gls{program}.} % Description
+    {CREATOR debe tener la \gls{ISA} correctamente definida en una cadena de caracteres, y el código a \glsdisp{compilation}{compilar}.} % Pre-condición
+    {La \gls{library} está compilada y disponible para su uso en un \gls{program}.} % Post-condición
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep]
+        \item CREATOR carga la \gls{ISA} si no está ya cargada.
+        \item CREATOR entrega una cadena de caracteres con el \gls{program}
+        a la \gls{API} de \glsdisp{compilation}{compilar} \gls{library}, junto
+        con el objeto que representa la \gls{ISA}.
+        \item Se obtienen los datos correspondientes a la \gls{library}
+        \glsdisp{compilation}{compilada}
     \end{enumerate}
 \end{useCase}
