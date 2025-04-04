@@ -227,6 +227,21 @@ requisitos de software están cubiertos por al menos una prueba de verificación
     \end{enumerate}
 \end{testCase}
 
+\begin{testCase}{VET}{errores-extra}
+    {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
+    {Se obtiene un mensaje de error semántico con el nombre del elemento más similar.} % Postcondición
+    {Verificar que los mensajes de error del sistema referentes a
+    identificadores no definidos contienen el nombre del elemento más similar.} % Descripción
+    {OK} % Evaluación
+    {FN-errores-semantica, FN-errores-extra} % Origen
+    \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
+        \item Escribir un \gls{program} con una directiva, instrucción,
+        registro, o etiqueta no definida, utilizando un nombre similar a una
+        definida.
+        \item Compilar el \gls{program}.
+    \end{enumerate}
+\end{testCase}
+
 \begin{testCase}{VET}{bigints}
     {El sistema está instalado.} % Precondición
     {Se obtiene el código compilado con el valor introducido.} % Postcondición
