@@ -23,12 +23,15 @@ debe poder ejecutarse en navegador y Node.js, y tener una \gls{API} para
 \gls{JS} es el lenguaje estándar utilizado por los navegadores y Node.js, por lo
 que es la primera opción para el desarrollo del sistema. El principal problema
 de esta opción es el rendimiento: \gls{JS} es un lenguaje interpretado, lo cual
-lo hace significativamente más lento que otros lenguajes compilados. Esto es
-debido a que estos lenguajes pueden generar código que se ejecuta directamente
-en el \gls{processor} (ejecución nativa), sin el sobrecoste de una máquina
-virtual o intérprete. El \sreqref{NF-velocidad} indica que el sistema debe ser
-rápido, por lo que sería preferible utilizar un lenguaje que soporte la
-ejecución nativa.
+lo hace significativamente más lento que otros lenguajes
+\glsdisp{compilation}{compilados}, y, debido a esto, proyectos que fueron
+originalmente desarrollados en \gls{JS} se están moviendo a otros lenguajes
+\parencite{typescript-go}. La mejor velocidad de los lenguajes
+\glsdisp{compilation}{compilados} es debido a que pueden generar código que se
+ejecuta directamente en el \gls{processor} (ejecución nativa), sin el sobrecoste
+de una máquina virtual o intérprete. El \sreqref{NF-velocidad} indica que el
+sistema debe ser rápido, por lo que sería preferible utilizar un lenguaje que
+soporte la ejecución nativa.
 
 Otro problema de \gls{JS} es su \gls{type system}. \gls{JS} utiliza un sistema de
 tipos \glsdisponly{dynamic typing}{dinámico} y \glsdisponly{weak typing}{débil},
