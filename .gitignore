@@ -31,3 +31,4 @@ svg-inkscape/
 build/
 .ltex/
 _markdown_report
+*.o

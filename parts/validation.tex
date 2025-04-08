@@ -327,7 +327,7 @@ usuario están cubiertos por al menos una prueba de validación.
 
 \begin{testCase}{VAT}{ISA}
     {El sistema está instalado.} % Precondición
-    {Todos los programas evaluados obtienen el mismo que con el \gls{compiler} actual.} % Postcondición
+    {Todos los programas evaluados obtienen el mismo resultado que con el \gls{compiler} actual.} % Postcondición
     {Validar que el sistema ofrece todas las funcionalidades del \gls{compiler} actual.} % Descripción
     {OK} % Evaluación
     {CA-funcionalidades, CA-ISA, RE-sintaxis} % Origen
@@ -456,7 +456,7 @@ usuario están cubiertos por al menos una prueba de validación.
     \end{enumerate}
 \end{testCase}
 
-\begin{testCase}{VAT}{bigints}
+\begin{testCase}{VAT}{integracion}
     {\NA.} % Precondición
     {El \gls{program} compila sin errores.} % Postcondición 
     {Validar que el sistema está integrado en CREATOR.} % Descripción
@@ -510,7 +510,7 @@ usuario están cubiertos por al menos una prueba de validación.
 \setcounter{eval}{1}
 
 \newcommand{\evalres}{
-    \graphicfigurehere[0.55]{eval/\arabic{eval}-new}{Evaluación \arabic{eval} - Compilador nuevo}
+    \graphicfigurehere[0.8]{eval/\arabic{eval}-new}{Evaluación \arabic{eval} - Compilador nuevo}
     \graphicfigurehere[0.55]{eval/\arabic{eval}-old}{Evaluación \arabic{eval} - Compilador actual}
     \graphicfigurehere[0.55]{eval/\arabic{eval}-as}{Evaluación \arabic{eval} - GNU as}
     \stepcounter{eval}
@@ -565,7 +565,16 @@ como si fueran datos.
 
 \evalres
 
-% TODO: add errors for incorrect instruction syntax and unknown directive/instruction
+El último caso de prueba consiste en utilizar una instrucción con un error
+tipográfico en su nombre. \evalresref Como se puede ver, el nuevo \gls{compiler}
+es el único que, además de detectar que el nombre no se corresponde con una
+instrucción definida, muestra las instrucciones cuyo nombre es similar al
+utilizado. Esto ayuda a los usuarios a ver que se han equivocado al escribir el
+nombre de la instrucción, permitiéndoles solucionar el problema rápidamente.
+
+\evalres
+
+% TODO: maybe add errors for incorrect instruction syntax?
 
 Para evaluar el rendimiento del sistema se va a utilizar ForthV
 \parencite{ForthV}. ForthV es un intérprete del \gls{programming language} Forth
