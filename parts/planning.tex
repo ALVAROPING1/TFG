@@ -1,4 +1,4 @@
-\chapter{Planificación}\label{chap:planning}
+\chapter{Plan del proyecto}\label{chap:planning}
 
 \section{Planificación}
 \subsection{Metodología}
@@ -223,5 +223,63 @@ cuatrocientos setenta y cuatro euros con catorce centimos)}
       \end{tabular}
     }
 \end{table}
+
+\section{Marco regulatorio}
+
+En esta sección se expondrán las restricciones legales que se aplican al
+proyecto, y está dividido en tres subsecciones. La primera
+(\subsectionref{legislation}), explicará las leyes y regulaciones aplicables al
+proyecto. La segunda (\subsectionref{standards}), hará un resumen de los
+estándares técnicos utilizados en el proyecto. Por último, la tercera
+(\subsectionref{licenses}), indicará las licencias bajo las que se distribuye el
+sistema y sus componentes.
+
+\subsection{Legislación}\label{subsec:legislation}
+
+El sistema se ejecuta localmente, y, aunque se puede utilizar en un entorno web,
+se ejecuta exclusivamente en el navegador cliente. Además, el sistema no utiliza
+ni transmite datos personales, por lo que no se aplica ninguna ley de protección
+de datos como la Ley Orgánica de Protección de Datos Personales y Garantía de
+los Derechos Digitales (en adelante, ``LOPDGDD''). Aunque el código
+\glsdisp{assembly}{ensamblador} que procesa el sistema se podría considerar
+propiedad intelectual, este no se almacena ni se envía, por lo que no se aplica
+ninguna regulación. Además, no hay ningún riesgo involucrado en la ejecución del
+sistema, por lo que no hay ninguna otra regulación que se aplique al sistema.
+
+\subsection{Estándares técnicos}\label{subsec:standards}
+
+\noindent
+El sistema utiliza usa los siguientes estándares técnicos:
+
+\begin{itemize}
+    \item ISO/IEC 21778:2017 \parencite{JSONStandard}, el estándar del formato
+    JSON utilizado para la definición de las \glspl{ISA}.
+    \item ISO/IEC 10646:2020 \parencite{UTF-8}, el estándar de la codificación
+    UTF-8 usada en las cadenas de caracteres.
+    \item La especificación de \gls{wasm} \parencite{wasm-spec}, utilizado para
+    ejecutar el compilador en un entorno web.
+\end{itemize}
+
+\subsection{Licencias}\label{subsec:licenses}
+
+El sistema utiliza y redistribuye múltiples bibliotecas externas:
+
+\begin{itemize}
+    \item \libref{serde}, \libref{serde\string_json}, \libref{ariadne},
+    \libref{chumsky}, \libref{regex}, \libref{once\string_cell}
+    \libref{num-bigint}, \libref{num-traits}, \libref{wasm-bindgen}, y
+    \libref{ansi-to-html} utilizan la licencia MIT \parencite{MIT}, que permite
+    utilizar, copiar, modificar, publicar, y redistribuir el código sin
+    restricciones.
+    \item \libref{self\string_cell} utiliza la licencia Apache 2.0
+    \parencite{apache2}, que permite utilizar, copiar, modificar, publicar, y redistribuir el código sin
+    restricciones.
+\end{itemize}
+
+El sistema desarrollado utiliza la licencia GNU Lesser General Public License
+version 3 \parencite{lgpl}, ya que permite el uso, modificación, y
+redistribución del código de forma libre con la única restricción de que las
+modificaciones se tienen que publicar, asegurando que el sistema continua siendo
+abierto.
 
 \section{Entorno socioeconómico}
