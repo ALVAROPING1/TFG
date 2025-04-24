@@ -1,1 +1,227 @@
-\chapter{Planning and Cost Analysis}\label{chap:planning}
+\chapter{Planificación}\label{chap:planning}
+
+\section{Planificación}
+\subsection{Metodología}
+
+\section{Presupuesto}
+
+Esta sección explicará el presupuesto del proyecto, basado en la planificación
+de tiempo descrita en la anterior sección. Primero, en la \subsectionref{costs},
+se detallará el coste del proyecto, y, tras esto, en la \subsectionref{offer}, se
+expondrá la oferta presentada al cliente.
+
+\subsection{Coste del proyecto}\label{subsec:costs}
+
+La \tableref{project-info} contiene un resumen de las características del
+proyecto y el presupuesto total.
+
+\makeatletter
+
+\begin{table}[htb]
+  \ttabbox[\FBwidth]
+    {\caption{Información del proyecto}\label{tab:project-info}}
+    {
+      \begin{tabular}{>{\bfseries}p{3.5cm}p{9cm}}
+        \toprule
+        Título            & \textit{\@title} \\ \midrule
+        Autor             & \@author \\ \midrule
+        Departamento      & Departamento de Informática \\ \midrule
+        Fecha de inicio   & 15 de julio del 2024 \\ \midrule
+        Fecha de fin      & 16 de junio del 2025 \\ \midrule
+        Duración          & 11 meses \\ \midrule
+        Presupuesto total & 0 \euro \\ % TODO:
+        \bottomrule
+      \end{tabular}
+    }
+\end{table}
+
+\makeatother
+
+Los costes se dividen en costes directos (asociados con el personal y
+equipamiento) e indirectos (con una influencia indirecta en el proyecto). Estos
+costes no incluirán impuestos, ya que esos se incluyen en
+\subsubsectionref{costs-summary}.
+
+\subsubsection{Costes directos}
+
+Los costes directos son los costes relacionados directamente con el desarrollo
+del proyecto. Se pueden dividir en costes de personal, que dependen de la
+cualificación, experiencia, y localización de cada miembro, y costes de
+equipamiento, asociados a las herramientas utilizadas durante el desarrollo.
+
+\noindent
+Los costes de personal se pueden dividir en cuatro roles:
+
+\begin{itemize}
+    \item \textbf{Jefe de proyecto:} gestiona la planificación del proyecto, y aporta
+    \textit{feedback} sobre el desarrollo.
+    \item \textbf{Analista:} analiza los requisitos de usuario, realiza la
+    arquitectura del sistema, y escribe la documentación.
+    \item \textbf{Programador:} implementa las funcionalidades del sistema.
+    \item \textbf{Tester:} diseña y realiza las pruebas de las funcionalidades
+    del sistema.
+\end{itemize}
+
+El tutor realizó el rol de gestor del proyecto, mientras que el estudiante
+realizó los otros roles. La \tableref{costs-person} muestra los costes del
+personal totales y para cada rol.
+
+\begin{table}[htb]
+  \ttabbox[\FBwidth]
+    {\caption{Costes de personal}\label{tab:costs-person}}
+    {
+      \begin{tabular}{lrrr}
+        \toprule
+        \textbf{Rol} & \textbf{Horas} & \textbf{Coste por hora (\euro/h)} & \textbf{Total (\euro)} \\
+        \midrule
+        Jefe de proyecto &  60 h & 60,00 & 3.600,00 \\
+        Analista         & 220 h & 45,00 & 9.900,00 \\
+        Programador      & 250 h & 35,00 & 8.750,00 \\
+        Tester           & 130 h & 30,00 & 3.900,00 \\
+        \midrule
+        \textbf{Total}   & 660 h &       & \textbf{26.150,00 \euro} \\
+        \bottomrule
+      \end{tabular}
+    }
+\end{table}
+
+Los costes de equipamiento están asociados a la compra y uso del equipamiento,
+incluyendo \textit{software} y \textit{hardware}. Con respecto al
+\textit{software}, todas las herramientas utilizadas fueron \gls{FOSS} y, por lo
+tanto, no tienen coste asociado. El coste de cada equipo de \textit{hardware}
+se calcula teniendo en cuenta el tiempo que este se utiliza para el proyecto con
+la siguiente fórmula:
+
+\begin{equation}\label{eq:chargeable-cost}
+    c = \frac{C \cdot t \cdot p}{a}
+\end{equation}
+
+\noindent
+Donde:
+
+\begin{itemize}
+    \item $c$: coste amortizado
+    \item $C$: coste del equipamiento
+    \item $t$: tiempo durante el que se utiliza el equipamiento para el proyecto
+    \item $p$: porcentaje del tiempo total que se utilizó para el proyecto
+    \item $a$: tiempo de amortización
+\end{itemize}
+
+\noindent
+La \tableref{costs-equipment} muestra el coste de cada equipamiento y el coste total
+de equipamiento.
+
+
+\begin{table}[htb]
+  \ttabbox[\FBwidth]
+    {\caption{Costes de equipamiento}\label{tab:costs-equipment}}
+    {
+      \begin{adjustbox}{max width=\textwidth}
+        \begin{tabular}{lrrrrr}
+          \toprule
+          \textbf{Objeto}   & \textbf{Coste ($C$)} & \textbf{Uso ($p$)} & \textbf{Dedicación ($t$)} & \textbf{Amortización ($D$)} & \textbf{Coste amortizado ($c$)} \\
+          \midrule
+          PC sobremesa      &  999,00 \euro        & 30 \%              & 11 meses                  &  60 meses                   &  54,95 \euro \\
+          Portátil          &  749,00 \euro        & 60 \%              & 11 meses                  &  60 meses                   &  82,39 \euro \\
+          Monitor           &  149,99 \euro        & 40 \%              & 11 meses                  &  48 meses                   &  13,75 \euro \\
+          Ratón             &   39,99 \euro        & 30 \%              & 11 meses                  &  36 meses                   &   3,67 \euro \\
+          Cable HDMI        &    4,99 \euro        & 40 \%              & 11 meses                  &  48 meses                   &   0,46 \euro \\
+          \textit{Software} &    0,00 \euro        & 60 \%              & 11 meses                  & 120 meses                   &   0,00 \euro \\
+          \midrule
+          \textbf{Total}    & 1.942,97 \euro       &                    &                           &                             & \textbf{155,22 \euro} \\
+          \bottomrule
+        \end{tabular}
+      \end{adjustbox}
+    }
+\end{table}
+
+\subsubsection{Costes indirectos}
+
+Los costes indirectos son aquellos que tienen una influencia indirecta en el
+proyecto y no pueden ser asignados a un producto específico, como el consumo
+eléctrico, la conexión a internet, o el transporte.
+
+Para el consumo el eléctrico, se asume que el portátil consume $65$ W de media,
+el PC de sobremesa $300$ W, y el monitor y ratón $20$ W. Además, de las $660$
+horas del proyecto, se ha utilizado el portátil el $70 \%$ del tiempo, y el
+monitor, ratón, y PC de sobremesa el $30 \%$ restante. Teniendo este en cuenta,
+la energía total utilizada es de $(65 W \cdot 0.7 + 320 \cdot 0.3) \cdot 660 h =
+93.390 Wh$.
+
+La conexión a internet es un plan de 1 gbps de fibra óptica, con un precio
+de $65,00$ \euro/mes. Esta conexión se comparte por $4$ personas y solo una de
+ellas participa en el proyecto, por lo que el coste para el proyecto es un
+cuarto de eso.
+
+\noindent
+La tabla \tableref{costs-indirect} contiene los costes indirectos totales del
+proyecto.
+
+\begin{table}[htb]
+  \ttabbox[\FBwidth]
+    {\caption{Costes indirectos}\label{tab:costs-indirect}}
+    {
+      \begin{tabular}{lrrr}
+        \toprule
+        \textbf{Recurso} & \textbf{Coste unitario} & \textbf{Unidades} & \textbf{Total} \\
+        \midrule
+        Electricidad &   0.15 \euro/kWh & 93.390 Wh &  14,01 \euro \\
+        Internet     &  16,25 \euro/mes & 11 months & 178,75 \euro \\
+        Transporte   &      8 \euro/mes & 11 months &  88,00 \euro \\
+        \midrule
+        \textbf{Total} & & & \textbf{280,76 \euro} \\
+        \bottomrule
+      \end{tabular}
+    }
+\end{table}
+
+\subsubsection{Resumen de costes}\label{subsubsec:costs-summary}
+
+\noindent
+La \tableref{costs-summary} contiene un resumen de los costes del proyecto,
+incluyendo los costes directos e indirectos.
+
+\begin{table}[htb]
+  \ttabbox[\FBwidth]
+    {\caption{Resumen de costes}\label{tab:costs-summary}}
+    {
+      \begin{tabular}{lr}
+        \toprule
+        Personal          & 26.150,00 \euro \\
+        Equipamiento      &    155,22 \euro \\
+        Costes indirectos &    280,76 \euro \\
+        \midrule
+        \textbf{Total}    & \textbf{26.585,98 \euro} \\
+        \bottomrule
+      \end{tabular}
+    }
+\end{table}
+
+\subsection{Oferta del proyecto}\label{subsec:offer}
+
+La \tableref{project-offer} detalla la oferta del proyecto. En esta oferta se
+incluyen unos riesgos esperados del $20 \%$, unos beneficios del $15 \%$, y los
+impuestos del IVA, que es del $21 \%$ en España. Teniendo en cuenta esto, el
+coste final del proyecto es de \textbf{41.474,14 \euro~(Cuarenta y un mil
+cuatrocientos setenta y cuatro euros con catorce centimos)}
+
+\begin{table}[htb]
+  \ttabbox[\FBwidth]
+    {\caption{Oferta del proyecto}\label{tab:project-offer}}
+    {
+      \begin{tabular}{lrrr}
+        \toprule
+        \textbf{Concepto} & \textbf{Incremento (\%)} & \textbf{Valor parcial (\euro)} & \textbf{Coste agregado (\euro)} \\
+        \midrule
+        Coste del proyecto & -- & 26.585,98 \euro & 26.585,98 \euro \\
+        Riesgos            & 20 &  5.317,20 \euro & 31.903,18 \euro \\
+        Beneficios         & 15 &  3.987,90 \euro & 35.891,08 \euro \\
+        IVA                & 21 &  5.583,06 \euro & 41.474,14 \euro \\
+        \midrule
+        \textbf{Total}     & 56 &                 & \textbf{41.474,14 \euro} \\
+        \bottomrule
+      \end{tabular}
+    }
+\end{table}
+
+\section{Entorno socioeconómico}

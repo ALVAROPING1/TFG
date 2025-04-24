@@ -21,6 +21,10 @@
   Subsección \ref{subsec:#1}, \textit{\nameref{subsec:#1}}%
 }
 
+% \subsubsectionref{mysubsec}
+% remember to create a label for the subsection (\label{subsubsec:mysubsec})
+\newcommand{\subsubsectionref}[1]{\textit{\nameref{subsubsec:#1}}}
+
 % \tableref{mytable}
 % remember to create a label for the subsection (\label{tab:mytable})
 \newcommand{\tableref}[1]{Tabla \ref{tab:#1}}
