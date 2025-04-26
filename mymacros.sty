@@ -47,6 +47,11 @@
     \includefigure{\includesvg[inkscapelatex=false,width=#1\textwidth]{#2.drawio.svg}}{#2}{#3}
 }
 
+% \svgfigure[width]{filename}{caption}
+\newcommand{\svgfigure}[3][.8] {
+    \includefigure{\includesvg[inkscapelatex=false,width=#1\textwidth]{#2.svg}}{#2}{#3}
+}
+
 \newcommand{\graphicfigure}[3][0.8] {
     \includefigure{\includegraphics[width=#1\textwidth]{#2}}{#2}{#3}
 }

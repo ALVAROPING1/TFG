@@ -1,9 +1,177 @@
 \chapter{Plan del proyecto}\label{chap:planning}
 
-\section{Planificación}
+Este capítulo describirá el plan del proyecto a desarrollar y está
+dividido en cuatro secciones. La primera (\sectionref{plan}), explicará la
+planificación del proyecto. La segunda (\sectionref{budget}), describirá el
+presupuesto con el que se desarrollará el sistema y sus costes. La tercera
+(\sectionref{regulation}), explicará las restricciones legales que se aplican al
+proyecto. Por último, la cuarta (\sectionref{environment}), describirá el
+entorno socioeconómico en el que se desarrollará el proyecto.
+
+\newcommand{\componentref}[1]{\hyperref[req:#1]{`#1'}}
+
+\section{Planificación}\label{sec:plan}
+
+Esta sección explicará la planificación del proyecto, incluyendo la metodología
+utilizada, las etapas en las que se dividirá el proyecto, y la duración de cada
+etapa.
+
 \subsection{Metodología}
 
-\section{Presupuesto}
+Actualmente, existen muchas metodologías para el desarrollo de \textit{software}.
+Algunas de estas son:
+
+\begin{itemize}
+    \item \textbf{Modelo en cascada \parencite{waterfall-model}:} esta
+    metodología está fundamentada en la realización de las diversas tareas del
+    desarrollo de \textit{software} (análisis, diseño, implementación, pruebas,
+    y evaluación) de forma secuencial. Es una buena opción para sistemas
+    pequeños y bien definidos, pero al aumentar la complejidad del sistema
+    pierde su efectividad, ya que los errores no se descubren hasta el final del
+    desarrollo. Además, no permite cambios en los requisitos durante el
+    desarrollo, perdiéndo la capacidad de reacción a cambios en el entorno y
+    necesidades. Debido a esto, en la actualidad, es una metodología poco
+    utilizada y no recomendada para sistemas complejos.
+    \item \textbf{Modelo en espiral \parencite{spiral-model}:} este es un modelo
+    iterativo en el que el desarrollo se fragmenta en varias iteraciones, durante
+    las que se realizan prototipos cada vez más complejos que se utilizan
+    para orientar el desarrollo. Esto permite explorar los requisitos y
+    encontrar problemas más rápidamente, por lo que es una buena opción para
+    proyectos complejos en los que los requisitos pueden no estar bien definidos
+    inicialmente.
+\end{itemize}
+
+Teniendo esto en cuenta, se ha elegido utilizar el modelo en espiral
+\parencite{spiral-model}, ya que es más flexible a los cambios y permite
+corregir errores en elementos ya desarrollados en anteriores iteraciones.
+
+\subsection{Ciclo de vida}\label{subsec:life-cycle}
+
+El ciclo de vida de esta metodología (representado en la
+\figureref{spiral_model}) se puede dividir en cuatro etapas que se realizan en
+cada una de las iteraciones del desarrollo. Estas etapas son:
+
+\begin{enumerate}
+    \item \textbf{Planificación:} se determinan los requisitos de usuario, que
+    se utilizan para decidir los objetivos de la iteración.
+    \item \textbf{Análisis:} se analizan los requisitos de usuario para
+    identificar los posibles riesgos, y se diseñan las pruebas.
+    \item \textbf{Desarrollo y pruebas:} se diseña e implementa el sistema, y se
+    realizan las pruebas.
+    \item \textbf{Evaluación:} el cliente evalua el sistema y aporta
+    \textit{feedback}. Si este aprueba el sistema, se continúa con la siguiente
+    iteración, y si no, se corrigen los problemas antes de continuar.
+\end{enumerate}
+
+\svgfigure{spiral_model}{Ciclo de vida del modelo en espiral}
+
+\noindent
+El desarrollo del proyecto estará formado por cinco iteraciones:
+
+\begin{enumerate}[label=\Roman*.]
+    \item \textbf{Gestor de la arquitectura:} esta estapa se centra en la
+    implementación del \componentref{Gestor de la arquitectura}. El objetivo de
+    esta etapa es permitir el procesado de la definición de una \gls{ISA} para
+    su posterior uso.
+    \item \textbf{\Gls{parser}:} esta etapa se centra en la implementación del
+    analizador sintáctico. El objetivo de esta etapa es permitir el procesado de
+    un código \glsdisp{assembly}{ensamblador}, extrayéndo un \gls{AST}.
+    \item \textbf{Analizador semántico:} esta etapa se centra en la implementación
+    del analizador y su conexión con los componentes anteriores.
+    El objetivo de esta etapa es permitir \glsdisp{compilation}{compilar}
+    programas, obteniendo un sistema completamente funcional.
+    \item \textbf{Integración con CREATOR:} esta etapa se centra en integrar el
+    sistema con CREATOR.
+    \item \textbf{Pulido:} esta etapa se centra en implementar las
+    funcionalidades restantes de baja prioridad, que, aunque no son esenciales
+    para el funcionamiento del sistema, mejoran su calidad y dan valor añadido.
+\end{enumerate}
+
+\subsection{Tiempo estimado}
+
+La planificación de tiempo del proyecto se realizó con un diagrama de Gantt
+\parencite{gantt} (\figureref{gantt}). Este diagrama muestra el tiempo dedicado a
+cada tarea del desarrollo del sistema, incluyendo todas las iteraciones
+realizadas y sus etapas. Las etapas de cada una de las iteraciones son las
+descritas en la \subsectionref{life-cycle}, con una etapa adicional de
+documentación durante la que se realizará este documento. Además, se ha añadido
+una tarea adicional (``Memoria'') para terminar este documento.
+
+El proyecto tuvo una duración final de $12$ meseses, con una media de $60$ horas
+mensuales (sin contar días no lectivos y vacaciones). Debido a esto, el tiempo
+total dedicado al proyecto ha sido de $720$ horas.
+
+\begin{landscape}
+  \begin{figure}
+    \ffigbox[\FBwidth]
+      {\caption{Diagrama de Gantt}\label{fig:gantt}}
+      {
+        \begin{ganttchart}[
+          hgrid,
+          time slot format=isodate,
+          time slot unit=day,
+          x unit=.06cm,
+          y unit chart=0.4cm,
+          y unit title=.7cm,
+          title label font=\footnotesize,
+          group label font=\bf\scriptsize,
+          bar label font=\scriptsize,
+          milestone label font=\it\scriptsize,
+          vrule/.style={-},
+        ]{2024-06-07}{2025-06-16}
+          \gantttitlecalendar{year, month=shortname} \\
+
+          \ganttgroup{I.}{2024-06-07}{2024-06-30}\\
+          \ganttbar{Planificación}{2024-06-07}{2024-06-09}\\
+          \ganttlinkedbar{Análisis}{2024-06-10}{2024-06-12}\\
+          \ganttlinkedbar{Desarrollo y pruebas}{2024-06-13}{2024-06-20}\\
+          \ganttlinkedbar{Evaluación}{2024-06-21}{2024-06-24}\\
+          \ganttlinkedbar{Documentación}{2024-06-24}{2024-06-30}\\
+
+          \ganttgroup{II.}{2024-07-01}{2024-09-09}\\
+          \ganttbar{Planificación}{2024-07-01}{2024-07-03}\\
+          \ganttlinkedbar{Análisis}{2024-07-04}{2024-07-17}\\
+          \ganttlinkedbar{Desarrollo y pruebas}{2024-07-18}{2024-08-20}\\
+          \ganttlinkedbar{Evaluación}{2024-08-21}{2024-08-31}\\
+          \ganttlinkedbar{Documentación}{2024-09-01}{2024-09-09}\\
+
+          \ganttgroup{III.}{2024-09-10}{2024-12-20}\\
+          \ganttbar{Planificación}{2024-09-10}{2024-09-14}\\
+          \ganttlinkedbar{Análisis}{2024-09-15}{2024-09-25}\\
+          \ganttlinkedbar{Desarrollo y pruebas}{2024-09-26}{2024-11-30}\\
+          \ganttlinkedbar{Evaluación}{2024-12-01}{2024-12-09}\\
+          \ganttlinkedbar{Documentación}{2024-12-10}{2024-12-20}\\
+
+          \ganttgroup{IV.}{2025-01-12}{2025-02-21}\\
+          \ganttbar{Planificación}{2025-01-12}{2025-01-14}\\
+          \ganttlinkedbar{Análisis}{2025-01-15}{2025-01-21}\\
+          \ganttlinkedbar{Desarrollo y pruebas}{2025-01-22}{2025-02-08}\\
+          \ganttlinkedbar{Evaluación}{2025-02-09}{2025-02-13}\\
+          \ganttlinkedbar{Documentación}{2025-02-14}{2025-02-21}\\
+
+          \ganttgroup{V.}{2025-02-22}{2025-04-20}\\
+          \ganttbar{Planificación}{2025-02-22}{2025-02-24}\\
+          \ganttlinkedbar{Análisis}{2025-02-25}{2025-02-28}\\
+          \ganttlinkedbar{Desarrollo y pruebas}{2025-03-01}{2025-03-31}\\
+          \ganttlinkedbar{Evaluación}{2025-04-01}{2025-04-10}\\
+          \ganttlinkedbar{Documentación}{2025-04-11}{2025-04-18}\\
+
+          \ganttgroup{Memoria}{2025-04-19}{2025-06-14}\\
+
+          \ganttvrule{}{2025-01-01}
+
+          % link iterations
+          \ganttlink{elem0}{elem6}
+          \ganttlink{elem6}{elem12}
+          \ganttlink{elem12}{elem18}
+          \ganttlink{elem18}{elem24}
+          \ganttlink{elem24}{elem30}
+        \end{ganttchart}
+      }
+  \end{figure}
+\end{landscape}
+
+\section{Presupuesto}\label{sec:budget}
 
 Esta sección explicará el presupuesto del proyecto, basado en la planificación
 de tiempo descrita en la anterior sección. Primero, en la \subsectionref{costs},
@@ -26,10 +194,10 @@ proyecto y el presupuesto total.
         Título            & \textit{\@title} \\ \midrule
         Autor             & \@author \\ \midrule
         Departamento      & Departamento de Informática \\ \midrule
-        Fecha de inicio   & 15 de julio del 2024 \\ \midrule
+        Fecha de inicio   & 7 de junio del 2024 \\ \midrule
         Fecha de fin      & 16 de junio del 2025 \\ \midrule
-        Duración          & 11 meses \\ \midrule
-        Presupuesto total & 0 \euro \\ % TODO:
+        Duración          & 12 meses \\ \midrule
+        Presupuesto total & 44.906,14 \euro \\
         \bottomrule
       \end{tabular}
     }
@@ -74,12 +242,12 @@ personal totales y para cada rol.
         \toprule
         \textbf{Rol} & \textbf{Horas} & \textbf{Coste por hora (\euro/h)} & \textbf{Total (\euro)} \\
         \midrule
-        Jefe de proyecto &  60 h & 60,00 & 3.600,00 \\
-        Analista         & 220 h & 45,00 & 9.900,00 \\
-        Programador      & 250 h & 35,00 & 8.750,00 \\
-        Tester           & 130 h & 30,00 & 3.900,00 \\
+        Jefe de proyecto &  60 h & 60,00 &  3.600,00 \\
+        Analista         & 240 h & 45,00 & 10.800,00 \\
+        Programador      & 270 h & 35,00 &  9.450,00 \\
+        Tester           & 150 h & 30,00 &  4.500,00 \\
         \midrule
-        \textbf{Total}   & 660 h &       & \textbf{26.150,00 \euro} \\
+        \textbf{Total}   & 720 h &       & \textbf{28.350,00 \euro} \\
         \bottomrule
       \end{tabular}
     }
@@ -187,11 +355,11 @@ incluyendo los costes directos e indirectos.
     {
       \begin{tabular}{lr}
         \toprule
-        Personal          & 26.150,00 \euro \\
+        Personal          & 28.350,00 \euro \\
         Equipamiento      &    155,22 \euro \\
         Costes indirectos &    280,76 \euro \\
         \midrule
-        \textbf{Total}    & \textbf{26.585,98 \euro} \\
+        \textbf{Total}    & \textbf{28.785,98 \euro} \\
         \bottomrule
       \end{tabular}
     }
@@ -202,8 +370,8 @@ incluyendo los costes directos e indirectos.
 La \tableref{project-offer} detalla la oferta del proyecto. En esta oferta se
 incluyen unos riesgos esperados del $20 \%$, unos beneficios del $15 \%$, y los
 impuestos del IVA, que es del $21 \%$ en España. Teniendo en cuenta esto, el
-coste final del proyecto es de \textbf{41.474,14 \euro~(Cuarenta y un mil
-cuatrocientos setenta y cuatro euros con catorce centimos)}
+coste final del proyecto es de \textbf{44.906,14 \euro~(Cuarenta y cuatro mil
+novecientos seis euros con catorce centimos)}.
 
 \begin{table}[htb]
   \ttabbox[\FBwidth]
@@ -213,18 +381,18 @@ cuatrocientos setenta y cuatro euros con catorce centimos)}
         \toprule
         \textbf{Concepto} & \textbf{Incremento (\%)} & \textbf{Valor parcial (\euro)} & \textbf{Coste agregado (\euro)} \\
         \midrule
-        Coste del proyecto & -- & 26.585,98 \euro & 26.585,98 \euro \\
-        Riesgos            & 20 &  5.317,20 \euro & 31.903,18 \euro \\
-        Beneficios         & 15 &  3.987,90 \euro & 35.891,08 \euro \\
-        IVA                & 21 &  5.583,06 \euro & 41.474,14 \euro \\
+        Coste del proyecto & -- & 28.785,98 \euro & 28.785,98 \euro \\
+        Riesgos            & 20 &  5.757,20 \euro & 34.543,18 \euro \\
+        Beneficios         & 15 &  4.317,90 \euro & 38.861,08 \euro \\
+        IVA                & 21 &  6.045,06 \euro & 44.906,14 \euro \\
         \midrule
-        \textbf{Total}     & 56 &                 & \textbf{41.474,14 \euro} \\
+        \textbf{Total}     & 56 &                 & \textbf{44.906,14 \euro} \\
         \bottomrule
       \end{tabular}
     }
 \end{table}
 
-\section{Marco regulatorio}
+\section{Marco regulatorio}\label{sec:regulation}
 
 En esta sección se expondrán las restricciones legales que se aplican al
 proyecto, y está dividido en tres subsecciones. La primera
@@ -279,7 +447,7 @@ El sistema utiliza y redistribuye múltiples bibliotecas externas:
 El sistema desarrollado utiliza la licencia GNU Lesser General Public License
 version 3 \parencite{lgpl}, ya que permite el uso, modificación, y
 redistribución del código de forma libre con la única restricción de que las
-modificaciones se tienen que publicar, asegurando que el sistema continua siendo
+modificaciones se tienen que publicar, asegurando que el sistema continúa siendo
 abierto.
 
-\section{Entorno socioeconómico}
+\section{Entorno socioeconómico}\label{sec:environment}
