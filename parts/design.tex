@@ -118,25 +118,14 @@ con formato básico, permitiendo utilizar tanto secuencias de escape ANSI como
 
 \subsection{Análisis sintáctico}\label{subsec:parser}
 
-Un \gls{compiler} se compone principalmente de dos partes: análisis sintáctico y
-análisis semántico. El análisis sintáctico (\textit{parsing}) se encarga de
-transformar el código a una representación intermedia, mientras que el análisis
-semántico se encarga de, utilizando la representación intermedia, verificar que
-el \gls{program} cumple la semántica del lenguaje y generar el código compilado.
-\parencite{dragon-book}
+Para realizar el análisis sintáctico, como ya se ha explicado en la
+\sectionref{parser-techniques}, actualmente existen múltiples métodos: utilizar
+un generador de \glspl{parser}, utilizar un combinador de \glspl{parser}, o
+crear un analizador sintáctico manualmente. \parencite{dragon-book}
+\parencite{parser-combinators}
 
-Para realizar el análisis sintáctico, actualmente existen múltiples métodos:
-utilizar un generador de \glspl{parser}, utilizar un combinador de
-\glspl{parser}, o crear un analizador sintáctico manualmente.
-\parencite{dragon-book} \parencite{parser-combinators}
-
-Un generador de \glspl{parser} permite generar automáticamente un analizador
-sintáctico a partir de la definición de una \gls{grammar}, facilitando mucho su
-desarrollo \parencite{dragon-book}. Existen muchas herramientas de este tipo
-como Lex y yacc \parencite{yacc}, sus versiones modernas de GNU Flex y bison
-\parencite{bison}, ANTLR \parencite{ANTLR}, o Tree-sitter
-\parencite{tree-sitter}. Durante la generación del analizador sintáctico, estas
-herramientas realizan un procesado de la gramática que verifica ciertas
+Los generadores de \glspl{parser}, durante la generación del analizador
+sintáctico, realizan un procesado de la gramática que verifica ciertas
 restricciones y les permite generar un analizador sintáctico eficiente.
 Generalmente, esto es útil, ya que ayuda a detectar errores o ambigüedades en la
 \gls{grammar}. Sin embargo, el \sreqref{NF-def-instrucciones} indica que la
@@ -145,31 +134,29 @@ definición de la sintaxis de las instrucciones debe estar contenida en la
 \gls{compile-time}. Esto imposibilita el uso de estas herramientas.
 
 El siguiente método es crear el analizador sintáctico manualmente, típicamente
-utilizando la técnica de descenso recursivo \parencite{dragon-book}. Este es el
-método más flexible, ya que da control total sobre el funcionamiento del
-analizador sintáctico. Esto permite utilizar información obtenida durante la
-ejecución del \gls{compiler} para decidir cómo procesar la entrada. Además, esto
-ayuda a generar buenos mensajes de error, como pide el
-\sreqref{FN-errores-base}, y a aplicar estrategias de recuperación de errores
-\parencite{errors-clang}. Muchos de los \glspl{programming language} utilizados
-en la actualidad, como C y C++, utilizan este método
-\parencite{parser-types-survey}. El principal problema de este método es su
-complejidad, requiriendo mucho tiempo para su desarrollo.
+utilizando la técnica de descenso recursivo \parencite{dragon-book}. Como ya se
+explicó, el principal problema de este método es su complejidad, requiriendo
+mucho tiempo para su desarrollo.
 
 El último método es utilizar un combinador de \glspl{parser}. Este método
-permite definir un \gls{parser} como combinación de otros \glspl{parser} más
-simples \parencite{parser-combinators}. Esta técnica permite crear un analizador
-sintáctico de una forma similar a como se haría un \gls{parser} descendente
-recursivo, obteniendo así muchos de los beneficios de la creación manual, pero
-simplificando mucho el proceso gracias a un mayor nivel de abstracción. Algunas
-de las herramientas de este tipo son Parsec \parencite{parsec}, Chumsky
-\parencite{chumsky}, y pom \parencite{pom}.
+permite crear un analizador sintáctico de una forma similar a como se haría un
+\gls{parser} descendente recursivo, obteniendo así muchos de los beneficios de
+la creación manual, pero simplificando mucho el proceso gracias a un mayor nivel
+de abstracción. Aunque el \sreqref{NF-velocidad} indica que el sistema debe ser
+rápido, la pérdida de rendimiento no es demasiado grande, por lo que es
+preferible el menor consumo de tiempo de este método, ya que permitirá
+implementar más funcionalidades. Cabe destacar que se podría reemplazar el
+analizador sintáctico por uno creado manualmente sin demasiados problemas, por
+lo que se dejará esto como trabajo futuro. Algunas de las herramientas de este
+tipo son Parsec \parencite{parsec}, Chumsky \parencite{chumsky}, y pom
+\parencite{pom}.
 
 Teniendo en cuenta esto, se ha elegido Chumsky como biblioteca para la creación
 del analizador sintáctico debido a varios motivos:
 
 \begin{itemize}
-    \item Es una biblioteca de combinadores de \glspl{parser}.
+    \item Es una biblioteca de combinadores de \glspl{parser}, lo que permite un
+    corto tiempo de desarrollo.
     \item Está diseñada para generar buenos mensajes de error, y ser lo más
     rápida posible sin sacrificar la calidad de estos mensajes.
     \item Tiene soporte para Rust, el \gls{programming language} elegido

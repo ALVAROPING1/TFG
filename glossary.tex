@@ -231,13 +231,13 @@
 \newglossaryentry{internal node}{
   name = {nodo interno},
   plural = {nodos internos},
-  description = {Nodos de un árbol que tienen hijos}
+  description = {Nodo de un árbol que tiene hijos}
 }
 
 \newglossaryentry{leaf node}{
   name = {nodo hoja},
   plural = {nodos hoja},
-  description = {Nodos de un árbol que no tienen hijos}
+  description = {Nodo de un árbol que no tiene hijos}
 }
 
 \newglossaryentry{parser}{
@@ -260,8 +260,22 @@
 
 \newglossaryentry{grammar}{
   name = {gramática},
-  description = {Descripción formal de la sintaxis de un lenguaje},
+  description = {Descripción formal de la sintaxis de un lenguaje, basada en el uso de reglas de transformación de secuencias de símbolos},
   see = {compiler}
+}
+
+\newglossaryentry{ambiguous grammar}{
+  name = {gramática ambigua},
+  plural = {gramáticas ambiguas},
+  description = {Gramática para la que existe alguna cadena que se puede obtener con varios árboles de sintaxis distintos},
+  see = {grammar}
+}
+
+\newglossaryentry{operator-precedende grammar}{
+  name = {gramática de precedencia de operadores},
+  plural = {gramáticas de precedencia de operadores},
+  description = {Gramática en la que ninguna producción tiene una parte derecha vacía o con varios símbolos no terminales juntos},
+  see = {grammar}
 }
 
 \newglossaryentry{forward-reference}{
