@@ -1,12 +1,52 @@
-\chapter{State of the Art}\label{chap:state-of-the-art}
+\chapter{Estado del arte}\label{chap:state-of-the-art}
 % TODO:
 % - RISCV/ARM/MIPS
-% - Sail
-% - Creator
+% - Simuladores de ensamblador
+%   - Sail/Creator
 % - GNU as/intel (no estandarizado)/TCCASM
 % - Lenguajes en los que se implementan compiladores
 % - WASM/JS
 % - NPM/cargo
+
+\section{Mensajes de error}
+
+En la actualidad, los mensajes de error de los \gls{compiler} tienen muchas
+formas y calidades. Un \gls{compiler} con buenos mensajes de error puede ayudar
+mucho a solucionar los problemas más rápidamente, ya que permite obtener toda la
+información necesaria para solucionar el problema del propio mensaje de error.
+
+Un ejemplo de malos mensajes de error es el \gls{compiler} de C\#, cuyos mensajes
+de error se pueden ver en la \figureref{error_csharp}. Como se puede ver, estos
+mensajes contienen muy poca información sobre el problema. Esto dificulta
+corregir los errores, especialmente para alguien que está intentando aprender el
+lenguaje.
+
+\graphicfigure[0.9]{error_csharp}{Mensaje de error del compilador de C\#}
+
+Actualmente, el compilador de Rust \parencite{Rust} es uno de los
+compiler que mejores mensajes de error genera. La \figureref{error_rust}
+muestra un ejemplo de estos mensajes, obtenido en un caso de uso real. Como se
+puede observar, este mensaje cuenta con varios componentes importantes:
+
+\begin{itemize}
+    \item Un mensaje de error con una explicación clara del error.
+    \item La localización en el código que ha producido el fallo.
+    \item Información adicional sobre el error y su causa, resaltada sobre el
+    propio código.
+    \item Un mensaje de ayuda que indica una posible solución del error,
+    incluyendo una explicación y las modificaciones necesarias resaltadas sobre
+    el código.
+    \item Una forma de acceder a una explicación detallada sobre el problema.
+\end{itemize}
+
+Además de esto, la información está resaltada con diversos colores e indicadores
+y se deja cierto espacio en blanco para separar las diferentes partes, lo cual
+ayuda a leer rápidamente la información más importante para solucionar el
+problema y filtrar la que no se necesita.
+
+\graphicfigure[0.9]{error_rust}{Mensaje de error del compilador de Rust}
+
+\FloatBarrier
 
 \section{Técnicas de análisis sintáctico}\label{sec:parser-techniques}
 
