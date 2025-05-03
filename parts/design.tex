@@ -42,6 +42,9 @@ Además, las conversiones implícitas de tipos permiten que los errores se
 propaguen antes de ser detectados, dificultando encontrar su origen. Debido a
 esto, sería preferible utilizar un lenguaje con un \gls{type system}
 \glsdisponly{static typing}{estático} y \glsdisponly{strong typing}{fuerte}.
+\gls{TS} \parencite{typescript} ha surgido como una alternativa a \gls{JS} que
+soluciona este problema, pero al ser \glsdisp{compilation}{compilado} a \gls{JS}
+no soluciona el problema de rendimiento.
 
 \gls{wasm} \parencite{wasm} es un nuevo estándar soportado por los navegadores y
 Node.js que permite la ejecución de \glspl{program} compilados de forma casi
@@ -80,17 +83,17 @@ utilizar para el desarrollo del sistema.
     \caption{Comparación de los lenguajes de programación}
     \label{tab:language-comparison}
     \begin{adjustbox}{max width=\textwidth}
-        \begin{tabular}{@{}lcccc@{}}
+        \begin{tabular}{@{}lccccc@{}}
             \toprule
-            Lenguaje            & \gls{JS}   & C          & C++        & Rust \\
+            Lenguaje            & \gls{JS}   & \gls{TS}   & C          & C++        & Rust \\
             \midrule
-            Ejecución nativa    &            & \checkmark & \checkmark & \checkmark \\
-            Alto rendimiento    &            & \checkmark & \checkmark & \checkmark \\
-            \Gls{memory safety} & \checkmark &            &            & \checkmark \\
+            Ejecución nativa    &            &            & \checkmark & \checkmark & \checkmark \\
+            Alto rendimiento    &            &            & \checkmark & \checkmark & \checkmark \\
+            \Gls{memory safety} & \checkmark & \checkmark &            &            & \checkmark \\
             Buena interoperabilidad con \gls{JS}
-                                & \checkmark &            &            & \checkmark \\
-            \Gls{static typing} &            & \checkmark & \checkmark & \checkmark \\
-            \Gls{strong typing} &            & \checkmark & \checkmark & \checkmark \\
+                                & \checkmark & \checkmark &            &            & \checkmark \\
+            \Gls{static typing} &            & \checkmark & \checkmark & \checkmark & \checkmark \\
+            \Gls{strong typing} &            & \checkmark & \checkmark & \checkmark & \checkmark \\
             \bottomrule
         \end{tabular}
     \end{adjustbox}
@@ -108,9 +111,9 @@ los mensajes de error solo pueden estar formados de texto, pudiendo usar
 secuencias de escape ANSI \parencite{ANSIEscapeSequences} para añadir formato
 básico. Además, los requisitos \sreqref[]{NF-chrome} a \sreqref[]{NF-safari}
 indican que el sistema tiene que poder ejecutarse en navegador, donde se utiliza
-\gls{HTML} y \gls{CSS} para añadir formato al texto. Además, \gls{HTML} y
-\gls{CSS} tienen una mayor flexibilidad para dar formato al texto que las
-secuencias de escape ANSI.
+\gls{HTML} y \gls{CSS} para añadir formato al texto. Cabe destacar que
+\gls{HTML} y \gls{CSS} tienen una mayor flexibilidad para dar formato al texto
+que las secuencias de escape ANSI.
 
 Teniendo esto en cuenta, se ha decidido que los errores estén formados por texto
 con formato básico, permitiendo utilizar tanto secuencias de escape ANSI como
