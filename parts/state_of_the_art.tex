@@ -170,6 +170,18 @@ la \gls{grammar} puede variar, mientas que crear un analizador manualmente es
 una mejor opción para un producto final cuando el rendimiento se vuelve un
 problema.
 
+Estas técnicas, en general, son muy efectivas. Sin embargo, para \glspl{grammar}
+que cumplen ciertas propiedades (\glspl{operator-precedende grammar}) típicas de
+\gls{expression} aritméticas, especialmente cuando cuentan con muchos niveles de
+precedencia, existen técnicas más eficientes. Estas técnicas se pueden agrupar
+en los \gls{parser} de precedencia de operadores
+\parencite{operator-precedence-parser}. Un ejemplo de estas técnicas es el
+análisis Pratt \parencite{pratt-parsing-paper}
+\parencite{pratt-parsing-example}, que representa los niveles de precedencia con
+funciones para comparar operadores. Gracias a esto, se puede evitar representar los niveles de
+precedencia en la propia \gls{grammar}, permitiendo utilizar una representación
+más natural de la \gls{grammar}.
+
 \subsection{Análisis ascendente}
 
 Dentro de los analizadores ascendentes, existen muchas técnicas distintas. La
@@ -194,14 +206,3 @@ Existen muchas herramientas de este tipo como Lex y yacc \parencite{yacc}
 (basado en LALR), sus versiones modernas de GNU Flex y bison \parencite{bison}
 (basado en LALR por defecto, aunque pueden utilizar GLR), o Tree-sitter
 \parencite{tree-sitter} (basado en GLR).
-
-% TODO: maybe extract into a "mixed" section?
-Estas técnicas, en general, son muy efectivas. Sin embargo, para \glspl{grammar}
-que cumplen ciertas propiedades (\glspl{operator-precedende grammar}) típicas de
-\gls{expression} aritméticas con muchos niveles de precedencia, existen técnicas
-más eficientes. Estas técnicas se pueden agrupar en los \gls{parser} de
-precedencia de operadores \parencite{operator-precedence-parser}. Un ejemplo de
-estas técnicas es el análisis Pratt \parencite{pratt-parsing-paper}
-\parencite{pratt-parsing-example}, que representa los niveles de precedencia
-con funciones para comparar operadores y utiliza esta información para
-desambiguar la \gls{grammar}.
