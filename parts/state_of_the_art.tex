@@ -1,16 +1,124 @@
 \chapter{Estado del arte}\label{chap:state-of-the-art}
 % TODO:
 % - RISCV/ARM/MIPS
-% - Simuladores de ensamblador
-%   - Sail/Creator
 % - Ensambladores
 %   - GNU as/intel (no estandarizado)/TCCASM
 % - WASM/JS
 % - NPM/cargo
 
-\section{Lenguajes de programación}
+\section{Simuladores de ensamblador}
 
-\newcommand{\progref}[1]{\texttt{#1} \parencite{#1}}
+Un simulador de \glsdisp{assembly}{ensamblador} es un \gls{program} que permite
+simular la ejecución de un \gls{program} escrito en \glsdisp{assembly}{ensamblador},
+simulando el comportamiento de un \gls{processor} que ejecuta el código. Suelen
+tener un propósito didáctico, para ayudar al usuario a aprender el
+funcionamiento del lenguaje y el \gls{processor}, aunque algunos también se
+pueden utilizar de forma profesional para desarrollar una nueva \gls{ISA}.
+
+Estos simuladores están compuestos de dos componentes principales: un
+\gls{assembler} y un ejecutor. El \gls{assembler} se encarga de procesar el
+código \glsdisp{assembly}{ensamblador} introducido por el usuario a un formato
+que pueda ser utilizado por el simulador, mientras que el ejecutor se encarga
+de ejecutar el código generado por el \gls{assembler} en el \gls{processor}
+simulado. Los simuladores se pueden clasificar en específicos, si estos componentes
+solo permiten simular una \gls{ISA} específica, o genéricos, si se pueden
+configurar para simular varias \glspl{ISA} distintas.
+
+\subsection{Simuladores específicos}
+
+Un simulador específico está diseñado para simular una única \gls{ISA}, como
+RISC-V o ARM, y no permite su modificación. Esto hace que sean más simples que
+los simuladores genéricos, y, debido a esto, la mayoría de los simuladores en la
+actualidad entran dentro de esta categoría.
+
+\subsubsection{Spike}
+
+Spike \parencite{spike} es el simulador de referencia para RISC-V, desarrollado
+por RISC-V International. Es capaz de emular un sistema RISC-V completo, y está
+diseñado para servir como un punto de inicio para ejecutar código RISC-V.
+
+Spike cuenta con una interfaz por \glsdisponly{CLI}{línea de comandos}, y
+permite seleccionar las extensiones de la \gls{ISA} (contando con soporte para
+la mayoría de las extensiones estándar) y el modelo de memoria a utilizar.
+Permite ejecutar código \gls{instruction} a \gls{instruction}, visualizar el
+contenido de los \glspl{register} y la \gls{memory}, y ejecutar código en modo
+usuario y privilegiado. También cuenta con un modo de depuración interactivo, y
+permite utilizar \progref{gdb} para esto. Aunque es un simulador específico de
+RISC-V, permite añadir y probar nuevas \glspl{instruction}.
+
+% TODO:
+% \graphicfigure{spike}{Interfaz de Spike}
+
+% TODO: add another simulator
+
+\subsection{Simuladores genéricos}
+
+Un simulador genérico permite simular varias \glspl{ISA} distintas. Esto añade
+bastante complejidad a su diseño, ya que los componentes necesitan soportar
+muchas opciones de configuración distintas para permitir especificar la
+\gls{ISA}. En esta sección se exponen dos ejemplos de este tipo de simuladores:
+Sail y CREATOR.
+
+\subsubsection{Sail}
+
+Sail \parencite{sail} es un lenguaje para definir la \gls{ISA} de un
+\gls{processor} desarrollado por la Universidad de Cambridge.
+
+Esta herramienta permite validar la definición de la \gls{ISA} y generar
+simuladores en C y OCaml. Además, también permite ejecutar pruebas de validación
+y generar versiones de la \gls{ISA} que se pueden ejecutar con un \gls{theorem
+prover} para realizar demostraciones sobre el comportamiento de la \gls{ISA}.
+Actualmente, está en desarrollo un componente para generar un modelo de
+referencia en un lenguaje de descripción de \textit{hardware}. Todas estas
+características lo hacen una muy buena opción para el uso profesional, aunque
+esto también lo vuelve una mala opción para el uso didáctico debido a su gran
+complejidad.
+
+\subsubsection{CREATOR}
+
+CREATOR (didaCtic and geneRic assEmbly progrAmming simulaTOR)
+\parencite{CREATOR} es un simulador didáctico desarrollado por el grupo de
+investigación ARCOS de la Universidad Carlos III de Madrid. Tiene tanto una
+versión web como una versión de \gls{CLI}, y se desarrolló para ayudar a los
+estudiantes a aprender el \gls{assembly} en la asignatura de Estructura de
+Computadores.
+
+CREATOR cuenta con un editor de código con resaltado de sintaxis para escribir
+el código \glsdisp{assembly}{ensamblador}, y una interfaz que permite ver el
+estado del \gls{processor} (\glspl{register} de control, enteros y de coma
+flotante) y la \gls{memory} (\gls{data memory}, \gls{text memory}, y
+\textit{stack}), las \glspl{instruction} cargadas, y diversas estadísticas sobre
+la ejecución del \gls{program}. Tiene soporte para la ejecución
+\gls{instruction} a \gls{instruction}, I/O, llamadas al sistema,
+\textit{breakpoints}, y convención de paso de parámetros.
+
+Con respecto a la modificación de la \gls{ISA}, CREATOR es muy flexible. Permite
+modificar la arquitectura del procesador (\glspl{register} definidos y su
+nombre, tipo, tamaño y diferentes propiedades), la organización de la
+\gls{memory}, y las \glspl{instruction}, \glspl{pseudo-instruction}, y
+\gls{directive} permitidas en el código. Con respecto a las \glspl{instruction}
+y \glspl{pseudo-instruction}, permite definir su nombre, sintaxis, argumentos y
+la codificación de estos en binario, tamaño, número de ciclos para su ejecución,
+y su definición, ya sea las acciones a realizar durante su ejecución para las
+\glspl{instruction} o la secuencia de \glspl{instruction} por la que
+reemplazarla para las \glspl{pseudo-instruction}. Todo esto se realiza mediante
+un fichero de configuración en formato \gls{json}, permitiendo el uso de
+\gls{JS} para ciertas opciones como la ejecución de una \gls{instruction}.
+Utilizando esto, CREATOR cuenta con definiciones para RISC-V y MIPS.
+
+La principal limitación de CREATOR es su \gls{assembler}. Aunque permite
+procesar \glspl{program} simples, carece de muchas funcionalidades importantes
+como el uso de etiquetas en las \glspl{data directive}. Esto es necesario, por
+ejemplo, para la creación del vector de interrupciones utilizado por los
+sistemas operativos para gestionar los diversos tipos de interrupciones. Además,
+sus mensajes de error son mejorables, y a veces no son capaces de mostrar el
+problema real. El sistema a desarrollar se encargará de reemplazar a este
+\gls{assembler}, solucionando todos estos problemas.
+
+% TODO:
+% \graphicfigure{creator}{Interfaz principal de CREATOR}
+
+\section{Lenguajes de programación}
 
 Actualmente, las herramientas utilizadas durante el desarrollo de
 \textit{software} para los diversos lenguajes, como \glspl{compiler},
@@ -89,7 +197,7 @@ el \gls{program} cumple la semántica del lenguaje y generar el código compilad
 Al tratar con la semántica del lenguaje, no existen técnicas generales para
 realizar el análisis semántico. Sin embargo, para realizar el análisis
 sintáctico, existen múltiples técnicas basadas en el uso de \glspl{grammar}
-libres de contexto. Una \gls{grammar} es una descripción formal de la sintáxis
+libres de contexto. Una \gls{grammar} es una descripción formal de la sintaxis
 de un lenguaje, y está formada por: \parencite{dragon-book}
 
 \begin{itemize}
@@ -128,7 +236,7 @@ símbolos no terminales siguiendo las producciones hasta llegar a la raíz.
 \subsection{Análisis descendente}
 
 Dentro de los analizadores descendentes, la técnica más general y utilizada es
-el análisis descendente recursivo, que consiste en un programa que modela la
+el análisis descendente recursivo, que consiste en un \gls{program} que modela la
 \gls{grammar} mediante un conjunto de funciones mutuamente recursivas, cada una
 de las cuales representa un símbolo no terminal. Analizando la \gls{grammar}, se
 puede crear un analizador predictivo en el cual el siguiente símbolo de la
