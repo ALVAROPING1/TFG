@@ -512,7 +512,7 @@ usuario están cubiertos por al menos una prueba de validación.
 \newcommand{\evalres}{
     \graphicfigurehere[0.8]{eval/\arabic{eval}-new}{Evaluación \arabic{eval} - Compilador nuevo}
     \graphicfigurehere[0.55]{eval/\arabic{eval}-old}{Evaluación \arabic{eval} - Compilador actual}
-    \graphicfigurehere[0.55]{eval/\arabic{eval}-as}{Evaluación \arabic{eval} - GNU as}
+    \graphicfigurehere[0.55]{eval/\arabic{eval}-as}{Evaluación \arabic{eval} - GAS}
     \stepcounter{eval}
 }
 
@@ -523,7 +523,7 @@ usuario están cubiertos por al menos una prueba de validación.
 }
 
 Para evaluar el sistema desarrollado, se van a comparar los mensajes de error
-generados con los mensajes de error del \gls{compiler} actual y de GNU as
+generados con los mensajes de error del \gls{compiler} actual y de GAS
 \parencite{GNUas}, ya que es uno de los \gls{assembler} más utilizados. Para
 realizar esto, se realizarán varias pruebas con programas a los que se ha
 añadido un error, y se compararán los mensajes de error generados por cada una
@@ -542,7 +542,7 @@ El siguiente caso de prueba consiste en intentar utilizar una
 \evalresref Como se puede ver, el nuevo \gls{compiler} es el único que detecta
 correctamente el error, e indica cómo solucionarlo. El \gls{compiler} actual
 produce un error incorrecto al interpretar erróneamente el código. Cabe destacar
-que GNU as no produce ningún error en este caso, pero un análisis del código
+que GAS no produce ningún error en este caso, pero un análisis del código
 generado indica que asume un valor de 0 para el argumento faltante en vez de
 generar un error.
 
@@ -559,7 +559,7 @@ El siguiente caso de prueba consiste en añadir instrucciones a la sección de
 datos. \evalresref Como se puede ver, el nuevo \gls{compiler} es el único que
 detecta correctamente el error, e indica cómo solucionarlo. El \gls{compiler}
 actual produce un error incorrecto al interpretar erróneamente el código. Cabe
-destacar que GNU as no produce ningún error en este caso, pero un análisis del
+destacar que GAS no produce ningún error en este caso, pero un análisis del
 código generado indica que añade la codificación binaria de las instrucciones
 como si fueran datos.
 
@@ -585,7 +585,7 @@ sistema. Cabe destacar que este programa utiliza funcionalidades no soportadas
 por el \gls{compiler} actual, por lo que para evaluar su rendimiento se ha
 tenido que modificar para evitar el uso de estas funcionalidades.
 
-La \figureref{rendimiento} muestra los resultados de la ejecución. GNU as no se
+La \figureref{rendimiento} muestra los resultados de la ejecución. GAS no se
 ha podido ejecutar en un entorno web. Como se puede observar, el nuevo
 \gls{compiler} ofrece una mejora significativa de rendimiento con respecto del
 \gls{compiler} actual, especialmente en un entorno web.
@@ -623,7 +623,7 @@ ha podido ejecutar en un entorno web. Como se puede observar, el nuevo
         \addplot coordinates {(\gls{CLI}, 21.5)(Web,1960)};
         \addplot coordinates {(\gls{CLI}, 6.5)(Web,5.3)};
         \addplot coordinates {(\gls{CLI}, 0.02)(Web,nan)};
-        \legend{Compilador actual,Compilador nuevo,GNU as}
+        \legend{Compilador actual,Compilador nuevo,GAS}
     \end{axis}
 \end{tikzpicture}
 }{rendimiento}{Comparativa de rendimiento entre los diferentes compiladores}

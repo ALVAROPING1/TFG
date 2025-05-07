@@ -1,11 +1,10 @@
 \chapter{Estado del arte}\label{chap:state-of-the-art}
 % TODO:
 % - RISCV/ARM/MIPS
-% - Ensambladores
-%   - GNU as/intel (no estandarizado)/TCCASM
 % - WASM/JS
 % - NPM/cargo
 
+% TODO: lenguaje de programación -> glossary
 \section{Simuladores de ensamblador}
 
 Un simulador de \glsdisp{assembly}{ensamblador} es un \gls{program} que permite
@@ -117,6 +116,94 @@ problema real. El sistema a desarrollar se encargará de reemplazar a este
 
 % TODO:
 % \graphicfigure{creator}{Interfaz principal de CREATOR}
+
+\section{Ensambladores}
+
+Un \gls{assembler} es un \gls{program} que traduce un \gls{program} escrito en
+\gls{assembly} a \gls{machine code} que puede ser ejecutado en un
+\gls{processor}. Forma parte de la \gls{toolchain} utilizada para
+\glsdisp{compilation}{compilar} un \gls{program}. Aunque la gran mayoría se
+diseñan para una \gls{ISA} concreta, algunos pueden procesar código para
+múltiples \glspl{ISA} distintas. Cabe destacar que cada \gls{assembler} utiliza
+una sintaxis propia, por lo que, en general, el código se escribe para un
+\gls{assembler} concreto.
+
+En esta sección se exponen tres ejemplos de \glspl{assembler}: GAS, TCCASM, y NASM.
+
+\subsection{GAS}
+
+GAS (GNU Assembler) \parencite{GNUas} es una familia de \glspl{assembler}
+desarrollados por el Proyecto GNU. Están escritos en C y se distribuyen bajo la
+licencia GNU GPLv3 \parencite{gpl}. Cada uno de estos \glspl{assembler} está
+diseñado para una \gls{ISA} concreta, aunque comparten las características
+independientes de la máquina como la sintaxis, la mayoría de \glspl{directive},
+y el formato del fichero binario resultante \parencite{as-manual}. GAS soporta
+más de 50 \glspl{ISA} distintas, entre las que se incluyen RISC-V, MIPS, ARM, y
+x86. En la actualidad, GAS es uno de los \gls{assembler} más utilizados
+\parencite{assembler-usage}.
+
+GAS está diseñado para ser utilizado principalmente como parte de la
+\gls{toolchain} de GNU, siendo el \textit{backend} por defecto de \progref{gcc},
+aunque también es mayormente compatible con otros \glspl{assembler}
+\parencite{as-manual}. Debido a esto, sus mensajes de error son mejorables, ya
+que obtener un alto rendimiento es más importante. Un ejemplo de esto se puede
+ver en la figura \figureref{error_gas}.
+
+% TODO:
+% \graphicfigure{error_gas}{Mensaje de error del \gls{assembler} de GNU}
+
+GAS tiene soporte para muchas funcionalidades avanzadas que lo vuelven un
+\gls{assembler} muy flexible. Tiene soporte para etiquetas locales, evaluación
+de \gls{expression} aritméticas, \glspl{bigint}, cadenas en UTF-8
+\parencite{UTF-8}, \gls{compilation} condicional, emisión de mensajes de error,
+definición de símbolos con valores arbitrarios, y macros variadicas y
+recursivas, entre otros.
+
+\subsection{TCCASM}
+
+TCCASM es el \gls{assembler} de TCC (Tiny C Compiler) \parencite{tcc}. TCC es un
+\gls{compiler} de C diseñado para utilizar poca memoria y ser muy rápido. Es
+significativamente más rápido \glsdisp{compilation}{compilando} que
+\progref{gcc}, aunque también produce ficheros ejecutables más lentos
+\parencite{tcc-speed}. Está escrito en C y se distribuye bajo la licencia GNU
+LGPL. TCC soporta principalmente x86 y x86-64, aunque también tiene soporte para
+ARM y RISC-V \parencite{tcc-manual} \parencite{tcc-arm} \parencite{tcc-riscv}.
+
+TCC utiliza TCCASM únicamente para procesar ficheros en
+\glsdisp{assembly}{ensamblador} y segmentos en \glsdisp{assembly}{ensamblador}
+dentro de código C \parencite{tcc-manual}. Gracias a esto, TCC permite
+desactivar TCCASM para obtener un ejecutable de TCC más pequeño.
+
+En cuanto al código \glsdisp{assembly}{ensamblador}, TCCASM utiliza una sintaxis
+similar a GAS. Sin embargo, debido a su objetivo de utilizar poca memoria,
+soporta muchas menos funcionalidades que este. En particular, soporta únicamente
+enteros de 32 bits, muchas menos \glspl{directive}, y no soporta
+\gls{compilation} condicional, definición de símbolos con valores arbitrarios,
+ni macros. Además, sus \glspl{expression} aritméticas soportan menos operadores
+que GAS.
+
+\subsection{NASM}
+
+NASM (Netwide Assembler) \parencite{NASM} es un \gls{assembler} multiplataforma
+de x86 y x86-64 diseñado para ser portable y modular. Está escrito en C, y se
+distribuye bajo la licencia BSD 2-Clause \parencite{bsd-2c}. Tiene soporte para
+todas las extensiones de x86 actualmente conocidas, y permite utilizar muchos
+formatos distintos para el fichero binario resultante. Junto con GAS, es uno de
+los \glspl{assembler} más utilizados en Linux \parencite{assembler-usage}.
+
+Con respecto al código \glsdisp{assembly}{ensamblador}, NASM soporta etiquetas
+locales, evaluación de \gls{expression} aritméticas (con algunos operadores más
+que GAS), cadenas en UTF-8 \parencite{UTF-8}, \gls{compilation} condicional,
+definición de símbolos con valores arbitrarios, y generación de código con
+bucles. Cabe destacar su potente sistema de macros, que permite macros
+variadicas, sobrecarga según el número de argumentos, etiquetas locales a la
+macro, y múltiples funcionalidades para procesar los argumentos.
+
+NASM permite optimizar el código generado realizando múltiples pasadas sobre
+este. Sin embargo, para realizar esto, necesita conocer el tamaño de todos los
+datos e \glspl{instruction} durante la primera pasada. Debido a esto, no permite
+el uso de \glspl{forward-reference} en situaciones en las que el valor de estas
+puede afectar al tamaño de los elementos generados. \parencite{NASM-manual}
 
 \section{Lenguajes de programación}
 
