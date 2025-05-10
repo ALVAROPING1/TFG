@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 412 53" width="412" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="49" rows="3"/>
+            <termtosvg:animation type="css"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[#screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+            white-space: pre;
+        }
+    ]]></style>
+        <style type="text/css" id="user-style">
+            /* The colors defined below are the default 16 colors used for rendering text of the terminal. Adjust
+               them as needed. */
+            .foreground {fill: #000000;}
+            .background {fill: #eeeeee;}
+            .color0 {fill: #ffffff;}
+            .color1 {fill: #cc0403;}
+            .color2 {fill: #19cb00;}
+            .color3 {fill: #eb6e00;}
+            .color4 {fill: #0d73cc;}
+            .color5 {fill: #cb1ed1;}
+            .color6 {fill: #0dcdcd;}
+            .color7 {fill: #767676;}
+            .color8 {fill: #dddddd;}
+            .color9 {fill: #f2201f;}
+            .color10 {fill: #189900;}
+            .color11 {fill: #ff9800;}
+            .color12 {fill: #1a8fff;}
+            .color13 {fill: #fd28ff;}
+            .color14 {fill: #00bbcc;}
+            .color15 {fill: #000000;}
+        </style>
+    </defs>
+    <rect id="terminalui" class="background" width="100%" height="100%"/>
+    <svg id="screen" width="392" height="51" x="10" y="10" viewBox="0 0 392 51" preserveAspectRatio="xMidYMin slice">
+    <rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text x="0" textLength="216" class="foreground">test.s: Assembler messages:</text></g><g id="g2"><text x="0" textLength="392" class="foreground">test.s:3: Error: illegal operands `addi t0,t0,t1'</text></g><g id="g3"><text x="0" textLength="8" class="background"> </text></g></defs><g><use xlink:href="#g1" y="0"/><use xlink:href="#g2" y="17"/><use xlink:href="#g3" y="34"/></g></svg>
+</svg>

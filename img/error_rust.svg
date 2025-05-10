@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 956 376" width="956" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="117" rows="22"/>
+            <termtosvg:animation type="css"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[#screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+            white-space: pre;
+        }
+    ]]></style>
+        <style type="text/css" id="user-style">
+            /* The colors defined below are the default 16 colors used for rendering text of the terminal. Adjust
+               them as needed. */
+            .foreground {fill: #000000;}
+            .background {fill: #eeeeee;}
+            .color0 {fill: #ffffff;}
+            .color1 {fill: #cc0403;}
+            .color2 {fill: #19cb00;}
+            .color3 {fill: #eb6e00;}
+            .color4 {fill: #0d73cc;}
+            .color5 {fill: #cb1ed1;}
+            .color6 {fill: #0dcdcd;}
+            .color7 {fill: #767676;}
+            .color8 {fill: #dddddd;}
+            .color9 {fill: #f2201f;}
+            .color10 {fill: #189900;}
+            .color11 {fill: #ff9800;}
+            .color12 {fill: #1a8fff;}
+            .color13 {fill: #fd28ff;}
+            .color14 {fill: #00bbcc;}
+            .color15 {fill: #000000;}
+        </style>
+    </defs>
+    <rect id="terminalui" class="background" width="100%" height="100%"/>
+    <svg id="screen" width="936" height="374" x="10" y="10" viewBox="0 0 936 374" preserveAspectRatio="xMidYMin slice">
+    <rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text x="0" textLength="96" font-weight="bold" class="color10">   Compiling</text><text x="96" textLength="448" class="foreground"> tfg_test v0.1.0 (/home/alvaro/Documentos/temp/tfg_test)</text></g><g id="g2"><text x="0" textLength="96" font-weight="bold" class="color9">error[E0373]</text><text x="96" textLength="840" font-weight="bold" class="foreground">: closure may outlive the current function, but it borrows `name`, which is owned by the current function</text></g><g id="g3"><text x="0" textLength="16" class="foreground">  </text><text x="16" textLength="32" font-weight="bold" class="color12">--&gt; </text><text x="48" textLength="136" class="foreground">src/main.rs:13:30</text></g><g id="g4"><text x="0" textLength="24" class="foreground">   </text><text x="24" textLength="8" font-weight="bold" class="color12">|</text></g><g id="g5"><text x="0" textLength="16" font-weight="bold" class="color12">13</text><text x="16" textLength="8" class="foreground"> </text><text x="24" textLength="8" font-weight="bold" class="color12">|</text><text x="32" textLength="448" class="foreground">         self.0.iter().filter(|&amp;inst| inst.name == name)</text></g><g id="g6"><text x="0" textLength="24" class="foreground">   </text><text x="24" textLength="8" font-weight="bold" class="color12">|</text><text x="32" textLength="240" class="foreground">                              </text><text x="272" textLength="56" font-weight="bold" class="color9">^^^^^^^</text><text x="328" textLength="112" class="foreground">              </text><text x="440" textLength="32" font-weight="bold" class="color12">----</text><text x="472" textLength="8" class="foreground"> </text><text x="480" textLength="184" font-weight="bold" class="color12">`name` is borrowed here</text></g><g id="g7"><text x="0" textLength="24" class="foreground">   </text><text x="24" textLength="8" font-weight="bold" class="color12">|</text><text x="32" textLength="240" class="foreground">                              </text><text x="272" textLength="8" font-weight="bold" class="color9">|</text></g><g id="g8"><text x="0" textLength="24" class="foreground">   </text><text x="24" textLength="8" font-weight="bold" class="color12">|</text><text x="32" textLength="240" class="foreground">                              </text><text x="272" textLength="264" font-weight="bold" class="color9">may outlive borrowed value `name`</text></g><g id="g9"><text x="0" textLength="32" font-weight="bold" class="color10">note</text><text x="32" textLength="208" class="foreground">: closure is returned here</text></g><g id="g10"><text x="0" textLength="16" class="foreground">  </text><text x="16" textLength="32" font-weight="bold" class="color12">--&gt; </text><text x="48" textLength="128" class="foreground">src/main.rs:13:9</text></g><g id="g11"><text x="0" textLength="24" class="foreground">   </text><text x="24" textLength="8" font-weight="bold" class="color12">|</text><text x="32" textLength="72" class="foreground">         </text><text x="104" textLength="376" font-weight="bold" class="color10">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</text></g><g id="g12"><text x="0" textLength="32" font-weight="bold" class="color14">help</text><text x="32" textLength="888" class="foreground">: to force the closure to take ownership of `name` (and any other referenced variables), use the `move` keyword</text></g><g id="g13"><text x="0" textLength="16" font-weight="bold" class="color12">13</text><text x="16" textLength="8" class="foreground"> </text><text x="24" textLength="16" font-weight="bold" class="color12">| </text><text x="40" textLength="232" class="foreground">        self.0.iter().filter(</text><text x="272" textLength="40" class="color10">move </text><text x="312" textLength="208" class="foreground">|&amp;inst| inst.name == name)</text></g><g id="g14"><text x="0" textLength="24" class="foreground">   </text><text x="24" textLength="8" font-weight="bold" class="color12">|</text><text x="32" textLength="240" class="foreground">                              </text><text x="272" textLength="32" class="color10">++++</text></g><g id="g15"><text x="0" textLength="536" font-weight="bold" class="foreground">For more information about this error, try `rustc --explain E0373`.</text><text x="536" textLength="400" class="foreground">                                                  </text></g><g id="g16"><text x="0" textLength="40" font-weight="bold" class="color9">error</text><text x="40" textLength="8" font-weight="bold" class="foreground">:</text><text x="48" textLength="888" class="foreground"> could not compile `tfg_test` (bin "tfg_test") due to 1 previous error                                         </text></g><g id="g17"><text x="0" textLength="8" class="background"> </text></g></defs><g><use xlink:href="#g1" y="0"/><use xlink:href="#g2" y="17"/><use xlink:href="#g3" y="34"/><use xlink:href="#g4" y="51"/><use xlink:href="#g5" y="68"/><use xlink:href="#g6" y="85"/><use xlink:href="#g7" y="102"/><use xlink:href="#g8" y="119"/><use xlink:href="#g4" y="136"/><use xlink:href="#g9" y="153"/><use xlink:href="#g10" y="170"/><use xlink:href="#g4" y="187"/><use xlink:href="#g5" y="204"/><use xlink:href="#g11" y="221"/><use xlink:href="#g12" y="238"/><use xlink:href="#g4" y="255"/><use xlink:href="#g13" y="272"/><use xlink:href="#g14" y="289"/><use xlink:href="#g15" y="323"/><use xlink:href="#g16" y="340"/><use xlink:href="#g17" y="357"/></g></svg>
+</svg>

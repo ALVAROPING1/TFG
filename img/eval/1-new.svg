@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 500 309" width="500" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="60" rows="17"/>
+            <termtosvg:animation type="css"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[#screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+            white-space: pre;
+        }
+    ]]></style>
+        <style type="text/css" id="user-style">
+            /* The colors defined below are the default 16 colors used for rendering text of the terminal. Adjust
+               them as needed. */
+            .foreground {fill: #000000;}
+            .background {fill: #eeeeee;}
+            .color0 {fill: #ffffff;}
+            .color1 {fill: #cc0403;}
+            .color2 {fill: #19cb00;}
+            .color3 {fill: #eb6e00;}
+            .color4 {fill: #0d73cc;}
+            .color5 {fill: #cb1ed1;}
+            .color6 {fill: #0dcdcd;}
+            .color7 {fill: #767676;}
+            .color8 {fill: #dddddd;}
+            .color9 {fill: #f2201f;}
+            .color10 {fill: #189900;}
+            .color11 {fill: #ff9800;}
+            .color12 {fill: #1a8fff;}
+            .color13 {fill: #fd28ff;}
+            .color14 {fill: #00bbcc;}
+            .color15 {fill: #000000;}
+        </style>
+    </defs>
+    <rect id="terminalui" class="background" width="100%" height="100%"/>
+    <svg id="screen" width="480" height="289" x="10" y="10" viewBox="0 0 480 289" preserveAspectRatio="xMidYMin slice">
+    <rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text x="0" textLength="480" class="foreground">$ ./creator.sh -a RISC_V_RV32IMFD.json -s 1.s -o min --color</text></g><g id="g2"><text x="0" textLength="96" class="color1">[E11] Error:</text><text x="96" textLength="56" class="foreground"> Label </text><text x="152" textLength="64" class="color1">repeated</text><text x="216" textLength="152" class="foreground"> is already defined</text></g><g id="g3"><text x="0" textLength="32" class="color1">    </text><text x="32" textLength="24" fill="#6b6b6b">&#9581;&#9472;[</text><text x="56" textLength="120" class="foreground"> assembly:10:1 </text><text x="176" textLength="8" fill="#6b6b6b">]</text></g><g id="g4"><text x="0" textLength="32" class="color1">    </text><text x="32" textLength="8" fill="#6b6b6b">&#9474;</text></g><g id="g5"><text x="0" textLength="8" class="color1"> </text><text x="8" textLength="32" fill="#6b6b6b"> 3 &#9474;</text><text x="40" textLength="8" class="foreground"> </text><text x="48" textLength="72" class="color12">repeated:</text><text x="120" textLength="72" fill="#4d4d4d"> li t0, 0</text></g><g id="g6"><text x="0" textLength="8" class="color1"> </text><text x="8" textLength="32" fill="#a7a7a7">   &#9474;</text><text x="40" textLength="8" class="foreground"> </text><text x="48" textLength="72" class="color12">&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;</text><text x="120" textLength="16" class="foreground">  </text></g><g id="g7"><text x="0" textLength="8" class="color1"> </text><text x="8" textLength="32" fill="#a7a7a7">   &#9474;</text><text x="40" textLength="40" class="foreground">     </text><text x="80" textLength="56" class="color12">&#9584;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</text><text x="136" textLength="8" class="foreground"> </text><text x="144" textLength="40" class="color12">Note:</text><text x="184" textLength="192" class="foreground"> Label also defined here</text></g><g id="g8"><text x="0" textLength="8" class="color1"> </text><text x="8" textLength="32" fill="#a7a7a7">   &#9474;</text><text x="40" textLength="8" class="foreground"> </text></g><g id="g9"><text x="0" textLength="8" class="color1"> </text><text x="8" textLength="32" fill="#6b6b6b">10 &#9474;</text><text x="40" textLength="8" class="foreground"> </text><text x="48" textLength="72" class="color1">repeated:</text><text x="120" textLength="120" fill="#4d4d4d"> add t2, t0, t1</text></g><g id="g10"><text x="0" textLength="8" class="color1"> </text><text x="8" textLength="32" fill="#a7a7a7">   &#9474;</text><text x="40" textLength="8" class="foreground"> </text><text x="48" textLength="72" class="color1">&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;</text><text x="120" textLength="16" class="foreground">  </text></g><g id="g11"><text x="0" textLength="8" class="color1"> </text><text x="8" textLength="32" fill="#a7a7a7">   &#9474;</text><text x="40" textLength="40" class="foreground">     </text><text x="80" textLength="56" class="color1">&#9584;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</text><text x="136" textLength="128" class="foreground"> Duplicate label</text></g><g id="g12"><text x="0" textLength="8" class="color1"> </text><text x="8" textLength="32" fill="#a7a7a7">   &#9474;</text><text x="40" textLength="8" class="foreground"> </text><text x="48" textLength="32" class="color10">Help</text><text x="80" textLength="320" class="foreground">: Consider renaming either of the labels</text></g><g id="g13"><text x="0" textLength="40" fill="#6b6b6b">&#9472;&#9472;&#9472;&#9472;&#9583;</text></g><g id="g14"><text x="0" textLength="96" class="color1">Not executed</text></g><g id="g15"><text x="0" textLength="280" class="foreground">keyboard[0x0]:''; display[0x0]:''; </text></g></defs><g><use xlink:href="#g1" y="0"/><use xlink:href="#g2" y="17"/><use xlink:href="#g3" y="34"/><use xlink:href="#g4" y="51"/><use xlink:href="#g5" y="68"/><use xlink:href="#g6" y="85"/><use xlink:href="#g7" y="102"/><use xlink:href="#g8" y="119"/><use xlink:href="#g9" y="136"/><use xlink:href="#g10" y="153"/><use xlink:href="#g11" y="170"/><use xlink:href="#g8" y="187"/><use xlink:href="#g12" y="204"/><use xlink:href="#g13" y="221"/><use xlink:href="#g14" y="255"/><use xlink:href="#g15" y="272"/></g></svg>
+</svg>

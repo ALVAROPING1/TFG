@@ -58,8 +58,8 @@
     \includefigure{\includegraphics[width=#1\textwidth]{#2}}{#2}{#3}
 }
 
-\newcommand{\graphicfigurehere}[3][0.8] {
-    \includefigure[H]{\includegraphics[width=#1\textwidth]{#2}}{#2}{#3}
+\newcommand{\svgfigurehere}[3][0.8] {
+    \includefigure[H]{\includesvg[inkscapelatex=false,width=#1\textwidth]{#2.svg}}{#2}{#3}
 }
 
 \newcommand{\glsdisponly}[2]{\glsdisp{#1}{#2}\glsadd{#1}}

@@ -510,9 +510,9 @@ usuario están cubiertos por al menos una prueba de validación.
 \setcounter{eval}{1}
 
 \newcommand{\evalres}{
-    \graphicfigurehere[0.8]{eval/\arabic{eval}-new}{Evaluación \arabic{eval} - Compilador nuevo}
-    \graphicfigurehere[0.55]{eval/\arabic{eval}-old}{Evaluación \arabic{eval} - Compilador actual}
-    \graphicfigurehere[0.55]{eval/\arabic{eval}-as}{Evaluación \arabic{eval} - GAS}
+    \svgfigurehere[0.7]{eval/\arabic{eval}-new}{Evaluación \arabic{eval} - Compilador nuevo}
+    \svgfigurehere[0.7]{eval/\arabic{eval}-old}{Evaluación \arabic{eval} - Compilador actual}
+    \svgfigurehere[0.7]{eval/\arabic{eval}-as}{Evaluación \arabic{eval} - GAS}
     \stepcounter{eval}
 }
 
@@ -593,8 +593,8 @@ ha podido ejecutar en un entorno web. Como se puede observar, el nuevo
 \includefigure{
 \begin{tikzpicture}
     \begin{axis}[
-        width=0.7\textwidth,
-        title={Comparativa de rendimiento},
+        width=0.75\textwidth,
+        %title={Comparativa de rendimiento},
         title style={yshift=1.6cm},
         ylabel={Tiempo de compilación (s)},
         symbolic x coords={\gls{CLI}, Web},
