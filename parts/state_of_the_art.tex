@@ -33,22 +33,58 @@ actualidad entran dentro de esta categoría.
 \subsubsection{Spike}
 
 Spike \parencite{spike} es el simulador de referencia para RISC-V, desarrollado
-por RISC-V International. Es capaz de emular un sistema RISC-V completo, y está
-diseñado para servir como un punto de inicio para ejecutar código RISC-V.
+por RISC-V International. Está escrito en C++, y es capaz de emular un sistema RISC-V completo, y está
+diseñado para servir como un punto de inicio para ejecutar código RISC-V. Debido
+a esto, permite ejecutar casi cualquier \glspl{program}.
 
 Spike cuenta con una interfaz por \glsdisponly{CLI}{línea de comandos (CLI)}
 (\figureref{spike}), y permite seleccionar las extensiones de la \gls{ISA}
 (contando con soporte para la mayoría de las extensiones estándar) y el modelo
 de memoria a utilizar. Permite ejecutar código \gls{instruction} a
 \gls{instruction}, visualizar el contenido de los \glspl{register} y la
-\gls{memory}, y ejecutar código en modo usuario y privilegiado. También cuenta
+\gls{memory}, I/O, y ejecutar código en modo usuario y privilegiado. También cuenta
 con un modo básico de depuración interactivo, y permite utilizar \progref{gdb}
 en caso de necesitar un depurador más avanzado. Aunque es un simulador
 específico de RISC-V, permite añadir y probar nuevas \glspl{instruction}.
 
-\svgfigure{spike}{Interfaz de Spike}
+\svgfigure[0.6]{spike}{Interfaz de Spike}
 
-% TODO: add another simulator
+\subsubsection{Kite}
+
+Kite \parencite{kite} \parencite{kite-gh} es un simulador que modela un
+\gls{processor} RISC-V con un \textit{pipeline} de cinco etapas, implementado en
+C++. Su primera versión se desarrolló en 2019 con propósitos educativos para la
+asignatura de arquitectura de Computadores. Este simulador está basado en el
+modelo de \gls{processor} descrito en \textit{Computer Organization and Design,
+RISC-V Edition: The Hardware and Software Interface} \parencite{kite-book}. Su
+objetivo es ofrecer a los estudiantes un simulador fácil de usar con un modelo
+de temporización preciso que siga lo descrito en el libro.
+
+Kite implementa la mayoría de las \glspl{instruction} básicas descritas en el
+libro. Este simulador ofrece funcionalidades avanzadas del modelo de
+\textit{pipeline}, como comprobaciones de dependencias (riesgos de datos),
+\textit{stalls}, memoria caché de datos, y opcionalmente envío adelantado y
+predicción de ramas. Además, también cuenta con una opción de depuración que
+permite ver el progreso detallado de la ejecución de \glspl{instruction} en el
+\textit{pipeline}. Esto ayuda a los estudiantes a mejorar su comprensión del
+\textit{pipeline} de un \gls{processor}
+
+Kite cuenta se utiliza mediante una \gls{CLI} (\figureref{kite}) que recibe el
+nombre del fichero con el código \glsdisp{assembly}{ensamblador} a ejecutar.
+Además, utiliza dos ficheros adicionales, \verb!reg_state! y \verb!mem_state!,
+que deben contener el estado inicial de los \glspl{register} y \gls{memory} a
+utilizar. El simulador ejecuta el \gls{program} dado, opcionalmente mostrando
+información sobre el progreso de la ejecución de \glspl{instruction} en el
+\textit{pipeline}. Al terminar la ejecución del \gls{program}, muestra una serie
+de estadísticas sobre esta, como el número de ciclos de reloj utilizados, el
+número de ciclos perdidos durante \textit{stalls}, los ciclos de reloj
+consumidos por cada \gls{instruction} de media, y estadísticas de la memoria
+caché. Por último, también muestra el estado final de los \gls{register} y las
+direcciones de \gls{memory} accedidas.
+
+\svgfigure[0.5]{kite}{Interfaz de Kite}
+
+\FloatBarrier
 
 \subsection{Simuladores genéricos}
 

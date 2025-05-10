@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 500 1057" width="500" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="60" rows="61"/>
+            <termtosvg:animation type="css"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[#screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+            white-space: pre;
+        }
+    ]]></style>
+        <style type="text/css" id="user-style">
+            /* The colors defined below are the default 16 colors used for rendering text of the terminal. Adjust
+               them as needed. */
+            .foreground {fill: #000000;}
+            .background {fill: #eeeeee;}
+            .color0 {fill: #ffffff;}
+            .color1 {fill: #cc0403;}
+            .color2 {fill: #19cb00;}
+            .color3 {fill: #eb6e00;}
+            .color4 {fill: #0d73cc;}
+            .color5 {fill: #cb1ed1;}
+            .color6 {fill: #0dcdcd;}
+            .color7 {fill: #767676;}
+            .color8 {fill: #dddddd;}
+            .color9 {fill: #f2201f;}
+            .color10 {fill: #189900;}
+            .color11 {fill: #ff9800;}
+            .color12 {fill: #1a8fff;}
+            .color13 {fill: #fd28ff;}
+            .color14 {fill: #00bbcc;}
+            .color15 {fill: #000000;}
+        </style>
+    </defs>
+    <rect id="terminalui" class="background" width="100%" height="100%"/>
+    <svg id="screen" width="480" height="1037" x="10" y="10" viewBox="0 0 480 1037" preserveAspectRatio="xMidYMin slice">
+    <rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text x="0" textLength="168" class="foreground">$ ./kite program_code</text></g><g id="g2"><text x="0" textLength="480" class="foreground">************************************************************</text></g><g id="g3"><text x="0" textLength="480" class="foreground">* Kite: Architecture Simulator for RISC-V Instruction Set  *</text></g><g id="g4"><text x="0" textLength="480" class="foreground">* Developed by William J. Song                             *</text></g><g id="g5"><text x="0" textLength="480" class="foreground">* Computer Architecture and Systems Lab, Yonsei University *</text></g><g id="g6"><text x="0" textLength="480" class="foreground">* Version: 1.12                                            *</text></g><g id="g7"><text x="0" textLength="136" class="foreground">Start running ...</text></g><g id="g8"><text x="0" textLength="40" class="foreground">Done.</text></g><g id="g9"><text x="0" textLength="320" class="foreground">======== [Kite Pipeline Stats] =========</text></g><g id="g10"><text x="0" textLength="264" class="foreground">Total number of clock cycles = 48</text></g><g id="g11"><text x="0" textLength="272" class="foreground">Total number of stalled cycles = 6</text></g><g id="g12"><text x="0" textLength="336" class="foreground">Total number of executed instructions = 17</text></g><g id="g13"><text x="0" textLength="240" class="foreground">Cycles per instruction = 2.824</text></g><g id="g14"><text x="0" textLength="136" class="foreground">Data cache stats:</text></g><g id="g15"><text x="0" textLength="184" class="foreground">    Number of loads = 0</text></g><g id="g16"><text x="0" textLength="192" class="foreground">    Number of stores = 1</text></g><g id="g17"><text x="0" textLength="224" class="foreground">    Number of writebacks = 0</text></g><g id="g18"><text x="0" textLength="216" class="foreground">    Miss rate = 1.000 (1/1)</text></g><g id="g19"><text x="0" textLength="120" class="foreground">Register state:</text></g><g id="g20"><text x="0" textLength="48" class="foreground">x0 = 0</text></g><g id="g21"><text x="0" textLength="48" class="foreground">x1 = 0</text></g><g id="g22"><text x="0" textLength="72" class="foreground">x2 = 4096</text></g><g id="g23"><text x="0" textLength="48" class="foreground">x3 = 0</text></g><g id="g24"><text x="0" textLength="48" class="foreground">x4 = 0</text></g><g id="g25"><text x="0" textLength="48" class="foreground">x5 = 0</text></g><g id="g26"><text x="0" textLength="48" class="foreground">x6 = 0</text></g><g id="g27"><text x="0" textLength="48" class="foreground">x7 = 0</text></g><g id="g28"><text x="0" textLength="48" class="foreground">x8 = 0</text></g><g id="g29"><text x="0" textLength="48" class="foreground">x9 = 0</text></g><g id="g30"><text x="0" textLength="56" class="foreground">x10 = 3</text></g><g id="g31"><text x="0" textLength="56" class="foreground">x11 = 0</text></g><g id="g32"><text x="0" textLength="56" class="foreground">x12 = 0</text></g><g id="g33"><text x="0" textLength="56" class="foreground">x13 = 0</text></g><g id="g34"><text x="0" textLength="56" class="foreground">x14 = 0</text></g><g id="g35"><text x="0" textLength="56" class="foreground">x15 = 0</text></g><g id="g36"><text x="0" textLength="56" class="foreground">x16 = 0</text></g><g id="g37"><text x="0" textLength="56" class="foreground">x17 = 0</text></g><g id="g38"><text x="0" textLength="56" class="foreground">x18 = 0</text></g><g id="g39"><text x="0" textLength="56" class="foreground">x19 = 0</text></g><g id="g40"><text x="0" textLength="64" class="foreground">x20 = 32</text></g><g id="g41"><text x="0" textLength="72" class="foreground">x21 = 400</text></g><g id="g42"><text x="0" textLength="72" class="foreground">x22 = 720</text></g><g id="g43"><text x="0" textLength="56" class="foreground">x23 = 0</text></g><g id="g44"><text x="0" textLength="56" class="foreground">x24 = 0</text></g><g id="g45"><text x="0" textLength="56" class="foreground">x25 = 0</text></g><g id="g46"><text x="0" textLength="56" class="foreground">x26 = 0</text></g><g id="g47"><text x="0" textLength="56" class="foreground">x27 = 0</text></g><g id="g48"><text x="0" textLength="56" class="foreground">x28 = 0</text></g><g id="g49"><text x="0" textLength="56" class="foreground">x29 = 0</text></g><g id="g50"><text x="0" textLength="56" class="foreground">x30 = 0</text></g><g id="g51"><text x="0" textLength="56" class="foreground">x31 = 0</text></g><g id="g52"><text x="0" textLength="312" class="foreground">Memory state (only accessed addresses):</text></g><g id="g53"><text x="0" textLength="80" class="foreground">(2000) = 3</text></g><g id="g54"><text x="0" textLength="336" class="foreground">======== [End of Pipeline Stats] =========</text></g></defs><g><use xlink:href="#g1" y="0"/><use xlink:href="#g2" y="17"/><use xlink:href="#g3" y="34"/><use xlink:href="#g4" y="51"/><use xlink:href="#g5" y="68"/><use xlink:href="#g6" y="85"/><use xlink:href="#g2" y="102"/><use xlink:href="#g7" y="136"/><use xlink:href="#g8" y="153"/><use xlink:href="#g9" y="187"/><use xlink:href="#g10" y="204"/><use xlink:href="#g11" y="221"/><use xlink:href="#g12" y="238"/><use xlink:href="#g13" y="255"/><use xlink:href="#g14" y="289"/><use xlink:href="#g15" y="306"/><use xlink:href="#g16" y="323"/><use xlink:href="#g17" y="340"/><use xlink:href="#g18" y="357"/><use xlink:href="#g19" y="391"/><use xlink:href="#g20" y="408"/><use xlink:href="#g21" y="425"/><use xlink:href="#g22" y="442"/><use xlink:href="#g23" y="459"/><use xlink:href="#g24" y="476"/><use xlink:href="#g25" y="493"/><use xlink:href="#g26" y="510"/><use xlink:href="#g27" y="527"/><use xlink:href="#g28" y="544"/><use xlink:href="#g29" y="561"/><use xlink:href="#g30" y="578"/><use xlink:href="#g31" y="595"/><use xlink:href="#g32" y="612"/><use xlink:href="#g33" y="629"/><use xlink:href="#g34" y="646"/><use xlink:href="#g35" y="663"/><use xlink:href="#g36" y="680"/><use xlink:href="#g37" y="697"/><use xlink:href="#g38" y="714"/><use xlink:href="#g39" y="731"/><use xlink:href="#g40" y="748"/><use xlink:href="#g41" y="765"/><use xlink:href="#g42" y="782"/><use xlink:href="#g43" y="799"/><use xlink:href="#g44" y="816"/><use xlink:href="#g45" y="833"/><use xlink:href="#g46" y="850"/><use xlink:href="#g47" y="867"/><use xlink:href="#g48" y="884"/><use xlink:href="#g49" y="901"/><use xlink:href="#g50" y="918"/><use xlink:href="#g51" y="935"/><use xlink:href="#g52" y="969"/><use xlink:href="#g53" y="986"/><use xlink:href="#g54" y="1020"/></g></svg>
+</svg>
