@@ -1,14 +1,136 @@
-\chapter{Conclusiones y trabajo futuro}\label{chap:conclusions}
+\chapter{Conclusiones y trabajos futuros}\label{chap:conclusions}
 
-\section{Conclusiones del proyecto}
+En este capítulo se presentarán las conclusiones obtenidas con la realización
+del proyecto (\sectionref{proyect-conclusions}), estudiando los objetivos
+propuestos en el \chapterref{introduction}, y las conclusiones personales
+(\sectionref{personal-conclusions}), indicando los conocimientos adquiridos y
+las asignaturas relacionadas con el proyecto. Tras esto, la
+\sectionref{additional-contributions} explicará contribuciones adicionales
+realizadas durante el desarrollo del proyecto que no están directamente
+relacionadas con el mismo. Finalmente, la \sectionref{future-work} indicará
+trabajos futuros que se podrían realizar para mejorar el sistema desarrollado.
 
-\section{Conclusiones personales}
+\section{Conclusiones del proyecto}\label{sec:proyect-conclusions}
 
-\section{Contribuciones adicionales}
+En este documento se ha descrito el análisis, diseño, e implementación de un
+\gls{compiler} de \gls{assembly} genérico. El sistema desarrollado es
+\gls{FOSS}, y está centrado en tener muchas funcionalidades y generar buenos
+mensajes de error que ayuden a los usuarios aprender el \gls{assembly}.
 
-\section{Trabajo futuro}
+Como se explicó en la \sectionref{objectives}, el objetivo principal del
+proyecto era crear un \gls{compiler} capaz de reemplazar al actualmente
+utilizado por CREATOR, lo cual se ha logrado. Además, también se han logrado
+todos los objetivos secundarios:
+
+\begin{itemize}
+    \item \textbf{O1:} El sistema permite definir las \glspl{instruction}
+    permitidas en la \gls{ISA}, y utilizar estas en los \glspl{program}.
+    \item \textbf{O2:} El sistema permite \glsdisp{compilation}{compilar}
+    \glspl{program} según la definición de una \gls{ISA}
+    \item \textbf{O3:} Los mensajes de error generados por el sistema incluyen
+    toda la información relevante para comprender la causa del problema y cómo
+    solucionarlo, incluyendo notas con información adicional relevante para el
+    error y mensajes de ayuda con posibles soluciones.
+    \item \textbf{O4:} El sistema es compatible con todas las definiciones de
+    \glspl{ISA} creadas previamente para CREATOR.
+    \item \textbf{O5:} El sistema tiene soporte para nuevas funcionalidades
+    avanzadas como el uso de \gls{expression} aritméticas y etiquetas como
+    valores. Esto permite, por ejemplo, definir los vectores de interrupciones
+    utilizados en la asignatura de \textit{Sistemas Operativos}.
+\end{itemize}
+
+La principal dificultad encontrada durante el desarrollo del sistema fue el
+analizador semántico y su gestión de las \glspl{forward-reference}. Como se
+explicó en la \subsectionref{compiler}, se consideraron múltiples opciones para
+realizar esto antes de encontrar una buena solución del problema. Además, como
+se puede ver en el diagrama de Gantt (\figureref{gantt}), esto requirió mucho
+tiempo. Un mayor conocimiento sobre \glspl{assembler} podría haber reducido este
+tiempo.
+
+\section{Conclusiones personales}\label{sec:personal-conclusions}
+
+La realización de este proyecto me ha permitido aplicar los conocimientos
+adquiridos durante el grado, además de aprender nuevas herramientas y
+tecnologías que no había tenido la oportunidad de utilizar hasta ahora.
+
+La principal fuente de información para este proyecto ha sido la asignatura
+\textit{Procesadores del Lenguaje}, ya que me enseñó la estructura, componentes,
+y funcionamiento de un \gls{compiler}. Otras asignaturas que han sido
+fundamentales para su desarrollo han sido \textit{Estructura de Computadores} y
+\textit{Arquitectura de Computadores}, en las que se explica el funcionamiento
+de un \gls{computer} y sobre el \gls{assembly}. Estas asignaturas son de las que
+más me han gustado de la carrera. Otras asignaturas que me ayudaron para este
+proyecto fueron \textit{Programación}, \textit{Estructura de Datos y
+Algoritmos}, y \textit{Teoría de Autómatas y Lenguajes Formales}.
+
+He aprendido mucho con la realización de este proyecto, tanto con la
+implementación del \textit{software} como escribiendo este documento. Aunque ya
+conocía Rust antes de empezar y había escrito algunos programas pequeños, no
+tenía demasiada experiencia realizando \glspl{program} más grandes y complejos,
+y tampoco tenía ninguna experiencia utilizando \gls{wasm}. Escribí este
+documento en \LaTeX, y, aunque ya tenía cierta experiencia utilizando esta
+herramienta para otros documentos, no había utilizado ninguna de sus
+funcionalidades avanzadas. Escribir este documento me ha permitido aprender
+mucho más de esta herramienta, y he podido utilizar muchas de sus
+funcionalidades avanzadas.
+
+\section{Contribuciones adicionales}\label{sec:additional-contributions}
+
+Como ya se ha mencionado, este documento está escrito en
+\LaTeX~\parencite{latex}. Su código fuente se encuentra disponible en
+\myreportrepo. Este código fuente utiliza una plantilla de \LaTeX~desarrollada
+por Luis Daniel Casais Mezquida \parencite{UC3Mtemplate}. Esta plantilla
+contiene una clase de \LaTeX~que define el formato del documento, siguiendo la
+normativa de la universidad \parencite{report-guidelines}.
+
+Durante la escritura de este documento, se encontraron y corrigieron varios
+fallos en esta plantilla, particularmente en su uso para documentos en Español.
+Estas aportaciones se añadieron a la plantilla para permitir su uso por otros
+estudiantes. Además, el código fuente de esta memoria puede servir como un
+ejemplo de uso de la plantilla, para ayudar a futuros estudiantes que quieran
+utilizarla.
+
+Este documento también utiliza el paquete SRS, originalmente desarrollado por
+Javier López Gómez y modificado por Luis Daniel Casais Mezquida
+\parencite{srs-package}. Este paquete automatiza el proceso de generación de
+tablas para el proceso de ingeniería de \textit{software}, particularmente
+tablas de requisitos, casos de uso, y componentes, y matrices de trazabilidad
+entre estos elementos. Durante la realización de este documento, se modificó
+este paquete para incluir nuevas funcionalidades: uso de identificadores
+nominales para evitar problemas de referencias al reordenarlos, gestión de
+errores para identificadores desconocidos o repetidos, y posibilidad de incluir
+múltiples orígenes en todos los elementos. Estos cambios se contribuyeron al
+paquete original para permitir su uso por otros estudiantes de ingeniería
+informática.
+
+\section{Trabajos futuros}\label{sec:future-work}
+
+Este proyecto implementa un \gls{compiler} de \glsdisp{assembly}{ensamblador},
+pero se podría mejorar de diversas formas:
+
+\begin{itemize}
+    \item Se podría añadir soporte para \glspl{macro}.
+    \item Se podría añadir soporte para la definición de símbolos con valores
+    arbitrarios (similar a la directiva \verb!.set! de GAS).
+    \item La mayoría de \glspl{compiler} implementan estrategias de recuperación
+    de errores para permitir detectar la mayor cantidad posible de errores en
+    cada \gls{compilation}. Se podrían añadir estas estrategias para poder
+    mostrar al usuario la mayor cantidad posible de problemas en su código.
+    \item El sistema actualmente soporta operadores aritméticos y bit a bit
+    básicos, pero se podrían añadir más operadores como desplazamientos,
+    comparaciones, o booleanos.
+\end{itemize}
+
+\noindent
+Además, también se podrían mejorar algunos aspectos de la implementación del
+sistema:
+
 \begin{itemize}
     \item Como se mencionó en la \subsectionref{parser}, crear un analizador
-    sintáctico descendente recursivo a mano podría permitir generar mejores
-    errores y a aplicar estrategias de recuperación de errores.
+    sintáctico descendente recursivo a mano podría permitir una mayor velocidad.
+    \item Por compatibilidad con definiciones antiguas de \glspl{ISA}, el
+    sistema utiliza una expansión de \gls{pseudo-instruction} muy similar a la
+    implementada por el \gls{compiler} antiguo, y esto evita el uso de
+    \glspl{forward-reference} en ciertos casos. Si se acepta modificar estas
+    definiciones, se podría rehacer este sistema para corregir este fallo.
 \end{itemize}

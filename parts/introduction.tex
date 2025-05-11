@@ -1,19 +1,57 @@
-\chapter{Introduction}\label{chap:introduction}
-\section{Motivation}\label{sec:motivation}
+\chapter{Introducción}\label{chap:introduction}
+\section{Motivación}\label{sec:motivation}
 
 
 
-\section{Objectives}\label{sec:objectives}
+\section{Objetivos}\label{sec:objectives}
 
-\section{Document Structure}\label{sec:structure}
-The document contains the following chapters:
+El principal objetivo de este proyecto es desarrollar un \gls{compiler} de
+\gls{assembly} (\gls{assembler}) genérico que sustituya al actualmente utilizado
+por el simulador CREATOR, añadiendo nuevas funcionalidades y mejorando sus
+mensajes de error. Esto ayudará a los alumnos a aprender el \gls{assembly}.
+
+\noindent
+A partir de este objetivo principal, se pueden definir objetivos secundarios:
+
 \begin{itemize}
-  \item \chapterref{introduction}, .
-  \item \chapterref{state-of-the-art}, .
-  \item \chapterref{analysis}, .
-  \item \chapterref{design}, .
-  \item \chapterref{implementation}, .
-  \item \chapterref{validation}, .
-  \item \chapterref{planning}, .
-  \item \chapterref{conclusions}, .
+    \item \textbf{O1:} Utilizar diferentes juegos de \glspl{instruction}.
+    \item \textbf{O2:} \glsdisp{compilation}{Compilar} cualquier programa
+    \glsdisp{assembly}{ensamblador} escrito con las \glspl{instruction}
+    definidas.
+    \item \textbf{O3:} Generar mensajes de error con mucha información que
+    ayuden a los estudiantes comprender la causa del problema.
+    \item \textbf{O4:} Ser compatible con las definiciones de
+    \glsdisp{ISA}{arquitecturas} actualmente desarrolladas para CREATOR
+    \item \textbf{O5:} Ser lo suficientemente flexible como para añadir nuevas
+    funcionalidades, que permitan el uso de CREATOR en nuevas situaciones.
+\end{itemize}
+
+\section{Estructura del documento}\label{sec:structure}
+
+Este documento estará formado por los siguientes capítulos:
+
+\begin{itemize}
+    \item \chapterref{introduction}, realiza una introducción al proyecto,
+    explicando sus motivaciones y objetivos. Además, también contiene una
+    descripción de los contenidos del documento.
+    \item \chapterref{state-of-the-art}, analiza el estado de los simuladores y
+    \glspl{assembler} existentes, las diferentes técnicas utilizadas para
+    desarrollar analizadores sintácticos, los mensajes de error generados por
+    diversos \glspl{compiler}, y los \glspl{programming language} utilizados
+    para el desarrollo de estas herramientas.
+    \item \chapterref{analysis}, presenta el proyecto y define sus requisitos y
+    casos de uso.
+    \item \chapterref{design}, explica el diseño y arquitectura del sistema
+    creado, y sus componentes.
+    \item \chapterref{implementation}, presenta los detalles de implementación
+    del sistema, y explica cómo realizar su despliegue.
+    \item \chapterref{validation}, indica cómo se ha verificado el correcto
+    desarrollo del sistema desarrollando, detallando las pruebas y comparándolo
+    con otras herramientas.
+    \item \chapterref{planning}, describe la planificación seguida en el
+    proyecto y su presupuesto. También discute el marco regulador y entorno
+    socioeconómico en el que se desarrolla el mismo.
+    \item \chapterref{conclusions}, expone las conclusiones obtenidas con la
+    realización del proyecto, contribuciones adicionales realizadas durante el
+    mismo, y los trabajos futuros que podrían mejorar el sistema.
 \end{itemize}
