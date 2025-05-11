@@ -36,12 +36,17 @@ simulado. Los simuladores se pueden clasificar en específicos, si estos compone
 solo permiten simular una \gls{ISA} específica, o genéricos, si se pueden
 configurar para simular varias \glspl{ISA} distintas.
 
+Como el objetivo del proyecto es la creación de un \gls{assembler} para un
+simulador, en esta sección se van a analizar varios simuladores existentes en la
+actualidad.
+
 \subsection{Simuladores específicos}
 
 Un simulador específico está diseñado para simular una única \gls{ISA}, como
 RISC-V o ARM, y no permite su modificación. Esto hace que sean más simples que
 los simuladores genéricos, y, debido a esto, la mayoría de los simuladores en la
-actualidad entran dentro de esta categoría.
+actualidad entran dentro de esta categoría. En esta sección se exponen dos
+ejemplos de este tipo de simuladores: Spike y Kite
 
 \subsubsection{Spike}
 
@@ -60,7 +65,7 @@ con un modo básico de depuración interactivo, y permite utilizar \progref{gdb}
 en caso de necesitar un depurador más avanzado. Aunque es un simulador
 específico de RISC-V, permite añadir y probar nuevas \glspl{instruction}.
 
-\svgfigure[0.65]{spike}{Interfaz de Spike}
+\svgfigure[0.5]{spike}{Interfaz de Spike}
 
 \subsubsection{Kite}
 
@@ -177,7 +182,9 @@ múltiples \glspl{ISA} distintas. Cabe destacar que cada \gls{assembler} utiliza
 una sintaxis propia, por lo que, en general, el código se escribe para un
 \gls{assembler} concreto.
 
-En esta sección se exponen tres ejemplos de \glspl{assembler}: GAS, TCCASM, y NASM.
+Debido a que el objetivo principal del proyecto es desarrollar un
+\gls{assembler}, en esta sección se exponen tres ejemplos de \glspl{assembler}
+apliamente utilizados en la actualidad: GAS, TCCASM, y NASM.
 
 \subsection{GAS}
 
@@ -253,6 +260,8 @@ este. Sin embargo, para realizar esto, necesita conocer el tamaño de todos los
 datos e \glspl{instruction} durante la primera pasada. Debido a esto, no permite
 el uso de \glspl{forward-reference} en situaciones en las que el valor de estas
 puede afectar al tamaño de los elementos generados. \parencite{NASM-manual}
+
+% TODO: comparativa ensambladores
 
 \section{Técnicas de análisis sintáctico}\label{sec:parser-techniques}
 
@@ -432,7 +441,7 @@ problema y filtrar la que no se necesita.
 Actualmente, las herramientas utilizadas durante el desarrollo de
 \textit{software} para los diversos \glsdisp{programming language}{lenguajes},
 como \glspl{compiler}, \glspl{formatter}, o \glspl{linter}, se implementan en
-muchos \glspl{progrmming language} distintos.
+muchos \glspl{programming language} distintos.
 
 Para los \glsdisp{programming language}{lenguajes} de bajo nivel, como C
 \parencite{C} y C++ \parencite{cpp} o \glsdisp{assembly}{ensamblador},
