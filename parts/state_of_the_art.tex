@@ -18,7 +18,6 @@ utilizadas durante el desarrollo de \textit{software}.
 % - WASM/JS
 % - NPM/cargo
 
-% TODO: lenguaje de programación -> glossary
 \section{Simuladores de ensamblador}\label{sec:simulators}
 
 Un simulador de \glsdisp{assembly}{ensamblador} es un \gls{program} que permite
@@ -110,8 +109,9 @@ Sail y CREATOR.
 
 \subsubsection{Sail}
 
-Sail \parencite{sail} es un lenguaje para definir la \gls{ISA} de un
-\gls{processor} desarrollado por la Universidad de Cambridge.
+Sail \parencite{sail} es un \glsdisp{programming language}{lenguaje} para
+definir la \gls{ISA} de un \gls{processor} desarrollado por la Universidad de
+Cambridge.
 
 Esta herramienta permite validar la definición de la \gls{ISA} y generar
 simuladores en C y OCaml. Además, también permite ejecutar pruebas de validación
@@ -260,14 +260,15 @@ Un \gls{compiler} se compone principalmente de dos partes: análisis sintáctico
 análisis semántico. El análisis sintáctico (\textit{parsing}) se encarga de
 transformar el código a una representación intermedia, mientras que el análisis
 semántico se encarga de, utilizando la representación intermedia, verificar que
-el \gls{program} cumple la semántica del lenguaje y generar el código compilado.
-\parencite{dragon-book}
+el \gls{program} cumple la semántica del \glsdisp{programming language}{lenguaje}
+y generar el código compilado. \parencite{dragon-book}
 
-Al tratar con la semántica del lenguaje, no existen técnicas generales para
-realizar el análisis semántico. Sin embargo, para realizar el análisis
-sintáctico, existen múltiples técnicas basadas en el uso de \glspl{grammar}
-libres de contexto. Una \gls{grammar} es una descripción formal de la sintaxis
-de un lenguaje, y está formada por: \parencite{dragon-book}
+Al tratar con la semántica del \glsdisp{programming language}{lenguaje}, no
+existen técnicas generales para realizar el análisis semántico. Sin embargo,
+para realizar el análisis sintáctico, existen múltiples técnicas basadas en el
+uso de \glspl{grammar} libres de contexto. Una \gls{grammar} es una descripción
+formal de la sintaxis de un lenguaje, y está formada por:
+\parencite{dragon-book}
 
 \begin{itemize}
     \item Un conjunto de símbolos terminales (también conocidos como
@@ -395,7 +396,7 @@ Un ejemplo de malos mensajes de error es el \gls{compiler} de C\#, cuyos mensaje
 de error se pueden ver en la \figureref{error_csharp}. Como se puede ver, estos
 mensajes contienen muy poca información sobre el problema. Esto dificulta
 corregir los errores, especialmente para alguien que está intentando aprender el
-lenguaje.
+\glsdisp{programming language}{lenguaje}.
 
 \svgfigure[0.9]{error_csharp}{Mensaje de error del compilador de C\#}
 
@@ -427,26 +428,31 @@ problema y filtrar la que no se necesita.
 \section{Lenguajes de programación}\label{sec:programming-languages}
 
 Actualmente, las herramientas utilizadas durante el desarrollo de
-\textit{software} para los diversos lenguajes, como \glspl{compiler},
-\glspl{formatter}, o \glspl{linter}, se implementan en muchos lenguajes de
-programación distintos.
+\textit{software} para los diversos \glsdisp{programming language}{lenguajes},
+como \glspl{compiler}, \glspl{formatter}, o \glspl{linter}, se implementan en
+muchos \glspl{progrmming language} distintos.
 
-Para los lenguajes de bajo nivel, como C \parencite{C} y C++ \parencite{cpp} o
-\glsdisp{assembly}{ensamblador}, típicamente las herramientas se implementan en
-lenguajes de bajo nivel, comúnmente el mismo para el que se utilizan. Esto es
-debido a su mayor rendimiento, ya que el \textit{software} realizado en estos
-lenguajes sule tener grandes bases de código. La mayoría de herramientas de
-estos lenguajes, como \progref{gcc} y la \textit{suite} de \verb!clang!
+Para los \glsdisp{programming language}{lenguajes} de bajo nivel, como C
+\parencite{C} y C++ \parencite{cpp} o \glsdisp{assembly}{ensamblador},
+típicamente las herramientas se implementan en \glsdisp{programming
+language}{lenguajes} de bajo nivel, comúnmente el mismo para el que se utilizan.
+Esto es debido a su mayor rendimiento, ya que el \textit{software} realizado en
+estos \glsdisp{programming language}{lenguajes} sule tener grandes bases de
+código. La mayoría de herramientas de estos \glsdisp{programming
+language}{lenguajes}, como \progref{gcc} y la \textit{suite} de \verb!clang!
 (\verb!clang!, \verb!clang-tidy! y \verb!clang-format!) \parencite{clang},
 utilizan C/C++. Una excepción importante a esto es \progref{conan}, el gestor de
-paquetes de C/C++, que está escrito en un lenguaje de alto nivel (Python).
+paquetes de C/C++, que está escrito en un \glsdisp{programming language}{lenguaje}
+de alto nivel (Python).
 
-En los lenguajes de alto nivel, como Python \parencite{Python} o \gls{TS}
-\parencite{typescript}, las herramientas tradicionalmente se han implementado en
-lenguajes de alto nivel para facilitar su desarrollo. Este es el caso de
-\progref{pylint}, \progref{black} o el \gls{compiler} de \gls{TS}
+En los \glsdisp{programming language}{lenguajes} de alto nivel, como Python
+\parencite{Python} o \gls{TS} \parencite{typescript}, las herramientas
+tradicionalmente se han implementado en \glsdisp{programming
+language}{lenguajes} de alto nivel para facilitar su desarrollo. Este es el caso
+de \progref{pylint}, \progref{black} o el \gls{compiler} de \gls{TS}
 \parencite{tsc}. Sin embargo, recientemente muchas de estas herramientas se
-están reescribiendo en lenguajes de más bajo nivel como Rust \parencite{Rust} o
-Go \parencite{Go} debido a la mejora significativa de rendimiento que ofrecen
-estos lenguajes \parencite{typescript-go}. Algunos ejemplos de herramientas que
-han tenido éxito con esto son \progref{ruff} y \progref{uv}.
+están reescribiendo en \glsdisp{programming language}{lenguajes} de más bajo
+nivel como Rust \parencite{Rust} o Go \parencite{Go} debido a la mejora
+significativa de rendimiento que ofrecen estos \glsdisp{programming
+language}{lenguajes} \parencite{typescript-go}. Algunos ejemplos de herramientas
+que han tenido éxito con esto son \progref{ruff} y \progref{uv}.

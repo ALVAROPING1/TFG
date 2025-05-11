@@ -20,27 +20,30 @@ debe poder ejecutarse en navegador y Node.js, y tener una \gls{API} para
 \gls{JS}. Esto deja dos alternativas principales: utilizar \gls{JS} o
 \gls{wasm}.
 
-\gls{JS} es el lenguaje estándar utilizado por los navegadores y Node.js, por lo
-que es la primera opción para el desarrollo del sistema. El principal problema
-de esta opción es el rendimiento: \gls{JS} es un lenguaje interpretado, lo cual
-lo hace significativamente más lento que otros lenguajes
+\gls{JS} es el \glsdisp{programming language}{lenguaje} estándar utilizado por
+los navegadores y Node.js, por lo que es la primera opción para el desarrollo
+del sistema. El principal problema de esta opción es el rendimiento: \gls{JS} es
+un \glsdisp{programming language}{lenguaje} interpretado, lo cual lo hace
+significativamente más lento que otros \glsdisp{programming language}{lenguajes}
 \glsdisp{compilation}{compilados}, y, debido a esto, proyectos que fueron
-originalmente desarrollados en \gls{JS} se están moviendo a otros lenguajes
-\parencite{typescript-go}. La mejor velocidad de los lenguajes
+originalmente desarrollados en \gls{JS} se están moviendo a otros
+\glsdisp{programming language}{lenguajes} \parencite{typescript-go}. La mayor
+velocidad de los \glsdisp{programming language}{lenguajes}
 \glsdisp{compilation}{compilados} es debido a que pueden generar código que se
 ejecuta directamente en el \gls{processor} (ejecución nativa), sin el sobrecoste
 de una máquina virtual o intérprete. El \sreqref{NF-velocidad} indica que el
-sistema debe ser rápido, por lo que sería preferible utilizar un lenguaje que
-soporte la ejecución nativa.
+sistema debe ser rápido, por lo que sería preferible utilizar un
+\glsdisp{programming language}{lenguaje} que soporte la ejecución nativa.
 
-Otro problema de \gls{JS} es su \gls{type system}. \gls{JS} utiliza un sistema de
-tipos \glsdisponly{dynamic typing}{dinámico} y \glsdisponly{weak typing}{débil},
-con muchas conversiones implícitas de tipos \parencite{js-type-system}. Esto
-dificulta razonar sobre el código, ya que no garantiza que los tipos de datos
-serán los esperados, y permite que aparezcan errores muy difíciles de encontrar.
-Además, las conversiones implícitas de tipos permiten que los errores se
-propaguen antes de ser detectados, dificultando encontrar su origen. Debido a
-esto, sería preferible utilizar un lenguaje con un \gls{type system}
+Otro problema de \gls{JS} es su \gls{type system}. \gls{JS} utiliza un sistema
+de tipos \glsdisponly{dynamic typing}{dinámico} y \glsdisponly{weak
+typing}{débil}, con muchas conversiones implícitas de tipos
+\parencite{js-type-system}. Esto dificulta razonar sobre el código, ya que no
+garantiza que los tipos de datos serán los esperados, y permite que aparezcan
+errores muy difíciles de encontrar. Además, las conversiones implícitas de tipos
+permiten que los errores se propaguen antes de ser detectados, dificultando
+encontrar su origen. Debido a esto, sería preferible utilizar un
+\glsdisp{programming language}{lenguaje} con un \gls{type system}
 \glsdisponly{static typing}{estático} y \glsdisponly{strong typing}{fuerte}.
 \gls{TS} \parencite{typescript} ha surgido como una alternativa a \gls{JS} que
 soluciona este problema, pero al ser \glsdisp{compilation}{compilado} a \gls{JS}
@@ -49,18 +52,20 @@ no soluciona el problema de rendimiento.
 \gls{wasm} \parencite{wasm} es un nuevo estándar soportado por los navegadores y
 Node.js que permite la ejecución de \glspl{program} compilados de forma casi
 nativa, obteniendo un rendimiento significativamente mejor que \gls{JS}. Muchos
-lenguajes como C \parencite{C}, C++ \parencite{cpp}, o Rust \parencite{Rust}
-soportan la \gls{compilation} a \gls{wasm}, posibilitando su uso para desarrollar el
-sistema. Todos estos lenguajes tienen un rendimiento prácticamente idéntico, por
-lo que se necesitan analizar otras características para elegir la mejor opción.
+\glsdisp{programming language}{lenguajes} como C \parencite{C}, C++
+\parencite{cpp}, o Rust \parencite{Rust} soportan la \gls{compilation} a
+\gls{wasm}, posibilitando su uso para desarrollar el sistema. Todos estos
+\glsdisp{programming language}{lenguajes} tienen un rendimiento prácticamente
+idéntico, por lo que se necesitan analizar otras características para elegir la
+mejor opción.
 
 En la actualidad, la mayoría de las vulnerabilidades de seguridad en software
 están causadas por problemas en el uso y gestión de \gls{memory}
 \parencite{microsoft-memory-safety} \parencite{mozilla-memory-safety}. Utilizar
-un lenguaje que ofrezca \gls{memory safety} permite evitar estos fallos, y
-actualmente se está instando por la adopción de este tipo de lenguajes
+un \glsdisp{programming language}{lenguaje} que ofrezca \gls{memory safety} permite evitar estos fallos, y
+actualmente se está instando por la adopción de este tipo de \glsdisp{programming language}{lenguaje}
 \parencite{CISA-memory-safety} \parencite{whitehouse-memory-safety}. De los
-lenguajes anteriormente mencionados, el único que cumple con esta característica
+anteriormente mencionados, el único que cumple con esta característica
 es Rust \parencite{C-memory-safety}. % TODO: añadir cita sobre rust siendo memory safe
 
 Otra característica importante es la capacidad de generación de \glspl{binding}.
@@ -68,16 +73,18 @@ Estos son necesarios para permitir que el código \gls{JS} pueda utilizar un
 módulo \gls{wasm} como una \gls{library}, ofreciendo una \gls{API} para \gls{JS}
 como pide el \sreqref{NF-JS}. Existen herramientas como Emscripten (C/C++)
 \parencite{Emscripten} o Wasm-pack (Rust) \parencite{Wasm-pack} que realizan
-esto para todos los lenguajes mencionados anteriormente. Cabe destacar que
-Emscripten es algo más manual, ya que, por ejemplo, requiere redefinir los tipos
-de los argumentos y valor de retorno para cada función que se quiera ejecutar
-desde \gls{JS}. Wasm-pack, en cambio, es capaz de generar automáticamente todo
-el código necesario para poder utilizar las funciones definidas en el módulo
-\gls{wasm} como si se tratasen de funciones nativas de \gls{JS}.
+esto para todos los \glsdisp{programming language}{lenguajes} mencionados
+anteriormente. Cabe destacar que Emscripten es algo más manual, ya que, por
+ejemplo, requiere redefinir los tipos de los argumentos y valor de retorno para
+cada función que se quiera ejecutar desde \gls{JS}. Wasm-pack, en cambio, es
+capaz de generar automáticamente todo el código necesario para poder utilizar
+las funciones definidas en el módulo \gls{wasm} como si se tratasen de funciones
+nativas de \gls{JS}.
 
-La \tableref{language-comparison} resume las características analizadas. Teniendo
-en cuenta todas estas características, se ha elegido Rust como lenguaje a
-utilizar para el desarrollo del sistema.
+La \tableref{language-comparison} resume las características analizadas.
+Teniendo en cuenta todas estas características, se ha elegido Rust como
+\glsdisp{programming language}{lenguaje} a utilizar para el desarrollo del
+sistema.
 
 \begin{table}[htb]
     \caption{Comparación de los lenguajes de programación}
@@ -168,16 +175,18 @@ del analizador sintáctico debido a varios motivos:
 
 \subsection{Análisis semántico}\label{subsec:compiler}
 
-Como se ha explicado en la sección anterior, el análisis semántico se encarga
-de, utilizando una representación intermedia, verificar que el \gls{program}
-cumple la semántica del lenguaje y generar el código compilado.
+Como se explicó en la \sectionref{parser-techniques}, el análisis semántico se
+encarga de, utilizando una representación intermedia, verificar que el
+\gls{program} cumple la semántica del \glsdisp{programming language}{lenguaje} y
+generar el código compilado.
 
 Aunque lógicamente el analizador semántico toma como entrada el resultado del
 analizador sintáctico, ambos componentes se pueden mezclar para evitar
 representar el código intermedio explícitamente, realizando ambas tareas
 simultáneamente y aumentando la eficiencia del \gls{compiler}. Sin embargo, esto
 dificulta la tarea del analizador semántico al no poder explorar libremente el
-código intermedio. En la práctica, esto solo es posible para lenguajes y
+código intermedio. En la práctica, esto solo es posible para
+\glsdisp{programming language}{lenguajes} y
 \glspl{compiler} muy simples. Debido a esto, se ha optado por construir el
 código intermedio explícitamente para tener una mayor flexibilidad.
 \parencite{compiler-design}
