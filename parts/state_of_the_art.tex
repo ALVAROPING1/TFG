@@ -327,15 +327,17 @@ que permiten realizar combinaciones muy expresivas
 cuentan con estos operadores ya implementados, como Parsec \parencite{parsec}, Chumsky
 \parencite{chumsky}, y pom \parencite{pom}.
 
-% TODO: maybe mention resilient LL parsing?
-La principal ventaja de crear un analizador descendente recursivo manualmente es su
-gran flexibilidad, ya que ofrece control total sobre el funcionamiento del
+La principal ventaja de crear un analizador descendente recursivo manualmente es
+su gran flexibilidad, ya que ofrece control total sobre el funcionamiento del
 analizador sintáctico. Esto permite utilizar información obtenida durante la
 ejecución del \gls{compiler} para decidir cómo procesar la entrada, permitiendo
 un cierto grado de sensibilidad al contexto. Además, esto ayuda a generar buenos
 mensajes de error y a aplicar estrategias de recuperación de errores
-\parencite{errors-clang}. Muchos de los \glspl{programming language} utilizados
-en la actualidad, como C y C++, utilizan este método
+\parencite{errors-clang}. El funcionamiento de esta técnica también es más
+similar a la forma en la que se escribe el código, lo que facilita obtener
+información de bloques grandes de código aún en presencia de errores sintácticos
+\parencite{resilient-LL-parsing}. Muchos de los \glspl{programming language}
+utilizados en la actualidad, como C y C++, utilizan este método
 \parencite{parser-types-survey}.
 
 El principal problema de crear un analizador descendente recursivo a mano es su
