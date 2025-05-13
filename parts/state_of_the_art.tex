@@ -160,15 +160,6 @@ un fichero de configuración en formato \gls{json}, permitiendo el uso de
 \gls{JS} para ciertas opciones como la ejecución de una \gls{instruction}.
 Utilizando esto, CREATOR cuenta con definiciones para RISC-V y MIPS.
 
-La principal limitación de CREATOR es su \gls{assembler}. Aunque permite
-procesar \glspl{program} simples, carece de muchas funcionalidades importantes
-como el uso de etiquetas en las \glspl{data directive}. Esto es necesario, por
-ejemplo, para la creación del vector de interrupciones utilizado por los
-sistemas operativos para gestionar los diversos tipos de interrupciones. Además,
-sus mensajes de error son mejorables, y a veces no son capaces de mostrar el
-problema real. El sistema a desarrollar se encargará de reemplazar a este
-\gls{assembler}, solucionando todos estos problemas.
-
 \graphicfigure[1]{creator}{Interfaz principal de CREATOR (Web)}
 
 \section{Ensambladores}\label{sec:assemblers}
@@ -184,7 +175,10 @@ una sintaxis propia, por lo que, en general, el código se escribe para un
 
 Debido a que el objetivo principal del proyecto es desarrollar un
 \gls{assembler}, en esta sección se exponen tres ejemplos de \glspl{assembler}
-apliamente utilizados en la actualidad: \gls{GAS}, TCCASM, y NASM.
+apliamente utilizados en la actualidad: \gls{GAS}, TCCASM, y NASM. Además,
+también se estudiará el \gls{assembler} actualmente utilizado por CREATOR. Tras
+esto, se realizará una comparativa entre estas herramientas y la solución
+propuesta.
 
 \subsection{GNU Assembler}
 
@@ -202,9 +196,8 @@ actualidad, \gls{GAS} es uno de los \gls{assembler} más utilizados
 \gls{toolchain} de GNU, siendo el \textit{backend} por defecto de \progref{gcc},
 aunque también es mayormente compatible con otros \glspl{assembler}
 \parencite{as-manual}. Debido a esto, sus mensajes de error son mejorables, ya
-que obtener un alto rendimiento es más importante y registrar la información
-necesaria para generar buenos mensajes de error tiene un cierto coste. Un
-ejemplo de esto se puede ver en la figura \figureref{error_gas}.
+que la prioridad es obtener un alto rendimiento y no generar buenos mensajes de
+error. Un ejemplo de esto se puede ver en la figura \figureref{error_gas}.
 
 \svgfigure[0.6]{error_gas}{Mensaje de error del ensamblador de GNU}
 
@@ -263,6 +256,36 @@ este. Sin embargo, para realizar esto, necesita conocer el tamaño de todos los
 datos e \glspl{instruction} durante la primera pasada. Debido a esto, no permite
 el uso de \glspl{forward-reference} en situaciones en las que el valor de estas
 puede afectar al tamaño de los elementos generados. \parencite{NASM-manual}
+
+\subsection{CREATOR}
+
+CREATOR \parencite{CREATOR} cuenta con un \gls{assembler} propio para procesar
+el código \glsdisp{assembly}{ensamblador}, conviertiéndolo a una representación
+interna que puede ejecutar. Este \gls{assembler} está escrito en \gls{JS}, y
+soporta únicamente funcionalidades básicas: \glspl{instruction}, etiquetas,
+y algunas \glspl{directive} simples. Carece de muchas funcionalidades importantes
+como el uso de etiquetas en las \glspl{data directive}. Esto es necesario, por
+ejemplo, para la creación del vector de interrupciones utilizado en un sistema
+operativo para gestionar los diversos tipos de interrupciones. Tampoco tiene
+soporte para evaluación de \glspl{expression} aritméticas, \glspl{bigint},
+cadenas en UTF-8 \parencite{UTF-8}, \gls{compilation} condicional, definición de
+símbolos con variables arbitrarios, o \glspl{macro}.
+
+Con respecto a sus mensajes de error, aunque generalmente son mejores que los de
+\gls{GAS}, siguen siendo mejorables. Aunque incluyen la causa del error y la
+localización en el código que lo produjo (\figureref{error_creator}), no
+incluyen información adicional relevante para el problema ni posibles soluciones
+del mismo. Estos mensajes también se podrían mejorar añadiendo algo de formato
+para resaltar las partes más importantes de los mismos. Cabe destacar que, en
+ciertos casos, estos mensajes no son capaces de mostrar el problema real debido
+a limitaciones del \gls{assembler}.
+
+\svgfigure[0.6]{error_creator}{Mensaje de error del ensamblador de CREATOR}
+
+El sistema a desarrollar se encargará de reemplazar a este \gls{assembler},
+añadiendo soporte para nuevas funcionalidades y mejorando sus mensajes de error.
+
+\subsection{Comparativa}
 
 % TODO: comparativa ensambladores
 
