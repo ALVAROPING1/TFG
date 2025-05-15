@@ -507,17 +507,49 @@ usuario están cubiertos por al menos una prueba de validación.
 \newcounter{eval}
 \setcounter{eval}{1}
 
+% This took way too long to figure out
+% - Use multiple figures with `\ContinuedFloat` to allow page breaks. If not
+%   doing this, an empty line is needed between `subfloatrow` environments to
+%   add each element on a single line
+% - Use `X\textwidth` for `\ffigbox` instead of `\FBwidth` because `\FBwidth`
+%   doesn't seem to be working
+% - Add the label/caption of the top level `\ffigbox` after the contents because
+%   adding it before doesn't work (even though according to the docs it's how it
+%   should be done)
 \newcommand{\evalres}{
-    \svgfigurehere[0.7]{eval/\arabic{eval}-new}{Evaluación \arabic{eval} - Compilador nuevo}
-    \svgfigurehere[0.7]{eval/\arabic{eval}-old}{Evaluación \arabic{eval} - Compilador actual}
-    \svgfigurehere[0.7]{eval/\arabic{eval}-as}{Evaluación \arabic{eval} - GAS}
+    \begin{figure}[H]
+        \ffigbox[0.7\textwidth]
+        {\begin{subfloatrow}
+            \ffigbox[\FBwidth]
+            {\caption{Compilador nuevo}\label{fig:eval-new-\arabic{eval}}}
+            {\includesvg[inkscapelatex=false,width=0.7\textwidth]{eval/\arabic{eval}-new.svg}}
+        \end{subfloatrow}}{}
+    \end{figure}
+    \begin{figure}[H]\ContinuedFloat
+        \ffigbox[0.7\textwidth]
+        {\begin{subfloatrow}
+            \ffigbox[\FBwidth]
+            {\caption{Compilador actual}\label{fig:eval-old-\arabic{eval}}}
+            {\includesvg[inkscapelatex=false,width=0.7\textwidth]{eval/\arabic{eval}-old.svg}}
+        \end{subfloatrow}}{}
+    \end{figure}
+    \begin{figure}[H]\ContinuedFloat
+        \ffigbox[0.7\textwidth]
+        {\begin{subfloatrow}
+            \ffigbox[\FBwidth]
+            {\caption{GNU Assembler}\label{fig:eval-as-\arabic{eval}}}
+            {\includesvg[inkscapelatex=false,width=0.7\textwidth]{eval/\arabic{eval}-as.svg}}
+        \end{subfloatrow}}
+        {\caption{Evaluación \arabic{eval}}\label{fig:eval-\arabic{eval}}}
+    \end{figure}
     \stepcounter{eval}
 }
 
+\newcommand{\evalfigref}[1]{\figureref{eval-#1-\arabic{eval}}}
+\newcommand{\evalref}[1]{\ref{fig:eval-#1-\arabic{eval}}}
+
 \newcommand{\evalresref}{
-    Los resultados obtenidos se pueden ver en las figuras
-    \ref{fig:eval/\arabic{eval}-new}, \ref{fig:eval/\arabic{eval}-old},
-    y \ref{fig:eval/\arabic{eval}-as}.
+    Los resultados obtenidos se pueden ver en la \figureref{eval-\arabic{eval}}.
 }
 
 Para evaluar el sistema desarrollado, se van a comparar los mensajes de error
@@ -530,45 +562,56 @@ alternativas con un programa complejo.
 
 La primera prueba consiste en definir una etiqueta múltiples veces. \evalresref
 Como se puede observar, el nuevo \gls{compiler}, además de indicar el error
-producido, también indica por qué se ha producido y cómo corregirlo, ayudando a
-los usuarios a solucionar el problema.
+producido, también indica por qué se ha producido y cómo corregirlo
+(\evalfigref{new}), ayudando a los usuarios a solucionar el problema. El
+\gls{compiler} antiguo y \gls{GAS} (figuras \evalref{old} y \evalref{as}), en
+cambio, únicamente indican la etiqueta repetida y su localización.
 
 \evalres
 
 El siguiente caso de prueba consiste en intentar utilizar una
 \glsdisp{directive}{directiva} con menos argumentos de los necesarios.
 \evalresref Como se puede ver, el nuevo \gls{compiler} es el único que detecta
-correctamente el error, e indica cómo solucionarlo. El \gls{compiler} actual
-produce un error incorrecto al interpretar erróneamente el código. Cabe destacar
-que \gls{GAS} no produce ningún error en este caso, pero un análisis del código
-generado indica que asume un valor de 0 para el argumento faltante en vez de
-generar un error.
+correctamente el error, e indica cómo solucionarlo (\evalfigref{new}). El
+\gls{compiler} actual (\evalfigref{old}) produce un error incorrecto al
+interpretar erróneamente el código. Cabe destacar que \gls{GAS}
+(\evalfigref{as}) no produce ningún error en este caso, pero un análisis del
+código generado indica que asume un valor de 0 para el argumento faltante, en vez
+de generar un error.
 
 \evalres
 
 El siguiente caso de prueba consiste en intentar utilizar un entero demasiado
 grande en una \gls{data directive}. \evalresref Como se puede ver, el nuevo
 \gls{compiler} es el único que muestra cuál es el rango de enteros válidos para
-la \gls{directive}.
+la \gls{directive} (\evalfigref{new}), ayudando a los usuarios a recordar qué
+valores pueden ser utilizados. El \gls{compiler} antiguo y \gls{GAS} (figuras
+\evalref{old} y \evalref{as}), en cambio, únicamente indican que el número es
+demasiado grande.
 
 \evalres
 
 El siguiente caso de prueba consiste en añadir instrucciones a la sección de
 datos. \evalresref Como se puede ver, el nuevo \gls{compiler} es el único que
-detecta correctamente el error, e indica cómo solucionarlo. El \gls{compiler}
-actual produce un error incorrecto al interpretar erróneamente el código. Cabe
-destacar que \gls{GAS} no produce ningún error en este caso, pero un análisis
-del código generado indica que añade la codificación binaria de las
-instrucciones como si fueran datos.
+detecta correctamente el error, e indica cómo solucionarlo (\evalfigref{new}).
+El \gls{compiler} actual (\evalfigref{old}) produce un error incorrecto al
+interpretar erróneamente el código. Cabe destacar que \gls{GAS}
+(\evalfigref{as}) no produce ningún error en este caso, pero un análisis del
+código generado indica que añade la codificación binaria de las instrucciones
+como si fueran datos.
 
 \evalres
 
-El último caso de prueba consiste en utilizar una instrucción con un error
+El último caso de prueba consiste en utilizar una \gls{instruction} con un error
 tipográfico en su nombre. \evalresref Como se puede ver, el nuevo \gls{compiler}
 es el único que, además de detectar que el nombre no se corresponde con una
-instrucción definida, muestra las instrucciones cuyo nombre es similar al
-utilizado. Esto ayuda a los usuarios a ver que se han equivocado al escribir el
-nombre de la instrucción, permitiéndoles solucionar el problema rápidamente.
+\gls{instruction} definida, muestra las instrucciones cuyo nombre es similar al
+utilizado (\evalfigref{new}). Esto ayuda a los usuarios a ver que se han
+equivocado al escribir el nombre de la \gls{instruction}, permitiéndoles
+solucionar el problema rápidamente. El \gls{compiler} antiguo y \gls{GAS}
+(figuras \evalref{old} y \evalref{as}), en cambio, únicamente indican que el
+nombre de la \gls{instruction} no se corresponde con una \gls{instruction}
+definida.
 
 \evalres
 
