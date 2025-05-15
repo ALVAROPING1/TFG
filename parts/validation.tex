@@ -43,7 +43,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 
 \begin{testCase}{VET}{ISA}
     {El sistema está instalado.} % Precondición
-    {Se obtiene el código compilado correspondiente al programa introducido.} % Postcondición
+    {Se obtiene el código compilado correspondiente al \gls{program} introducido.} % Postcondición
     {Verificar que el sistema puede compilar \glspl{program} en una \gls{ISA}.} % Descripción
     {OK} % Evaluación
     {FN-compilar-instrucciones, FN-directivas, FN-secciones, FN-ISA,
@@ -110,7 +110,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
         como globales.
         \item Compilar el \gls{program} y guardarlo como una \gls{library}.
         \item Escribir un nuevo \gls{program} que utilice las etiquetas
-        declaradas como globales en el programa original.
+        declaradas como globales en el \gls{program} original.
         \item Compilar el nuevo \gls{program} añadiendo el original como una
         \gls{library}.
     \end{enumerate}
@@ -137,7 +137,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 
 \begin{testCase}{VET}{comentarios}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
-    {Se obtiene el código compilado correspondiente al programa, ignorando los
+    {Se obtiene el código compilado correspondiente al \gls{program}, ignorando los
     comentarios introducidos.} % Postcondición
     {Verificar que el sistema permite el uso comentarios y la selección del
     prefijo de los comentarios de línea.} % Descripción
@@ -327,12 +327,12 @@ usuario están cubiertos por al menos una prueba de validación.
 
 \begin{testCase}{VAT}{ISA}
     {El sistema está instalado.} % Precondición
-    {Todos los programas evaluados obtienen el mismo resultado que con el \gls{compiler} actual.} % Postcondición
+    {Todos los \glspl{program} evaluados obtienen el mismo resultado que con el \gls{compiler} actual.} % Postcondición
     {Validar que el sistema ofrece todas las funcionalidades del \gls{compiler} actual.} % Descripción
     {OK} % Evaluación
     {CA-funcionalidades, CA-ISA, RE-sintaxis} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
-        \item Obtener los programas de ejemplo ofrecidos por CREATOR junto con
+        \item Obtener los \glspl{program} de ejemplo ofrecidos por CREATOR junto con
         la definición de su \gls{ISA}.
         \item Cargar la \gls{ISA} en el compilador.
         \item Intentar compilar todos los \glspl{program} anteriores.
@@ -360,7 +360,7 @@ usuario están cubiertos por al menos una prueba de validación.
 
 \begin{testCase}{VAT}{comentarios}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
-    {Se obtiene el código compilado correspondiente al programa, ignorando los
+    {Se obtiene el código compilado correspondiente al \gls{program}, ignorando los
     comentarios introducidos.} % Postcondición
     {Validar que el sistema permite el uso comentarios y la selección del
     prefijo de los comentarios de línea.} % Descripción
@@ -380,7 +380,7 @@ usuario están cubiertos por al menos una prueba de validación.
 
 \begin{testCase}{VAT}{etiquetas}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
-    {Se obtiene el código compilado correspondiente al programa introducido.} % Postcondición
+    {Se obtiene el código compilado correspondiente al \gls{program} introducido.} % Postcondición
     {Validar que el sistema puede permite el uso de múltiples etiquetas en una
     \gls{sentence}, y utilizar etiquetas definidas después de su uso.} % Descripción
     {OK} % Evaluación
@@ -555,10 +555,10 @@ usuario están cubiertos por al menos una prueba de validación.
 Para evaluar el sistema desarrollado, se van a comparar los mensajes de error
 generados con los mensajes de error del \gls{compiler} actual y de \gls{GAS}
 \parencite{GNUas}, ya que es uno de los \gls{assembler} más utilizados. Para
-realizar esto, se realizarán varias pruebas con programas a los que se ha
+realizar esto, se realizarán varias pruebas con \glspl{program} a los que se ha
 añadido un error, y se compararán los mensajes de error generados por cada una
 de las herramientas. Además, también se comparará el rendimiento de estas
-alternativas con un programa complejo.
+alternativas con un \gls{program} complejo.
 
 La primera prueba consiste en definir una etiqueta múltiples veces. \evalresref
 Como se puede observar, el nuevo \gls{compiler}, además de indicar el error
