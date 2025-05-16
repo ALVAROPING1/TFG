@@ -1,7 +1,79 @@
 \chapter{Introducción}\label{chap:introduction}
+
+En este primer capítulo se va a presentar el proyecto. Primero se explicará su
+motivación (\sectionref{motivation}). Tras esto, los objetivos a
+lograr (\sectionref{objectives}). Finalmente, se indicará la estructura de este
+documento (\sectionref{structure}).
+
 \section{Motivación}\label{sec:motivation}
 
+La programación es el acto de componer secuencias de instrucciones que indiquen
+a un \gls{computer} cómo realizar una tarea. Esto se realiza describiendo esta
+secuencia en un \gls{programming language}, creando un \gls{program}. Según el
+nivel de abstracción del \gls{computer}, los \glspl{programming language} se
+pueden clasificar en un espectro, donde los \glspl{low-level language} utilizan
+pocas o ninguna abstracción mientras que los \glspl{high-level language}
+utilizan muchas abstracciones.
 
+Aunque estas abstracciones ayudan al desarrollo de \glspl{program}, en todos los
+casos estos acaban siendo ejecutados en un \gls{computer}. Es por esto que el
+funcionamiento del mismo siempre tiene una influencia en todos los
+\glsdisp{programming language}{language}, y determina las consequencias que
+tiene el uso de las diferentes abstracciones ofrecidas por los \glspl{high-level
+language}. Debido a esto, para diseñar \glspl{program} que sean capaces de
+utilizar eficientemente todos los recursos de un \gls{computer}, es fundamental
+conocer su funcionamiento.
+
+Un \gls{computer} es una combinación de \textit{hardware} y \textit{software},
+que forman la \glsdisp{ISA}{arquitectura} del mismo. El \textit{hardware}
+determina las capacidades del \gls{computer}, mientras que el \textit{software}
+indica cómo se utilizan estas capacidades para realizar una tarea. Conocer ambos
+componentes es fundamental para entender el funcionamiento del \gls{computer},
+qué es capaz de realizar, y cómo lo hace.
+
+El \textit{software} que puede ejecutar directamente un \gls{computer} se
+escribe en una familia de \glspl{low-level language} conocidos como
+``\glspl{assembly}''. Para simplificar la electrónica y aumentar el rendimiento
+del \gls{computer}, estos están formados por una secuencia de
+\glspl{instruction} atómicas simples que operan en unos pocos datos. Para
+ejecutar cualquier \gls{program} escrito en un \glsdisp{programming
+language}{lenguaje} de mayor nivel es necesario convertirlos a uno de estos
+\glspl{assembly} mediante un proceso conocido como ``\gls{compilation}''.
+
+Debido a todo esto, conocer el funcionamiento de los \glspl{assembly} es
+fundamental para cualquier ingeniero informático, ya que permite entender el
+funcionamiento de un \gls{computer} y utilizarlo de forma efectiva para llevar a
+cabo una tarea.
+
+Actualmente, para enseñar estos \glspl{assembly} se utilizan simuladores, que
+permiten al usuario visualizar el estado del \gls{computer} a medida que ejecuta
+las \glspl{instruction} y pausar su ejecución en cualquier momento, de una forma
+similar a las herramientas de depuración desarrolladas para los
+\glspl{high-level language}. Un componente importante de estos simuladores es su
+\gls{assembler} (también conocido como \gls{compiler}), encargado de convertir
+la representación textual del código en \gls{assembly} a una representación que
+pueda ser ejecutada en el simulador. Para permitir a los usuarios entender el
+funcionamiento del \glsdisp{programming language}{lenguaje}, es necesario que
+este \gls{assembler} detecte acciones no permitidas, y sea capaz de producir
+mensajes de error que ayuden a los usuarios a entender y solucionar estos
+problemas. Además, este \gls{assembler} tiene que ser lo suficientemente
+flexible como para permitir realizar todas las acciones permitidas por un
+\gls{computer} real.
+
+Además, para que la enseñanza pueda seguir al rápido desarrollo de las
+\glsdisp{ISA}{arquitecturas} de un \gls{computer}, estos simuladores se han
+vuelto genéricos: permiten modificar muchos parámetros del \gls{computer}
+simulado mediante un fichero de configuración, con pocos (o ningún) cambio en el
+código. Esto permite simular múltiples \glsdisp{ISA}{arquitecturas} diferentes
+en una misma herramienta sin necesidad de desarrollar un simulador completo para
+cada una.
+
+% TODO: Hablar de FOSS?
+
+Por lo tanto, proponemos desarrollar un \gls{assembler} genérico para el simulador
+CREATOR que sea robusto, lo suficientemente flexible como para permitir el uso
+de funcionalidades avanzadas, y esté centrado en producir buenos mensajes de
+error que ayuden a los usuarios a aprender el \gls{assembly}.
 
 \section{Objetivos}\label{sec:objectives}
 
