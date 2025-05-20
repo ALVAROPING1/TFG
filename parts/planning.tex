@@ -453,3 +453,54 @@ características similares, se decidió utilizar la licencia LGPL para ser
 compatible con CREATOR, que se distribuye bajo esta misma licencia.
 
 \section{Entorno socioeconómico}\label{sec:environment}
+
+Historicamente, la gran mayoría de los \glspl{computer} de escritorio y
+servidores han utilizado las \glsdisp{ISA}{arquitecturas} x86 o x86-64. Estas
+\glsdisp{ISA}{arquitecturas} ofrecen un alto rendimiento, pero tienen una mala
+eficiencia energética y un alto coste de fabricación debido a su gran
+complejidad. Debido a esto, el mercado móbil y de dispositivos del \gls{IoT}
+utilizan otras \glsdisp{ISA}{arquitecturas} como ARM o RISC-V que, aunque
+ofrecen un peor rendimiento, son mucho más simples, gracias a lo cual pueden
+lograr una mejor eficiencia energética y coste de producción.
+
+Recientemente, sin embargo, se ha descubierto que \glsdisp{ISA}{arquitecturas}
+simples como ARM pueden lograr un rendimiento similar a x86-64. Además, a
+diferencia de x86-64, cuyas licencias para diseñar \glspl{processor} son
+difíciles de conseguir y están controladas por Intel y AMD, obtener una licencia
+para ARM es mucho más fácil, ya que la venta de estas licencias es una parte
+importante del negocio de Arm Holdings, la empresa propietaria de ARM. La
+capacidad de diseñar \glspl{processor} propios también ayuda a reducir los
+costes de fabricación y operación al eliminar intermediarios y reducir el
+consumo energético, y ofrece una gran flexibilidad al poder crear
+\glspl{processor} para tareas específicas. Debido a esto, recientemente, grandes
+empresas como Amazon o Apple han adoptado \glspl{processor} con diseños propios
+basados en ARM en muchos de sus productos, incluyendo \glspl{computer} de
+escritorio y servidores.
+
+Esto se ve influenciado por la reciente inestabilidad polícita y económica de
+Estados Unidos con los aranceles y otras políticas similares. Mientras que Intel
+y AMD son empresas americanas y, por lo tanto, se ven afectadas por las
+políticas de Estados Unidos, Arm Holdings es una empresa inglesa sin estos
+problemas.
+
+En este contexto surge RISC-V como una \glsdisp{ISA}{arquitectura} completamente
+abierta que no require de licencias para el diseño de \glspl{processor}. Esto
+reduce mucho más su coste de fabricación al permitir a cualquier empresa diseñar
+\glspl{processor} con esta \glsdisp{ISA}{arquitectura}, y elimina muchos
+problemas políticos. El diseño modular de RISC-V también fomenta el desarrollo
+de extensiones para tareas específicas, que pueden lograr un mayor rendimiento y
+eficiencia energética. Sin embargo, su adopción fuera de \glspl{processor} para
+\gls{IoT} está siendo muy lenta, posiblemente debido a que al ser una
+\glsdisp{ISA}{arquitectura} relativamente reciente, existe poco
+\textit{software} y se tiene poca experiencia en su uso y diseño.
+
+Esto lleva a la necesidad de desarrollar buenos simuladores que permitan
+desarrollar y aprender a utilizar nuevas \glsdisp{ISA}{arquitecturas} como
+RISC-V. Como ya se explicó en el \chapterref{introduction}, el proyecto se ha
+integrado en un simulador \gls{FOSS} que contribuye al aprendizaje de
+\gls{assembly}{ensamblador}. Este simulador se utiliza actualmente en múltiples
+universidades entre las que se incluyen la Universidad Carlos III de Madrid, la
+Universidad de Castilla-La Mancha, la Universidad de León, la Universidad de
+Almería, y la Universidad Sureste del Estado de Missouri. El proyecto
+desarrollado ayudará a los estudiantes de estas universidades a aprender el
+\gls{assembly}.
