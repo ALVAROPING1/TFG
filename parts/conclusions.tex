@@ -133,4 +133,8 @@ sistema:
     implementada por el \gls{compiler} antiguo, y esto evita el uso de
     \glspl{forward-reference} en ciertos casos. Si se acepta modificar estas
     definiciones, se podría rehacer este sistema para corregir este fallo.
+    \item Se podría investigar el uso de \verb!no_std! \parencite{no-std} y
+    otros métodos para reducir el tamaño del fichero ejecutable, que es un
+    factor importante para aplicaciones web, ya que se tienen que transmitir por
+    la red antes de su uso.
 \end{itemize}
