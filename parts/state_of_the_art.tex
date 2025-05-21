@@ -169,9 +169,29 @@ Un \gls{assembler} es un \gls{program} que traduce un \gls{program} escrito en
 \gls{processor}. Forma parte de la \gls{toolchain} utilizada para
 \glsdisp{compilation}{compilar} un \gls{program}. Aunque la gran mayoría se
 diseñan para una \gls{ISA} concreta, algunos pueden procesar código para
-múltiples \glspl{ISA} distintas. Cabe destacar que cada \gls{assembler} utiliza
-una sintaxis propia, por lo que, en general, el código se escribe para un
-\gls{assembler} concreto.
+múltiples \glspl{ISA} distintas.
+
+Cada \gls{assembler} utiliza una sintaxis propia, por lo que, en general, el
+código se escribe para un \gls{assembler} concreto. En el caso de las
+\glspl{instruction} de x86, por ejemplo, existen dos grandes familias: la
+sintaxis de Intel y la sintaxis de AT\&T. La sintaxis de AT\&T se utiliza
+principalmente en \glspl{assembler} antiguos, mientras que los modernos utilizan
+la sintaxis de Intel. Algunas de las principales diferencias entre estas son:
+\parencite{assembler-usage}
+
+\begin{itemize}
+    \item \textbf{Orden de los argumentos:} en la sintaxis de AT\&T el destino
+    de la operación es el primer argumento de las \glspl{instruction}, mientras
+    que en la sintaxis de Intel es el último.
+    \item \textbf{Prefijo de los valores:} en la sintaxis de AT\&T cada
+    argumento de una \gls{instruction} requiere un símbolo como prefijo para
+    indicar su tipo, mientras que en la sintaxis de Intel esto no es necesario,
+    ya que el \gls{assembler} deduce el tipo automáticamente.
+    \item \textbf{Direcciones de memoria:} en la sintaxis de AT\&T las
+    direcciones de memoria se especifican con una sintaxis similar a una llamada
+    a función, mientras que en la sintaxis de Intel se utilizan \gls{expression}
+    aritméticas.
+\end{itemize}
 
 Debido a que el objetivo principal del proyecto es desarrollar un
 \gls{assembler}, en esta sección se exponen tres ejemplos de \glspl{assembler}
@@ -190,7 +210,8 @@ la máquina como la sintaxis, la mayoría de \glspl{directive}, y el formato del
 fichero binario resultante \parencite{as-manual}. \gls{GAS} soporta más de 50
 \glspl{ISA} distintas, entre las que se incluyen RISC-V, MIPS, ARM, y x86. En la
 actualidad, \gls{GAS} es uno de los \gls{assembler} más utilizados
-\parencite{assembler-usage}.
+\parencite{assembler-usage}. \gls{GAS} utiliza principalmente la sintaxis de
+AT\&T, aunque también permite el uso de la sintaxis de Intel.
 
 \gls{GAS} está diseñado para ser utilizado principalmente como parte de la
 \gls{toolchain} de GNU, siendo el \textit{backend} por defecto de \progref{gcc},
@@ -226,10 +247,10 @@ desactivar TCCASM para obtener un ejecutable de TCC más pequeño.
 En cuanto al código \glsdisp{assembly}{ensamblador}, TCCASM utiliza una sintaxis
 similar a \gls{GAS}. Sin embargo, debido a su objetivo de utilizar poca memoria,
 soporta muchas menos funcionalidades que este. En particular, soporta únicamente
-enteros de 32 bits, muchas menos \glspl{directive}, y no soporta
-\gls{compilation} condicional, definición de símbolos con valores arbitrarios,
-ni \glspl{macro}. Además, sus \glspl{expression} aritméticas soportan menos
-operadores que \gls{GAS}.
+la sintaxis de AT\&T, enteros de 32 bits, muchas menos \glspl{directive}, y no
+soporta \gls{compilation} condicional, definición de símbolos con valores
+arbitrarios, ni \glspl{macro}. Además, sus \glspl{expression} aritméticas
+soportan menos operadores que \gls{GAS}.
 
 \subsection{NASM}
 
@@ -244,12 +265,12 @@ uno de los \glspl{assembler} más utilizados en Linux
 Con respecto al código \glsdisp{assembly}{ensamblador}, NASM soporta etiquetas
 locales, evaluación de \gls{expression} aritméticas (con algunos operadores más
 que \gls{GAS}), cadenas en UTF-8 \parencite{UTF-8}, \gls{compilation}
-condicional, definición de símbolos con valores arbitrarios, y generación de
-código con bucles. Cabe destacar su potente sistema de \glspl{macro}, que
-permite \glspl{macro} variadicas, sobrecarga (definición de múltiples
-\glspl{macro} con el mismo nombre) según el número de argumentos, etiquetas
-locales a la \gls{macro}, y múltiples funcionalidades para procesar los
-argumentos.
+condicional, definición de símbolos con valores arbitrarios, y uso de bucles
+para la generación de código. Además, utiliza la sintaxis de Intel. Cabe
+destacar su potente sistema de \glspl{macro}, que permite \glspl{macro}
+variadicas, sobrecarga (definición de múltiples \glspl{macro} con el mismo
+nombre) según el número de argumentos, etiquetas locales a la \gls{macro}, y
+múltiples funcionalidades para procesar los argumentos.
 
 NASM permite optimizar el código generado realizando múltiples pasadas sobre
 este. Sin embargo, para realizar esto, necesita conocer el tamaño de todos los
