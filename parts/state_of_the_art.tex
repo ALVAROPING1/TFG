@@ -218,16 +218,21 @@ AT\&T, aunque también permite el uso de la sintaxis de Intel.
 aunque también es mayormente compatible con otros \glspl{assembler}
 \parencite{as-manual}. Debido a esto, sus mensajes de error son mejorables, ya
 que la prioridad es obtener un alto rendimiento y no generar buenos mensajes de
-error. Un ejemplo de esto se puede ver en la figura \figureref{error_gas}.
+error. Un ejemplo de esto se puede ver en la figura \figureref{error_gas}. Para
+lograr este alto rendimiento, \gls{GAS} procesa el código con una única pasada
+sobre el mismo.
 
 \svgfigure[0.6]{error_gas}{Mensaje de error del ensamblador de GNU}
 
 \gls{GAS} tiene soporte para muchas funcionalidades avanzadas que lo vuelven un
 \gls{assembler} muy flexible. Tiene soporte para etiquetas locales, evaluación
-de \gls{expression} aritméticas, \glspl{bigint}, cadenas en UTF-8
-\parencite{UTF-8}, \gls{compilation} condicional, emisión de mensajes de error,
-definición de símbolos con valores arbitrarios, y \glspl{macro} variadicas
-(utilizando una cantidad variable de argumentos) y recursivas, entre otros.
+de \gls{expression} aritméticas, cadenas en UTF-8 \parencite{UTF-8},
+\gls{compilation} condicional, emisión de mensajes de error, definición de
+constantes, y \glspl{macro} variadicas (utilizando una cantidad variable de
+argumentos) y recursivas, entre otros. Cabe destacar que, aunque permite el uso
+de \glspl{bigint}, estos se convierten a enteros de 32 bits al usarlos en las
+\glspl{expression} aritméticas. Además, no permite el uso de números decimales
+en las \gls{expression}.
 
 \subsection{TCCASM}
 
@@ -236,7 +241,7 @@ TCCASM es el \gls{assembler} de TCC (Tiny C Compiler) \parencite{tcc}. TCC es un
 significativamente más rápido \glsdisp{compilation}{compilando} que
 \progref{gcc}, aunque también produce ficheros ejecutables más lentos
 \parencite{tcc-speed}. Está escrito en C y se distribuye bajo la licencia GNU
-LGPL. TCC soporta principalmente x86 y x86-64, aunque también tiene soporte para
+LGPLv2.1. TCC soporta principalmente x86 y x86-64, aunque también tiene soporte para
 ARM y RISC-V \parencite{tcc-manual} \parencite{tcc-arm} \parencite{tcc-riscv}.
 
 TCC utiliza TCCASM únicamente para procesar ficheros en
@@ -248,9 +253,9 @@ En cuanto al código \glsdisp{assembly}{ensamblador}, TCCASM utiliza una sintaxi
 similar a \gls{GAS}. Sin embargo, debido a su objetivo de utilizar poca memoria,
 soporta muchas menos funcionalidades que este. En particular, soporta únicamente
 la sintaxis de AT\&T, enteros de 32 bits, muchas menos \glspl{directive}, y no
-soporta \gls{compilation} condicional, definición de símbolos con valores
-arbitrarios, ni \glspl{macro}. Además, sus \glspl{expression} aritméticas
-soportan menos operadores que \gls{GAS}.
+soporta \gls{compilation} condicional, definición de constantes, ni
+\glspl{macro}. Además, sus \glspl{expression} aritméticas soportan menos
+operadores que \gls{GAS}.
 
 \subsection{NASM}
 
@@ -264,13 +269,13 @@ uno de los \glspl{assembler} más utilizados en Linux
 
 Con respecto al código \glsdisp{assembly}{ensamblador}, NASM soporta etiquetas
 locales, evaluación de \gls{expression} aritméticas (con algunos operadores más
-que \gls{GAS}), cadenas en UTF-8 \parencite{UTF-8}, \gls{compilation}
-condicional, definición de símbolos con valores arbitrarios, y uso de bucles
-para la generación de código. Además, utiliza la sintaxis de Intel. Cabe
-destacar su potente sistema de \glspl{macro}, que permite \glspl{macro}
-variadicas, sobrecarga (definición de múltiples \glspl{macro} con el mismo
-nombre) según el número de argumentos, etiquetas locales a la \gls{macro}, y
-múltiples funcionalidades para procesar los argumentos.
+que \gls{GAS}) con números enteros, cadenas en UTF-8 \parencite{UTF-8},
+\gls{compilation} condicional, definición de constantes, y uso de bucles para la
+generación de código. Además, utiliza la sintaxis de Intel. Cabe destacar su
+potente sistema de \glspl{macro}, que permite \glspl{macro} variadicas,
+sobrecarga (definición de múltiples \glspl{macro} con el mismo nombre) según el
+número de argumentos, etiquetas locales a la \gls{macro}, y múltiples
+funcionalidades para procesar los argumentos.
 
 NASM permite optimizar el código generado realizando múltiples pasadas sobre
 este. Sin embargo, para realizar esto, necesita conocer el tamaño de todos los
@@ -290,7 +295,7 @@ ejemplo, para la creación del vector de interrupciones utilizado en un sistema
 operativo para gestionar los diversos tipos de interrupciones. Tampoco tiene
 soporte para evaluación de \glspl{expression} aritméticas, \glspl{bigint},
 cadenas en UTF-8 \parencite{UTF-8}, \gls{compilation} condicional, definición de
-símbolos con variables arbitrarios, o \glspl{macro}.
+constantes, o \glspl{macro}.
 
 Con respecto a sus mensajes de error, aunque generalmente son mejores que los de
 \gls{GAS}, siguen siendo mejorables. Aunque incluyen la causa del error y la
@@ -308,7 +313,67 @@ añadiendo soporte para nuevas funcionalidades y mejorando sus mensajes de error
 
 \subsection{Comparativa}
 
-% TODO: comparativa ensambladores
+Este proyecto tiene como objetivo combinar las características de los
+\glspl{assembler} analizados y adaptarlas para su uso en CREATOR. Para ello, se
+va a realizar una comparativa de las características de estos \glspl{assembler},
+junto con la propuesta realizada.
+
+Los resultados de la comparación se pueden ver en la
+\tableref{assembler-comparison}. Las características a analizar son:
+
+\begin{itemize}
+    \item \textbf{Lenguaje:} \gls{programming language} en el que está escrito.
+    \item \textbf{Licencia:} licencia bajo la que se distribuye el
+    \textit{software}.
+    \item \textbf{Ejecución web:} capacidad de ser ejecutado en un navegador
+    web.
+    \item \textbf{Biblioteca:} capacidad de ser embebido en otro programa y
+    utilizado como una biblioteca.
+    \item \textbf{\Glspl{expression}:} capacidad de evaluar \glspl{expression}
+    aritméticas durante el procesado del código.
+    \item \textbf{Etiquetas como valores:} capacidad de utilizar etiquetas como
+    valores de las \glspl{data directive}.
+    \item \textbf{\Glspl{bigint}:} capacidad de utilizar \glspl{bigint} en las
+    \glspl{expression} aritméticas.
+    \item \textbf{UTF-8:} capacidad de utilizar cadenas de caracteres
+    codificadas en UTF-8 \parencite{UTF-8}.
+    \item \textbf{Definición de constantes:} capacidad de definir y utilizar
+    constantes.
+    \item \textbf{\Glspl{macro}:} capacidad de definir y utilizar \glspl{macro}
+    en el código.
+    \item \textbf{\Gls{compilation} condicional:} capacidad utilizar
+    \glspl{expression} para determinar si compilar un segmento del código o no.
+\end{itemize}
+
+\begin{table}[htb]
+    \caption{Comparativa de las características de los ensambladores}
+    \label{tab:assembler-comparison}
+    \begin{adjustbox}{max width=\textwidth}
+        \begin{threeparttable}[htb]
+            \begin{tabular}{@{}>{\bfseries}lccccc@{}}
+                \toprule
+                \Gls{assembler}               & \gls{GAS}           & TCCASM              & NASM                & CREATOR    & Propuesta \\
+                \midrule
+                Lenguaje                      & C                   & C                   & C                   & \gls{JS}   & Rust       \\
+                Licencia                      & GPLv3               & LGPLv2.1            & BSD-2-Clause        & LGPLv2.1   & LGPLv2.1   \\
+                Ejecución web                 &                     &                     &                     & \checkmark & \checkmark \\
+                Biblioteca                    &                     &                     &                     & \checkmark & \checkmark \\
+                \Glspl{expression}            & \checkmark\tnote{*} & \checkmark\tnote{*} & \checkmark\tnote{*} &            & \checkmark \\
+                Etiquetas como valores        & \checkmark          & \checkmark          & \checkmark          &            & \checkmark \\
+                \Glspl{bigint}                & \checkmark          &                     &                     &            & \checkmark \\
+                UTF-8                         & \checkmark          & \checkmark          & \checkmark          &            & \checkmark \\
+                Definición de constantes      & \checkmark          &                     & \checkmark          &            & \checkmark\tnote{**} \\
+                \Glspl{macro}                 & \checkmark          &                     & \checkmark          &            & \checkmark\tnote{**} \\
+                \Gls{compilation} condicional & \checkmark          &                     & \checkmark          &            & \checkmark\tnote{**} \\
+                \bottomrule
+            \end{tabular}
+            \begin{tablenotes}
+                \item [*] Solo posible con números enteros de tamaño fijo
+                \item [**] Trabajo futuro
+            \end{tablenotes}
+        \end{threeparttable}
+    \end{adjustbox}
+\end{table}
 
 \section{Técnicas de análisis sintáctico}\label{sec:parser-techniques}
 
