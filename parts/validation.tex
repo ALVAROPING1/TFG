@@ -619,13 +619,13 @@ definida.
 
 Para evaluar el rendimiento del sistema se va a utilizar ForthV
 \parencite{ForthV}. ForthV es un intérprete del \gls{programming language} Forth
-escrito en \glsdisp{assembly}{ensamblador} RISC-V \parencite{RISC-V} con unas
-2800 líneas de código, por lo que representa un \gls{program} complejo real.
-Debido a esto, es un buen caso de prueba en el que evaluar el rendimiento del
-sistema. Cabe destacar que este \gls{program} utiliza funcionalidades no
-soportadas por el \gls{compiler} actual (como \glspl{expression} aritméticas y
-uso de etiquetas como valores de \glspl{data directive}). Debido a esto, para
-evaluar el rendimiento del \gls{compiler} actual, se ha tenido que modificar el
+escrito en \glsdisp{assembly}{ensamblador} RISC-V con unas 2800 líneas de
+código, por lo que representa un \gls{program} complejo real. Debido a esto, es
+un buen caso de prueba en el que evaluar el rendimiento del sistema. Cabe
+destacar que este \gls{program} utiliza funcionalidades no soportadas por el
+\gls{compiler} actual (como \glspl{expression} aritméticas y uso de etiquetas
+como valores de \glspl{data directive}). Debido a esto, para evaluar el
+rendimiento del \gls{compiler} actual, se ha tenido que modificar el
 \gls{program} para evitar el uso de estas funcionalidades.
 
 La \figureref{rendimiento} muestra los resultados de la ejecución. \gls{GAS} no
