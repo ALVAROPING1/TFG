@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 460 88" width="460" version="1.1">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 492 71" width="492" version="1.1">
     <defs>
         <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
-            <termtosvg:screen_geometry columns="55" rows="4"/>
+            <termtosvg:screen_geometry columns="59" rows="3"/>
             <termtosvg:animation type="css"/>
         </termtosvg:template_settings>
         <style type="text/css" id="generated-style"><![CDATA[#screen {
@@ -39,6 +39,6 @@
         </style>
     </defs>
     <rect id="terminalui" class="background" width="100%" height="100%"/>
-    <svg id="screen" width="440" height="68" x="10" y="10" viewBox="0 0 440 68" preserveAspectRatio="xMidYMin slice">
-    <rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text x="0" textLength="432" class="foreground">$ riscv64-unknown-elf-as -march=rv32i -o test.o test.s</text></g><g id="g2"><text x="0" textLength="216" class="foreground">test.s: Assembler messages:</text></g><g id="g3"><text x="0" textLength="392" class="foreground">test.s:3: Error: illegal operands `addi t0,t0,t1'</text></g><g id="g4"><text x="0" textLength="440" class="foreground">test.s:5: Error: unrecognized opcode `unknown t0,t0,10'</text></g></defs><g><use xlink:href="#g1" y="0"/><use xlink:href="#g2" y="17"/><use xlink:href="#g3" y="34"/><use xlink:href="#g4" y="51"/></g></svg>
+    <svg id="screen" width="472" height="51" x="10" y="10" viewBox="0 0 472 51" preserveAspectRatio="xMidYMin slice">
+    <rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text x="0" textLength="104" class="foreground">$ nasm test.s</text></g><g id="g2"><text x="0" textLength="472" class="foreground">test.s:5: error: invalid combination of opcode and operands</text></g><g id="g3"><text x="0" textLength="472" class="foreground">test.s:7: error: invalid combination of opcode and operands</text></g></defs><g><use xlink:href="#g1" y="0"/><use xlink:href="#g2" y="17"/><use xlink:href="#g3" y="34"/></g></svg>
 </svg>

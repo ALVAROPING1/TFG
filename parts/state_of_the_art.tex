@@ -218,11 +218,13 @@ AT\&T, aunque también permite el uso de la sintaxis de Intel.
 aunque también es mayormente compatible con otros \glspl{assembler}
 \parencite{as-manual}. Debido a esto, sus mensajes de error son mejorables, ya
 que la prioridad es obtener un alto rendimiento y no generar buenos mensajes de
-error. Un ejemplo de esto se puede ver en la figura \figureref{error_gas}. Para
-lograr este alto rendimiento, \gls{GAS} procesa el código con una única pasada
-sobre el mismo.
+error. Cabe destacar que \gls{GAS} implementa estrategias de recuperación de
+errores para poder detectar múltiples errores en una misma \gls{compilation}. Un
+ejemplo de esto se puede ver en la figura \figureref{error_gas}. Para lograr
+este alto rendimiento, \gls{GAS} procesa el código con una única pasada sobre el
+mismo.
 
-\svgfigure[0.6]{error_gas}{Mensaje de error del ensamblador de GNU}
+\svgfigure[0.7]{error_gas}{Mensaje de error del ensamblador de GNU}
 
 \gls{GAS} tiene soporte para muchas funcionalidades avanzadas que lo vuelven un
 \gls{assembler} muy flexible. Tiene soporte para etiquetas locales, evaluación
@@ -257,6 +259,15 @@ soporta \gls{compilation} condicional, definición de constantes, ni
 \glspl{macro}. Además, sus \glspl{expression} aritméticas soportan menos
 operadores que \gls{GAS}.
 
+Con respecto a la detección de errores, TCCASM es más simple que \gls{GAS}.
+TCCASM no implementa estrategias de recuperación de errores, por lo que aborta
+la \gls{compilation} en el primer error detectado. Sus mensajes de error
+utilizan el mismo formato que los de \gls{GAS}, aunque son un poco más simples.
+Por ejemplo, como se puede ver en la \figureref{error_tccasm}, TCCASM no muestra
+los operandos de una \gls{instruction} cuando estos son incorrectos.
+
+\svgfigure[0.6]{error_tccasm}{Mensaje de error de TCCASM}
+
 \subsection{NASM}
 
 NASM (Netwide Assembler) \parencite{NASM} es un \gls{assembler} multiplataforma
@@ -283,6 +294,15 @@ datos e \glspl{instruction} durante la primera pasada. Debido a esto, no permite
 el uso de \glspl{forward-reference} en situaciones en las que el valor de estas
 puede afectar al tamaño de los elementos generados. \parencite{NASM-manual}
 
+Con respecto a la detección de errores, NASM se encuentra en un punto intermedio
+entre \gls{GAS} y TCCASM. Al igual que \gls{GAS}, NASM implementa estrategias de
+recuperación de errores, lo que le permite detectar múltiples errores en una
+\gls{compilation}. Sus mensajes de error utilizan el mismo formato que los de
+\gls{GAS} y TCCASM, pero tienen la misma simplicidad de los mensajes de TCCASM,
+como se puede ver en la \figureref{error_nasm}.
+
+\svgfigure[0.7]{error_nasm}{Mensaje de error de NASM}
+
 \subsection{CREATOR}
 
 CREATOR \parencite{CREATOR} cuenta con un \gls{assembler} propio para procesar
@@ -306,7 +326,7 @@ para resaltar las partes más importantes de los mismos. Cabe destacar que, en
 ciertos casos, estos mensajes no son capaces de mostrar el problema real debido
 a limitaciones del \gls{assembler}.
 
-\svgfigure[0.6]{error_creator}{Mensaje de error del ensamblador de CREATOR}
+\svgfigure[0.5]{error_creator}{Mensaje de error del ensamblador de CREATOR}
 
 El sistema a desarrollar se encargará de reemplazar a este \gls{assembler},
 añadiendo soporte para nuevas funcionalidades y mejorando sus mensajes de error.
@@ -343,6 +363,9 @@ Los resultados de la comparación se pueden ver en la
     en el código.
     \item \textbf{\Gls{compilation} condicional:} capacidad utilizar
     \glspl{expression} para determinar si compilar un segmento del código o no.
+    \item \textbf{Recuperación de errores:} capacidad de recuperarse de un error
+    en el código para continuar procesando el \gls{program}, potencialmente
+    detectando múltiples errores en una misma \gls{compilation}.
 \end{itemize}
 
 \begin{table}[htb]
@@ -365,6 +388,7 @@ Los resultados de la comparación se pueden ver en la
                 Definición de constantes      & \checkmark          &                     & \checkmark          &            & \checkmark\tnote{**} \\
                 \Glspl{macro}                 & \checkmark          &                     & \checkmark          &            & \checkmark\tnote{**} \\
                 \Gls{compilation} condicional & \checkmark          &                     & \checkmark          &            & \checkmark\tnote{**} \\
+                Recuperación de errores       & \checkmark          &                     & \checkmark          &            & \checkmark\tnote{**} \\
                 \bottomrule
             \end{tabular}
             \begin{tablenotes}
@@ -374,6 +398,8 @@ Los resultados de la comparación se pueden ver en la
         \end{threeparttable}
     \end{adjustbox}
 \end{table}
+
+\FloatBarrier
 
 \section{Técnicas de análisis sintáctico}\label{sec:parser-techniques}
 
