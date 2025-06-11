@@ -197,7 +197,7 @@ proyecto y el presupuesto total.
         Fecha de inicio   & 7 de junio del 2024 \\ \midrule
         Fecha de fin      & 16 de junio del 2025 \\ \midrule
         Duración          & 12 meses \\ \midrule
-        Presupuesto total & 44.906,14 \euro \\
+        Presupuesto total & 48.132,99 \euro \\
         \bottomrule
       \end{tabular}
     }
@@ -214,7 +214,7 @@ costes no incluirán impuestos, ya que esos se incluyen en
 
 Los costes directos son los costes relacionados directamente con el desarrollo
 del proyecto. Se pueden dividir en costes de personal, que dependen de la
-cualificación, experiencia, y localización de cada miembro, y costes de
+cualificación, experiencia, y ubicación de cada miembro, y costes de
 equipamiento, asociados a las herramientas utilizadas durante el desarrollo.
 
 \noindent
@@ -287,16 +287,16 @@ de equipamiento.
       \begin{adjustbox}{max width=\textwidth}
         \begin{tabular}{lrrrrr}
           \toprule
-          \textbf{Objeto}   & \textbf{Coste ($C$)} & \textbf{Uso ($p$)} & \textbf{Dedicación ($t$)} & \textbf{Amortización ($D$)} & \textbf{Coste amortizado ($c$)} \\
+          \textbf{Objeto}   & \textbf{Coste ($C$)} & \textbf{Uso ($p$)} & \textbf{Dedicación ($t$)} & \textbf{Amortización ($a$)} & \textbf{Coste amortizado ($c$)} \\
           \midrule
-          PC sobremesa      &  999,00 \euro        & 30 \%              & 11 meses                  &  60 meses                   &  54,95 \euro \\
-          Portátil          &  749,00 \euro        & 60 \%              & 11 meses                  &  60 meses                   &  82,39 \euro \\
-          Monitor           &  149,99 \euro        & 40 \%              & 11 meses                  &  48 meses                   &  13,75 \euro \\
-          Ratón             &   39,99 \euro        & 30 \%              & 11 meses                  &  36 meses                   &   3,67 \euro \\
-          Cable HDMI        &    4,99 \euro        & 40 \%              & 11 meses                  &  48 meses                   &   0,46 \euro \\
-          \textit{Software} &    0,00 \euro        & 60 \%              & 11 meses                  & 120 meses                   &   0,00 \euro \\
+          PC sobremesa      &  999,00 \euro        & 30 \%              & 12 meses                  &  60 meses                   &  59,94 \euro \\
+          Portátil          &  749,00 \euro        & 60 \%              & 12 meses                  &  60 meses                   &  89,88 \euro \\
+          Monitor           &  149,99 \euro        & 40 \%              & 12 meses                  &  48 meses                   &  15,00 \euro \\
+          Ratón             &   39,99 \euro        & 30 \%              & 12 meses                  &  36 meses                   &   4,00 \euro \\
+          Cable HDMI        &    4,99 \euro        & 40 \%              & 12 meses                  &  48 meses                   &   0,50 \euro \\
+          \textit{Software} &    0,00 \euro        & 60 \%              & 12 meses                  & 120 meses                   &   0,00 \euro \\
           \midrule
-          \textbf{Total}    & 1.942,97 \euro       &                    &                           &                             & \textbf{155,22 \euro} \\
+          \textbf{Total}    & 1.942,97 \euro       &                    &                           &                             & \textbf{169,32 \euro} \\
           \bottomrule
         \end{tabular}
       \end{adjustbox}
@@ -310,11 +310,11 @@ proyecto y no pueden ser asignados a un producto específico, como el consumo
 eléctrico, la conexión a internet, o el transporte.
 
 Para el consumo el eléctrico, se asume que el portátil consume $65$ W de media,
-el PC de sobremesa $300$ W, y el monitor y ratón $20$ W. Además, de las $660$
+el PC de sobremesa $300$ W, y el monitor y ratón $20$ W. Además, de las $720$
 horas del proyecto, se ha utilizado el portátil el $70 \%$ del tiempo, y el
 monitor, ratón, y PC de sobremesa el $30 \%$ restante. Teniendo este en cuenta,
-la energía total utilizada es de $(65 W \cdot 0.7 + 320 \cdot 0.3) \cdot 660 h =
-93.390 Wh$.
+la energía total utilizada es de $(65 W \cdot 0.7 + 320 \cdot 0.3) \cdot 720 h =
+101.880 Wh$.
 
 La conexión a internet es un plan de 1 gbps de fibra óptica, con un precio
 de $65,00$ \euro/mes. Esta conexión se comparte por $4$ personas y solo una de
@@ -331,13 +331,13 @@ proyecto.
     {
       \begin{tabular}{lrrr}
         \toprule
-        \textbf{Recurso} & \textbf{Coste unitario} & \textbf{Unidades} & \textbf{Total} \\
+        \textbf{Recurso} & \textbf{Coste unitario} & \textbf{Unidades} & \textbf{Total (\euro)} \\
         \midrule
-        Electricidad &   0.15 \euro/kWh & 93.390 Wh &  14,01 \euro \\
-        Internet     &  16,25 \euro/mes & 11 months & 178,75 \euro \\
-        Transporte   &      8 \euro/mes & 11 months &  88,00 \euro \\
+        Electricidad &   0,15 \euro/kWh & 101.880 Wh &  15,28 \\
+        Internet     &  16,25 \euro/mes &  12 months & 195,00 \\
+        Transporte   &      8 \euro/mes &  12 months &  96,00 \\
         \midrule
-        \textbf{Total} & & & \textbf{280,76 \euro} \\
+        \textbf{Total} & & & \textbf{306,28 \euro} \\
         \bottomrule
       \end{tabular}
     }
@@ -356,10 +356,10 @@ incluyendo los costes directos e indirectos.
       \begin{tabular}{lr}
         \toprule
         Personal          & 28.350,00 \euro \\
-        Equipamiento      &    155,22 \euro \\
-        Costes indirectos &    280,76 \euro \\
+        Equipamiento      &    169,32 \euro \\
+        Costes indirectos &    306,28 \euro \\
         \midrule
-        \textbf{Total}    & \textbf{28.785,98 \euro} \\
+        \textbf{Total}    & \textbf{28.825,60 \euro} \\
         \bottomrule
       \end{tabular}
     }
@@ -370,8 +370,8 @@ incluyendo los costes directos e indirectos.
 La \tableref{project-offer} detalla la oferta del proyecto. En esta oferta se
 incluyen unos riesgos esperados del $20 \%$, unos beneficios del $15 \%$, y los
 impuestos del IVA, que es del $21 \%$ en España. Teniendo en cuenta esto, el
-coste final del proyecto es de \textbf{44.906,14 \euro~(Cuarenta y cuatro mil
-novecientos seis euros con catorce centimos)}.
+coste final del proyecto es de \textbf{48.132,99 \euro~(Cuarenta y ocho mil
+ciento treinta y dos euros con noventa y nueve centimos)}.
 
 \begin{table}[htb]
   \ttabbox[\FBwidth]
@@ -381,12 +381,12 @@ novecientos seis euros con catorce centimos)}.
         \toprule
         \textbf{Concepto} & \textbf{Incremento (\%)} & \textbf{Valor parcial (\euro)} & \textbf{Coste agregado (\euro)} \\
         \midrule
-        Coste del proyecto & -- & 28.785,98 \euro & 28.785,98 \euro \\
-        Riesgos            & 20 &  5.757,20 \euro & 34.543,18 \euro \\
-        Beneficios         & 15 &  4.317,90 \euro & 38.861,08 \euro \\
-        IVA                & 21 &  6.045,06 \euro & 44.906,14 \euro \\
+        Coste del proyecto & -- & 28.825,60 & 28.825,60 \\
+        Riesgos            & 20 &  5.765,12 & 34.590,72 \\
+        Beneficios         & 15 &  5.188,61 & 39.779,33 \\
+        IVA                & 21 &  8.353,66 & 48.132,99 \\
         \midrule
-        \textbf{Total}     & 56 &                 & \textbf{44.906,14 \euro} \\
+        \textbf{Total}     & 67 &           & \textbf{48.132,99 \euro} \\
         \bottomrule
       \end{tabular}
     }
