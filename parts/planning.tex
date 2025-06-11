@@ -29,7 +29,7 @@ Algunas de estas son:
     pequeños y bien definidos, pero al aumentar la complejidad del sistema
     pierde su efectividad, ya que los errores no se descubren hasta el final del
     desarrollo. Además, no permite cambios en los requisitos durante el
-    desarrollo, perdiéndo la capacidad de reacción a cambios en el entorno y
+    desarrollo, perdiendo la capacidad de reacción a cambios en el entorno y
     necesidades. Debido a esto, en la actualidad, es una metodología poco
     utilizada y no recomendada para sistemas complejos.
     \item \textbf{Modelo en espiral \parencite{spiral-model}:} este es un modelo
@@ -58,7 +58,7 @@ cada una de las iteraciones del desarrollo. Estas etapas son:
     identificar los posibles riesgos, y se diseñan las pruebas.
     \item \textbf{Desarrollo y pruebas:} se diseña e implementa el sistema, y se
     realizan las pruebas.
-    \item \textbf{Evaluación:} el cliente evalua el sistema y aporta
+    \item \textbf{Evaluación:} el cliente evalúa el sistema y aporta
     \textit{feedback}. Si este aprueba el sistema, se continúa con la siguiente
     iteración, y si no, se corrigen los problemas antes de continuar.
 \end{enumerate}
@@ -69,19 +69,20 @@ cada una de las iteraciones del desarrollo. Estas etapas son:
 El desarrollo del proyecto estará formado por cinco iteraciones:
 
 \begin{enumerate}[label=\Roman*.]
-    \item \textbf{Gestor de la arquitectura:} esta estapa se centra en la
+    \item \textbf{Gestor de la arquitectura:} esta etapa se centra en la
     implementación del \componentref{Gestor de la arquitectura}. El objetivo de
     esta etapa es permitir el procesado de la definición de una \gls{ISA} para
     su posterior uso.
     \item \textbf{\Gls{parser}:} esta etapa se centra en la implementación del
     analizador sintáctico. El objetivo de esta etapa es permitir el procesado de
-    un código \glsdisp{assembly}{ensamblador}, extrayéndo un \gls{AST}.
+    un código \glsdisp{assembly}{ensamblador}, extrayendo un \gls{AST}.
     \item \textbf{Analizador semántico:} esta etapa se centra en la implementación
-    del analizador y su conexión con los componentes anteriores.
+    del analizador semántico y su conexión con los componentes anteriores.
     El objetivo de esta etapa es permitir \glsdisp{compilation}{compilar}
     programas, obteniendo un sistema completamente funcional.
     \item \textbf{Integración con CREATOR:} esta etapa se centra en integrar el
-    sistema con CREATOR.
+    sistema con CREATOR. Su objetivo es permitir el uso del sistema dentro de
+    CREATOR.
     \item \textbf{Pulido:} esta etapa se centra en implementar las
     funcionalidades restantes de baja prioridad, que, aunque no son esenciales
     para el funcionamiento del sistema, mejoran su calidad y dan valor añadido.
@@ -97,7 +98,7 @@ descritas en la \subsectionref{life-cycle}, con una etapa adicional de
 documentación durante la que se realizará este documento. Además, se ha añadido
 una tarea adicional (``Memoria'') para terminar este documento.
 
-El proyecto tuvo una duración final de $12$ meseses, con una media de $60$ horas
+El proyecto tuvo una duración final de $12$ meses, con una media de $60$ horas
 mensuales (sin contar días no lectivos y vacaciones). Debido a esto, el tiempo
 total dedicado al proyecto ha sido de $720$ horas.
 
@@ -268,11 +269,11 @@ la siguiente fórmula:
 Donde:
 
 \begin{itemize}
-    \item $c$: coste amortizado
-    \item $C$: coste del equipamiento
-    \item $t$: tiempo durante el que se utiliza el equipamiento para el proyecto
-    \item $p$: porcentaje del tiempo total que se utilizó para el proyecto
-    \item $a$: tiempo de amortización
+    \item $c$: coste amortizado.
+    \item $C$: coste del equipamiento.
+    \item $t$: tiempo durante el que se utiliza el equipamiento para el proyecto.
+    \item $p$: porcentaje del tiempo total que se utilizó para el proyecto.
+    \item $a$: tiempo de amortización.
 \end{itemize}
 
 \noindent
@@ -371,7 +372,7 @@ La \tableref{project-offer} detalla la oferta del proyecto. En esta oferta se
 incluyen unos riesgos esperados del $20 \%$, unos beneficios del $15 \%$, y los
 impuestos del IVA, que es del $21 \%$ en España. Teniendo en cuenta esto, el
 coste final del proyecto es de \textbf{48.132,99 \euro~(Cuarenta y ocho mil
-ciento treinta y dos euros con noventa y nueve centimos)}.
+ciento treinta y dos euros con noventa y nueve céntimos)}.
 
 \begin{table}[htb]
   \ttabbox[\FBwidth]
@@ -392,7 +393,7 @@ ciento treinta y dos euros con noventa y nueve centimos)}.
     }
 \end{table}
 
-\section{Marco regulatorio}\label{sec:regulation}
+\section{Marco regulador}\label{sec:regulation}
 
 En esta sección se expondrán las restricciones legales que se aplican al
 proyecto, y está dividido en tres subsecciones. La primera
@@ -448,17 +449,17 @@ El sistema desarrollado utiliza la licencia \gls{LGPL} versión 3
 \parencite{lgpl}, ya que permite el uso, modificación, y redistribución del
 código de forma libre con la única restricción de que las modificaciones se
 tienen que publicar, asegurando que el sistema continúa siendo abierto. Aunque
-también se consideró la licencia \gls{GPL} versión 3 (GPL) \parencite{gpl}, con
+también se consideró la licencia \gls{GPL} versión 3 \parencite{gpl}, con
 características similares, se decidió utilizar la licencia LGPL para ser
 compatible con CREATOR, que se distribuye bajo esta misma licencia.
 
 \section{Entorno socioeconómico}\label{sec:environment}
 
-Historicamente, la gran mayoría de los \glspl{computer} de escritorio y
+Históricamente, la gran mayoría de los \glspl{computer} de escritorio y
 servidores han utilizado las \glsdisp{ISA}{arquitecturas} x86 o x86-64. Estas
 \glsdisp{ISA}{arquitecturas} ofrecen un alto rendimiento, pero tienen una mala
 eficiencia energética y un alto coste de fabricación debido a su gran
-complejidad. Debido a esto, el mercado móbil y de dispositivos del \gls{IoT}
+complejidad. Debido a esto, el mercado móvil y de dispositivos del \gls{IoT}
 utilizan otras \glsdisp{ISA}{arquitecturas} como ARM o RISC-V que, aunque
 ofrecen un peor rendimiento, son mucho más simples, gracias a lo cual pueden
 lograr una mejor eficiencia energética y coste de producción.
@@ -466,25 +467,24 @@ lograr una mejor eficiencia energética y coste de producción.
 Recientemente, sin embargo, se ha descubierto que \glsdisp{ISA}{arquitecturas}
 simples como ARM pueden lograr un rendimiento similar a x86-64. Además, a
 diferencia de x86-64, cuyas licencias para diseñar \glspl{processor} son
-difíciles de conseguir y están controladas por Intel y AMD, obtener una licencia
-para ARM es mucho más fácil, ya que la venta de estas licencias es una parte
-importante del negocio de Arm Holdings, la empresa propietaria de ARM. La
-capacidad de diseñar \glspl{processor} propios también ayuda a reducir los
-costes de fabricación y operación al eliminar intermediarios y reducir el
-consumo energético, y ofrece una gran flexibilidad al poder crear
-\glspl{processor} para tareas específicas. Debido a esto, recientemente, grandes
-empresas como Amazon o Apple han adoptado \glspl{processor} con diseños propios
-basados en ARM en muchos de sus productos, incluyendo \glspl{computer} de
-escritorio y servidores.
+difíciles de conseguir por estar controladas por Intel y AMD, obtener una
+licencia para ARM es mucho más fácil. Esto es debido a que la venta de estas
+licencias es una parte importante del negocio de Arm Holdings, la empresa
+propietaria de ARM. La capacidad de diseñar \glspl{processor} propios también
+ayuda a reducir los costes de fabricación y operación al eliminar
+intermediarios, y ofrece una gran flexibilidad al poder crear \glspl{processor}
+para tareas específicas. Debido a esto, recientemente, grandes empresas como
+Amazon o Apple han adoptado \glspl{processor} con diseños propios basados en ARM
+en muchos de sus productos, incluyendo \glspl{computer} de escritorio y
+servidores.
 
-Esto se ve influenciado por la reciente inestabilidad polícita y económica de
-Estados Unidos con los aranceles y otras políticas similares. Mientras que Intel
-y AMD son empresas americanas y, por lo tanto, se ven afectadas por las
-políticas de Estados Unidos, Arm Holdings es una empresa inglesa sin estos
-problemas.
+Esto se ve influenciado por la reciente inestabilidad política y económica de
+Estados Unidos con políticas como los aranceles. Mientras que Intel y AMD son
+empresas americanas y, por lo tanto, se ven afectadas por las políticas de
+Estados Unidos, Arm Holdings es una empresa inglesa sin estos problemas.
 
 En este contexto surge RISC-V como una \glsdisp{ISA}{arquitectura} completamente
-abierta que no require de licencias para el diseño de \glspl{processor}. Esto
+abierta que no requiere de licencias para el diseño de \glspl{processor}. Esto
 reduce mucho más su coste de fabricación al permitir a cualquier empresa diseñar
 \glspl{processor} con esta \glsdisp{ISA}{arquitectura}, y elimina muchos
 problemas políticos. El diseño modular de RISC-V también fomenta el desarrollo
@@ -497,8 +497,8 @@ eficiencia energética. Sin embargo, su adopción fuera de \glspl{processor} par
 Esto lleva a la necesidad de desarrollar buenos simuladores que permitan
 desarrollar y aprender a utilizar nuevas \glsdisp{ISA}{arquitecturas} como
 RISC-V. Como ya se explicó en el \chapterref{introduction}, el proyecto se ha
-integrado en un simulador \gls{FOSS} que contribuye al aprendizaje de
-\gls{assembly}{ensamblador}. Este simulador se utiliza actualmente en múltiples
+integrado en un simulador \gls{FOSS} que contribuye al aprendizaje del
+\gls{assembly}. Este simulador se utiliza actualmente en múltiples
 universidades entre las que se incluyen la Universidad Carlos III de Madrid, la
 Universidad de Castilla-La Mancha, la Universidad de León, la Universidad de
 Almería, y la Universidad Sureste del Estado de Missouri. El proyecto

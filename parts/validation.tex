@@ -10,8 +10,8 @@ existentes.
 \section{Verificación y Validación}\label{sec:tests}
 
 En ingeniería de software, la verificación y validación de software es el
-proceso de comprobación de que el sistema cumple con los requisitos establecidos
-y la función para la que se diseñó \parencite{verification-validation}. La
+proceso de comprobar que el sistema cumple con los requisitos establecidos y la
+función para la que se diseñó \parencite{verification-validation}. La
 \figureref{tests} muestra un resumen de este proceso.
 
 \drawiosvgfigure[0.75]{tests}{Resumen de la verificación y validación de software}
@@ -44,7 +44,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 \begin{testCase}{VET}{ISA}
     {El sistema está instalado.} % Precondición
     {Se obtiene el código compilado correspondiente al \gls{program} introducido.} % Postcondición
-    {Verificar que el sistema puede compilar \glspl{program} en una \gls{ISA}.} % Descripción
+    {Verificar que el sistema puede compilar \glspl{program} según una \gls{ISA}.} % Descripción
     {OK} % Evaluación
     {FN-compilar-instrucciones, FN-directivas, FN-secciones, FN-ISA,
     FN-num-etiquetas, FN-referencias, NF-ISA, NF-def-instrucciones, NF-sintaxis} % Origen
@@ -80,7 +80,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 \begin{testCase}{VET}{directivas-datos}
     {El sistema está instalado y se tiene una \gls{ISA} cargada con todos los
     tipos de directivas de datos soportadas.} % Precondición
-    {Se obtiene el código compilado con los valores de las \gls{data directive} introducidas.} % Postcondición
+    {Se obtiene el código compilado con los valores de las \glspl{data directive} introducidas.} % Postcondición
     {Verificar que el sistema permite el uso de todas las \glspl{data directive} soportadas.} % Descripción
     {OK} % Evaluación
     {FN-directivas, FN-directivas-datos, FN-strings, FN-tamaño-ints, FN-floats, FN-alineamiento} % Origen
@@ -119,18 +119,17 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 \begin{testCase}{VET}{strings}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
     {Se obtiene el código compilado con la codificación UTF-8 \parencite{UTF-8}
-    correspondiente a la cadena de caracteres introducida, y los valores
-    correspondientes a las secuencias de escape introducidas en los caracteres
-    literales.} % Postcondición
+    correspondiente a las cadenas de caracteres introducidas, y los valores
+    Unicode \parencite{UTF-8} correspondientes a los caracteres literales.} % Postcondición
     {Verificar que el sistema permite el uso secuencias de escape en cadenas de
     caracteres y caracteres literales, y que las cadenas están codificadas en
     UTF-8 \parencite{UTF-8}.} % Descripción
     {OK} % Evaluación
     {FN-utf8, FN-escape} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
-        \item Escribir un \gls{program} con una cadena que contenga todas las
-        secuencias de escape soportadas y caracteres no ASCII, y caracteres
-        literales con cada una de las secuencias de escape.
+        \item Escribir un \gls{program} con cadenas de caracteres y caracteres
+        literales que contengan todas las secuencias de escape soportadas y
+        caracteres no ASCII.
         \item Compilar el \gls{program}.
     \end{enumerate}
 \end{testCase}
@@ -158,14 +157,15 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 \begin{testCase}{VET}{expresiones-int}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
     {Se obtiene el código compilado con los valores de las \glspl{expression} introducidas.} % Postcondición
-    {Verificar que el sistema permite el uso \glspl{expression} de números enteros.} % Descripción
+    {Verificar que el sistema permite el uso \glspl{expression} aritméticas de números enteros.} % Descripción
     {OK} % Evaluación
     {FN-constantes, FN-expr-operadores, FN-expr-instruccion, FN-expr-directiva} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
-        \item Escribir un \gls{program} que utilice \gls{expression} de números
-        enteros, caracteres literales, y etiquetas, y todos los operadores
-        soportados, como \glspl{immediate} de \glspl{instruction} y valores de
-        \gls{data directive} que acepten números enteros como argumentos.
+        \item Escribir un \gls{program} que utilice \glspl{expression} de
+        números enteros, caracteres literales, y etiquetas, y todos los
+        operadores soportados, como \glspl{immediate} de \glspl{instruction} y
+        valores de \glspl{data directive} que acepten números enteros como
+        argumentos.
         \item Compilar el \gls{program}.
     \end{enumerate}
 \end{testCase}
@@ -173,14 +173,14 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 \begin{testCase}{VET}{expresiones-float}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
     {Se obtiene el código compilado con los valores de las \glspl{expression} introducidas.} % Postcondición
-    {Verificar que el sistema permite el uso \glspl{expression} de números decimales.} % Descripción
+    {Verificar que el sistema permite el uso \glspl{expression} aritméticas de números decimales.} % Descripción
     {OK} % Evaluación
     {FN-constantes, FN-expr-operadores, FN-expr-directiva} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
-        \item Escribir un \gls{program} que utilice \gls{expression} de números
-        enteros y decimales, caracteres literales, y etiquetas, y todos los
-        operadores soportados excepto los operadores bit a bit, como valores de
-        \gls{data directive} que acepten números decimales como argumentos.
+        \item Escribir un \gls{program} que utilice \glspl{expression} de
+        números enteros y decimales, caracteres literales, y etiquetas, y todos
+        los operadores soportados (excepto los operadores bit a bit), como valores
+        de \glspl{data directive} que acepten números decimales como argumentos.
         \item Compilar el \gls{program}.
     \end{enumerate}
 \end{testCase}
@@ -251,15 +251,16 @@ requisitos de software están cubiertos por al menos una prueba de verificación
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Implementar una \gls{ISA} con una \gls{data directive} de
         enteros con un tamaño máximo arbitrariamente grande.
-        \item Escribir un \gls{program} que utilice la \gls{data directive} de
-        enteros con un número entero cercano al valor máximo definido.
+        \item Escribir un \gls{program} que utilice la \glsdisp{data
+        directive}{directiva} definida con un número entero cercano al valor
+        máximo.
         \item Cargar la \gls{ISA} en el compilador.
         \item Compilar el \gls{program}.
     \end{enumerate}
 \end{testCase}
 
 \begin{testCase}{VET}{API}
-    {El código del sistema está descargado} % Precondición
+    {El código del sistema y del \gls{compiler} actual está descargado} % Precondición
     {El sistema utiliza la \gls{API} de entrada y salida en \gls{JS}
     implementada en el \gls{compiler} actual.} % Postcondición
     {Verificar que el sistema utiliza la \gls{API} implementada en el \gls{compiler} actual.} % Descripción
@@ -306,7 +307,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
     {OK} % Evaluación
     {NF-velocidad} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
-        \item Escribir un \gls{program} con 1000 \gls{instruction}.
+        \item Escribir un \gls{program} con 1000 \glspl{instruction}.
         \item Compilar el \gls{program}.
     \end{enumerate}
 \end{testCase}
@@ -342,18 +343,16 @@ usuario están cubiertos por al menos una prueba de validación.
 \begin{testCase}{VAT}{strings}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
     {Se obtiene el código compilado con la codificación UTF-8 \parencite{UTF-8}
-    correspondiente a la cadena de caracteres introducida, y los valores
-    correspondientes a las secuencias de escape introducidas en los caracteres
-    literales.} % Postcondición
+    correspondiente a las cadenas de caracteres introducidas, y los valores
+    Unicode \parencite {UTF-8} correspondientes a los caracteres literales.} % Postcondición
     {Validar que el sistema permite el uso secuencias de escape en cadenas de
     caracteres y caracteres literales, y que las cadenas están codificadas en
     UTF-8 \parencite{UTF-8}.} % Descripción
     {OK} % Evaluación
     {CA-utf8, CA-escape} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
-        \item Escribir un \gls{program} con una cadena que contenga
-        secuencias de escape y caracteres no ASCII, y caracteres
-        literales con secuencias de escape.
+        \item Escribir un \gls{program} con cadenas de caracteres y caracteres
+        literales que contengan secuencias de escape y caracteres no ASCII.
         \item Compilar el \gls{program}.
     \end{enumerate}
 \end{testCase}
@@ -387,7 +386,7 @@ usuario están cubiertos por al menos una prueba de validación.
     {CA-num-etiquetas, CA-referencias} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Escribir un \gls{program} que utilice múltiples etiquetas en una
-        misma \gls{instruction} y \gls{data directive} y etiquetas definidas
+        misma \gls{instruction} y \gls{data directive}, y etiquetas definidas
         después de su uso.
         \item Compilar el \gls{program}.
     \end{enumerate}
@@ -396,13 +395,14 @@ usuario están cubiertos por al menos una prueba de validación.
 \begin{testCase}{VAT}{expresiones-int}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
     {Se obtiene el código compilado con los valores de las \glspl{expression} introducidas.} % Postcondición
-    {Validar que el sistema permite el uso \glspl{expression} numéricas con etiquetas.} % Descripción
+    {Validar que el sistema permite el uso \glspl{expression} aritméticas con etiquetas.} % Descripción
     {OK} % Evaluación
     {CA-etiquetas-valor, CA-expresiones} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
-        \item Escribir un \gls{program} que utilice \gls{expression} de números
-        enteros, caracteres literales, y etiquetas como \glspl{immediate} de
-        \glspl{instruction} y valores de \gls{data directive}.
+        \item Escribir un \gls{program} que utilice \glspl{expression}
+        aritméticas de números enteros, caracteres literales, y etiquetas como
+        \glspl{immediate} de \glspl{instruction} y valores de \gls{data
+        directive}.
         \item Compilar el \gls{program}.
     \end{enumerate}
 \end{testCase}
@@ -449,8 +449,9 @@ usuario están cubiertos por al menos una prueba de validación.
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Implementar una \gls{ISA} con una \gls{data directive} de
         enteros con un tamaño máximo arbitrariamente grande.
-        \item Escribir un \gls{program} que utilice la \gls{data directive} de
-        enteros con un número entero cercano al valor máximo definido.
+        \item Escribir un \gls{program} que utilice la \glsdisp{data
+        directive}{directiva} definida con un número entero cercano al valor
+        máximo.
         \item Cargar la \gls{ISA} en el compilador.
         \item Compilar el \gls{program}.
     \end{enumerate}
@@ -552,7 +553,7 @@ usuario están cubiertos por al menos una prueba de validación.
     Los resultados obtenidos se pueden ver en la \figureref{eval-\arabic{eval}}.
 }
 
-Para evaluar el sistema desarrollado, se van a comparar los mensajes de error
+Para evaluar el sistema desarrollado se van a comparar los mensajes de error
 generados con los mensajes de error del \gls{compiler} actual y de \gls{GAS}
 \parencite{GNUas}, ya que es uno de los \gls{assembler} más utilizados. Para
 realizar esto, se realizarán varias pruebas con \glspl{program} a los que se ha
@@ -584,7 +585,7 @@ de generar un error.
 El siguiente caso de prueba consiste en intentar utilizar un entero demasiado
 grande en una \gls{data directive}. \evalresref Como se puede ver, el nuevo
 \gls{compiler} es el único que muestra cuál es el rango de enteros válidos para
-la \gls{directive} (\evalfigref{new}), ayudando a los usuarios a recordar qué
+la \gls{directive} (\evalfigref{new}), ayudando a los usuarios a aprender qué
 valores pueden ser utilizados. El \gls{compiler} antiguo y \gls{GAS} (figuras
 \evalref{old} y \evalref{as}), en cambio, únicamente indican que el número es
 demasiado grande.
@@ -625,7 +626,7 @@ un buen caso de prueba en el que evaluar el rendimiento del sistema. Cabe
 destacar que este \gls{program} utiliza funcionalidades no soportadas por el
 \gls{compiler} actual (como \glspl{expression} aritméticas y uso de etiquetas
 como valores de \glspl{data directive}). Debido a esto, para evaluar el
-rendimiento del \gls{compiler} actual, se ha tenido que modificar el
+rendimiento en el \gls{compiler} actual, se ha tenido que modificar el
 \gls{program} para evitar el uso de estas funcionalidades.
 
 La \figureref{rendimiento} muestra los resultados de la ejecución. \gls{GAS} no

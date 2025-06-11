@@ -18,21 +18,21 @@ desarrollado el \gls{compiler} de \glsdisp{assembly}{ensamblador} desarrollado
 en este TFG.
 
 La programación es el acto de componer secuencias de instrucciones que indiquen
-a un \gls{computer} cómo realizar una tarea. Esto se realiza describiendo esta
-secuencia en un \gls{programming language}, creando un \gls{program}. Según el
-nivel de abstracción del \gls{computer}, los \glspl{programming language} se
+a un \gls{computer} cómo realizar una tarea. Para realizar esto, hay que definir
+esta secuencia en un \gls{programming language}, creando un \gls{program}. Según
+el nivel de abstracción sobre el \gls{computer}, los \glspl{programming language} se
 pueden clasificar en un espectro, donde los \glspl{low-level language} utilizan
 pocas o ninguna abstracción mientras que los \glspl{high-level language}
 utilizan muchas abstracciones.
 
 Aunque estas abstracciones ayudan al desarrollo de \glspl{program}, en todos los
 casos estos acaban siendo ejecutados en un \gls{computer}. Es por esto que el
-funcionamiento del mismo siempre tiene una influencia en todos los
-\glsdisp{programming language}{language}, y determina las consequencias que
-tiene el uso de las diferentes abstracciones ofrecidas por los \glspl{high-level
-language}. Debido a esto, para diseñar \glspl{program} que sean capaces de
-utilizar eficientemente todos los recursos de un \gls{computer}, es fundamental
-conocer su funcionamiento.
+funcionamiento del \gls{computer} siempre tiene una influencia en todos los
+\glsdisp{programming language}{lenguajes}, y determina las consecuencias del uso
+de las diferentes abstracciones ofrecidas por los \glspl{high-level language}.
+Debido a esto, para diseñar \glspl{program} que sean capaces de utilizar
+eficientemente todos los recursos de un \gls{computer}, es fundamental conocer
+su funcionamiento.
 
 Un \gls{computer} es una combinación de \textit{hardware} y \textit{software},
 que forman la \glsdisp{ISA}{arquitectura} del mismo. El \textit{hardware}
@@ -44,7 +44,7 @@ qué es capaz de realizar, y cómo lo hace.
 El \textit{software} que puede ejecutar directamente un \gls{computer} se
 escribe en una familia de \glspl{low-level language} conocidos como
 ``\glspl{assembly}''. Para simplificar la electrónica y aumentar el rendimiento
-del \gls{computer}, estos están formados por una secuencia de
+del \gls{computer}, estos están formados únicamente por una secuencia de
 \glspl{instruction} atómicas simples que operan en unos pocos datos. Para
 ejecutar cualquier \gls{program} escrito en un \glsdisp{programming
 language}{lenguaje} de mayor nivel es necesario convertirlos a uno de estos
@@ -78,8 +78,6 @@ código. Esto permite simular múltiples \glsdisp{ISA}{arquitecturas} diferentes
 en una misma herramienta sin necesidad de desarrollar un simulador completo para
 cada una.
 
-% TODO: Hablar de FOSS?
-
 Por lo tanto, proponemos desarrollar un \gls{assembler} genérico para el simulador
 CREATOR que sea robusto, lo suficientemente flexible como para permitir el uso
 de funcionalidades avanzadas, y esté centrado en producir buenos mensajes de
@@ -88,9 +86,9 @@ error que ayuden a los usuarios a aprender el \gls{assembly}.
 \section{Objetivos}\label{sec:objectives}
 
 El principal objetivo de este proyecto es desarrollar un \gls{compiler} de
-\gls{assembly} (\gls{assembler}) genérico que sustituya al actualmente utilizado
-por el simulador CREATOR, añadiendo nuevas funcionalidades y mejorando sus
-mensajes de error. Esto ayudará a los alumnos a aprender el \gls{assembly}.
+\gls{assembly}  genérico que sustituya al actualmente utilizado por el simulador
+CREATOR, añadiendo nuevas funcionalidades y mejorando sus mensajes de error.
+Esto ayudará a los alumnos a aprender el \gls{assembly}.
 
 \noindent
 A partir de este objetivo principal, se pueden definir objetivos secundarios:
@@ -103,7 +101,7 @@ A partir de este objetivo principal, se pueden definir objetivos secundarios:
     \item \textbf{O3:} Generar mensajes de error con mucha información que
     ayuden a los estudiantes comprender la causa del problema.
     \item \textbf{O4:} Ser compatible con las definiciones de
-    \glsdisp{ISA}{arquitecturas} actualmente desarrolladas para CREATOR
+    \glsdisp{ISA}{arquitecturas} actualmente desarrolladas para CREATOR.
     \item \textbf{O5:} Ser lo suficientemente flexible como para añadir nuevas
     funcionalidades, que permitan el uso de CREATOR en nuevas situaciones.
 \end{itemize}

@@ -1,8 +1,8 @@
 \chapter{Conclusiones y trabajos futuros}\label{chap:conclusions}
 
 En este capítulo se presentarán las conclusiones obtenidas con la realización
-del proyecto (\sectionref{proyect-conclusions}), estudiando los objetivos
-propuestos en el \chapterref{introduction}, y las conclusiones personales
+del proyecto (\sectionref{project-conclusions}), estudiando los objetivos
+propuestos en el \chapterref{introduction}; y las conclusiones personales
 (\sectionref{personal-conclusions}), indicando los conocimientos adquiridos y
 las asignaturas relacionadas con el proyecto. Tras esto, la
 \sectionref{additional-contributions} explicará contribuciones adicionales
@@ -10,12 +10,13 @@ realizadas durante el desarrollo del proyecto que no están directamente
 relacionadas con el mismo. Finalmente, la \sectionref{future-work} indicará
 trabajos futuros que se podrían realizar para mejorar el sistema desarrollado.
 
-\section{Conclusiones del proyecto}\label{sec:proyect-conclusions}
+\section{Conclusiones del proyecto}\label{sec:project-conclusions}
 
 En este documento se ha descrito el análisis, diseño, e implementación de un
-\gls{compiler} de \gls{assembly} genérico. El sistema desarrollado es
-\gls{FOSS}, y está centrado en tener muchas funcionalidades y generar buenos
-mensajes de error que ayuden a los usuarios aprender el \gls{assembly}.
+\gls{compiler} de \gls{assembly} genérico, robusto, y flexible. El sistema
+desarrollado es \gls{FOSS}, y está centrado en tener muchas funcionalidades y
+generar buenos mensajes de error que ayuden a los usuarios aprender el
+\gls{assembly}.
 
 Como se explicó en la \sectionref{objectives}, el objetivo principal del
 proyecto era crear un \gls{compiler} capaz de reemplazar al actualmente
@@ -26,7 +27,7 @@ todos los objetivos secundarios:
     \item \textbf{O1:} El sistema permite definir las \glspl{instruction}
     permitidas en la \gls{ISA}, y utilizar estas en los \glspl{program}.
     \item \textbf{O2:} El sistema permite \glsdisp{compilation}{compilar}
-    \glspl{program} según la definición de una \gls{ISA}
+    \glspl{program} según la definición de una \gls{ISA}.
     \item \textbf{O3:} Los mensajes de error generados por el sistema incluyen
     toda la información relevante para comprender la causa del problema y cómo
     solucionarlo, incluyendo notas con información adicional relevante para el
@@ -34,9 +35,9 @@ todos los objetivos secundarios:
     \item \textbf{O4:} El sistema es compatible con todas las definiciones de
     \glspl{ISA} creadas previamente para CREATOR.
     \item \textbf{O5:} El sistema tiene soporte para nuevas funcionalidades
-    avanzadas como el uso de \gls{expression} aritméticas y etiquetas como
+    avanzadas como el uso de \glspl{expression} aritméticas y etiquetas como
     valores. Esto permite, por ejemplo, definir los vectores de interrupciones
-    utilizados en la asignatura de \textit{Sistemas Operativos}.
+    utilizados en la asignatura \textit{Sistemas Operativos}.
 \end{itemize}
 
 La principal dificultad encontrada durante el desarrollo del sistema fue el
@@ -58,7 +59,7 @@ La principal fuente de información para este proyecto ha sido la asignatura
 y funcionamiento de un \gls{compiler}. Otras asignaturas que han sido
 fundamentales para su desarrollo han sido \textit{Estructura de Computadores} y
 \textit{Arquitectura de Computadores}, en las que se explica el funcionamiento
-de un \gls{computer} y sobre el \gls{assembly}. Estas asignaturas son de las que
+de un \gls{computer} y el \gls{assembly}. Estas tres asignaturas son de las que
 más me han gustado de la carrera. Otras asignaturas que me ayudaron para este
 proyecto fueron \textit{Programación}, \textit{Estructura de Datos y
 Algoritmos}, y \textit{Teoría de Autómatas y Lenguajes Formales}.
@@ -84,7 +85,7 @@ contiene una clase de \LaTeX~que define el formato del documento, siguiendo la
 normativa de la universidad \parencite{report-guidelines}.
 
 Durante la escritura de este documento, se encontraron y corrigieron varios
-fallos en esta plantilla, particularmente en su uso para documentos en Español.
+fallos en esta plantilla, particularmente en su uso para documentos en español.
 Estas aportaciones se añadieron a la plantilla para permitir su uso por otros
 estudiantes. Además, el código fuente de esta memoria puede servir como un
 ejemplo de uso de la plantilla, para ayudar a futuros estudiantes que quieran
@@ -96,7 +97,7 @@ Javier López Gómez y modificado por Luis Daniel Casais Mezquida
 tablas para el proceso de ingeniería de \textit{software}, particularmente
 tablas de requisitos, casos de uso, y componentes, y matrices de trazabilidad
 entre estos elementos. Durante la realización de este documento, se modificó
-este paquete para incluir nuevas funcionalidades: uso de identificadores
+este paquete para incluir varias nuevas funcionalidades: uso de identificadores
 nominales para evitar problemas de referencias al reordenarlos, gestión de
 errores para identificadores desconocidos o repetidos, y posibilidad de incluir
 múltiples orígenes en todos los elementos. Estos cambios se contribuyeron al
@@ -115,7 +116,7 @@ pero se podría mejorar de diversas formas:
     la directiva \verb!.set! de \gls{GAS}).
     \item La mayoría de \glspl{compiler} implementan estrategias de recuperación
     de errores para permitir detectar la mayor cantidad posible de errores en
-    cada \gls{compilation}. Se podrían añadir estas estrategias para poder
+    cada \gls{compilation}. Como se mencionó en la \subsectionref{semantic-analyzer}, se podrían añadir estas estrategias para poder
     mostrar al usuario la mayor cantidad posible de problemas en su código.
     \item El sistema actualmente soporta operadores aritméticos y bit a bit
     básicos, pero se podrían añadir más operadores como desplazamientos,
@@ -138,7 +139,7 @@ sistema:
     otros métodos para reducir el tamaño del fichero ejecutable, que es un
     factor importante para aplicaciones web, ya que se tienen que transmitir por
     la red antes de su uso.
-    \item Actualmente, cuando se evalua una \gls{expression} aritmética a un
+    \item Actualmente, cuando se evalúa una \gls{expression} aritmética a un
     número flotante, todos los valores se convierten a números flotantes. Para
     aumentar la precisión, se podrían mantener los números enteros como
     \glspl{bigint} hasta que se les aplique una operación con un número flotante

@@ -68,18 +68,18 @@ actualmente se está instando por la adopción de este tipo de \glsdisp{programm
 anteriormente mencionados, el único que cumple con esta característica
 es Rust \parencite{C-memory-safety}. % TODO: añadir cita sobre rust siendo memory safe
 
-Otra característica importante es la capacidad de generación de \glspl{binding}.
-Estos son necesarios para permitir que el código \gls{JS} pueda utilizar un
-módulo \gls{wasm} como una \gls{library}, ofreciendo una \gls{API} para \gls{JS}
-como pide el \sreqref{NF-JS}. Existen herramientas como Emscripten (C/C++)
-\parencite{Emscripten} o Wasm-pack (Rust) \parencite{Wasm-pack} que realizan
-esto para todos los \glsdisp{programming language}{lenguajes} mencionados
-anteriormente. Cabe destacar que Emscripten es algo más manual, ya que, por
-ejemplo, requiere redefinir los tipos de los argumentos y valor de retorno para
-cada función que se quiera ejecutar desde \gls{JS}. Wasm-pack, en cambio, es
-capaz de generar automáticamente todo el código necesario para poder utilizar
-las funciones definidas en el módulo \gls{wasm} como si se tratasen de funciones
-nativas de \gls{JS}.
+Otra característica importante es la capacidad de generación de
+\textit{\glspl{binding}}. Estos son necesarios para permitir que el código
+\gls{JS} pueda utilizar un módulo \gls{wasm} como una \gls{library}, ofreciendo
+una \gls{API} para \gls{JS} como pide el \sreqref{NF-JS}. Existen herramientas
+como Emscripten (C/C++) \parencite{Emscripten} o Wasm-pack (Rust)
+\parencite{Wasm-pack} que realizan esto para todos los \glsdisp{programming
+language}{lenguajes} mencionados anteriormente. Cabe destacar que Emscripten es
+algo más manual, ya que, por ejemplo, requiere redefinir los tipos de los
+argumentos y valor de retorno para cada función que se quiera ejecutar desde
+\gls{JS}. Wasm-pack, en cambio, es capaz de generar automáticamente todo el
+código necesario para poder utilizar las funciones definidas en el módulo
+\gls{wasm} como si se tratasen de funciones nativas de \gls{JS}.
 
 La \tableref{language-comparison} resume las características analizadas.
 Teniendo en cuenta todas estas características, se ha elegido Rust como
@@ -135,11 +135,11 @@ sistema.
 
 Para realizar el análisis sintáctico, como ya se ha explicado en la
 \sectionref{parser-techniques}, actualmente existen múltiples métodos: utilizar
-un generador de \glspl{parser}, utilizar un combinador de \glspl{parser}, o
-crear un analizador sintáctico manualmente. \parencite{dragon-book}
-\parencite{parser-combinators}
+un generador de \textit{\glspl{parser}}, utilizar un combinador de
+\textit{\glspl{parser}}, o crear un analizador sintáctico manualmente.
+\parencite{dragon-book} \parencite{parser-combinators}
 
-Los generadores de \glspl{parser}, durante la generación del analizador
+Los generadores de \textit{\glspl{parser}}, durante la generación del analizador
 sintáctico, realizan un procesado de la gramática que verifica ciertas
 restricciones y les permite generar un analizador sintáctico eficiente.
 Generalmente, esto es útil, ya que ayuda a detectar errores o ambigüedades en la
@@ -153,25 +153,24 @@ utilizando la técnica de descenso recursivo \parencite{dragon-book}. Como ya se
 explicó, el principal problema de este método es su complejidad, requiriendo
 mucho tiempo para su desarrollo.
 
-El último método es utilizar un combinador de \glspl{parser}. Este método
-permite crear un analizador sintáctico de una forma similar a como se haría un
-\gls{parser} descendente recursivo, obteniendo así muchos de los beneficios de
-la creación manual, pero simplificando mucho el proceso gracias a un mayor nivel
-de abstracción. Aunque el \sreqref{NF-velocidad} indica que el sistema debe ser
-rápido, la pérdida de rendimiento no es demasiado grande, por lo que es
-preferible el menor consumo de tiempo de este método, ya que permitirá
-implementar más funcionalidades. Cabe destacar que se podría reemplazar el
-analizador sintáctico por uno creado manualmente sin demasiados problemas, por
-lo que se dejará esto como trabajo futuro. Algunas de las herramientas de este
-tipo son Parsec \parencite{parsec}, Chumsky \parencite{chumsky}, y pom
-\parencite{pom}.
+El último método es utilizar un combinador de \textit{\glspl{parser}}. Este
+método permite crear un analizador sintáctico de una forma similar a como se
+haría un \textit{\gls{parser}} descendente recursivo, obteniendo así muchos de
+los beneficios de la creación manual, pero simplificando mucho el proceso
+gracias a un mayor nivel de abstracción. Aunque el \sreqref{NF-velocidad} indica
+que el sistema debe ser rápido, la pérdida de rendimiento no es demasiado
+grande. Debido a esto, es preferible el menor consumo de tiempo de este método,
+ya que permitirá implementar más funcionalidades. Cabe destacar que en un futuro
+se podría reemplazar el analizador sintáctico por uno creado manualmente.
+Algunas de las herramientas de este tipo son Parsec \parencite{parsec}, Chumsky
+\parencite{chumsky}, y pom \parencite{pom}.
 
 Teniendo en cuenta esto, se ha elegido Chumsky como biblioteca para la creación
 del analizador sintáctico debido a varios motivos:
 
 \begin{itemize}
-    \item Es una biblioteca de combinadores de \glspl{parser}, lo que permite un
-    corto tiempo de desarrollo.
+    \item Es una biblioteca de combinadores de \textit{\glspl{parser}}, lo que
+    permite un corto tiempo de desarrollo.
     \item Está diseñada para generar buenos mensajes de error, y ser lo más
     rápida posible sin sacrificar la calidad de estos mensajes.
     \item Tiene soporte para Rust, el \gls{programming language} elegido
@@ -181,12 +180,12 @@ del analizador sintáctico debido a varios motivos:
 \subsection{Análisis semántico}\label{subsec:compiler}
 
 Como se explicó en la \sectionref{parser-techniques}, el análisis semántico se
-encarga de, utilizando una representación intermedia, verificar que el
-\gls{program} cumple la semántica del \glsdisp{programming language}{lenguaje} y
-generar el código compilado.
+encarga de, utilizando la representación intermedia generada por el
+\textit{\gls{parser}}, verificar que el \gls{program} cumple la semántica del
+\glsdisp{programming language}{lenguaje} y generar el código compilado.
 
 Aunque lógicamente el analizador semántico toma como entrada el resultado del
-analizador sintáctico, ambos componentes se pueden mezclar para evitar
+\textit{\gls{parser}}, ambos componentes se pueden mezclar para evitar
 representar el código intermedio explícitamente, realizando ambas tareas
 simultáneamente y aumentando la eficiencia del \gls{compiler}. Sin embargo, esto
 dificulta la tarea del analizador semántico al no poder explorar libremente el
@@ -199,9 +198,9 @@ Para la representación del código intermedio, existen principalmente dos
 métodos: utilizar un \gls{AST} y utilizar códigos de tres direcciones. Un
 \gls{AST} es un árbol que representa la estructura sintáctica del código fuente,
 utilizando los \glspl{internal node} para representar estructuras sintácticas
-del lenguaje y los \glspl{leaf node} para representar los \glspl{token} del
-código fuente. Los códigos de tres direcciones son \gls{instruction} que toman
-como mucho dos variables, aplican una operación (típicamente un cálculo,
+del lenguaje y los \glspl{leaf node} para representar los \textit{\glspl{token}}
+del código fuente. Los códigos de tres direcciones son \glspl{instruction} que
+toman como mucho dos variables, aplican una operación (típicamente un cálculo,
 comparación, o salto), y almacenan el resultado en otra variable. De entre estas
 opciones, se ha elegido utilizar un \gls{AST} porque permite una representación
 más flexible que facilita la tarea del analizador semántico.
@@ -260,7 +259,7 @@ componentes.
     {Valida y carga la \gls{ISA}, permitiendo su uso en los otros componentes.} % Rol
     {\componentref{Traductor}} % Dependencias
     {Especificación de la \gls{ISA}} % Datos de entrada
-    {\gls{ISA} validada} % Datos de salida
+    {Objeto que representa la \gls{ISA} validada} % Datos de salida
     {FN-ISA} % Origen
     El gestor de la arquitectura se encarga de validar y cargar la
     especificación de la \gls{ISA} proporcionada, generando diferentes errores
@@ -271,7 +270,7 @@ componentes.
 \begin{component}{Renderizador de errores}
     {Transforma la información de un error a un formato que puede ser mostrado a un usuario.} % Rol
     {\componentref{Traductor}} % Dependencias
-    {Error en formato lógico y código \glsdisp{assembly}{ensamblador}} % Datos de entrada
+    {Error en formato lógico} % Datos de entrada
     {Representación del error que puede ser mostrada a un usuario} % Datos de salida
     {FN-errores-base,FN-errores-extra,FN-errores-colores} % Origen
     El \gls{renderer} de errores se encarga de transformar la información
@@ -280,10 +279,10 @@ componentes.
 \end{component}
 
 \begin{component}{Lexer}
-    {Transforma el código del \gls{program} en una secuencia de \glspl{token}.} % Rol
+    {Transforma el código del \gls{program} en una secuencia de \textit{\glspl{token}}.} % Rol
     {\componentref{Parser}, \componentref{Parser de instrucciones}, y \componentref{Parser de expresiones}} % Dependencias
     {\Gls{program} a analizar} % Datos de entrada
-    {Secuencia de \glspl{token}} % Datos de salida
+    {Secuencia de \textit{\glspl{token}}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
     FN-directivas-datos, FN-utf8, FN-escape, FN-floats, FN-comentarios-tipos,
     FN-comentarios, FN-constantes, FN-expr-operadores, FN-errores-sintaxis,
@@ -291,45 +290,45 @@ componentes.
     El lexer recibe el código del \gls{program} a
     \glsdisp{compilation}{compilar} y realiza un análisis léxico, transformado
     la secuencia de caracteres que representa el \gls{program} en una secuencia
-    de \glspl{token} que puede ser utilizada por los demás componentes del
-    analizador sintáctico.
+    de \textit{\glspl{token}} que puede ser utilizada por los demás componentes
+    del analizador sintáctico.
 \end{component}
 
 \begin{component}{Parser de expresiones}
-    {Realiza el análisis sintáctico de una \gls{expression}.} % Rol
+    {Realiza el análisis sintáctico de una \gls{expression} aritmética.} % Rol
     {\componentref{Parser} y \componentref{Parser de instrucciones}} % Dependencias
-    {Secuencia de \glspl{token}} % Datos de entrada
+    {Secuencia de \textit{\glspl{token}}} % Datos de entrada
     {\gls{AST} correspondiente a una \gls{expression}} % Datos de salida
     {FN-floats, FN-constantes, FN-expr-operadores,
     FN-expr-instruccion, FN-expr-directiva, FN-errores-sintaxis, FN-errores-base} % Origen
     El \gls{parser} de expresiones realiza el análisis sintáctico de una
-    \gls{expression}, transformando la secuencia de \glspl{token} que la
+    \gls{expression}, transformando la secuencia de \textit{\glspl{token}} que la
     representa en un \gls{AST} para su posterior evaluación. Este componente
     tiene en cuenta el nivel de precedencia de los operadores al generar el
     \gls{AST}.
 \end{component}
 
+\begin{component}{Parser de instrucciones}
+    {Realiza el análisis sintáctico de una \gls{instruction}.} % Rol
+    {\componentref{Traductor}} % Dependencias
+    {Secuencia de \textit{\glspl{token}} y definición de la sintaxis de la \gls{instruction}} % Datos de entrada
+    {\gls{AST} correspondiente a la \gls{instruction}} % Datos de salida
+    {FN-compilar-instrucciones, FN-compilar-pseudo,
+    FN-mult-defs-instruccion, FN-errores-sintaxis, FN-errores-base} % Origen
+    El \gls{parser} de \glspl{instruction} realiza el análisis sintáctico de los
+    argumentos de una \gls{instruction} según una cadena que define su sintaxis.
+\end{component}
+
 \begin{component}{Parser}
     {Realiza el análisis sintáctico de un \gls{program}.} % Rol
     {\componentref{Traductor}} % Dependencias
-    {Secuencia de \glspl{token}} % Datos de entrada
+    {Secuencia de \textit{\glspl{token}}} % Datos de entrada
     {\gls{AST} correspondiente al \gls{program}} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
     FN-directivas-datos, FN-num-etiquetas, FN-errores-sintaxis, FN-errores-base} % Origen
     El \gls{parser} realiza el análisis sintáctico de un \gls{program},
-    transformando la secuencia de \glspl{token} que lo representa en un
+    transformando la secuencia de \textit{\glspl{token}} que lo representa en un
     \gls{AST} para su posterior análisis semántico.
-\end{component}
-
-\begin{component}{Parser de instrucciones}
-    {Realiza el análisis sintáctico de una \gls{instruction}.} % Rol
-    {\componentref{Traductor}} % Dependencias
-    {Secuencia de \glspl{token} y definición de la sintaxis de la \gls{instruction}} % Datos de entrada
-    {\gls{AST} correspondiente a la \gls{instruction}} % Datos de salida
-    {FN-compilar-instrucciones, FN-compilar-pseudo,
-    FN-mult-defs-instruccion, FN-errores-sintaxis, FN-errores-base} % Origen
-    El \gls{parser} de \gls{instruction} realiza el análisis sintáctico de los
-    argumentos de una \gls{instruction} según una cadena que define su sintaxis.
 \end{component}
 
 \begin{component}{Evaluador de pseudo-instrucciones}
@@ -366,8 +365,9 @@ componentes.
 
 \subsubsection{Trazabilidad}
 
-La matriz de trazabilidad permite verificar que todos los requisitos funcionales
-están cubiertos por al menos un componente.
+La matriz de trazabilidad (\tableref{trazability-comp-f}) permite verificar que
+todos los requisitos funcionales están cubiertos por al menos un componente, y
+que todos los componentes implementan algún requisito funcional.
 
 \begin{landscape}
     \traceabilityTableBig[p]{trazability-comp-f}{^\37D+$}{^RS\37-FN}
@@ -378,14 +378,15 @@ están cubiertos por al menos un componente.
 
 \subsection{Analizador sintáctico}
 
-El analizador sintáctico se compondrá principalmente de un \gls{lexer} y un
-\gls{parser}. El \gls{lexer} se encargará de realizar un procesado inicial del
-código para transformarlo en una secuencia de \glspl{token} (eliminando espacios
-y comentarios), mientras que el \gls{parser} tomará esta secuencia de
-\glspl{token} y la transformará en un \gls{AST} según la \gls{grammar} del
-lenguaje. Además, también utilizará un \gls{parser} de \glspl{expression} para
-realizar el análisis de las \glspl{expression} numéricas, el cual tendrá en
-cuenta el nivel de precedencia de los diferentes operadores. Como el
+El analizador sintáctico se compondrá principalmente de un \textit{\gls{lexer}}
+y un \textit{\gls{parser}}. El \textit{\gls{lexer}} se encargará de realizar un
+procesado inicial del código para transformarlo en una secuencia de
+\textit{\glspl{token}} (eliminando espacios y comentarios), mientras que el
+\textit{\gls{parser}} tomará esta secuencia de \textit{\glspl{token}} y la
+transformará en un \gls{AST} según la \gls{grammar} del lenguaje. Además,
+también utilizará un \textit{\gls{parser}} de \glspl{expression} para realizar
+el análisis de las \glspl{expression} aritméticas, el cual tendrá en cuenta el
+nivel de precedencia de los diferentes operadores. Como el
 \sreqref{FN-errores-base} pide que los errores contengan la posición exacta del
 error, se añadirá también a los nodos del \gls{AST} la posición y tamaño en el
 código original de cada elemento, para que el analizador semántico pueda acceder
@@ -394,18 +395,20 @@ a esta información.
 El \sreqref{FN-mult-defs-instruccion} indica que una instrucción puede tener
 múltiples sintaxis distintas. Para permitir esto, se ha decidido que en el
 análisis sintáctico inicial del código se interpretará la secuencia de
-\glspl{token} entre el nombre de la instrucción y el siguiente salto de línea
-como los argumentos de la instrucción en todos los casos, ya que es el
-funcionamiento de \gls{GAS} \parencite{as-manual}. El último componente del
-analizador sintáctico, el \gls{parser} de instrucciones, intentará realizar el
-análisis sintáctico de esta secuencia de \glspl{token} según una especificación
-de la sintaxis de la instrucción, devolviendo un error en caso de fallo.
+\textit{\glspl{token}} entre el nombre de la instrucción y el siguiente salto de
+línea como los argumentos de la instrucción, ya que es el funcionamiento de
+\gls{GAS} \parencite{as-manual} (como pide el \sreqref{NF-sintaxis}). El último
+componente del analizador sintáctico, el \textit{\gls{parser}} de instrucciones,
+intentará realizar el análisis sintáctico de esta secuencia de
+\textit{\glspl{token}} según una especificación de la sintaxis de la
+instrucción.
 
 A continuación se incluye la gramática en forma normal de Backus-Naur
-\parencite{BNF} que utilizará el \gls{parser}. En general, se ha preferido
-simplificar la gramática y tratar los posibles errores en el analizador
-semántico, ya que esto permite generar errores con mayor información que pueden
-ser más útiles para un usuario, como pide el \sreqref{FN-errores-base}. % TODO: mencionar simplificación saltos de línea?
+\parencite{BNF} que utilizará el \textit{\gls{parser}}. En general, se ha
+preferido simplificar la gramática y tratar los posibles errores en el
+analizador semántico, ya que esto permite generar errores con mayor información
+que pueden ser más útiles para un usuario, como pide el
+\sreqref{FN-errores-base}. % TODO: mencionar simplificación saltos de línea?
 
 \newcommand{\EOL}{\textbackslash{}n}
 \newcommand{\verbEOL}{`\texttt{\textbackslash{}n}'}
@@ -438,7 +441,7 @@ ser más útiles para un usuario, como pide el \sreqref{FN-errores-base}. % TODO
     \end{grammar}
 \end{tcolorbox}
 
-\subsection{Analizador semántico}
+\subsection{Analizador semántico}\label{subsec:semantic-analyzer}
 
 El analizador semántico se compondrá principalmente por un traductor y un
 evaluador de \glspl{pseudo-instruction}. El traductor realizará el análisis y
@@ -474,4 +477,6 @@ pasadas por el \gls{AST} durante la traducción:
 Durante este proceso, el analizador semántico verificará que el código no
 contiene errores semánticos. En caso de encontrarse un error, se abortará la
 \gls{compilation} del \gls{program} con el error apropiado, incluyendo toda la
-información relevante sobre el error encontrado.
+información relevante sobre el error encontrado. Se deja como trabajo futuro
+aplicar estrategias de recuperación de error para permitir la detección de
+múltiples errores.

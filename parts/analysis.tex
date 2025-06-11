@@ -174,7 +174,7 @@ Estos requisitos se pueden dividir en dos tipos:
 
 \begin{userReq}{RE}{sintaxis}{pc=h,pd=h,s=i,v=m}
     El sistema tiene que utilizar la sintaxis del \gls{assembler} \gls{GAS}
-    \parencite{as-manual} para los \glspl{program} \glsdisp{compilation}{compilados}.
+    \parencite{as-manual}.
 \end{userReq}
 
 \begin{userReq}{RE}{velocidad}{pc=m,pd=m,s=vu,v=l}
@@ -362,17 +362,17 @@ Estos requisitos se pueden dividir en dos tipos:
 
 \begin{softwareReq}{FN}{errores-base}{pc=h,pd=h,s=i,v=h}
     {CA-errores}
-    Los mensajes de error del sistema deben contener, al menos: posición exacta
-    del error (línea y columna), mensaje de error, segmento de código con el
-    error resaltado, e información adicional relevante como motivo del error u
-    posible solución.
+    El sistema debe generar mensajes de error que contengan, al menos: posición
+    exacta del error (línea y columna), mensaje de error, segmento de código con
+    el error resaltado, e información adicional relevante como motivo del error
+    u posible solución.
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{errores-extra}{pc=l,pd=l,s=i,v=h}
    {CA-errores}
    Los mensajes de error del sistema que se refieran a identificadores no
    definidos deben contener el identificador definido más similar según la
-   \gls{edit-distance}
+   \gls{edit-distance}.
 \end{softwareReq}
 
 \begin{softwareReq}{FN}{errores-colores}{pc=l,pd=l,s=c,v=m}
@@ -440,7 +440,7 @@ Estos requisitos se pueden dividir en dos tipos:
 
 \begin{softwareReq}{NF}{codigo-publico}{pc=h,pd=m,s=c,v=h}
     {RE-FOSS}
-    El código fuente del sistema tiene ser público.
+    El código fuente del sistema tiene que ser público.
 \end{softwareReq}
 
 \begin{softwareReq}{NF}{sintaxis}{pc=h,pd=h,s=i,v=m}
@@ -449,7 +449,7 @@ Estos requisitos se pueden dividir en dos tipos:
     \parencite{as-manual} para los \glspl{program} \glsdisp{compilation}{compilados}.
 \end{softwareReq}
 
-\begin{softwareReq}{NF}{velocidad}{pc=m,pd=m,s=vu,v=l}
+\begin{softwareReq}{NF}{velocidad}{pc=m,pd=m,s=i,v=h}
     {RE-velocidad}
     El sistema tiene que poder compilar 1000 \glspl{instruction} por segundo.
 \end{softwareReq}

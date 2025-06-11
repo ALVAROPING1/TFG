@@ -1,6 +1,6 @@
 \chapter{Implementación y Despliegue}\label{chap:implementation}
 
-Este capítulo describirá la implementación y despliegue del sistema y está
+Este capítulo describirá la implementación y despliegue del sistema, y está
 dividido en dos secciones. La primera (\sectionref{implementation}), hará un
 resumen de las decisiones tomadas durante la implementación del sistema, junto
 con una descripción de la estructura de ficheros creada para organizar el código
@@ -19,10 +19,10 @@ en submódulos. Cabe destacar que el componente principal de cada subsistema se
 ha implementado en el módulo principal del subsistema. Además, se han añadido
 submódulos adicionales al analizador semántico para la gestión de diversas
 funcionalidades necesarias: campos de bits, etiquetas y \gls{symbol table},
-enteros de tamaño fijo, y gestión de secciones de memoria. También se ha añadido
-un módulo para la implementación de la \gls{API} de \gls{JS}. Dentro de cada
-módulo y submódulo también se incluyen pruebas unitarias que verifican su
-correcta funcionalidad.
+enteros de tamaño fijo pero arbitrario, y gestión de secciones de memoria.
+También se ha añadido un módulo para la implementación de la \gls{API} de
+\gls{JS}. Dentro de cada módulo y submódulo también se incluyen pruebas
+unitarias que verifican su correcta funcionalidad.
 
 \noindent
 Para la implementación del sistema se han utilizado múltiples bibliotecas
@@ -40,8 +40,8 @@ externas:
     \libref{once\string_cell}.
     \item Para el uso de números enteros de tamaño arbitrario se ha utilizado
     \libref{num-bigint} y \libref{num-traits}.
-    \item Para la generación de \glspl{binding} para \gls{JS} se ha utilizado
-    \libref{wasm-bindgen}, y \libref{self\string_cell}.
+    \item Para la generación de \textit{\glspl{binding}} para \gls{JS} se ha
+    utilizado \libref{wasm-bindgen} y \libref{self\string_cell}.
     \item Para el soporte de renderización de errores con formato HTML se ha
     utilizado \libref{ansi-to-html}.
 \end{itemize}
@@ -142,15 +142,15 @@ Para compilar el sistema, es necesario seguir los siguientes pasos:
 \begin{enumerate}
     \item Descargar y descomprimir el código fuente desde el repositorio.
     \item Compilar el código fuente con Wasm-pack \parencite{Wasm-pack}. Se
-    incluye un script con el código fuente para simplificar esta tarea,
+    incluye un \textit{script} con el código fuente para simplificar esta tarea,
     que se puede ejecutar con el comando \verb!./build.sh!.
     \item Incluir el sistema en una aplicación web o Node.js. Junto con el
     código fuente, dentro del directorio \verb!js_example!, se incluye un
-    ejemplo de cómo se puede realizar esta tarea.
+    ejemplo funcional de cómo se puede realizar esta tarea.
 \end{enumerate}
 
 Además, el sistema se ha integrado en CREATOR. Actualmente, está disponible en
-su versión beta, que se puede encontrar en
+su versión de desarrollo, que se puede encontrar en
 \url{https://creatorsim-community.github.io/creator-development/}. En un futuro
 cercano se añadirá a la versión estable, disponible en
 \url{https://creatorsim.github.io/}. Esto permite el uso del sistema sin

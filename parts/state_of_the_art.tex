@@ -20,7 +20,7 @@ simular la ejecución de un \gls{program} escrito en \glsdisp{assembly}{ensambla
 simulando el comportamiento de un \gls{processor} que ejecuta el código. Suelen
 tener un propósito didáctico, para ayudar al usuario a aprender el
 funcionamiento del lenguaje y el \gls{processor}, aunque algunos también se
-pueden utilizar de forma profesional para desarrollar una nueva \gls{ISA}.
+pueden utilizar de forma profesional para desarrollar nuevas \glspl{ISA}.
 
 Estos simuladores están compuestos de dos componentes principales: un
 \gls{assembler} y un ejecutor. El \gls{assembler} se encarga de procesar el
@@ -41,24 +41,25 @@ Un simulador específico está diseñado para simular una única \gls{ISA}, como
 RISC-V o ARM, y no permite su modificación. Esto hace que sean más simples que
 los simuladores genéricos, y, debido a esto, la mayoría de los simuladores en la
 actualidad entran dentro de esta categoría. En esta sección se exponen dos
-ejemplos de este tipo de simuladores: Spike y Kite
+ejemplos de este tipo de simuladores: Spike y Kite.
 
 \subsubsection{Spike}
 
 Spike \parencite{spike} es el simulador de referencia para RISC-V, desarrollado
-por RISC-V International. Está escrito en C++, y es capaz de emular un sistema RISC-V completo, y está
-diseñado para servir como un punto de inicio para ejecutar código RISC-V. Debido
-a esto, permite ejecutar casi cualquier \glspl{program}.
+por RISC-V International. Está escrito en C++, y es capaz de emular un sistema
+RISC-V completo. Está diseñado para servir como un punto de inicio para ejecutar
+código RISC-V. Debido a esto, permite ejecutar casi cualquier \gls{program}.
 
 Spike cuenta con una interfaz por \glsdisponly{CLI}{línea de comandos (CLI)}
-(\figureref{spike}), y permite seleccionar las extensiones de la \gls{ISA}
-(contando con soporte para la mayoría de las extensiones estándar) y el modelo
-de memoria a utilizar. Permite ejecutar código \gls{instruction} a
+(\figureref{spike}), y permite seleccionar el modelo de memoria y las
+extensiones de la \gls{ISA} a utilizar (contando con soporte para la mayoría de
+las extensiones estándar). Permite ejecutar código \gls{instruction} a
 \gls{instruction}, visualizar el contenido de los \glspl{register} y la
-\gls{memory}, I/O, y ejecutar código en modo usuario y privilegiado. También cuenta
-con un modo básico de depuración interactivo, y permite utilizar \progref{gdb}
-en caso de necesitar un depurador más avanzado. Aunque es un simulador
-específico de RISC-V, permite añadir y probar nuevas \glspl{instruction}.
+\gls{memory}, I/O, y ejecutar código en modo usuario y privilegiado. También
+cuenta con un modo básico de depuración interactivo, y permite utilizar
+\progref{gdb} en caso de necesitar un depurador más avanzado. Aunque es un
+simulador específico de RISC-V, permite añadir y probar nuevas
+\glspl{instruction}.
 
 \svgfigure[0.5]{spike}{Interfaz de Spike}
 
@@ -67,11 +68,12 @@ específico de RISC-V, permite añadir y probar nuevas \glspl{instruction}.
 Kite \parencite{kite} \parencite{kite-gh} es un simulador que modela un
 \gls{processor} RISC-V con un \textit{pipeline} de cinco etapas, implementado en
 C++. Su primera versión se desarrolló en 2019 con propósitos educativos para la
-asignatura de arquitectura de Computadores. Este simulador está basado en el
-modelo de \gls{processor} descrito en \textit{Computer Organization and Design,
-RISC-V Edition: The Hardware and Software Interface} \parencite{kite-book}. Su
-objetivo es ofrecer a los estudiantes un simulador fácil de usar con un modelo
-de temporización preciso que siga lo descrito en el libro.
+asignatura \textit{Arquitectura de Computadores}. Este simulador está basado en
+el modelo de \gls{processor} descrito en \textit{Computer Organization and
+Design, RISC-V Edition: The Hardware and Software Interface}
+\parencite{kite-book}. Su objetivo es ofrecer a los estudiantes un simulador
+fácil de usar con un modelo de temporización preciso que siga lo descrito en el
+libro.
 
 Kite implementa la mayoría de las \glspl{instruction} básicas descritas en el
 libro. Este simulador ofrece funcionalidades avanzadas del modelo de
@@ -80,19 +82,19 @@ libro. Este simulador ofrece funcionalidades avanzadas del modelo de
 predicción de ramas. Además, también cuenta con una opción de depuración que
 permite ver el progreso detallado de la ejecución de \glspl{instruction} en el
 \textit{pipeline}. Esto ayuda a los estudiantes a mejorar su comprensión del
-\textit{pipeline} de un \gls{processor}
+\textit{pipeline} de un \gls{processor}.
 
-Kite cuenta se utiliza mediante una \gls{CLI} (\figureref{kite}) que recibe el
-nombre del fichero con el código \glsdisp{assembly}{ensamblador} a ejecutar.
-Además, utiliza dos ficheros adicionales, \verb!reg_state! y \verb!mem_state!,
-que deben contener el estado inicial de los \glspl{register} y \gls{memory} a
-utilizar. El simulador ejecuta el \gls{program} dado, opcionalmente mostrando
-información sobre el progreso de la ejecución de \glspl{instruction} en el
+Kite se utiliza mediante una \gls{CLI} (\figureref{kite}) que recibe el nombre
+del fichero con el código \glsdisp{assembly}{ensamblador} a ejecutar. Además,
+utiliza dos ficheros adicionales, \verb!reg_state! y \verb!mem_state!, que deben
+contener el estado inicial de los \glspl{register} y \gls{memory} a utilizar. El
+simulador ejecuta el \gls{program} dado, opcionalmente mostrando información
+sobre el progreso de la ejecución de \glspl{instruction} en el
 \textit{pipeline}. Al terminar la ejecución del \gls{program}, muestra una serie
 de estadísticas sobre esta, como el número de ciclos de reloj utilizados, el
 número de ciclos perdidos durante \textit{stalls}, los ciclos de reloj
 consumidos por cada \gls{instruction} de media, y estadísticas de la memoria
-caché. Por último, también muestra el estado final de los \gls{register} y las
+caché. Por último, también muestra el estado final de los \glspl{register} y las
 direcciones de \gls{memory} accedidas.
 
 \svgfigure[0.5]{kite}{Interfaz de Kite}
@@ -116,12 +118,11 @@ Cambridge.
 Esta herramienta permite validar la definición de la \gls{ISA} y generar
 simuladores en C y OCaml. Además, también permite ejecutar pruebas de validación
 y generar versiones de la \gls{ISA} que se pueden ejecutar con un \gls{theorem
-prover} para realizar demostraciones sobre el comportamiento de la \gls{ISA}.
-Actualmente, está en desarrollo un componente para generar un modelo de
-referencia en un lenguaje de descripción de \textit{hardware}. Todas estas
-características lo hacen una muy buena opción para el uso profesional, aunque
-esto también lo vuelve una mala opción para el uso didáctico debido a su gran
-complejidad.
+prover} para realizar demostraciones sobre su comportamiento. Actualmente, está
+en desarrollo un componente para generar un modelo de referencia en un lenguaje
+de descripción de \textit{hardware}. Todas estas características lo hacen una
+muy buena opción para el uso profesional, aunque esto también lo vuelve una mala
+opción para el uso didáctico debido a su gran complejidad.
 
 \subsubsection{CREATOR}
 
@@ -129,23 +130,24 @@ CREATOR (didaCtic and geneRic assEmbly progrAmming simulaTOR)
 \parencite{CREATOR} es un simulador didáctico desarrollado por el grupo de
 investigación ARCOS de la Universidad Carlos III de Madrid. Tiene tanto una
 versión web (\figureref{creator}) como una versión de \gls{CLI}, y se desarrolló
-para ayudar a los estudiantes a aprender el \gls{assembly} en la asignatura de
+para ayudar a los estudiantes a aprender el \gls{assembly} en la asignatura
 \textit{Estructura de Computadores}.
 
 CREATOR cuenta con un editor de código con resaltado de sintaxis para escribir
 el código \glsdisp{assembly}{ensamblador}, y una interfaz que permite ver el
-estado del \gls{processor} (\glspl{register} de control, enteros y de coma
+estado del \gls{processor} (\glspl{register} de control, de enteros, y de coma
 flotante) y la \gls{memory} (\gls{data memory}, \gls{text memory}, y
 \textit{stack}), las \glspl{instruction} cargadas, y diversas estadísticas sobre
 la ejecución del \gls{program}. Tiene soporte para la ejecución
-\gls{instruction} a \gls{instruction}, I/O, llamadas al sistema,
-\textit{breakpoints}, y convención de paso de parámetros.
+\gls{instruction} a \gls{instruction}, I/O, llamadas al sistema, y
+\textit{breakpoints}. Además, también permite verificar si un \gls{program}
+cumple la convención de paso de parámetros.
 
 Con respecto a la modificación de la \gls{ISA}, CREATOR es muy flexible. Permite
 modificar la arquitectura del procesador (\glspl{register} definidos y su
 nombre, tipo, tamaño y diferentes propiedades), la organización de la
 \gls{memory}, y las \glspl{instruction}, \glspl{pseudo-instruction}, y
-\gls{directive} permitidas en el código. Con respecto a las \glspl{instruction}
+\glspl{directive} permitidas en el código. Con respecto a las \glspl{instruction}
 y \glspl{pseudo-instruction}, permite definir su nombre, sintaxis, argumentos y
 la codificación de estos en binario, tamaño, número de ciclos para su ejecución,
 y su definición, ya sea las acciones a realizar durante su ejecución para las
@@ -159,10 +161,10 @@ Utilizando esto, CREATOR cuenta con definiciones para RISC-V y MIPS.
 
 \section{Ensambladores}\label{sec:assemblers}
 
-Un \gls{assembler} es un \gls{program} que traduce un \gls{program} escrito en
-\gls{assembly} a \gls{machine code} que puede ser ejecutado en un
-\gls{processor}. Forma parte de la \gls{toolchain} utilizada para
-\glsdisp{compilation}{compilar} un \gls{program}. Aunque la gran mayoría se
+Un \gls{assembler} es un \gls{program} que traduce el código de otro
+\gls{program} escrito en \gls{assembly} a \gls{machine code}, que puede ser
+ejecutado en un \gls{processor}. Forma parte de la \textit{\gls{toolchain}} utilizada
+para \glsdisp{compilation}{compilar} un \gls{program}. Aunque la gran mayoría se
 diseñan para una \gls{ISA} concreta, algunos pueden procesar código para
 múltiples \glspl{ISA} distintas.
 
@@ -184,13 +186,13 @@ la sintaxis de Intel. Algunas de las principales diferencias entre estas son:
     ya que el \gls{assembler} deduce el tipo automáticamente.
     \item \textbf{Direcciones de memoria:} en la sintaxis de AT\&T las
     direcciones de memoria se especifican con una sintaxis similar a una llamada
-    a función, mientras que en la sintaxis de Intel se utilizan \gls{expression}
+    a función, mientras que en la sintaxis de Intel se utilizan \glspl{expression}
     aritméticas.
 \end{itemize}
 
 Debido a que el objetivo principal del proyecto es desarrollar un
 \gls{assembler}, en esta sección se exponen tres ejemplos de \glspl{assembler}
-apliamente utilizados en la actualidad: \gls{GAS}, TCCASM, y NASM. Además,
+ampliamente utilizados en la actualidad: \gls{GAS}, TCCASM, y NASM. Además,
 también se estudiará el \gls{assembler} actualmente utilizado por CREATOR. Tras
 esto, se realizará una comparativa entre estas herramientas y la solución
 propuesta.
@@ -209,15 +211,16 @@ actualidad, \gls{GAS} es uno de los \gls{assembler} más utilizados
 AT\&T, aunque también permite el uso de la sintaxis de Intel.
 
 \gls{GAS} está diseñado para ser utilizado principalmente como parte de la
-\gls{toolchain} de GNU, siendo el \textit{backend} por defecto de \progref{gcc},
-aunque también es mayormente compatible con otros \glspl{assembler}
-\parencite{as-manual}. Debido a esto, sus mensajes de error son mejorables, ya
-que la prioridad es obtener un alto rendimiento y no generar buenos mensajes de
+\textit{\gls{toolchain}} de GNU, siendo el \textit{backend} por defecto de
+\progref{gcc}. Sin embargo, también se puede utilizar como un \gls{assembler}
+independiente y es mayormente compatible con código escrito para otros
+\glspl{assembler} \parencite{as-manual}. Debido a que está diseñado para ser
+utilizado por otras herramientas, sus mensajes de error son mejorables, ya que
+la prioridad es obtener un alto rendimiento y no generar buenos mensajes de
 error. Cabe destacar que \gls{GAS} implementa estrategias de recuperación de
 errores para poder detectar múltiples errores en una misma \gls{compilation}. Un
-ejemplo de esto se puede ver en la figura \figureref{error_gas}. Para lograr
-este alto rendimiento, \gls{GAS} procesa el código con una única pasada sobre el
-mismo.
+ejemplo de esto se puede ver en la \figureref{error_gas}. Para lograr este alto
+rendimiento, \gls{GAS} procesa el código con una única pasada sobre el mismo.
 
 \svgfigure[0.7]{error_gas}{Mensaje de error del ensamblador de GNU}
 
@@ -225,11 +228,11 @@ mismo.
 \gls{assembler} muy flexible. Tiene soporte para etiquetas locales, evaluación
 de \gls{expression} aritméticas, cadenas en UTF-8 \parencite{UTF-8},
 \gls{compilation} condicional, emisión de mensajes de error, definición de
-constantes, y \glspl{macro} variadicas (utilizando una cantidad variable de
+constantes, y \glspl{macro} variádicas (utilizando una cantidad variable de
 argumentos) y recursivas, entre otros. Cabe destacar que, aunque permite el uso
-de \glspl{bigint}, estos se convierten a enteros de 32 bits al usarlos en las
+de \glspl{bigint}, estos se convierten a enteros de 32 bits al usarlos en
 \glspl{expression} aritméticas. Además, no permite el uso de números decimales
-en las \gls{expression}.
+en las \glspl{expression}.
 
 \subsection{TCCASM}
 
@@ -241,10 +244,12 @@ significativamente más rápido \glsdisp{compilation}{compilando} que
 LGPLv2.1. TCC soporta principalmente x86 y x86-64, aunque también tiene soporte para
 ARM y RISC-V \parencite{tcc-manual} \parencite{tcc-arm} \parencite{tcc-riscv}.
 
-TCC utiliza TCCASM únicamente para procesar ficheros en
+Para aumentar la velocidad de \gls{compilation}, TCC genera directamente código
+máquina, sin pasar por \glsdisp{assembly}{ensamblador} como hacen la mayoría de
+\glspl{compiler}. TCC utiliza TCCASM únicamente para procesar ficheros en
 \glsdisp{assembly}{ensamblador} y segmentos en \glsdisp{assembly}{ensamblador}
-dentro de código C \parencite{tcc-manual}. Gracias a esto, TCC permite
-desactivar TCCASM para obtener un ejecutable de TCC más pequeño.
+dentro del código C. Gracias a esto, TCC permite desactivar TCCASM para obtener
+un ejecutable de TCC más pequeño. \parencite{tcc-manual}
 
 En cuanto al código \glsdisp{assembly}{ensamblador}, TCCASM utiliza una sintaxis
 similar a \gls{GAS}. Sin embargo, debido a su objetivo de utilizar poca memoria,
@@ -278,7 +283,7 @@ locales, evaluación de \gls{expression} aritméticas (con algunos operadores m�
 que \gls{GAS}) con números enteros, cadenas en UTF-8 \parencite{UTF-8},
 \gls{compilation} condicional, definición de constantes, y uso de bucles para la
 generación de código. Además, utiliza la sintaxis de Intel. Cabe destacar su
-potente sistema de \glspl{macro}, que permite \glspl{macro} variadicas,
+potente sistema de \glspl{macro}, que permite \glspl{macro} variádicas,
 sobrecarga (definición de múltiples \glspl{macro} con el mismo nombre) según el
 número de argumentos, etiquetas locales a la \gls{macro}, y múltiples
 funcionalidades para procesar los argumentos.
@@ -301,7 +306,7 @@ como se puede ver en la \figureref{error_nasm}.
 \subsection{CREATOR}
 
 CREATOR \parencite{CREATOR} cuenta con un \gls{assembler} propio para procesar
-el código \glsdisp{assembly}{ensamblador}, conviertiéndolo a una representación
+el código \glsdisp{assembly}{ensamblador}, convirtiéndolo a una representación
 interna que puede ejecutar. Este \gls{assembler} está escrito en \gls{JS}, y
 soporta únicamente funcionalidades básicas: \glspl{instruction}, etiquetas,
 y algunas \glspl{directive} simples. Carece de muchas funcionalidades importantes
@@ -337,28 +342,28 @@ Los resultados de la comparación se pueden ver en la
 \tableref{assembler-comparison}. Las características a analizar son:
 
 \begin{itemize}
-    \item \textbf{Lenguaje:} \gls{programming language} en el que está escrito.
-    \item \textbf{Licencia:} licencia bajo la que se distribuye el
+    \item \textbf{Lenguaje:} \Gls{programming language} en el que está escrito.
+    \item \textbf{Licencia:} Licencia bajo la que se distribuye el
     \textit{software}.
-    \item \textbf{Ejecución web:} capacidad de ser ejecutado en un navegador
+    \item \textbf{Ejecución web:} Capacidad de ser ejecutado en un navegador
     web.
-    \item \textbf{Biblioteca:} capacidad de ser embebido en otro programa y
+    \item \textbf{Biblioteca:} Capacidad de ser embebido en otro programa y
     utilizado como una biblioteca.
-    \item \textbf{\Glspl{expression}:} capacidad de evaluar \glspl{expression}
+    \item \textbf{\Glspl{expression}:} Capacidad de evaluar \glspl{expression}
     aritméticas durante el procesado del código.
-    \item \textbf{Etiquetas como valores:} capacidad de utilizar etiquetas como
+    \item \textbf{Etiquetas como valores:} Capacidad de utilizar etiquetas como
     valores de las \glspl{data directive}.
-    \item \textbf{\Glspl{bigint}:} capacidad de utilizar \glspl{bigint} en las
+    \item \textbf{\Glspl{bigint}:} Capacidad de utilizar \glspl{bigint} en las
     \glspl{expression} aritméticas.
-    \item \textbf{UTF-8:} capacidad de utilizar cadenas de caracteres
+    \item \textbf{UTF-8:} Capacidad de utilizar cadenas de caracteres
     codificadas en UTF-8 \parencite{UTF-8}.
-    \item \textbf{Definición de constantes:} capacidad de definir y utilizar
+    \item \textbf{Definición de constantes:} Capacidad de definir y utilizar
     constantes.
-    \item \textbf{\Glspl{macro}:} capacidad de definir y utilizar \glspl{macro}
+    \item \textbf{\Glspl{macro}:} Capacidad de definir y utilizar \glspl{macro}
     en el código.
-    \item \textbf{\Gls{compilation} condicional:} capacidad utilizar
+    \item \textbf{\Gls{compilation} condicional:} Capacidad utilizar
     \glspl{expression} para determinar si compilar un segmento del código o no.
-    \item \textbf{Recuperación de errores:} capacidad de recuperarse de un error
+    \item \textbf{Recuperación de errores:} Capacidad de recuperarse de un error
     en el código para continuar procesando el \gls{program}, potencialmente
     detectando múltiples errores en una misma \gls{compilation}.
 \end{itemize}
@@ -414,8 +419,8 @@ formal de la sintaxis de un lenguaje, y está formada por:
 
 \begin{itemize}
     \item Un conjunto de símbolos terminales (también conocidos como
-    \glspl{token}), que representan los símbolos que pueden aparecer en las
-    cadenas del lenguaje.
+    \textit{\glspl{token}}), que representan los símbolos que pueden aparecer en
+    las cadenas del lenguaje.
     \item Un conjunto de símbolos no terminales, que representan estructuras
     sintácticas del lenguaje (conjuntos de cadenas).
     \item Un símbolo no terminal denominado axioma, que representa todas las
@@ -428,7 +433,7 @@ formal de la sintaxis de un lenguaje, y está formada por:
 Una gramática genera cadenas de caracteres aplicando las producciones a una
 secuencia de símbolos, empezando por el axioma y continuando hasta que la
 secuencia solo contenga símbolos terminales. Este proceso se puede representar
-con un árbol síntáctico, en el cual los nodos representan símbolos (siendo la
+con un árbol sintáctico, en el cual los nodos representan símbolos (siendo la
 raíz el axioma, los \glspl{internal node} símbolos no terminales, y las
 \glsdisp{leaf node}{hojas} símbolos terminales), y las relaciones entre un nodo
 y sus hijos representan la aplicación de una producción determinada. La tarea de
@@ -447,7 +452,7 @@ permitirla sin reglas adicionales tiene un coste de rendimiento.
 \parencite{dragon-book}
 
 Las técnicas para realizar el análisis sintáctico se pueden agrupar en dos
-grandes familias: análisis descendence (\textit{top-down}) y análisis ascendente
+grandes familias: análisis descendente (\textit{top-down}) y análisis ascendente
 (\textit{bottom-up}). La diferencia entre estas familias está en cómo generan el
 árbol sintáctico. Un analizador descendente empieza por la raíz (axioma) y
 determina las producciones que se tienen que aplicar para obtener la cadena de
@@ -539,7 +544,7 @@ todos los posibles árboles sintácticos que darían lugar a la cadena de entrad
 \parencite{GLR-algorithm}.
 
 Debido a la gran cantidad de estados que puede tener el autómata, estos
-analizadores típicamente se contruyen automáticamente a partir de la
+analizadores típicamente se construyen automáticamente a partir de la
 \gls{grammar} con un generador de \glspl{parser} \parencite{dragon-book}.
 Existen muchas herramientas de este tipo como Lex y yacc \parencite{yacc}
 (basado en LALR), sus versiones modernas de GNU Flex y bison \parencite{bison}
@@ -574,7 +579,7 @@ Esto se puede mejorar si se añade resaltado con colores u otros medios a las
 partes más relevantes. En el caso de los colores, se puede utilizar un código de
 colores para indicar visualmente el tipo de la información resaltada,
 facilitando el filtrado de la información. Por ejemplo, es común utilizar el
-color rojo para errores, el amarillo para avisos, y el verde o azúl para
+color rojo para errores, el amarillo para avisos, y el verde o azul para
 posibles soluciones o información adicional.
 
 Actualmente, el compilador de Rust \parencite{Rust} es uno de los \glspl{compiler}
@@ -614,7 +619,7 @@ Para los \glsdisp{programming language}{lenguajes} de bajo nivel, como C/C++ o
 \glsdisp{programming language}{lenguajes} de bajo nivel, comúnmente el mismo
 para el que se utilizan. Esto es debido a su mayor rendimiento, ya que el
 \textit{software} realizado en estos \glsdisp{programming language}{lenguajes}
-sule tener grandes bases de código. La mayoría de herramientas de estos
+suele tener grandes bases de código. La mayoría de herramientas de estos
 \glsdisp{programming language}{lenguajes}, como \progref{gcc} y la
 \textit{suite} de \verb!clang! (\verb!clang!, \verb!clang-tidy! y
 \verb!clang-format!) \parencite{clang}, utilizan C/C++. Una excepción importante
