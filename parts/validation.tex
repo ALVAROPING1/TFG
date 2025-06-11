@@ -208,7 +208,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
     {Se obtiene un mensaje de error de sintaxis con toda la información pedida en el \sreqref{FN-errores-base}.} % Postcondición
     {Verificar que el sistema detecta errores de sintaxis y genera buenos mensajes de error.} % Descripción
     {OK} % Evaluación
-    {FN-errores-sintaxis, FN-errores-base} % Origen
+    {FN-errores-sintaxis, FN-errores-base, FN-errores-colores} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Escribir un \gls{program} con un error de sintaxis.
         \item Compilar el \gls{program}.
@@ -220,7 +220,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
     {Se obtiene un mensaje de error semántico con toda la información pedida en el \sreqref{FN-errores-base}.} % Postcondición
     {Verificar que el sistema detecta errores semánticos y genera buenos mensajes de error.} % Descripción
     {OK} % Evaluación
-    {FN-errores-semantica, FN-errores-base} % Origen
+    {FN-errores-semantica, FN-errores-base, FN-errores-colores} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Escribir un \gls{program} con un error semántico.
         \item Compilar el \gls{program}.
@@ -233,7 +233,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
     {Verificar que los mensajes de error del sistema referentes a
     identificadores no definidos contienen el nombre del elemento más similar.} % Descripción
     {OK} % Evaluación
-    {FN-errores-semantica, FN-errores-extra} % Origen
+    {FN-errores-semantica, FN-errores-extra, FN-errores-colores} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Escribir un \gls{program} con una directiva, instrucción,
         registro, o etiqueta no definida, utilizando un nombre similar a una

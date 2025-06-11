@@ -111,20 +111,25 @@ sistema.
 \subsection{Renderizado de errores}\label{subsec:error-rendering}
 
 El \sreqref{FN-errores-base} pide que el segmento de código que causó el error
-aparezca resaltado en el mensaje de error, lo cual significa que hay que
-realizar un renderizado de los mensajes de error. El \sreqref{NF-nodejs} pide
-que el sistema soporte Node.js, el cual se ejecuta en terminal. Debido a esto,
-los mensajes de error solo pueden estar formados de texto, pudiendo usar
-secuencias de escape ANSI \parencite{ANSIEscapeSequences} para añadir formato
-básico. Además, los requisitos \sreqref[]{NF-chrome} a \sreqref[]{NF-safari}
-indican que el sistema tiene que poder ejecutarse en navegador, donde se utiliza
-\gls{HTML} y \gls{CSS} para añadir formato al texto. Cabe destacar que
-\gls{HTML} y \gls{CSS} tienen una mayor flexibilidad para dar formato al texto
-que las secuencias de escape ANSI.
+aparezca resaltado en el mensaje de error, y el \sreqref{FN-errores-colores}
+pide que los mensajes de error utilizen un código de colores. Esto significa que
+hay que realizar un renderizado de los mensajes de error, es decir, convertir
+los datos del error en algo que se pueda mostrar por pantalla con el formato
+correcto.
+
+El \sreqref{NF-nodejs} pide que el sistema soporte Node.js, el cual se ejecuta
+en terminal. Debido a esto, los mensajes de error solo pueden estar formados de
+texto, pudiendo usar secuencias de escape ANSI \parencite{ANSIEscapeSequences}
+para añadir formato básico. Además, los requisitos \sreqref[]{NF-chrome} a
+\sreqref[]{NF-safari} indican que el sistema tiene que poder ejecutarse en
+navegador, donde se utiliza \gls{HTML} y \gls{CSS} para añadir formato al texto.
+Cabe destacar que \gls{HTML} y \gls{CSS} tienen una mayor flexibilidad para dar
+formato al texto que las secuencias de escape ANSI.
 
 Teniendo esto en cuenta, se ha decidido que los errores estén formados por texto
 con formato básico, permitiendo utilizar tanto secuencias de escape ANSI como
-\gls{HTML} y \gls{CSS} para esta tarea, a elección del usuario del sistema.
+\gls{HTML} y \gls{CSS} para esta tarea, según el entorno en el que se ejecute el
+sistema.
 
 \subsection{Análisis sintáctico}\label{subsec:parser}
 
@@ -268,7 +273,7 @@ componentes.
     {\componentref{Traductor}} % Dependencias
     {Error en formato lógico y código \glsdisp{assembly}{ensamblador}} % Datos de entrada
     {Representación del error que puede ser mostrada a un usuario} % Datos de salida
-    {FN-errores-base,FN-errores-extra} % Origen
+    {FN-errores-base,FN-errores-extra,FN-errores-colores} % Origen
     El \gls{renderer} de errores se encarga de transformar la información
     relacionada con un error a un formato que puede ser mostrado a un usuario en
     la pantalla.
