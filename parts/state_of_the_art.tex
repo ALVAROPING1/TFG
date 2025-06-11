@@ -427,13 +427,24 @@ formal de la sintaxis de un lenguaje, y está formada por:
 
 Una gramática genera cadenas de caracteres aplicando las producciones a una
 secuencia de símbolos, empezando por el axioma y continuando hasta que la
-secuencia de símbolos solo contenga símbolos terminales. Este proceso se puede
-representar con un árbol síntáctico, en el cual los nodos representan símbolos
-(siendo la raíz el axioma, los \glspl{internal node} símbolos no terminales, y
-las \glsdisp{leaf node}{hojas} símbolos terminales), y las relaciones entre un
-nodo y sus hijos representan la aplicación de una producción determinada. La
-tarea de un analizador sintáctico (\gls{parser}) consiste en determinar el árbol
+secuencia solo contenga símbolos terminales. Este proceso se puede representar
+con un árbol síntáctico, en el cual los nodos representan símbolos (siendo la
+raíz el axioma, los \glspl{internal node} símbolos no terminales, y las
+\glsdisp{leaf node}{hojas} símbolos terminales), y las relaciones entre un nodo
+y sus hijos representan la aplicación de una producción determinada. La tarea de
+un analizador sintáctico (\textit{\gls{parser}}) consiste en determinar el árbol
 sintáctico que produce la cadena de entrada. \parencite{dragon-book}
+
+Un posible problema en este proceso es la existencia de múltiples árboles
+sintácticos para una misma cadena. Como el árbol sintáctico determina el
+significado de una cadena, la presencia de múltiples posibilidades implica que
+su significado no está bien definido. Debido a esto, se dice que las
+\glspl{grammar} que pueden llevar a este caso son ambiguas. La mayoría de las
+técnicas de análisis sintáctico necesitan que la \gls{grammar} no sea ambigua
+para poder utilizarse. Algunas técnicas permiten añadir reglas adicionales para
+seleccionar un único árbol en estos casos, resolviendo la ambigüedad, pero
+permitirla sin reglas adicionales tiene un coste de rendimiento.
+\parencite{dragon-book}
 
 Las técnicas para realizar el análisis sintáctico se pueden agrupar en dos
 grandes familias: análisis descendence (\textit{top-down}) y análisis ascendente
@@ -441,33 +452,35 @@ grandes familias: análisis descendence (\textit{top-down}) y análisis ascenden
 árbol sintáctico. Un analizador descendente empieza por la raíz (axioma) y
 determina las producciones que se tienen que aplicar para obtener la cadena de
 entrada, realizando una búsqueda en profundidad. Un analizador ascendente, en
-cambio, empieza con los nodos hoja del árbol y determina cómo agruparlos en
-símbolos no terminales siguiendo las producciones hasta llegar a la raíz.
+cambio, empieza con los nodos hoja del árbol, y determina cómo agruparlos en
+símbolos no terminales hasta llegar a la raíz, siguiendo las producciones.
 \parencite{dragon-book}
 
 \subsection{Análisis descendente}
 
 Dentro de los analizadores descendentes, la técnica más general y utilizada es
-el análisis descendente recursivo, que consiste en un \gls{program} que modela la
-\gls{grammar} mediante un conjunto de funciones mutuamente recursivas, cada una
-de las cuales representa un símbolo no terminal. Analizando la \gls{grammar}, se
-puede crear un analizador predictivo en el cual el siguiente símbolo de la
-entrada a procesar permite determinar sin ambigüedades el flujo de control en
-cada función. \parencite{dragon-book}
+el análisis descendente recursivo, que consiste en un \gls{program} que modela
+la \gls{grammar} mediante un conjunto de funciones mutuamente recursivas, cada
+una de las cuales representa un símbolo no terminal. Analizando la
+\gls{grammar}, se puede crear un analizador predictivo en el cual el siguiente
+símbolo de la entrada a procesar permite determinar sin ambigüedades el flujo de
+control en cada función. Aunque según la teoría esta técnica es puramente
+recursiva, en la práctica también se utilizan bucles para aumentar el
+rendimiento y solucionar algunas de sus limitaciones. \parencite{dragon-book}
 
 Gracias a su sencillez, esta técnica típicamente se implementa a mano, aunque
 también existen herramientas como ANTLR \parencite{ANTLR} que permiten generar
 un analizador automáticamente a partir de una \gls{grammar} (conocido como
-generador de \glspl{parser} \parencite{dragon-book}).
+generador de \textit{\glspl{parser}} \parencite{dragon-book}).
 
-También existen otros métodos para crear analizadores descendentes
-recursivos a partir de una \gls{grammar}, como los combinadores de
-\glspl{parser}. Este método consiste en definir un analizador sintáctico como
-combinación de otros \glspl{parser} más simples, utilizando diversos operadores
-que permiten realizar combinaciones muy expresivas
-\parencite{parser-combinators}. En la actualidad, existen muchas bibliotecas que
-cuentan con estos operadores ya implementados, como Parsec \parencite{parsec}, Chumsky
-\parencite{chumsky}, y pom \parencite{pom}.
+También existen otros métodos para crear analizadores descendentes recursivos a
+partir de una \gls{grammar}, como los combinadores de \textit{\glspl{parser}}.
+Este método consiste en definir un analizador sintáctico como combinación de
+otros más simples, utilizando diversos operadores que permiten realizar
+combinaciones muy expresivas \parencite{parser-combinators}. En la actualidad,
+existen muchas bibliotecas que cuentan con estos operadores ya implementados,
+como Parsec \parencite{parsec}, Chumsky \parencite{chumsky}, y pom
+\parencite{pom}.
 
 La principal ventaja de crear un analizador descendente recursivo manualmente es
 su gran flexibilidad, ya que ofrece control total sobre el funcionamiento del
@@ -484,25 +497,26 @@ utilizados en la actualidad, como C y C++, utilizan este método
 
 El principal problema de crear un analizador descendente recursivo a mano es su
 complejidad, requiriendo mucho tiempo para su desarrollo, además de que las
-modificaciones de la \gls{grammar} también son complicadas. Los combinadores de
-\glspl{parser}, en cambio, facilitan mucho estos procesos, aunque sacrifican un
-poco de rendimiento para lograrlo. Esto hace que los combinadores de
-\glspl{parser} sean un método ideal para realizar prototipos, durante los cuales
-la \gls{grammar} puede variar, mientas que crear un analizador manualmente es
-una mejor opción para un producto final cuando el rendimiento se vuelve un
-problema.
+modificaciones de la \gls{grammar} requieren muchos cambios en la
+implementación. Los combinadores de \textit{\glspl{parser}}, en cambio,
+facilitan mucho estos procesos, aunque sacrifican un poco de rendimiento para
+lograrlo. Esto hace que los combinadores de \textit{\glspl{parser}} sean un
+método ideal para realizar prototipos, durante los cuales la \gls{grammar} puede
+variar, mientas que crear un analizador manualmente es una mejor opción para un
+producto final cuando el rendimiento se vuelve un problema.
 
 Estas técnicas, en general, son muy efectivas. Sin embargo, para \glspl{grammar}
 que cumplen ciertas propiedades (\glspl{operator-precedende grammar}) típicas de
-\gls{expression} aritméticas, especialmente cuando cuentan con muchos niveles de
-precedencia, existen técnicas más eficientes. Estas técnicas se pueden agrupar
-en los \gls{parser} de precedencia de operadores
+\glspl{expression} aritméticas existen técnicas más eficientes, especialmente
+cuando cuentan con muchos niveles de precedencia. Estas técnicas se pueden
+agrupar en los \textit{\glspl{parser}} de precedencia de operadores
 \parencite{operator-precedence-parser}. Un ejemplo de estas técnicas es el
 análisis Pratt \parencite{pratt-parsing-paper}
 \parencite{pratt-parsing-example}, que representa los niveles de precedencia con
-funciones para comparar operadores. Gracias a esto, se puede evitar representar los niveles de
-precedencia en la propia \gls{grammar}, permitiendo utilizar una representación
-más natural de la \gls{grammar}.
+funciones para comparar operadores. Gracias a esto, se puede evitar representar
+los niveles de precedencia en la propia \gls{grammar}, permitiendo utilizar una
+representación más natural de la \gls{grammar} y obteniendo un
+\textit{\gls{parser}} más eficiente.
 
 \subsection{Análisis ascendente}
 
@@ -513,12 +527,15 @@ una pila inicialmente vacía y un autómata finito (representado por una tabla)
 que, según su estado, determina su siguiente estado y la operación a aplicar a
 la entrada y pila. Esta operación puede ser añadir un símbolo de la entrada a la
 cima de la pila o agrupar los últimos símbolos de la pila en un símbolo no
-terminal según una producción determinada. La diferencia entre estos métodos
-está en cómo se construye el autómata finito y el conjunto de \glspl{grammar}
-que pueden representar, siendo SLR un método simple que puede representar pocas
-\gls{grammar}, mientras que LALR puede representar más \glspl{grammar}, pero es
-más complejo de construir. \parencite{dragon-book} GLR es una generalización de
-las técnicas LR para permitir procesar \glspl{ambiguous grammar}
+terminal según una producción determinada. \parencite{dragon-book} 
+
+La diferencia entre estos métodos está en cómo se construye el autómata finito y
+el conjunto de \glspl{grammar} que pueden representar, siendo SLR un método
+simple que puede representar pocas \glspl{grammar}, mientras que LALR puede
+representar más \glspl{grammar}, pero es más complejo de construir.
+\parencite{dragon-book} Por otro lado, GLR es una generalización de las técnicas
+LR para permitir procesar \glspl{ambiguous grammar}, obteniendo como resultado
+todos los posibles árboles sintácticos que darían lugar a la cadena de entrada
 \parencite{GLR-algorithm}.
 
 Debido a la gran cantidad de estados que puede tener el autómata, estos
