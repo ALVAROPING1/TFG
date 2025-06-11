@@ -561,10 +561,26 @@ corregir los errores, especialmente para alguien que está intentando aprender e
 
 \svgfigure[0.9]{error_csharp}{Mensaje de error del compilador de C\#}
 
-Actualmente, el compilador de Rust \parencite{Rust} es uno de los
-compiler que mejores mensajes de error genera. La \figureref{error_rust}
-muestra un ejemplo de estos mensajes, obtenido en un caso de uso real. Como se
-puede observar, este mensaje cuenta con varios componentes importantes:
+En el otro extremo, demasiada información también puede convertirse en un
+problema si esta llega a ser redundante o irrelevante (``ruido''). Una gran
+cantidad de información en el mensaje incrementa la carga cognitiva necesaria
+para comprenderlo. Si una gran parte de esta información es ``ruido'', se
+dificulta sin necesidad la comprensión del mensaje, y aumenta el tiempo
+necesario para extraer la información realmente relevante. Un ejemplo de este
+problema son los errores de \textit{templates} de C++, que pueden llegar a
+contener varias centenas de líneas para un único error.
+
+Esto se puede mejorar si se añade resaltado con colores u otros medios a las
+partes más relevantes. En el caso de los colores, se puede utilizar un código de
+colores para indicar visualmente el tipo de la información resaltada,
+facilitando el filtrado de la información. Por ejemplo, es común utilizar el
+color rojo para errores, el amarillo para avisos, y el verde o azúl para
+posibles soluciones o información adicional.
+
+Actualmente, el compilador de Rust \parencite{Rust} es uno de los \glspl{compiler}
+que mejores mensajes de error genera. La \figureref{error_rust} muestra un
+ejemplo de estos mensajes, obtenido en un caso de uso real. Como se puede
+observar, este mensaje cuenta con varios componentes importantes:
 
 \begin{itemize}
     \item Un mensaje de error con una explicación clara del error.
@@ -572,15 +588,15 @@ puede observar, este mensaje cuenta con varios componentes importantes:
     \item Información adicional sobre el error y su causa, resaltada sobre el
     propio código.
     \item Un mensaje de ayuda que indica una posible solución del error,
-    incluyendo una explicación y las modificaciones necesarias resaltadas sobre
-    el código.
+    incluyendo una explicación de esta y las modificaciones necesarias
+    resaltadas sobre el código.
     \item Una forma de acceder a una explicación detallada sobre el problema.
 \end{itemize}
 
-Además de esto, la información está resaltada con diversos colores e indicadores
-y se deja cierto espacio en blanco para separar las diferentes partes, lo cual
-ayuda a leer rápidamente la información más importante para solucionar el
-problema y filtrar la que no se necesita.
+Además de esto, la información está resaltada con un código de colores y se
+utilizan diversos indicadores. También se deja cierto espacio en blanco para
+separar las diferentes partes. Esto ayuda a extraer rápidamente la información
+más importante para solucionar el problema y filtrar la que no se necesita.
 
 \svgfigure[0.9]{error_rust}{Mensaje de error del compilador de Rust}
 
