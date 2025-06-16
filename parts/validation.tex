@@ -205,7 +205,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 
 \begin{testCase}{VET}{errores-sintaxis}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
-    {Se obtiene un mensaje de error de sintaxis con toda la información pedida en el \sreqref{FN-errores-base}.} % Postcondición
+    {Se obtiene un mensaje de error de sintaxis con toda la información pedida en el \sreqref{FN-errores-base} resaltada con un código de colores.} % Postcondición
     {Verificar que el sistema detecta errores de sintaxis y genera buenos mensajes de error.} % Descripción
     {OK} % Evaluación
     {FN-errores-sintaxis, FN-errores-base, FN-errores-colores} % Origen
@@ -217,7 +217,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 
 \begin{testCase}{VET}{errores-semantica}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
-    {Se obtiene un mensaje de error semántico con toda la información pedida en el \sreqref{FN-errores-base}.} % Postcondición
+    {Se obtiene un mensaje de error semántico con toda la información pedida en el \sreqref{FN-errores-base} resaltada con un código de colores.} % Postcondición
     {Verificar que el sistema detecta errores semánticos y genera buenos mensajes de error.} % Descripción
     {OK} % Evaluación
     {FN-errores-semantica, FN-errores-base, FN-errores-colores} % Origen
@@ -229,9 +229,9 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 
 \begin{testCase}{VET}{errores-extra}
     {El sistema está instalado y se tiene una \gls{ISA} cargada.} % Precondición
-    {Se obtiene un mensaje de error semántico con el nombre del elemento más similar.} % Postcondición
+    {Se obtiene un mensaje de error semántico con el nombre del elemento más similar resaltado con un código de colores.} % Postcondición
     {Verificar que los mensajes de error del sistema referentes a
-    identificadores no definidos contienen el nombre del elemento más similar.} % Descripción
+    identificadores no definidos contienen el nombre del elemento más similar resaltado con un código de colores.} % Descripción
     {OK} % Evaluación
     {FN-errores-semantica, FN-errores-extra, FN-errores-colores} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
@@ -260,15 +260,15 @@ requisitos de software están cubiertos por al menos una prueba de verificación
 \end{testCase}
 
 \begin{testCase}{VET}{API}
-    {El código del sistema y del \gls{compiler} actual está descargado} % Precondición
+    {El código del sistema y del \gls{compiler} antiguo está descargado} % Precondición
     {El sistema utiliza la \gls{API} de entrada y salida en \gls{JS}
-    implementada en el \gls{compiler} actual.} % Postcondición
-    {Verificar que el sistema utiliza la \gls{API} implementada en el \gls{compiler} actual.} % Descripción
+    implementada en el \gls{compiler} antiguo.} % Postcondición
+    {Verificar que el sistema utiliza la \gls{API} implementada en el \gls{compiler} antiguo.} % Descripción
     {OK} % Evaluación
     {NF-API, NF-JS} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Acceder a la definición de la interfaz de \gls{JS} del \gls{compiler}.
-        \item Acceder a la definición de la interfaz del \gls{compiler} actual.
+        \item Acceder a la definición de la interfaz del \gls{compiler} antiguo.
     \end{enumerate}
 \end{testCase}
 
@@ -276,7 +276,7 @@ requisitos de software están cubiertos por al menos una prueba de verificación
     {El sistema está instalado.} % Precondición
     {El sistema funciona correctamente en todas las plataformas probadas.} % Postcondición
     {Verificar que el sistema funciona en todas las plataformas soportadas por
-    el \gls{compiler} actual.} % Descripción
+    el \gls{compiler} antiguo.} % Descripción
     {OK} % Evaluación
     {NF-chrome, NF-firefox, NF-safari, NF-nodejs} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
@@ -328,8 +328,8 @@ usuario están cubiertos por al menos una prueba de validación.
 
 \begin{testCase}{VAT}{ISA}
     {El sistema está instalado.} % Precondición
-    {Todos los \glspl{program} evaluados obtienen el mismo resultado que con el \gls{compiler} actual.} % Postcondición
-    {Validar que el sistema ofrece todas las funcionalidades del \gls{compiler} actual.} % Descripción
+    {Todos los \glspl{program} evaluados obtienen el mismo resultado que con el \gls{compiler} antiguo.} % Postcondición
+    {Validar que el sistema ofrece todas las funcionalidades del \gls{compiler} antiguo.} % Descripción
     {OK} % Evaluación
     {CA-funcionalidades, CA-ISA, RE-sintaxis} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
@@ -465,9 +465,9 @@ usuario están cubiertos por al menos una prueba de validación.
     {RE-CREATOR, RE-entornos} % Origen
     \begin{enumerate}[leftmargin=*, topsep=0pt, noitemsep] % Procedimiento
         \item Acceder a la página de CREATOR desde los navegadores soportados
-        por el \gls{compiler} actual.
+        por el \gls{compiler} antiguo.
         \item Escribir un \gls{program} que utilice funcionalidades del nuevo
-        \gls{compiler} no soportadas por el actual.
+        \gls{compiler} no soportadas por el antiguo.
         \item Compilar el \gls{program}.
     \end{enumerate}
 \end{testCase}
@@ -530,7 +530,7 @@ usuario están cubiertos por al menos una prueba de validación.
         \ffigbox[0.7\textwidth]
         {\begin{subfloatrow}
             \ffigbox[\FBwidth]
-            {\caption{Compilador actual}\label{fig:eval-old-\arabic{eval}}}
+            {\caption{Compilador antiguo}\label{fig:eval-old-\arabic{eval}}}
             {\includesvg[inkscapelatex=false,width=0.7\textwidth]{eval/\arabic{eval}-old.svg}}
         \end{subfloatrow}}{}
     \end{figure}
@@ -554,12 +554,13 @@ usuario están cubiertos por al menos una prueba de validación.
 }
 
 Para evaluar el sistema desarrollado se van a comparar los mensajes de error
-generados con los mensajes de error del \gls{compiler} actual y de \gls{GAS}
-\parencite{GNUas}, ya que es uno de los \gls{assembler} más utilizados. Para
-realizar esto, se realizarán varias pruebas con \glspl{program} a los que se ha
-añadido un error, y se compararán los mensajes de error generados por cada una
-de las herramientas. Además, también se comparará el rendimiento de estas
-alternativas con un \gls{program} complejo.
+generados por este con los generados por el \gls{compiler} anteriormente
+utilizado por CREATOR \parencite{CREATOR}. Además, también se compararán con los
+generados por \gls{GAS} \parencite{GNUas}, uno de los \glspl{assembler} más
+utilizados. Para realizar esto, se realizarán varias pruebas con \glspl{program}
+a los que se ha añadido un error, y se compararán los mensajes de error
+generados por cada una de las herramientas. Además, también se comparará el
+rendimiento de estas alternativas con un \gls{program} complejo.
 
 La primera prueba consiste en definir una etiqueta múltiples veces. \evalresref
 Como se puede observar, el nuevo \gls{compiler}, además de indicar el error
@@ -574,11 +575,11 @@ El siguiente caso de prueba consiste en intentar utilizar una
 \glsdisp{directive}{directiva} con menos argumentos de los necesarios.
 \evalresref Como se puede ver, el nuevo \gls{compiler} es el único que detecta
 correctamente el error, e indica cómo solucionarlo (\evalfigref{new}). El
-\gls{compiler} actual (\evalfigref{old}) produce un error incorrecto al
+\gls{compiler} antiguo (\evalfigref{old}) produce un error incorrecto al
 interpretar erróneamente el código. Cabe destacar que \gls{GAS}
 (\evalfigref{as}) no produce ningún error en este caso, pero un análisis del
-código generado indica que asume un valor de 0 para el argumento faltante, en vez
-de generar un error.
+código generado indica que asume un valor de 0 para el argumento faltante, en
+vez de generar un error.
 
 \evalres
 
@@ -595,7 +596,7 @@ demasiado grande.
 El siguiente caso de prueba consiste en añadir instrucciones a la sección de
 datos. \evalresref Como se puede ver, el nuevo \gls{compiler} es el único que
 detecta correctamente el error, e indica cómo solucionarlo (\evalfigref{new}).
-El \gls{compiler} actual (\evalfigref{old}) produce un error incorrecto al
+El \gls{compiler} antiguo (\evalfigref{old}) produce un error incorrecto al
 interpretar erróneamente el código. Cabe destacar que \gls{GAS}
 (\evalfigref{as}) no produce ningún error en este caso, pero un análisis del
 código generado indica que añade la codificación binaria de las instrucciones
@@ -624,16 +625,16 @@ escrito en \glsdisp{assembly}{ensamblador} RISC-V con unas 2800 líneas de
 código, por lo que representa un \gls{program} complejo real. Debido a esto, es
 un buen caso de prueba en el que evaluar el rendimiento del sistema. Cabe
 destacar que este \gls{program} utiliza funcionalidades no soportadas por el
-\gls{compiler} actual (como \glspl{expression} aritméticas y uso de etiquetas
+\gls{compiler} antiguo (como \glspl{expression} aritméticas y uso de etiquetas
 como valores de \glspl{data directive}). Debido a esto, para evaluar el
-rendimiento en el \gls{compiler} actual, se ha tenido que modificar el
+rendimiento en el \gls{compiler} antiguo, se ha tenido que modificar el
 \gls{program} para evitar el uso de estas funcionalidades.
 
 La \figureref{rendimiento} muestra los resultados de la ejecución. \gls{GAS} no
 se ha podido ejecutar en un entorno web. Como se puede observar, el nuevo
 \gls{compiler} ofrece una mejora significativa de rendimiento con respecto del
-\gls{compiler} actual, especialmente en un entorno web que se corresponde con el
-entorno en el que más se utiliza CREATOR. Se puede ver que \gls{GAS} es
+\gls{compiler} antiguo, especialmente en un entorno web que se corresponde con
+el entorno en el que más se utiliza CREATOR. Se puede ver que \gls{GAS} es
 significativamente más rápido que el \gls{compiler} nuevo, lo que indica que el
 rendimiento todavía se podría mejorar mucho si este se volviese un problema.
 
@@ -670,7 +671,7 @@ rendimiento todavía se podría mejorar mucho si este se volviese un problema.
         \addplot coordinates {(\gls{CLI}, 21.5)(Web,1960)};
         \addplot coordinates {(\gls{CLI}, 6.5)(Web,5.3)};
         \addplot coordinates {(\gls{CLI}, 0.02)(Web,nan)};
-        \legend{Compilador actual,Compilador nuevo,\gls{GAS}}
+        \legend{Compilador antiguo,Compilador nuevo,\gls{GAS}}
     \end{axis}
 \end{tikzpicture}
 }{rendimiento}{Comparativa de rendimiento entre los diferentes compiladores}
