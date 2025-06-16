@@ -260,8 +260,8 @@ componentes.
 \begin{component}{Gestor de la arquitectura}
     {Valida y carga la \gls{ISA}, permitiendo su uso en los otros componentes.} % Rol
     {\componentref{Traductor}} % Dependencias
-    {Especificación de la \gls{ISA}} % Datos de entrada
-    {Objeto que representa la \gls{ISA} validada} % Datos de salida
+    {Especificación de la \gls{ISA}.} % Datos de entrada
+    {Objeto que representa la \gls{ISA} validada.} % Datos de salida
     {FN-ISA} % Origen
     El gestor de la arquitectura se encarga de validar y cargar la
     especificación de la \gls{ISA} proporcionada, generando diferentes errores
@@ -272,8 +272,8 @@ componentes.
 \begin{component}{Renderizador de errores}
     {Transforma la información de un error a un formato que puede ser mostrado a un usuario.} % Rol
     {\componentref{Traductor}} % Dependencias
-    {Error en formato lógico} % Datos de entrada
-    {Representación del error que puede ser mostrada a un usuario} % Datos de salida
+    {Error en formato lógico.} % Datos de entrada
+    {Representación del error que puede ser mostrada a un usuario.} % Datos de salida
     {FN-errores-base,FN-errores-extra,FN-errores-colores} % Origen
     El \gls{renderer} de errores se encarga de transformar la información
     relacionada con un error a un formato que puede ser mostrado a un usuario en
@@ -283,8 +283,8 @@ componentes.
 \begin{component}{Lexer}
     {Transforma el código del \gls{program} en una secuencia de \textit{\glspl{token}}.} % Rol
     {\componentref{Parser}, \componentref{Parser de instrucciones}, y \componentref{Parser de expresiones}} % Dependencias
-    {\Gls{program} a analizar} % Datos de entrada
-    {Secuencia de \textit{\glspl{token}}} % Datos de salida
+    {\Gls{program} a analizar.} % Datos de entrada
+    {Secuencia de \textit{\glspl{token}}.} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
     FN-directivas-datos, FN-utf8, FN-escape, FN-floats, FN-comentarios-tipos,
     FN-comentarios, FN-constantes, FN-expr-operadores, FN-errores-sintaxis,
@@ -299,8 +299,8 @@ componentes.
 \begin{component}{Parser de expresiones}
     {Realiza el análisis sintáctico de una \gls{expression} aritmética.} % Rol
     {\componentref{Parser} y \componentref{Parser de instrucciones}} % Dependencias
-    {Secuencia de \textit{\glspl{token}}} % Datos de entrada
-    {\gls{AST} correspondiente a una \gls{expression}} % Datos de salida
+    {Secuencia de \textit{\glspl{token}}.} % Datos de entrada
+    {\gls{AST} correspondiente a una \gls{expression}.} % Datos de salida
     {FN-floats, FN-constantes, FN-expr-operadores,
     FN-expr-instruccion, FN-expr-directiva, FN-errores-sintaxis, FN-errores-base} % Origen
     El \gls{parser} de expresiones realiza el análisis sintáctico de una
@@ -313,8 +313,8 @@ componentes.
 \begin{component}{Parser de instrucciones}
     {Realiza el análisis sintáctico de una \gls{instruction}.} % Rol
     {\componentref{Traductor}} % Dependencias
-    {Secuencia de \textit{\glspl{token}} y definición de la sintaxis de la \gls{instruction}} % Datos de entrada
-    {\gls{AST} correspondiente a la \gls{instruction}} % Datos de salida
+    {Secuencia de \textit{\glspl{token}} y definición de la sintaxis de la \gls{instruction}.} % Datos de entrada
+    {\gls{AST} correspondiente a la \gls{instruction}.} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo,
     FN-mult-defs-instruccion, FN-errores-sintaxis, FN-errores-base} % Origen
     El \gls{parser} de \glspl{instruction} realiza el análisis sintáctico de los
@@ -324,8 +324,8 @@ componentes.
 \begin{component}{Parser}
     {Realiza el análisis sintáctico de un \gls{program}.} % Rol
     {\componentref{Traductor}} % Dependencias
-    {Secuencia de \textit{\glspl{token}}} % Datos de entrada
-    {\gls{AST} correspondiente al \gls{program}} % Datos de salida
+    {Secuencia de \textit{\glspl{token}}.} % Datos de entrada
+    {\gls{AST} correspondiente al \gls{program}.} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
     FN-directivas-datos, FN-num-etiquetas, FN-errores-sintaxis, FN-errores-base} % Origen
     El \gls{parser} realiza el análisis sintáctico de un \gls{program},
@@ -336,8 +336,8 @@ componentes.
 \begin{component}{Evaluador de pseudo-instrucciones}
     {Transforma una \gls{pseudo-instruction} en una secuencia de \glspl{instruction}.} % Rol
     {\componentref{Traductor}} % Dependencias
-    {\gls{AST} de la \gls{pseudo-instruction}, \gls{ISA}, \gls{symbol table}, y dirección de la siguiente \gls{instruction}} % Datos de entrada
-    {Secuencia de \glspl{AST} correspondientes a las \glspl{instruction} por las que se tiene que remplazar la \gls{pseudo-instruction}} % Datos de salida
+    {\gls{AST} de la \gls{pseudo-instruction}, \gls{ISA}, \gls{symbol table}, y dirección de la siguiente \gls{instruction}.} % Datos de entrada
+    {Secuencia de \glspl{AST} correspondientes a las \glspl{instruction} por las que se tiene que remplazar la \gls{pseudo-instruction}.} % Datos de salida
     {FN-compilar-pseudo, FN-errores-base} % Origen
     El evaluador de \glspl{pseudo-instruction} se encarga de transformar las
     \glspl{pseudo-instruction} en una secuencia de \glspl{instruction} con el
@@ -347,8 +347,8 @@ componentes.
 \begin{component}{Traductor}
     {Realiza el análisis semántico y traducción de un \gls{program} \glsdisp{assembly}{ensamblador}.} % Rol
     {\NA} % Dependencias
-    {\gls{ISA} y código del \gls{program} a \glsdisp{compilation}{compilar}} % Datos de entrada
-    {\Gls{program} \glsdisp{compilation}{compilado}} % Datos de salida
+    {\gls{ISA} y código del \gls{program} a \glsdisp{compilation}{compilar}.} % Datos de entrada
+    {\Gls{program} \glsdisp{compilation}{compilado}.} % Datos de salida
     {FN-compilar-instrucciones, FN-compilar-pseudo, FN-directivas,
     FN-secciones, FN-directivas-datos, FN-strings, FN-tamaño-ints,
     FN-floats, FN-alineamiento, FN-bibliotecas, FN-num-etiquetas,
