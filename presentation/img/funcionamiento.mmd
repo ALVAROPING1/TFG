@@ -1,0 +1,14 @@
+---
+config:
+  theme: neutral
+---
+%% Compiling:
+%% npx @mermaid-js/mermaid-cli --input funcionamiento.mmd --output funcionamiento.pdf --backgroundColor transparent --pdfFit
+flowchart LR
+    asm["fa:fa-file-code Código"] --> lexer("fa:fa-industry Lexer")
+    lexer -- Tokens --> parser["fa:fa-industry Parser"]
+    parser -- AST --> compiler["fa:fa-industry Analizador semántico"]
+    ISA["fa:fa-file-alt Arquirectura"] --> compiler
+    compiler --> data["fa:fa-list-ul Instrucciones"]
+    compiler --> instruction["fa:fa-table-cells Datos"]
+    compiler --> symbol_table["fa:fa-table Símbolos"]
